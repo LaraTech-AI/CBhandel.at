@@ -734,7 +734,7 @@ Industriestraße 5
 
 #### 🔧 Improvements
 
-- **Statistics Updates**: Updated from "10+ Jahre Erfahrung" to "15+ Jahre Erfahrung", and from "500+ Verkaufte Fahrzeuge" to "300+ Verkaufte Fahrzeuge"
+- **Statistics Updates**: Updated from "10+ Jahre Erfahrung" to "15+ Jahre Erfahrung" (later updated to "18+ Jahre Erfahrung" in January 2025), and from "500+ Verkaufte Fahrzeuge" to "300+ Verkaufte Fahrzeuge"
 - **About Section Features**: Added "Professionelle Fahrzeug Aufbereitung" to features list
 
 ### Version 2.11.0 - October 2025

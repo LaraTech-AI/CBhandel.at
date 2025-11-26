@@ -1,5 +1,62 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Personalization Updates - CB Handels GmbH (January 2025)
+
+### 🎯 Company-Specific Personalization
+
+#### Overview
+Updated website content to reflect accurate company information for CB Handels GmbH, including years of experience calculation and remaining address references.
+
+#### Content Updates
+
+**Years of Experience:**
+- ✅ Updated statistics from "15+ Jahre Erfahrung" to "18+ Jahre Erfahrung"
+- ✅ Calculated based on company founding date: 02.02.2007
+- ✅ Updated in `index.html` statistics section (line 1381)
+
+**Address References:**
+- ✅ Fixed remaining "Wolfsberg" references to "Reichenfels"
+- ✅ Updated facility location card: "Gut erreichbar in Wolfsberg" → "Gut erreichbar in Reichenfels"
+- ✅ Updated contact section address display
+- ✅ Updated Google Maps direction links
+- ✅ Enhanced JavaScript address replacement logic to catch all instances
+
+**Location Descriptions:**
+- ✅ Updated facility card description from "Auenfischerstraße 53a" to "Industriestraße 5"
+- ✅ Updated all address text references throughout the page
+
+#### Files Modified
+- `index.html` - Updated years of experience statistic, address references, location descriptions, and JavaScript replacement logic
+
+#### Documentation Created
+- ✅ **Created**: `FRAGEBOGEN-PERSONALISIERUNG.md` - Comprehensive German questionnaire for business owner covering 14 sections (company history, statistics, services, target audience, values, opening hours, location, reviews, visual content, social media, contact, offers, legal info, additional wishes)
+- ✅ **Created**: `PERSONALISIERUNGS-PUNKTE.md` - Summary document listing completed personalization points and items requiring customer input
+
+#### Items Identified for Future Updates (Requires Customer Input)
+- Statistics verification (customer count, ratings)
+- Google Maps coordinates update (currently using Wolfsberg coordinates)
+- Real customer testimonials/reviews
+- Company-specific description
+- Opening hours verification
+- Social media links verification
+- Visual content updates (logo, OG image, facility images)
+- Blog content personalization
+
+### 📁 Files Modified
+- `index.html` - Statistics, address references, location descriptions
+
+### 📁 Files Created
+- `FRAGEBOGEN-PERSONALISIERUNG.md` - German questionnaire for business owner
+- `PERSONALISIERUNGS-PUNKTE.md` - Personalization points summary
+
+### 🗑️ Content Removed/Altered
+- **Altered**: Years of experience statistic from 15+ to 18+ years
+- **Altered**: All remaining Wolfsberg address references to Reichenfels
+- **Altered**: Facility location descriptions to reflect correct location
+- **Preserved**: All existing functionality and structure
+
+---
+
 ## Complete Rebranding - CB Handels GmbH (January 2025)
 
 ### 🎨 Full Website Rebranding Completed

@@ -1378,7 +1378,7 @@
                   </svg>
                 </div>
                 <div class="stat-row">
-                  <div class="stat-number" data-count="15">0</div>
+                  <div class="stat-number" data-count="18">0</div>
                   <div class="stat-suffix">+</div>
                 </div>
                 <div class="stat-label">Jahre Erfahrung</div>
@@ -1717,9 +1717,9 @@
                   </div>
                 </div>
                 <div class="facility-content">
-                  <h4 class="facility-title">Gut erreichbar in Wolfsberg</h4>
+                  <h4 class="facility-title">Gut erreichbar in Reichenfels</h4>
                   <p class="facility-description">
-                    Unser Autohaus in der Auenfischerstraße 53a ist zentral
+                    Unser Standort in der Industriestraße 5 ist zentral
                     gelegen und gut mit dem Auto erreichbar. Kostenlose
                     Parkplätze direkt vor der Tür.
                   </p>
@@ -2725,7 +2725,7 @@
                   </div>
                   <div class="info-content">
                     <strong>Adresse</strong>
-                    <p>Auenfischerstraße 53a<br />9400 Wolfsberg, Österreich</p>
+                    <p>Industriestraße 5<br />9463 Reichenfels, Österreich</p>
                   </div>
                 </div>
 
@@ -2932,7 +2932,7 @@
                     WhatsApp Chat
                   </a>
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=Auenfischerstraße+53a,+9400+Wolfsberg,+Austria"
+                    href="https://www.google.com/maps/dir/?api=1&destination=Industriestraße+5,+9463+Reichenfels,+Austria"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="btn btn-secondary magnetic-btn"
@@ -2959,7 +2959,7 @@
           <!-- Map - Full Width Below Both Columns -->
           <div class="map-container glassmorphism">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2723.4!2d14.8453!3d46.8389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476fdd1b9e7c6c5f%3A0x1e7e1e7e1e7e1e7e!2sAuenfischerstra%C3%9Fe%2053a%2C%209400%20Wolfsberg!5e0!3m2!1sde!2sat!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2723.4!2d14.8453!3d46.8389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDUwJzIwLjAiTiAxNMKwNTAnNDMuMyJF!3m2!1d46.8389!2d14.8453!5e0!3m2!1sde!2sat!4v1234567890!5m2!1sde!2sat"
               width="100%"
               height="300"
               style="border: 0"
@@ -5134,10 +5134,14 @@
         // Update address
         const addressElements = document.querySelectorAll("p, li, div");
         addressElements.forEach((el) => {
-          if (el.textContent.includes("Auenfischerstraße 53a")) {
+          if (el.textContent.includes("Auenfischerstraße 53a") || el.textContent.includes("9400 Wolfsberg")) {
             el.innerHTML = el.innerHTML.replace(
               /Auenfischerstraße 53a(?:,? 9400 Wolfsberg(?:, Österreich)?)?/g,
               config.address.full
+            );
+            el.innerHTML = el.innerHTML.replace(
+              /9400 Wolfsberg/g,
+              `${config.address.postalCode} ${config.address.city}`
             );
           }
         });
@@ -5202,6 +5206,7 @@
           if (config.secondaryLocation) {
             content = content.replace(
               /Rabenweg 11, 9400 Wolfsberg/g,
+              // Old address pattern - no longer needed
               `${config.secondaryLocation.street}, ${config.secondaryLocation.postalCode} ${config.secondaryLocation.city}`
             );
           }
@@ -5262,7 +5267,7 @@
         const facilityText = document.querySelector(".facility-description");
         if (
           facilityText &&
-          facilityText.textContent.includes("Auenfischerstraße 53a")
+          (facilityText.textContent.includes("Auenfischerstraße 53a") || facilityText.textContent.includes("Wolfsberg"))
         ) {
           facilityText.innerHTML = facilityText.innerHTML.replace(
             /Auenfischerstraße 53a/g,
