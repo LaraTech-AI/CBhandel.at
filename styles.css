@@ -884,7 +884,7 @@ strong {
   background: transparent;
   z-index: var(--z-header);
   transition: all var(--transition-smooth);
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .header.scrolled {
@@ -893,7 +893,7 @@ strong {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  padding: 1rem 0;
+  padding: 0.25rem 0;
 }
 
 .nav-container {
@@ -926,16 +926,16 @@ strong {
 }
 
 .logo {
-  height: 60px;
+  height: 70px;
   width: auto;
-  max-width: 250px;
+  max-width: 280px;
   object-fit: contain;
   transition: transform var(--transition-base), height var(--transition-base);
 }
 
 .header.scrolled .logo {
-  height: 50px;
-  max-width: 200px;
+  height: 65px;
+  max-width: 280px;
 }
 
 /* Mobile Menu Toggle */
