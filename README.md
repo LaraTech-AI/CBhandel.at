@@ -621,13 +621,13 @@ Already compatible. Enable in Vercel Dashboard:
 
 ## 🤝 Support & Contact
 
-**DirektOnline BS GmbH**  
-Auenfischerstraße 53a  
-9400 Wolfsberg, Österreich
+**CB Handels GmbH**  
+Industriestraße 5  
+9463 Reichenfels, Österreich
 
-📞 Telefon: [+43 664 260 81 85](tel:+436642608185)  
-✉️ E-Mail: [direktonline.at@gmail.com](mailto:direktonline.at@gmail.com)  
-🕐 Öffnungszeiten: Montag – Freitag, 08:00 – 19:30 Uhr
+📞 Telefon: [+43 664 3882323](tel:+436643882323)  
+✉️ E-Mail: [office@cbhandel.at](mailto:office@cbhandel.at)  
+🕐 Öffnungszeiten: Montag bis Freitag: nach telefonischer Vereinbarung
 
 ---
 
@@ -875,7 +875,7 @@ Auenfischerstraße 53a
 
 ## 📄 License
 
-© 2025 DirektOnline BS GmbH. All rights reserved.
+© 2025 CB Handels GmbH. All rights reserved.
 
 ---
 

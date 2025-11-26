@@ -1,108 +1,111 @@
 /**
  * Dealer Configuration
- * Central configuration file for all dealer-specific data
- * This file is used by Node.js serverless functions
+ * CB Handels GmbH
  */
 
 module.exports = {
   // Basic Info
-  name: "DirektOnline BS GmbH",
-  legalName: "DirektOnline BS GmbH",
+  name: "CB Handels GmbH",
+  legalName: "CB Handels GmbH",
   
   // Address
   address: {
-    street: "Auenfischerstraße 53a",
-    city: "Wolfsberg",
-    postalCode: "9400",
+    street: "Industriestraße 5",
+    city: "Reichenfels",
+    postalCode: "9463",
     country: "Österreich",
     region: "Kärnten",
-    full: "Auenfischerstraße 53a, 9400 Wolfsberg, Österreich"
+    full: "Industriestraße 5, 9463 Reichenfels, Österreich"
   },
   
-  // Secondary location (service)
-  secondaryLocation: {
-    street: "Rabenweg 11",
-    city: "Wolfsberg",
-    postalCode: "9400",
-    description: "Servicebetrieb"
-  },
+  // Secondary location (none known)
+  secondaryLocation: null,
   
   // Contact
-  email: "direktonline.at@gmail.com",
-  phone: "+43 664 260 81 85",
+  email: "office@cbhandel.at",
+  phone: "+43 664 3882323",
   
   // Legal/Company Info
   legal: {
-    companyRegister: "FN 637100m",
+    companyRegister: "FN 565866g",
     court: "Landesgericht Klagenfurt",
-    gln: "9110036668028",
-    gisa: "11571155",
-    taxNumber: "57 295/8551",
-    vatId: "ATU81166319",
+    gln: "",
+    gisa: "",
+    taxNumber: "",
+    vatId: "ATU77390636",
     bank: {
-      iban: "AT24 3948 1000 0434 2572",
-      bic: "RZKTAT2K481"
-    }
+      iban: "",
+      bic: ""
+    },
+    managingDirector: "Ing. Christian Baumgartner"
   },
   
   // Business Hours
   openingHours: {
-    weekdays: "Montag – Freitag: 08:00 – 19:30 Uhr"
+    weekdays: "Montag bis Freitag: nach telefonischer Vereinbarung"
   },
   
   // SEO
   seo: {
-    siteTitle: "DirektOnline BS GmbH – Ihr Autohandel in Wolfsberg, Lavanttal, Kärnten",
-    metaDescription: "DirektOnline BS GmbH – Geprüfte Gebrauchtwagen in Wolfsberg, Kärnten. Ihr zuverlässiger Autohandel im Lavanttal. Große Auswahl, faire Preise, kompetente Beratung.",
-    keywords: "DirektOnline Wolfsberg, DirektOnline Lavanttal, DirektOnline Kärnten, Autohandel Wolfsberg, Gebrauchtwagen Wolfsberg, Auto kaufen Kärnten",
-    canonicalUrl: "https://direktonline.at",
-    ogImage: "https://direktonline.at/assets/og-image.jpg"
+    siteTitle: "CB Handels GmbH | Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten",
+    metaDescription:
+      "CB Handels GmbH in Reichenfels, Kärnten – Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen. Fahrzeuge, Nutzfahrzeuge und Maschinen mit fairen Preisen und persönlicher Beratung.",
+    keywords:
+      "CB Handels, Reichenfels, Kärnten, Gebrauchtwagen Reichenfels, Nutzfahrzeuge Reichenfels, Maschinenhandel, Traktoren, Landmaschinen, Autoankauf, Fahrzeughandel",
+    canonicalUrl: "https://cbhandel.at",
+    ogImage: "https://cbhandel.at/assets/og-image.jpg"
   },
   
-  // Branding
+  // Branding (placeholder, anpassbar nach CI)
   colors: {
-    primary: "#1b8e2d",
-    primaryRgb: "27, 142, 45",
-    primaryLight: "#22a636",
-    primaryDark: "#156b22"
+    primary: "#004b8d",
+    primaryRgb: "0, 75, 141",
+    primaryLight: "#2469a6",
+    primaryDark: "#003564"
   },
   
-  // Social Media
+  // Social Media (Handle: /cbhandel)
   social: {
-    facebook: "https://www.facebook.com/direktonline.at/",
-    instagram: "https://www.instagram.com/direktonline.at/",
-    tiktok: "https://www.tiktok.com/@direktonline.at",
-    youtube: "https://www.youtube.com/@direktonline-at",
-    twitter: "https://x.com/DirektOnlineAT",
-    twitterHandle: "@direktonline"
+    facebook: "https://www.facebook.com/cbhandel",
+    instagram: "https://www.instagram.com/cbhandel",
+    tiktok: "https://www.tiktok.com/@cbhandel",
+    youtube: "https://www.youtube.com/@cbhandel",
+    twitter: "https://x.com/cbhandel",
+    twitterHandle: "@cbhandel"
   },
   
-  // Vehicle Data Source
+  // Vehicle / Machine Data Source
+  // To be wired up later (Autoscout, Gebrauchtwagen.at, etc.)
   dataSource: {
-    type: "motornetzwerk",
-    dealerId: "1003459",
-    baseUrl: "https://direktonline.motornetzwerk.at",
+    type: "unknown",
+    dealerId: "",
+    baseUrl: "",
     apiEndpoints: {
-      pkw: "https://direktonline.motornetzwerk.at/app/php-wrappers/php-wrapper.php?aid=1003459",
-      nutzfahrzeuge: "https://direktonline.motornetzwerk.at/app/php-wrappers/php-wrapper-truck.php?aid=1003459"
+      pkw: "",
+      nutzfahrzeuge: ""
     },
     sourceUrls: {
-      pkw: "https://direktonline.motornetzwerk.at?display=iframe2",
-      nutzfahrzeuge: "https://direktonline.motornetzwerk.at/nutzfahrzeuge?display=iframe1"
+      pkw: "",
+      nutzfahrzeuge: ""
+    },
+    // Reference links for manual import / scraping / sync
+    referenceLinks: {
+      autoscout24: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
+      gebrauchtwagenAt: "https://www.gebrauchtwagen.at/handlerwagen/?cid=14166681",
+      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561",
+      mascus: "https://www.mascus.at/cb-handels-gmbh/8bf11bd0,1,relevance,searchdealer.html"
     }
   },
   
   // CORS Allowed Origins
   corsOrigins: [
-    "https://direktonline.at",
-    "https://www.direktonline.at",
-    "https://onlinedirekt.at",
-    "https://www.onlinedirekt.at",
-    "https://direktonline.vercel.app",
+    "https://cbhandel.at",
+    "https://www.cbhandel.at",
+    "https://cbhandel.vercel.app",
     "http://localhost:3000"
   ],
   
   // Description for about sections
-  description: "Ihr zuverlässiger Autohandel in Wolfsberg, Kärnten. Spezialisiert auf geprüfte Gebrauchtwagen mit fairen Preisen und kompetenter Beratung."
+  description:
+    "CB Handels GmbH in Reichenfels, Kärnten – Spezialist für den Handel mit Kraftfahrzeugen, Nutzfahrzeugen und Maschinen. Persönliche Beratung, faire Konditionen und eine vielfältige Auswahl."
 };
-

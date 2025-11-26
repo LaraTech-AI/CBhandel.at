@@ -1,5 +1,101 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Configuration Update - CB Handels GmbH (January 2025)
+
+### 🔄 Dealer Configuration Update
+
+#### Overview
+The dealer configuration has been updated from DirektOnline BS GmbH to CB Handels GmbH, reflecting the current deployment of the template.
+
+#### Configuration Changes
+
+**Company Information:**
+- **Name**: Updated from "DirektOnline BS GmbH" to "CB Handels GmbH"
+- **Legal Name**: Updated to "CB Handels GmbH"
+- **Managing Director**: Added "Ing. Christian Baumgartner"
+
+**Address:**
+- **Street**: Updated from "Auenfischerstraße 53a" to "Industriestraße 5"
+- **City**: Updated from "Wolfsberg" to "Reichenfels"
+- **Postal Code**: Updated from "9400" to "9463"
+- **Secondary Location**: Removed (set to `null` - no secondary location known)
+
+**Contact Information:**
+- **Email**: Updated from "direktonline.at@gmail.com" to "office@cbhandel.at"
+- **Phone**: Updated from "+43 664 260 81 85" to "+43 664 3882323"
+- **Opening Hours**: Updated from "Montag – Freitag: 08:00 – 19:30 Uhr" to "Montag bis Freitag: nach telefonischer Vereinbarung"
+
+**Legal/Company Info:**
+- **Company Register**: Updated from "FN 637100m" to "FN 565866g"
+- **VAT ID**: Updated from "ATU81166319" to "ATU77390636"
+- **GLN, GISA, Tax Number**: Cleared (empty strings)
+- **Bank Details**: Cleared (empty IBAN and BIC)
+
+**SEO Settings:**
+- **Site Title**: Updated to "CB Handels GmbH | Kraftfahrzeuge und Maschinen in Reichenfels, Kärnten"
+- **Meta Description**: Updated to reflect CB Handels GmbH focus on vehicles and machinery
+- **Keywords**: Updated to include "CB Handels, Reichenfels, Kärnten, Gebrauchtwagen, Nutzfahrzeuge, Maschinenhandel, Traktoren, Landmaschinen, Autoankauf"
+- **Canonical URL**: Updated from "https://direktonline.at" to "https://cbhandel.at"
+- **OG Image URL**: Updated to "https://cbhandel.at/assets/og-image.jpg"
+
+**Branding:**
+- **Primary Color**: Updated from green (#1b8e2d) to blue (#004b8d)
+- **Primary RGB**: Updated to "0, 75, 141"
+- **Primary Light**: Updated to "#2469a6"
+- **Primary Dark**: Updated to "#003564"
+
+**Social Media:**
+- **All Platforms**: Updated handles from "direktonline.at" / "@direktonline-at" / "DirektOnlineAT" to "cbhandel" / "@cbhandel"
+- **Twitter Handle**: Updated to "@cbhandel"
+
+**Vehicle Data Source:**
+- **Type**: Changed from "motornetzwerk" to "unknown" (to be configured later)
+- **Dealer ID**: Cleared (empty string)
+- **Base URL**: Cleared (empty string)
+- **API Endpoints**: Cleared (empty strings for pkw and nutzfahrzeuge)
+- **Source URLs**: Cleared (empty strings)
+- **Reference Links**: Added new reference links for:
+  - AutoScout24: https://www.autoscout24.at/haendler/cb-handels-gmbh
+  - Gebrauchtwagen.at: https://www.gebrauchtwagen.at/handlerwagen/?cid=14166681
+  - Landwirt.com: https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561
+  - Mascus: https://www.mascus.at/cb-handels-gmbh/8bf11bd0,1,relevance,searchdealer.html
+
+**CORS Origins:**
+- Updated from direktonline.at domains to cbhandel.at domains
+- Removed "onlinedirekt.at" domains
+- Updated Vercel preview URL to "https://cbhandel.vercel.app"
+
+**Description:**
+- Updated company description to reflect CB Handels GmbH focus on vehicles, commercial vehicles, and machinery
+
+### 📁 Files Modified
+
+- **config/dealerConfig.js**: Updated all dealer-specific configuration values
+- **config/dealerConfig.browser.js**: Updated all dealer-specific configuration values to match Node.js version
+
+### 🗑️ Content Removed/Altered
+
+- **Removed**: DirektOnline BS GmbH company information
+- **Removed**: Wolfsberg address and secondary location
+- **Removed**: DirektOnline contact information and social media handles
+- **Removed**: Motornetzwerk vehicle data source configuration (set to unknown for future configuration)
+- **Altered**: Brand colors from green to blue theme
+- **Altered**: SEO settings to reflect CB Handels GmbH business focus
+- **Preserved**: All configuration structure and functionality - template architecture unchanged
+
+### 📚 Documentation Updates
+
+- **Updated**: `README.md` - Updated Support & Contact section and copyright to reflect CB Handels GmbH
+- **Updated**: `CHANGELOG.md` - Added this configuration update entry
+
+### ✅ Verification
+
+- **Configuration Files**: Both `dealerConfig.js` and `dealerConfig.browser.js` are synchronized
+- **Template Structure**: All configuration fields properly updated
+- **Documentation**: README updated with current dealer information
+
+---
+
 ## Template Refactoring - Configuration-Driven Architecture (January 2025)
 
 ### 🔄 Major Refactoring: Converted to Reusable Template
