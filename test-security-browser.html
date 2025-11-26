@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Fixes Test</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .test-section {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .test-section h2 {
+        margin-top: 0;
+        color: #333;
+      }
+      button {
+        background: #1b8e2d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background: #157021;
+      }
+      .result {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+      pre {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔒 Security Fixes Testing</h1>
+    <p>Test all security fixes from your browser</p>
+
+    <div class="test-section">
+      <h2>1. CORS Whitelist Test</h2>
+      <button onclick="testCORS()">Test CORS</button>
+      <div id="cors-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>2. Security Headers Test</h2>
+      <button onclick="testHeaders()">Test Headers</button>
+      <div id="headers-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>3. Query Parameter Validation</h2>
+      <button onclick="testQueryValidation()">Test Query Validation</button>
+      <div id="query-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>4. Token Removal Test</h2>
+      <button onclick="testTokenRemoval()">Test Newsletter (No Token)</button>
+      <div id="token-result"></div>
+    </div>
+
+    <script>
+      const API_BASE = "http://localhost:3000/api";
+
+      function showResult(elementId, message, type = "info") {
+        const div = document.getElementById(elementId);
+        div.innerHTML = `<div class="result ${type}">${message}</div>`;
+      }
+
+      async function testCORS() {
+        showResult("cors-result", "Testing CORS...", "info");
+
+        try {
+          const response = await fetch(`${API_BASE}/vehicles`, {
+            method: "GET",
+            headers: {
+              Origin: window.location.origin,
+            },
+          });
+
+          const corsHeader = response.headers.get(
+            "access-control-allow-origin"
+          );
+          const isWildcard = corsHeader === "*";
+          const isSpecific = corsHeader === window.location.origin;
+
+          if (isWildcard) {
+            showResult(
+              "cors-result",
+              `❌ FAILED: CORS is still wildcard (*)<br>` +
+                `Expected specific origin, got: ${corsHeader}`,
+              "error"
+            );
+          } else if (isSpecific) {
+            showResult(
+              "cors-result",
+              `✅ PASSED: CORS whitelist working<br>` + `Origin: ${corsHeader}`,
+              "success"
+            );
+          } else {
+            showResult(
+              "cors-result",
+              `⚠️ PARTIAL: CORS header present but unexpected<br>` +
+                `Got: ${corsHeader || "none"}<br>` +
+                `Expected: ${window.location.origin}`,
+              "info"
+            );
+          }
+        } catch (error) {
+          showResult(
+            "cors-result",
+            `❌ ERROR: ${error.message}<br>` +
+              `Make sure server is running on http://localhost:3000`,
+            "error"
+          );
+        }
+      }
+
+      async function testHeaders() {
+        showResult("headers-result", "Testing headers...", "info");
+
+        try {
+          const response = await fetch("http://localhost:3000/", {
+            method: "GET",
+          });
+
+          const headers = {
+            "x-content-type-options": response.headers.get(
+              "x-content-type-options"
+            ),
+            "x-frame-options": response.headers.get("x-frame-options"),
+            "x-xss-protection": response.headers.get("x-xss-protection"),
+            "referrer-policy": response.headers.get("referrer-policy"),
+            "content-security-policy": response.headers.get(
+              "content-security-policy"
+            ),
+            "strict-transport-security": response.headers.get(
+              "strict-transport-security"
+            ),
+            "permissions-policy": response.headers.get("permissions-policy"),
+          };
+
+          const missing = [];
+          const present = [];
+
+          for (const [key, value] of Object.entries(headers)) {
+            if (value) {
+              present.push(`✅ ${key}`);
+            } else {
+              missing.push(`❌ ${key}`);
+            }
+          }
+
+          let result = "";
+          if (present.length > 0) {
+            result +=
+              "<strong>Present:</strong><br>" +
+              present.join("<br>") +
+              "<br><br>";
+          }
+          if (missing.length > 0) {
+            result +=
+              "<strong>Missing:</strong><br>" +
+              missing.join("<br>") +
+              "<br><br>";
+            result +=
+              "<small>Note: Some headers may only appear in production (HTTPS)</small>";
+          }
+
+          if (missing.length === 0) {
+            showResult(
+              "headers-result",
+              result || "✅ All headers present!",
+              "success"
+            );
+          } else {
+            showResult("headers-result", result, "info");
+          }
+        } catch (error) {
+          showResult(
+            "headers-result",
+            `❌ ERROR: ${error.message}<br>` + `Make sure server is running`,
+            "error"
+          );
+        }
+      }
+
+      async function testQueryValidation() {
+        showResult("query-result", "Testing query validation...", "info");
+
+        const tests = [
+          { vid: "12345", expected: "valid", desc: "Valid numeric VID" },
+          { vid: "abc", expected: "invalid", desc: "Invalid non-numeric VID" },
+          { vid: "12345678901", expected: "invalid", desc: "VID too long" },
+        ];
+
+        let results = "<strong>Test Results:</strong><br>";
+
+        for (const test of tests) {
+          try {
+            const response = await fetch(
+              `${API_BASE}/vehicle-details?vid=${test.vid}`
+            );
+            const data = await response.json();
+
+            if (test.expected === "valid" && response.status !== 400) {
+              results += `✅ ${test.desc}: Status ${response.status} (validation passed)<br>`;
+            } else if (test.expected === "invalid" && response.status === 400) {
+              results += `✅ ${test.desc}: Status 400 (correctly rejected)<br>`;
+            } else {
+              results += `⚠️ ${test.desc}: Status ${response.status} (unexpected)<br>`;
+            }
+          } catch (error) {
+            results += `❌ ${test.desc}: ${error.message}<br>`;
+          }
+        }
+
+        showResult("query-result", results, "info");
+      }
+
+      async function testTokenRemoval() {
+        showResult("token-result", "Testing token removal...", "info");
+
+        try {
+          // Check if token exists in scripts.js source
+          const response = await fetch("http://localhost:3000/scripts.js");
+          const scriptContent = await response.text();
+
+          const hasToken =
+            scriptContent.includes("SECRET_TOKEN") &&
+            scriptContent.includes("7866477164");
+
+          if (hasToken) {
+            showResult(
+              "token-result",
+              `❌ FAILED: Token still found in scripts.js<br>` +
+                `Search for "SECRET_TOKEN" or "7866477164" in the file`,
+              "error"
+            );
+          } else {
+            showResult(
+              "token-result",
+              `✅ PASSED: Token removed from client-side code<br>` +
+                `No hardcoded token found in scripts.js`,
+              "success"
+            );
+          }
+        } catch (error) {
+          showResult("token-result", `❌ ERROR: ${error.message}`, "error");
+        }
+      }
+
+      // Auto-run basic tests on load
+      window.addEventListener("load", () => {
+        console.log("Security tests ready. Click buttons to test each fix.");
+      });
+    </script>
+  </body>
+</html>

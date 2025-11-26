@@ -1,0 +1,34 @@
+{
+  "name": "direktonline-website",
+  "version": "1.0.0",
+  "description": "DirektOnline BS GmbH - Modern car dealership website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "dev:vercel": "vercel dev",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod",
+    "test:security": "node test-security-fixes.js"
+  },
+  "keywords": [
+    "direktonline",
+    "wolfsberg",
+    "kärnten",
+    "autohandel",
+    "gebrauchtwagen"
+  ],
+  "author": "DirektOnline BS GmbH",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sparticuz/chromium": "^141.0.0",
+    "nodemailer": "^7.0.10",
+    "puppeteer-core": "^24.27.0"
+  },
+  "devDependencies": {
+    "vercel": "^48.6.7"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

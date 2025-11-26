@@ -1,0 +1,43 @@
+<!--
+  ============================================================================
+  ARCHIVED SECTION: Featured Vehicles / Highlight-Fahrzeuge
+  ============================================================================
+  
+  Archived Date: 2025-01-XX
+  Reason: Removed redundant section - functionality merged into main Fahrzeuge section
+          Main section now shows "top-offer" vehicles first by default
+  
+  Original Location: index.html (between Fahrzeuge and Blog sections)
+  Original Section ID: featured-vehicles
+  
+  DEPENDENCIES:
+  - CSS: .featured-section, .featured-grid classes in styles.css
+  - JavaScript: loadFeaturedVehicles() function in scripts.js
+  - API: Uses same vehicle API endpoint as main Fahrzeuge section
+  
+  HOW TO RESTORE:
+  1. Copy this section back into index.html after the Fahrzeuge section
+  2. Uncomment loadFeaturedVehicles() call in scripts.js (around line 777)
+  3. Ensure featured-grid element exists for vehicle rendering
+  4. Test that featured vehicles load correctly
+  
+  NOTE: The loadFeaturedVehicles() function still exists in scripts.js but is
+        commented out for potential future use.
+  
+  ============================================================================
+-->
+
+      <!-- Featured Vehicles / 3D Tilt Cards -->
+      <section id="featured-vehicles" class="section featured-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Highlight-Fahrzeuge</h2>
+            <p class="section-subtitle">Unsere Top-Angebote dieser Woche</p>
+          </div>
+
+          <div class="featured-grid">
+            <!-- Top 3 most expensive vehicles loaded via API -->
+          </div>
+        </div>
+      </section>
+

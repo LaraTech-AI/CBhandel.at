@@ -1,0 +1,23 @@
+# robots.txt for DirektOnline BS GmbH
+# https://direktonline.at/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow API endpoints (not meant for crawling)
+Disallow: /api/
+
+# Disallow admin/internal paths if any
+Disallow: /_next/
+Disallow: /.vercel/
+
+# Allow all other paths
+Allow: /assets/
+Allow: /posts/
+
+# Sitemap location
+Sitemap: https://direktonline.at/sitemap.xml
+
+# Crawl-delay (optional - only if needed)
+# Crawl-delay: 1
+

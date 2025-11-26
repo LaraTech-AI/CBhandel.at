@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="50" y="50" width="1100" height="530" fill="#1b8e2d" rx="20"/>
+  <text x="600" y="200" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="48" font-weight="bold">DirektOnline BS GmbH</text>
+  <text x="600" y="280" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24">Ihr Autohandel in Wolfsberg, Kärnten</text>
+  <text x="600" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18">Geprüfte Gebrauchtwagen • Faire Preise • Kompetente Beratung</text>
+</svg>

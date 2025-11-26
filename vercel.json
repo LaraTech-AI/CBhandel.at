@@ -1,0 +1,94 @@
+{
+  "version": 2,
+  "name": "direktonline",
+  "outputDirectory": ".",
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 60
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Accept-CH",
+          "value": "DPR, Viewport-Width, Width"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google.com https://www.google-analytics.com https://cdn.jsdelivr.net https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://direktonline.motornetzwerk.at https://script.google.com https://api.ipify.org https://www.google-analytics.com https://region1.google-analytics.com https://region2.google-analytics.com https://www.googletagmanager.com https://vercel.live; frame-src 'self' https://direktonline.motornetzwerk.at https://www.google.com https://maps.google.com;"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/posts/:slug",
+      "destination": "/posts/:slug.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/fahrzeuge",
+      "destination": "/?redirect=fahrzeuge",
+      "permanent": true
+    },
+    {
+      "source": "/fahrzeuge/",
+      "destination": "/?redirect=fahrzeuge",
+      "permanent": true
+    }
+  ]
+}
