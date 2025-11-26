@@ -2,7 +2,7 @@
 
 **Kategorie**: Ratgeber  
 **Datum**: 1. November 2025  
-**Autor**: DirektOnline Team  
+**Autor**: CB Handels Team  
 **Lesezeit**: 5 Minuten
 
 ---
@@ -93,7 +93,7 @@ Empfohlene Tiefe: 6 mm (Winter) / 3 mm (Sommer)
 
 ### Professioneller Wechsel
 
-Bei DirektOnline BS GmbH bieten wir:
+Bei CB Handels GmbH bieten wir:
 
 ✅ Reifenwechsel inkl. Auswuchten  
 ✅ Professioneller Sicherheitscheck  
@@ -163,7 +163,7 @@ A: Ja! Reifen werden geschont, Sie sparen Platz, und haben stets frische, ausgew
 
 ## Unser Service für Sie
 
-Bei **DirektOnline BS GmbH** in Wolfsberg sind Sie in besten Händen:
+Bei **CB Handels GmbH** in Reichenfels sind Sie in besten Händen:
 
 🔧 **Reifenservice**
 
@@ -189,16 +189,16 @@ Bei **DirektOnline BS GmbH** in Wolfsberg sind Sie in besten Händen:
 
 Kommen Sie vor dem ersten Schnee zu uns!
 
-📞 **Telefon**: [+43 664 260 81 85](tel:+436642608185)  
-✉️ **E-Mail**: [direktonline.at@gmail.com](mailto:direktonline.at@gmail.com)  
-📍 **Adresse**: Auenfischerstraße 53a, 9400 Wolfsberg
+📞 **Telefon**: [+43 664 3882323](tel:+436643882323)  
+✉️ **E-Mail**: [office@cbhandel.at](mailto:office@cbhandel.at)  
+📍 **Adresse**: Industriestraße 5, 9463 Reichenfels, Österreich
 
 **Öffnungszeiten**:  
-Montag – Freitag: 08:00 – 19:30 Uhr
+Montag bis Freitag: nach telefonischer Vereinbarung
 
 ---
 
-**Tags**: #Winterreifen #Reifenwechsel #Sicherheit #Autowartung #Wolfsberg #Kärnten
+**Tags**: #Winterreifen #Reifenwechsel #Sicherheit #Autowartung #Reichenfels #Kärnten
 
 **Weitere Artikel**:
 

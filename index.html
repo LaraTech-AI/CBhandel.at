@@ -6,165 +6,202 @@
 
     <!-- SEO Meta Tags -->
     <title>
-      DirektOnline BS GmbH – Ihr Autohandel in Wolfsberg, Lavanttal, Kärnten
+      CB Handels GmbH | Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten
     </title>
     <meta
       name="description"
-      content="DirektOnline BS GmbH – Geprüfte Gebrauchtwagen in Wolfsberg, Kärnten. Ihr zuverlässiger Autohandel im Lavanttal. Große Auswahl, faire Preise, kompetente Beratung."
+      content="CB Handels GmbH in Reichenfels, Kärnten – Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen. Fahrzeuge, Nutzfahrzeuge und Maschinen mit fairen Preisen und persönlicher Beratung."
     />
     <meta
       name="keywords"
-      content="DirektOnline Wolfsberg, DirektOnline Lavanttal, DirektOnline Kärnten, Autohandel Wolfsberg, Gebrauchtwagen Wolfsberg, Auto kaufen Kärnten"
+      content="CB Handels, Reichenfels, Kärnten, Gebrauchtwagen Reichenfels, Nutzfahrzeuge Reichenfels, Maschinenhandel, Traktoren, Landmaschinen, Autoankauf, Fahrzeughandel"
     />
-    <link rel="canonical" href="https://direktonline.at" />
+    <link rel="canonical" href="https://cbhandel.at" />
 
     <!-- Open Graph Tags -->
     <meta
       property="og:title"
-      content="DirektOnline BS GmbH – Ihr Autohandel in Wolfsberg, Lavanttal, Kärnten"
+      content="CB Handels GmbH | Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
     />
     <meta
       property="og:description"
-      content="Geprüfte Gebrauchtwagen in Wolfsberg, Kärnten. Große Auswahl an qualitätsgeprüften Fahrzeugen, faire Preise und kompetente Beratung. Ihr zuverlässiger Autohandel im Lavanttal."
+      content="CB Handels GmbH in Reichenfels, Kärnten – Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen. Fahrzeuge, Nutzfahrzeuge und Maschinen mit fairen Preisen und persönlicher Beratung."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://direktonline.at" />
+    <meta property="og:url" content="https://cbhandel.at" />
     <meta
       property="og:image"
-      content="https://direktonline.at/assets/og-image.jpg"
+      content="https://cbhandel.at/assets/og-image.jpg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta
       property="og:image:alt"
-      content="DirektOnline BS GmbH – Geprüfte Gebrauchtwagen in Wolfsberg, Lavanttal, Kärnten"
+      content="CB Handels GmbH – Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
     />
-    <meta property="og:site_name" content="DirektOnline BS GmbH" />
+    <meta property="og:site_name" content="CB Handels GmbH" />
     <meta property="og:locale" content="de_AT" />
     <meta property="og:locale:alternate" content="de_DE" />
 
     <!-- Additional Open Graph for Local Business -->
     <meta
       property="business:contact_data:street_address"
-      content="Auenfischerstraße 53a"
+      content="Industriestraße 5"
     />
-    <meta property="business:contact_data:locality" content="Wolfsberg" />
+    <meta property="business:contact_data:locality" content="Reichenfels" />
     <meta property="business:contact_data:region" content="Kärnten" />
-    <meta property="business:contact_data:postal_code" content="9400" />
+    <meta property="business:contact_data:postal_code" content="9463" />
     <meta property="business:contact_data:country_name" content="Austria" />
     <meta
       property="business:contact_data:phone_number"
-      content="+436642608185"
+      content="+436643882323"
     />
-    <meta
-      property="business:contact_data:email"
-      content="direktonline.at@gmail.com"
-    />
+    <meta property="business:contact_data:email" content="office@cbhandel.at" />
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="DirektOnline BS GmbH – Ihr Autohandel in Wolfsberg, Kärnten"
+      content="CB Handels GmbH | Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
     />
     <meta
       name="twitter:description"
-      content="Geprüfte Gebrauchtwagen in Wolfsberg, Kärnten. Große Auswahl, faire Preise, kompetente Beratung. Ihr zuverlässiger Autohandel im Lavanttal."
+      content="CB Handels GmbH in Reichenfels, Kärnten – Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen. Fahrzeuge, Nutzfahrzeuge und Maschinen mit fairen Preisen."
     />
     <meta
       name="twitter:image"
-      content="https://direktonline.at/assets/og-image.jpg"
+      content="https://cbhandel.at/assets/og-image.jpg"
     />
     <meta
       name="twitter:image:alt"
-      content="DirektOnline BS GmbH – Geprüfte Gebrauchtwagen in Wolfsberg, Kärnten"
+      content="CB Handels GmbH – Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
     />
-    <meta name="twitter:site" content="@direktonline" />
-    <meta name="twitter:creator" content="@direktonline" />
+    <meta name="twitter:site" content="@cbhandel" />
+    <meta name="twitter:creator" content="@cbhandel" />
 
     <!-- Dealer Configuration - Load first for use in meta tags -->
     <script src="config/dealerConfig.browser.js"></script>
     <script>
       // Populate meta tags from config (runs immediately for SEO)
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') {
-          console.error('dealerConfig not loaded');
+      (function () {
+        if (typeof window.dealerConfig === "undefined") {
+          console.error("dealerConfig not loaded");
           return;
         }
         const config = window.dealerConfig;
-        
+
         // Update title
         document.title = config.seo.siteTitle;
-        
+
         // Update meta description
         const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', config.seo.metaDescription);
-        
+        if (metaDesc)
+          metaDesc.setAttribute("content", config.seo.metaDescription);
+
         // Update keywords
         const metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (metaKeywords) metaKeywords.setAttribute('content', config.seo.keywords);
-        
+        if (metaKeywords)
+          metaKeywords.setAttribute("content", config.seo.keywords);
+
         // Update canonical
         const canonical = document.querySelector('link[rel="canonical"]');
-        if (canonical) canonical.setAttribute('href', config.seo.canonicalUrl);
-        
+        if (canonical) canonical.setAttribute("href", config.seo.canonicalUrl);
+
         // Update OG tags
         const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) ogTitle.setAttribute('content', config.seo.siteTitle);
-        
-        const ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) ogDesc.setAttribute('content', config.seo.metaDescription);
-        
+        if (ogTitle) ogTitle.setAttribute("content", config.seo.siteTitle);
+
+        const ogDesc = document.querySelector(
+          'meta[property="og:description"]'
+        );
+        if (ogDesc) ogDesc.setAttribute("content", config.seo.metaDescription);
+
         const ogUrl = document.querySelector('meta[property="og:url"]');
-        if (ogUrl) ogUrl.setAttribute('content', config.seo.canonicalUrl);
-        
+        if (ogUrl) ogUrl.setAttribute("content", config.seo.canonicalUrl);
+
         const ogImage = document.querySelector('meta[property="og:image"]');
-        if (ogImage) ogImage.setAttribute('content', config.seo.ogImage);
-        
-        const ogImageAlt = document.querySelector('meta[property="og:image:alt"]');
-        if (ogImageAlt) ogImageAlt.setAttribute('content', config.seo.siteTitle);
-        
-        const ogSiteName = document.querySelector('meta[property="og:site_name"]');
-        if (ogSiteName) ogSiteName.setAttribute('content', config.name);
-        
+        if (ogImage) ogImage.setAttribute("content", config.seo.ogImage);
+
+        const ogImageAlt = document.querySelector(
+          'meta[property="og:image:alt"]'
+        );
+        if (ogImageAlt)
+          ogImageAlt.setAttribute("content", config.seo.siteTitle);
+
+        const ogSiteName = document.querySelector(
+          'meta[property="og:site_name"]'
+        );
+        if (ogSiteName) ogSiteName.setAttribute("content", config.name);
+
         // Update business contact data
-        const streetAddr = document.querySelector('meta[property="business:contact_data:street_address"]');
-        if (streetAddr) streetAddr.setAttribute('content', config.address.street);
-        
-        const locality = document.querySelector('meta[property="business:contact_data:locality"]');
-        if (locality) locality.setAttribute('content', config.address.city);
-        
-        const region = document.querySelector('meta[property="business:contact_data:region"]');
-        if (region) region.setAttribute('content', config.address.region);
-        
-        const postalCode = document.querySelector('meta[property="business:contact_data:postal_code"]');
-        if (postalCode) postalCode.setAttribute('content', config.address.postalCode);
-        
-        const phone = document.querySelector('meta[property="business:contact_data:phone_number"]');
-        if (phone) phone.setAttribute('content', config.phone.replace(/\s/g, ''));
-        
-        const email = document.querySelector('meta[property="business:contact_data:email"]');
-        if (email) email.setAttribute('content', config.email);
-        
+        const streetAddr = document.querySelector(
+          'meta[property="business:contact_data:street_address"]'
+        );
+        if (streetAddr)
+          streetAddr.setAttribute("content", config.address.street);
+
+        const locality = document.querySelector(
+          'meta[property="business:contact_data:locality"]'
+        );
+        if (locality) locality.setAttribute("content", config.address.city);
+
+        const region = document.querySelector(
+          'meta[property="business:contact_data:region"]'
+        );
+        if (region) region.setAttribute("content", config.address.region);
+
+        const postalCode = document.querySelector(
+          'meta[property="business:contact_data:postal_code"]'
+        );
+        if (postalCode)
+          postalCode.setAttribute("content", config.address.postalCode);
+
+        const phone = document.querySelector(
+          'meta[property="business:contact_data:phone_number"]'
+        );
+        if (phone)
+          phone.setAttribute("content", config.phone.replace(/\s/g, ""));
+
+        const email = document.querySelector(
+          'meta[property="business:contact_data:email"]'
+        );
+        if (email) email.setAttribute("content", config.email);
+
         // Update Twitter tags
-        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-        if (twitterTitle) twitterTitle.setAttribute('content', config.seo.siteTitle);
-        
-        const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (twitterDesc) twitterDesc.setAttribute('content', config.seo.metaDescription);
-        
-        const twitterImage = document.querySelector('meta[name="twitter:image"]');
-        if (twitterImage) twitterImage.setAttribute('content', config.seo.ogImage);
-        
-        const twitterImageAlt = document.querySelector('meta[name="twitter:image:alt"]');
-        if (twitterImageAlt) twitterImageAlt.setAttribute('content', config.seo.siteTitle);
-        
+        const twitterTitle = document.querySelector(
+          'meta[name="twitter:title"]'
+        );
+        if (twitterTitle)
+          twitterTitle.setAttribute("content", config.seo.siteTitle);
+
+        const twitterDesc = document.querySelector(
+          'meta[name="twitter:description"]'
+        );
+        if (twitterDesc)
+          twitterDesc.setAttribute("content", config.seo.metaDescription);
+
+        const twitterImage = document.querySelector(
+          'meta[name="twitter:image"]'
+        );
+        if (twitterImage)
+          twitterImage.setAttribute("content", config.seo.ogImage);
+
+        const twitterImageAlt = document.querySelector(
+          'meta[name="twitter:image:alt"]'
+        );
+        if (twitterImageAlt)
+          twitterImageAlt.setAttribute("content", config.seo.siteTitle);
+
         const twitterSite = document.querySelector('meta[name="twitter:site"]');
-        if (twitterSite) twitterSite.setAttribute('content', config.social.twitterHandle);
-        
-        const twitterCreator = document.querySelector('meta[name="twitter:creator"]');
-        if (twitterCreator) twitterCreator.setAttribute('content', config.social.twitterHandle);
+        if (twitterSite)
+          twitterSite.setAttribute("content", config.social.twitterHandle);
+
+        const twitterCreator = document.querySelector(
+          'meta[name="twitter:creator"]'
+        );
+        if (twitterCreator)
+          twitterCreator.setAttribute("content", config.social.twitterHandle);
       })();
     </script>
 
@@ -173,32 +210,43 @@
 
     <!-- Performance: Preload critical CSS -->
     <link rel="preload" href="styles.css" as="style" />
-    
+
     <!-- Preload LCP candidate image (hero background) -->
-    <link rel="preload" href="assets/Gemini_Generated_Image_5uh48c5uh48c5uh42.webp" as="image" fetchpriority="high" />
-    
+    <link
+      rel="preload"
+      href="assets/Gemini_Generated_Image_5uh48c5uh48c5uh42.webp"
+      as="image"
+      fetchpriority="high"
+    />
+
     <!-- Strategic prefetch for common navigation paths -->
     <link rel="prefetch" href="/posts/reifenwechsel.html" as="document" />
-    <link rel="prefetch" href="/posts/gebrauchtwagen-kaufen.html" as="document" />
+    <link
+      rel="prefetch"
+      href="/posts/gebrauchtwagen-kaufen.html"
+      as="document"
+    />
     <link rel="prefetch" href="/posts/elektromobilitaet.html" as="document" />
 
     <!-- Critical CSS: Inline above-the-fold styles for faster FCP -->
     <style>
       /* CSS Variables - Critical */
       :root {
-        --brand-primary: #1b8e2d;
-        --brand-primary-rgb: 27, 142, 45;
+        --brand-primary: #004b8d;
+        --brand-primary-rgb: 0, 75, 141;
         --bg-primary: #ffffff;
         --bg-secondary: #f8f9fa;
         --text-primary: #1a1a1a;
         --text-secondary: #4a4a4a;
-        --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
         --container-width: 1320px;
         --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         --z-header: 1000;
         --glass-bg: rgba(255, 255, 255, 0.75);
         --glass-border: rgba(255, 255, 255, 0.3);
-        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+        --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.08);
       }
       [data-theme="dark"] {
         --bg-primary: #0f1419;
@@ -209,31 +257,169 @@
         --glass-border: rgba(255, 255, 255, 0.15);
       }
       /* Reset & Base */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; width: 100%; max-width: 100%; overflow-x: hidden; }
-      body { font-family: var(--font-primary); font-size: 1rem; line-height: 1.6; color: var(--text-primary); background-color: var(--bg-primary); overflow-x: hidden; width: 100%; max-width: 100%; position: relative; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: var(--font-primary);
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+      }
       /* Header - Critical */
-      .header { position: fixed; top: 0; left: 0; width: 100%; background: transparent; z-index: var(--z-header); transition: all var(--transition-base); padding: 1.5rem 0; }
-      .header.scrolled { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); padding: 1rem 0; }
-      .nav-container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-      .logo { height: 60px; width: auto; max-width: 250px; object-fit: contain; }
-      .header.scrolled .logo { height: 50px; max-width: 200px; }
-      .nav-menu { display: flex; align-items: center; gap: 2rem; list-style: none; margin: 0; padding: 0; }
-      .nav-link { font-size: 0.95rem; font-weight: 500; color: var(--text-primary); padding: 0.5rem 0; transition: color var(--transition-base); white-space: nowrap; }
-      .header:not(.scrolled) .nav-link { color: #ffffff; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35); }
-      .header.scrolled .nav-link { color: var(--text-primary); text-shadow: none; }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: transparent;
+        z-index: var(--z-header);
+        transition: all var(--transition-base);
+        padding: 1.5rem 0;
+      }
+      .header.scrolled {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+        padding: 1rem 0;
+      }
+      .nav-container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+      .logo {
+        height: 60px;
+        width: auto;
+        max-width: 250px;
+        object-fit: contain;
+      }
+      .header.scrolled .logo {
+        height: 50px;
+        max-width: 200px;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-link {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        padding: 0.5rem 0;
+        transition: color var(--transition-base);
+        white-space: nowrap;
+      }
+      .header:not(.scrolled) .nav-link {
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      }
+      .header.scrolled .nav-link {
+        color: var(--text-primary);
+        text-shadow: none;
+      }
       /* Hero - Critical */
-      .hero-section { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 2rem 4rem; overflow: hidden; width: 100%; max-width: 100%; background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%); }
-      .hero-section.has-bg-image { background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.3) 100%), url("assets/Gemini_Generated_Image_5uh48c5uh48c5uh42.webp"); background-position: center center; background-size: cover; background-repeat: no-repeat; }
-      .hero-content { max-width: var(--container-width); margin: 0 auto; text-align: center; position: relative; z-index: 1; width: 100%; padding: 0 2rem; }
-      .hero-headline { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
-      .hero-location { font-size: clamp(1.25rem, 3vw, 2rem); color: rgba(255, 255, 255, 0.95); margin-bottom: 1.5rem; font-weight: 500; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
-      .hero-subheadline { font-size: clamp(1.1rem, 2vw, 1.5rem); color: rgba(255, 255, 255, 0.9); margin-bottom: 2.5rem; font-weight: 400; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
-      .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 2rem 4rem;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--bg-primary) 0%,
+          var(--bg-secondary) 50%,
+          var(--bg-primary) 100%
+        );
+      }
+      .hero-section.has-bg-image {
+        background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.3) 100%
+          ),
+          url("assets/Gemini_Generated_Image_5uh48c5uh48c5uh42.webp");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .hero-content {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 0 2rem;
+      }
+      .hero-headline {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+      }
+      .hero-location {
+        font-size: clamp(1.25rem, 3vw, 2rem);
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .hero-subheadline {
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+        font-weight: 400;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+      }
     </style>
 
     <!-- Stylesheets - Load asynchronously after critical CSS -->
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'" />
+    <link
+      rel="stylesheet"
+      href="styles.css"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript><link rel="stylesheet" href="styles.css" /></noscript>
 
     <!-- Font Resources -->
@@ -243,7 +429,7 @@
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://www.google.com" />
     <link rel="dns-prefetch" href="https://maps.googleapis.com" />
-    
+
     <!-- Preconnect for Google Analytics -->
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -268,64 +454,63 @@
     </script>
 
     <!-- JSON-LD Structured Data for LocalBusiness -->
-    <script type="application/ld+json" id="localbusiness-jsonld">
-    </script>
+    <script type="application/ld+json" id="localbusiness-jsonld"></script>
     <script>
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') return;
+      (function () {
+        if (typeof window.dealerConfig === "undefined") return;
         const config = window.dealerConfig;
-        const script = document.getElementById('localbusiness-jsonld');
+        const script = document.getElementById("localbusiness-jsonld");
         if (!script) return;
-        
+
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "AutoDealer",
-          "name": config.name,
-          "description": config.description,
-          "url": config.seo.canonicalUrl,
-          "telephone": config.phone.replace(/\s/g, ''),
-          "email": config.email,
-          "address": {
+          name: config.name,
+          description: config.description,
+          url: config.seo.canonicalUrl,
+          telephone: config.phone.replace(/\s/g, ""),
+          email: config.email,
+          address: {
             "@type": "PostalAddress",
-            "streetAddress": config.address.street,
-            "addressLocality": config.address.city,
-            "addressRegion": config.address.region,
-            "postalCode": config.address.postalCode,
-            "addressCountry": "AT"
+            streetAddress: config.address.street,
+            addressLocality: config.address.city,
+            addressRegion: config.address.region,
+            postalCode: config.address.postalCode,
+            addressCountry: "AT",
           },
-          "geo": {
+          geo: {
             "@type": "GeoCoordinates",
-            "latitude": "46.8389",
-            "longitude": "14.8453"
+            latitude: "46.8389",
+            longitude: "14.8453",
           },
-          "openingHoursSpecification": [
+          openingHoursSpecification: [
             {
               "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
+              dayOfWeek: [
                 "Monday",
                 "Tuesday",
                 "Wednesday",
                 "Thursday",
-                "Friday"
+                "Friday",
               ],
-              "opens": "08:00",
-              "closes": "19:30"
+              opens: "08:00",
+              closes: "19:30",
             },
             {
               "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Saturday"],
-              "opens": "08:00",
-              "closes": "18:00"
-            }
+              dayOfWeek: ["Saturday"],
+              opens: "08:00",
+              closes: "18:00",
+            },
           ],
-          "priceRange": "$$",
-          "sameAs": [
+          priceRange: "$$",
+          sameAs: [
             config.social.facebook,
             config.social.instagram,
             config.social.tiktok,
             config.social.youtube,
-            config.social.twitter
-          ]
+            config.social.twitter,
+          ],
         };
         script.textContent = JSON.stringify(jsonLd);
       })();
@@ -407,155 +592,156 @@
 
     <!-- JSON-LD Structured Data for BreadcrumbList -->
     <!-- Note: Only homepage included as breadcrumb since other sections are on the same page -->
-    <script type="application/ld+json" id="breadcrumb-jsonld">
-    </script>
+    <script type="application/ld+json" id="breadcrumb-jsonld"></script>
     <script>
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') return;
+      (function () {
+        if (typeof window.dealerConfig === "undefined") return;
         const config = window.dealerConfig;
-        const script = document.getElementById('breadcrumb-jsonld');
+        const script = document.getElementById("breadcrumb-jsonld");
         if (!script) return;
-        
+
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
-          "itemListElement": [
+          itemListElement: [
             {
               "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": config.seo.canonicalUrl
-            }
-          ]
+              position: 1,
+              name: "Home",
+              item: config.seo.canonicalUrl,
+            },
+          ],
         };
         script.textContent = JSON.stringify(jsonLd);
       })();
     </script>
 
     <!-- JSON-LD Structured Data for Reviews/Ratings -->
-    <script type="application/ld+json" id="reviews-jsonld">
-    </script>
+    <script type="application/ld+json" id="reviews-jsonld"></script>
     <script>
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') return;
+      (function () {
+        if (typeof window.dealerConfig === "undefined") return;
         const config = window.dealerConfig;
-        const script = document.getElementById('reviews-jsonld');
+        const script = document.getElementById("reviews-jsonld");
         if (!script) return;
-        
+
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          "name": config.name,
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "4",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Lukas Radl"
-            },
-            "datePublished": "2025-10-18",
-            "reviewBody": "Auto gekauft, vom Erstgespräch bis zum Kauf und Nachbetreuung 1A! Sehr zu empfehlen, immer TOP Autos.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            }
+          name: config.name,
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "4",
+            bestRating: "5",
+            worstRating: "1",
           },
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Alexander Prossegger"
+          review: [
+            {
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: "Lukas Radl",
+              },
+              datePublished: "2025-10-18",
+              reviewBody:
+                "Auto gekauft, vom Erstgespräch bis zum Kauf und Nachbetreuung 1A! Sehr zu empfehlen, immer TOP Autos.",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
             },
-            "datePublished": "2025-09-27",
-            "reviewBody": "Ich habe dort vor kurzem ein Auto gekauft und bin wirklich sehr zufrieden. Die Beratung bezüglich dem Fahrzeug war professionell und ehrlich.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Maryus Maryo"
+            {
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: "Alexander Prossegger",
+              },
+              datePublished: "2025-09-27",
+              reviewBody:
+                "Ich habe dort vor kurzem ein Auto gekauft und bin wirklich sehr zufrieden. Die Beratung bezüglich dem Fahrzeug war professionell und ehrlich.",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
             },
-            "datePublished": "2025-10-11",
-            "reviewBody": "Sehr nettes Leute, alles geht's einfach und schnell und unkompliziert. Ich habe ein schönes Auto gekauft und bin sehr zufrieden. Vielen Dank!",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            }
-          },
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Michael H."
+            {
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: "Maryus Maryo",
+              },
+              datePublished: "2025-10-11",
+              reviewBody:
+                "Sehr nettes Leute, alles geht's einfach und schnell und unkompliziert. Ich habe ein schönes Auto gekauft und bin sehr zufrieden. Vielen Dank!",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
             },
-            "datePublished": "2025-10-11",
-            "reviewBody": "Top Service, sehr zu empfehlen! Die Fahrzeuge sind in einem sehr guten Zustand und die Beratung ist kompetent.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            }
-          }
-        ]
-      };
+            {
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: "Michael H.",
+              },
+              datePublished: "2025-10-11",
+              reviewBody:
+                "Top Service, sehr zu empfehlen! Die Fahrzeuge sind in einem sehr guten Zustand und die Beratung ist kompetent.",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
+            },
+          ],
+        };
         script.textContent = JSON.stringify(jsonLd);
       })();
     </script>
 
     <!-- JSON-LD Structured Data for Organization (E-E-A-T) -->
-    <script type="application/ld+json" id="organization-jsonld">
-    </script>
+    <script type="application/ld+json" id="organization-jsonld"></script>
     <script>
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') return;
+      (function () {
+        if (typeof window.dealerConfig === "undefined") return;
         const config = window.dealerConfig;
-        const script = document.getElementById('organization-jsonld');
+        const script = document.getElementById("organization-jsonld");
         if (!script) return;
-        
+
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": config.name,
-          "url": config.seo.canonicalUrl,
-          "logo": config.seo.canonicalUrl + "/assets/logo.png",
-          "description": config.description,
-          "address": {
+          name: config.name,
+          url: config.seo.canonicalUrl,
+          logo: config.seo.canonicalUrl + "/assets/logo.jpg",
+          description: config.description,
+          address: {
             "@type": "PostalAddress",
-            "streetAddress": config.address.street,
-            "addressLocality": config.address.city,
-            "addressRegion": config.address.region,
-            "postalCode": config.address.postalCode,
-            "addressCountry": "AT"
+            streetAddress: config.address.street,
+            addressLocality: config.address.city,
+            addressRegion: config.address.region,
+            postalCode: config.address.postalCode,
+            addressCountry: "AT",
           },
-          "contactPoint": {
+          contactPoint: {
             "@type": "ContactPoint",
-            "telephone": config.phone.replace(/\s/g, ''),
-            "contactType": "customer service",
-            "email": config.email,
-            "areaServed": "AT",
-            "availableLanguage": ["de"]
+            telephone: config.phone.replace(/\s/g, ""),
+            contactType: "customer service",
+            email: config.email,
+            areaServed: "AT",
+            availableLanguage: ["de"],
           },
-          "sameAs": [
+          sameAs: [
             config.social.facebook,
             config.social.instagram,
             config.social.tiktok,
             config.social.youtube,
-            config.social.twitter
-          ]
+            config.social.twitter,
+          ],
         };
         script.textContent = JSON.stringify(jsonLd);
       })();
@@ -667,8 +853,8 @@
         <div class="logo-container">
           <a href="#hero" class="logo-link">
             <img
-              src="assets/logo.png"
-              alt="DirektOnline BS GmbH Logo"
+              src="assets/logo.jpg"
+              alt="CB Handels GmbH Logo"
               class="logo"
               id="site-logo"
               width="250"
@@ -831,9 +1017,24 @@
 
     <!-- Main Content -->
     <!-- ARIA live regions for dynamic content announcements -->
-    <div id="aria-live-vehicles" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-    <div id="aria-live-forms" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-    <div id="aria-live-search" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    <div
+      id="aria-live-vehicles"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+    <div
+      id="aria-live-forms"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+    <div
+      id="aria-live-search"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
 
     <main id="main-content">
       <!-- Hero Section -->
@@ -842,9 +1043,11 @@
         <div class="hero-content">
           <div class="hero-text">
             <h1 class="hero-headline">
-              <span class="headline-line">DirektOnline</span>
+              <span class="headline-line">CB Handels GmbH</span>
             </h1>
-            <p class="hero-location">Ihr Autohändler in Wolfsberg, Kärnten</p>
+            <p class="hero-location">
+              Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten
+            </p>
             <p class="hero-subheadline">
               Geprüfte Gebrauchtwagen. Große Auswahl, faire Preise, kompetente
               Beratung.
@@ -1085,19 +1288,21 @@
       <section id="ueber" class="section about-section">
         <div class="container">
           <div class="section-header">
-            <h2 class="section-title">Über DirektOnline</h2>
+            <h2 class="section-title">Über CB Handels</h2>
             <p class="section-subtitle">
-              Ihr vertrauensvoller Partner für Gebrauchtwagen in Kärnten
+              Ihr vertrauensvoller Partner für Kraftfahrzeuge und Maschinen in
+              Kärnten
             </p>
           </div>
 
           <div class="about-content">
             <div class="about-text">
               <p class="about-intro">
-                Seit Jahren steht <strong>DirektOnline BS GmbH</strong> für
-                Qualität, Transparenz und erstklassigen Service im
-                Automobilhandel. Unser Team berät Sie kompetent und ehrlich bei
-                der Wahl Ihres nächsten Fahrzeugs.
+                <strong>CB Handels GmbH</strong> steht für Qualität, Transparenz
+                und erstklassigen Service im Handel mit Kraftfahrzeugen,
+                Nutzfahrzeugen und Maschinen. Unser Team berät Sie kompetent und
+                ehrlich bei der Wahl Ihres nächsten Fahrzeugs oder Ihrer
+                Maschine.
               </p>
               <p>
                 Alle unsere Fahrzeuge werden sorgfältig geprüft und aufbereitet.
@@ -1909,7 +2114,7 @@
           <div class="section-header">
             <h2 class="section-title">Aktuelles & Tipps</h2>
             <p class="section-subtitle">
-              Neuigkeiten rund um DirektOnline und hilfreiche Auto-Ratgeber
+              Neuigkeiten rund um CB Handels und hilfreiche Ratgeber
             </p>
           </div>
 
@@ -2222,7 +2427,7 @@
 
                   <!-- Email -->
                   <a
-                    href="mailto:direktonline.at@gmail.com?subject=Anfrage%20von%20Website"
+                    href="mailto:office@cbhandel.at?subject=Anfrage%20von%20Website"
                     class="contact-option contact-option-secondary magnetic-btn"
                   >
                     <div class="contact-option-icon">
@@ -2244,7 +2449,7 @@
                     <div class="contact-option-content">
                       <h4 class="contact-option-title">E-Mail</h4>
                       <p class="contact-option-description">
-                        direktonline.at@gmail.com
+                        office@cbhandel.at
                       </p>
                     </div>
                     <svg
@@ -2566,9 +2771,7 @@
                   <div class="info-content">
                     <strong>E-Mail</strong>
                     <p>
-                      <a href="mailto:direktonline.at@gmail.com"
-                        >direktonline.at@gmail.com</a
-                      >
+                      <a href="mailto:office@cbhandel.at">office@cbhandel.at</a>
                     </p>
                   </div>
                 </div>
@@ -2606,7 +2809,7 @@
                   </p>
                   <div class="contact-social-grid">
                     <a
-                      href="https://www.facebook.com/direktonline.at"
+                      href="https://www.facebook.com/cbhandel"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="contact-social-btn facebook magnetic-btn"
@@ -2626,7 +2829,7 @@
                       <span>Facebook</span>
                     </a>
                     <a
-                      href="https://www.instagram.com/direktonline.at"
+                      href="https://www.instagram.com/cbhandel"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="contact-social-btn instagram magnetic-btn"
@@ -2646,7 +2849,7 @@
                       <span>Instagram</span>
                     </a>
                     <a
-                      href="https://www.tiktok.com/@direktonline.at"
+                      href="https://www.tiktok.com/@cbhandel"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="contact-social-btn tiktok magnetic-btn"
@@ -2666,7 +2869,7 @@
                       <span>TikTok</span>
                     </a>
                     <a
-                      href="https://www.youtube.com/@direktonline-at"
+                      href="https://www.youtube.com/@cbhandel"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="contact-social-btn youtube magnetic-btn"
@@ -2686,7 +2889,7 @@
                       <span>YouTube</span>
                     </a>
                     <a
-                      href="https://x.com/DirektOnlineAT"
+                      href="https://x.com/cbhandel"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="contact-social-btn twitter magnetic-btn"
@@ -2763,7 +2966,7 @@
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title="DirektOnline BS GmbH Standort"
+              title="CB Handels GmbH Standort"
             >
             </iframe>
           </div>
@@ -2776,8 +2979,8 @@
           <div class="section-header">
             <h2 class="section-title">Häufig gestellte Fragen</h2>
             <p class="section-subtitle">
-              Antworten auf die wichtigsten Fragen rund um den Autokauf bei
-              DirektOnline
+              Antworten auf die wichtigsten Fragen rund um den Kauf bei CB
+              Handels
             </p>
           </div>
 
@@ -3068,14 +3271,14 @@
         <div class="container">
           <div class="footer-grid">
             <div class="footer-col">
-              <h4 class="footer-title">DirektOnline BS GmbH</h4>
+              <h4 class="footer-title">CB Handels GmbH</h4>
               <p class="footer-text">
-                Ihr vertrauensvoller Partner für geprüfte Gebrauchtwagen. Faire
-                Preise, kompetente Beratung.
+                Ihr vertrauensvoller Partner für Kraftfahrzeuge und Maschinen.
+                Faire Preise, kompetente Beratung.
               </p>
               <div class="footer-social">
                 <a
-                  href="https://www.facebook.com/direktonline.at"
+                  href="https://www.facebook.com/cbhandel"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -3093,7 +3296,7 @@
                   </svg>
                 </a>
                 <a
-                  href="https://www.instagram.com/direktonline.at"
+                  href="https://www.instagram.com/cbhandel"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -3111,7 +3314,7 @@
                   </svg>
                 </a>
                 <a
-                  href="https://www.tiktok.com/@direktonline.at"
+                  href="https://www.tiktok.com/@cbhandel"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TikTok"
@@ -3129,7 +3332,7 @@
                   </svg>
                 </a>
                 <a
-                  href="https://www.youtube.com/@direktonline-at"
+                  href="https://www.youtube.com/@cbhandel"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
@@ -3147,7 +3350,7 @@
                   </svg>
                 </a>
                 <a
-                  href="https://x.com/DirektOnlineAT"
+                  href="https://x.com/cbhandel"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"
@@ -3204,13 +3407,11 @@
             <div class="footer-col">
               <h4 class="footer-title">Kontakt</h4>
               <ul class="footer-links">
-                <li><a href="tel:+436642608185">+43 664 260 81 85</a></li>
+                <li><a href="tel:+436643882323">+43 664 3882323</a></li>
                 <li>
-                  <a href="mailto:direktonline.at@gmail.com"
-                    >direktonline.at@gmail.com</a
-                  >
+                  <a href="mailto:office@cbhandel.at">office@cbhandel.at</a>
                 </li>
-                <li>Auenfischerstraße 53a<br />9400 Wolfsberg</li>
+                <li>Industriestraße 5<br />9463 Reichenfels, Österreich</li>
               </ul>
             </div>
 
@@ -3374,27 +3575,20 @@
           <div class="footer-impressum">
             <h4 class="impressum-title">Impressum</h4>
             <div class="impressum-content">
-              <p><strong>DirektOnline BS GmbH</strong></p>
+              <p><strong>CB Handels GmbH</strong></p>
 
               <p>
-                <strong>Standorte:</strong><br />
-                Auenfischerstraße 53a, 9400 Wolfsberg (Automobilhandel)<br />
-                Rabenweg 11, 9400 Wolfsberg (Servicebetrieb)
+                <strong>Standort:</strong><br />
+                Industriestraße 5, 9463 Reichenfels, Österreich
               </p>
               <p>
-                Firmenbuchnummer: FN 637100m<br />
+                Firmenbuchnummer: FN 565866g<br />
                 Gerichtsstand: Landesgericht Klagenfurt<br />
-                GLN: 9110036668028<br />
-                GISA-Nummer: 11571155
+                UID-Nummer: ATU77390636
               </p>
               <p>
-                Steuernummer: 57 295/8551<br />
-                UID-Nummer: ATU81166319
-              </p>
-              <p>
-                <strong>Bankverbindung:</strong><br />
-                IBAN: AT24 3948 1000 0434 2572<br />
-                BIC: RZKTAT2K481
+                <strong>Geschäftsführer:</strong><br />
+                Ing. Christian Baumgartner
               </p>
             </div>
 
@@ -3416,11 +3610,11 @@
               <h5>Datenschutzerklärung</h5>
               <p>
                 <strong>Verantwortlich für die Datenverarbeitung:</strong><br />
-                DirektOnline BS GmbH<br />
+                CB Handels GmbH<br />
 
-                Auenfischerstraße 53a, 9400 Wolfsberg, Österreich<br />
-                E-Mail: direktonline.at@gmail.com<br />
-                Telefon: +43 664 260 81 85
+                Industriestraße 5, 9463 Reichenfels, Österreich<br />
+                E-Mail: office@cbhandel.at<br />
+                Telefon: +43 664 3882323
               </p>
 
               <p>
@@ -3481,8 +3675,17 @@
               werden im jeweiligen Kaufvertrag individuell geregelt.
               Einzelheiten zur Garantie erhalten Sie bei der Fahrzeugübergabe.
             </p>
-            <p>&copy; 2025 DirektOnline BS GmbH. Alle Rechte vorbehalten.</p>
-            <p class="footer-credits">Website built with ❤️ by <a href="https://www.laratech.ai/" target="_blank" rel="noopener noreferrer" class="footer-credits-link">LaraTech.AI</a></p>
+            <p>&copy; 2025 CB Handels GmbH. Alle Rechte vorbehalten.</p>
+            <p class="footer-credits">
+              Website built with ❤️ by
+              <a
+                href="https://www.laratech.ai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-credits-link"
+                >LaraTech.AI</a
+              >
+            </p>
           </div>
         </div>
       </footer>
@@ -3753,7 +3956,7 @@
                 Anfrage stellen
               </button>
               <button class="btn btn-secondary financing-calc-trigger">
-                <span style="font-size: 18px; font-weight: 700;">€</span>
+                <span style="font-size: 18px; font-weight: 700">€</span>
                 Finanzierung berechnen
               </button>
               <button
@@ -4845,172 +5048,226 @@
     <script src="scripts.js?v=6" defer></script>
     <!-- Populate visible content from dealerConfig -->
     <script>
-      (function() {
-        if (typeof window.dealerConfig === 'undefined') {
-          console.error('dealerConfig not loaded');
+      (function () {
+        if (typeof window.dealerConfig === "undefined") {
+          console.error("dealerConfig not loaded");
           return;
         }
         const config = window.dealerConfig;
-        
+
         // Helper function to update text content
         function updateTextContent(selector, text) {
           const el = document.querySelector(selector);
           if (el) el.textContent = text;
         }
-        
+
         // Helper function to update HTML content
         function updateHTML(selector, html) {
           const el = document.querySelector(selector);
           if (el) el.innerHTML = html;
         }
-        
+
         // Helper function to update attribute
         function updateAttr(selector, attr, value) {
           const el = document.querySelector(selector);
           if (el) el.setAttribute(attr, value);
         }
-        
+
         // Update hero section
-        const heroHeadline = document.querySelector('.hero-headline .headline-line');
+        const heroHeadline = document.querySelector(
+          ".hero-headline .headline-line"
+        );
         if (heroHeadline) {
-          const parts = config.name.split(' ');
-          heroHeadline.textContent = parts[0] || config.name;
+          heroHeadline.textContent = config.name;
         }
-        
-        const heroLocation = document.querySelector('.hero-location');
+
+        const heroLocation = document.querySelector(".hero-location");
         if (heroLocation) {
           heroLocation.textContent = `Ihr Autohändler in ${config.address.city}, ${config.address.region}`;
         }
-        
+
         // Update about section
-        const aboutTitle = document.querySelector('h2.section-title');
-        if (aboutTitle && aboutTitle.textContent.includes('Über DirektOnline')) {
-          aboutTitle.textContent = `Über ${config.name.split(' ')[0]}`;
+        const aboutTitle = document.querySelector("h2.section-title");
+        if (aboutTitle && aboutTitle.textContent.includes("Über CB Handels")) {
+          aboutTitle.textContent = `Über ${config.name.split(" ")[0]}`;
         }
-        
-        const aboutText = document.querySelector('.about-text');
+
+        const aboutText = document.querySelector(".about-text");
         if (aboutText) {
           const aboutContent = aboutText.innerHTML;
-          if (aboutContent.includes('DirektOnline BS GmbH')) {
-            aboutText.innerHTML = aboutContent.replace(/DirektOnline BS GmbH/g, config.name);
+          if (aboutContent.includes("CB Handels GmbH")) {
+            aboutText.innerHTML = aboutContent.replace(
+              /CB Handels GmbH/g,
+              config.name
+            );
           }
         }
-        
+
         // Update contact section - phone
         const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-        phoneLinks.forEach(link => {
-          if (link.textContent.includes('+43 664 260 81 85') || link.getAttribute('href').includes('436642608185')) {
-            link.setAttribute('href', `tel:${config.phone.replace(/\s/g, '')}`);
-            if (link.textContent.trim() === '+43 664 260 81 85') {
+        phoneLinks.forEach((link) => {
+          if (
+            link.textContent.includes("+43 664 260 81 85") ||
+            link.getAttribute("href").includes("436642608185")
+          ) {
+            link.setAttribute("href", `tel:${config.phone.replace(/\s/g, "")}`);
+            if (link.textContent.trim() === "+43 664 260 81 85") {
               link.textContent = config.phone;
             }
           }
         });
-        
+
         // Update contact section - email
         const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-        emailLinks.forEach(link => {
-          if (link.getAttribute('href').includes('direktonline.at@gmail.com') || link.textContent.includes('direktonline.at@gmail.com')) {
-            link.setAttribute('href', `mailto:${config.email}`);
-            if (link.textContent.trim() === 'direktonline.at@gmail.com') {
+        emailLinks.forEach((link) => {
+          if (
+            link.getAttribute("href").includes("office@cbhandel.at") ||
+            link.textContent.includes("office@cbhandel.at")
+          ) {
+            link.setAttribute("href", `mailto:${config.email}`);
+            if (link.textContent.trim() === "office@cbhandel.at") {
               link.textContent = config.email;
             }
           }
         });
-        
+
         // Update address
-        const addressElements = document.querySelectorAll('p, li, div');
-        addressElements.forEach(el => {
-          if (el.textContent.includes('Auenfischerstraße 53a')) {
-            el.innerHTML = el.innerHTML.replace(/Auenfischerstraße 53a(?:,? 9400 Wolfsberg(?:, Österreich)?)?/g, config.address.full);
+        const addressElements = document.querySelectorAll("p, li, div");
+        addressElements.forEach((el) => {
+          if (el.textContent.includes("Auenfischerstraße 53a")) {
+            el.innerHTML = el.innerHTML.replace(
+              /Auenfischerstraße 53a(?:,? 9400 Wolfsberg(?:, Österreich)?)?/g,
+              config.address.full
+            );
           }
         });
-        
+
         // Update company name in visible text
-        const companyNameElements = document.querySelectorAll('h1, h2, h3, h4, h5, p, span, div, footer');
-        companyNameElements.forEach(el => {
-          if (el.textContent.includes('DirektOnline BS GmbH') && !el.closest('script')) {
-            el.innerHTML = el.innerHTML.replace(/DirektOnline BS GmbH/g, config.name);
+        const companyNameElements = document.querySelectorAll(
+          "h1, h2, h3, h4, h5, p, span, div, footer"
+        );
+        companyNameElements.forEach((el) => {
+          if (
+            el.textContent.includes("CB Handels GmbH") &&
+            !el.closest("script")
+          ) {
+            el.innerHTML = el.innerHTML.replace(
+              /CB Handels GmbH/g,
+              config.name
+            );
           }
         });
-        
+
         // Update footer company name
-        const footerTitle = document.querySelector('.footer-title');
-        if (footerTitle && footerTitle.textContent.includes('DirektOnline BS GmbH')) {
+        const footerTitle = document.querySelector(".footer-title");
+        if (
+          footerTitle &&
+          footerTitle.textContent.includes("CB Handels GmbH")
+        ) {
           footerTitle.textContent = config.name;
         }
-        
+
         // Update social media links
         const socialLinks = {
-          'facebook.com/direktonline.at': config.social.facebook,
-          'instagram.com/direktonline.at': config.social.instagram,
-          'tiktok.com/@direktonline.at': config.social.tiktok,
-          'youtube.com/@direktonline-at': config.social.youtube,
-          'x.com/DirektOnlineAT': config.social.twitter
+          "facebook.com/cbhandel": config.social.facebook,
+          "instagram.com/cbhandel": config.social.instagram,
+          "tiktok.com/@cbhandel": config.social.tiktok,
+          "youtube.com/@cbhandel": config.social.youtube,
+          "x.com/cbhandel": config.social.twitter,
         };
-        
-        document.querySelectorAll('a[href*="facebook"], a[href*="instagram"], a[href*="tiktok"], a[href*="youtube"], a[href*="x.com"]').forEach(link => {
-          const href = link.getAttribute('href');
-          for (const [oldPattern, newUrl] of Object.entries(socialLinks)) {
-            if (href.includes(oldPattern)) {
-              link.setAttribute('href', newUrl);
-              break;
+
+        document
+          .querySelectorAll(
+            'a[href*="facebook"], a[href*="instagram"], a[href*="tiktok"], a[href*="youtube"], a[href*="x.com"]'
+          )
+          .forEach((link) => {
+            const href = link.getAttribute("href");
+            for (const [oldPattern, newUrl] of Object.entries(socialLinks)) {
+              if (href.includes(oldPattern)) {
+                link.setAttribute("href", newUrl);
+                break;
+              }
             }
-          }
-        });
-        
+          });
+
         // Update impressum section
-        const impressumContent = document.querySelector('.impressum-content');
+        const impressumContent = document.querySelector(".impressum-content");
         if (impressumContent) {
           let content = impressumContent.innerHTML;
-          content = content.replace(/DirektOnline BS GmbH/g, config.name);
-          content = content.replace(/Auenfischerstraße 53a, 9400 Wolfsberg/g, config.address.full);
-          content = content.replace(/Rabenweg 11, 9400 Wolfsberg/g, `${config.secondaryLocation.street}, ${config.secondaryLocation.postalCode} ${config.secondaryLocation.city}`);
-          content = content.replace(/FN 637100m/g, config.legal.companyRegister);
-          content = content.replace(/Landesgericht Klagenfurt/g, config.legal.court);
-          content = content.replace(/9110036668028/g, config.legal.gln);
-          content = content.replace(/11571155/g, config.legal.gisa);
-          content = content.replace(/57 295\/8551/g, config.legal.taxNumber);
-          content = content.replace(/ATU81166319/g, config.legal.vatId);
-          content = content.replace(/AT24 3948 1000 0434 2572/g, config.legal.bank.iban);
-          content = content.replace(/RZKTAT2K481/g, config.legal.bank.bic);
+          content = content.replace(/CB Handels GmbH/g, config.name);
+          content = content.replace(
+            /Industriestraße 5, 9463 Reichenfels/g,
+            config.address.full
+          );
+          if (config.secondaryLocation) {
+            content = content.replace(
+              /Rabenweg 11, 9400 Wolfsberg/g,
+              `${config.secondaryLocation.street}, ${config.secondaryLocation.postalCode} ${config.secondaryLocation.city}`
+            );
+          }
+          content = content.replace(
+            /FN 565866g/g,
+            config.legal.companyRegister
+          );
+          content = content.replace(
+            /Landesgericht Klagenfurt/g,
+            config.legal.court
+          );
+          content = content.replace(/ATU77390636/g, config.legal.vatId);
           impressumContent.innerHTML = content;
         }
-        
+
         // Update privacy policy section
-        const privacyContent = document.querySelector('.privacy-policy');
+        const privacyContent = document.querySelector(".privacy-policy");
         if (privacyContent) {
           let content = privacyContent.innerHTML;
-          content = content.replace(/DirektOnline BS GmbH/g, config.name);
-          content = content.replace(/Auenfischerstraße 53a, 9400 Wolfsberg, Österreich/g, config.address.full);
-          content = content.replace(/direktonline.at@gmail.com/g, config.email);
-          content = content.replace(/\+43 664 260 81 85/g, config.phone);
+          content = content.replace(/CB Handels GmbH/g, config.name);
+          content = content.replace(
+            /Industriestraße 5, 9463 Reichenfels, Österreich/g,
+            config.address.full
+          );
+          content = content.replace(/office@cbhandel.at/g, config.email);
+          content = content.replace(/\+43 664 3882323/g, config.phone);
           privacyContent.innerHTML = content;
         }
-        
+
         // Update copyright
-        const copyright = document.querySelector('.footer-bottom p');
-        if (copyright && copyright.textContent.includes('DirektOnline BS GmbH')) {
-          copyright.innerHTML = copyright.innerHTML.replace(/DirektOnline BS GmbH/g, config.name);
+        const copyright = document.querySelector(".footer-bottom p");
+        if (copyright && copyright.textContent.includes("CB Handels GmbH")) {
+          copyright.innerHTML = copyright.innerHTML.replace(
+            /CB Handels GmbH/g,
+            config.name
+          );
         }
-        
+
         // Update logo alt text
-        const logo = document.querySelector('img[alt*="DirektOnline"]');
+        const logo = document.querySelector('img[alt*="CB Handels"]');
         if (logo) {
-          logo.setAttribute('alt', `${config.name} Logo`);
+          logo.setAttribute("alt", `${config.name} Logo`);
         }
-        
+
         // Update Google Maps link
         const mapsLink = document.querySelector('a[href*="maps/dir"]');
         if (mapsLink) {
-          const addressForMaps = encodeURIComponent(`${config.address.street}, ${config.address.postalCode} ${config.address.city}, Austria`);
-          mapsLink.setAttribute('href', `https://www.google.com/maps/dir/?api=1&destination=${addressForMaps}`);
+          const addressForMaps = encodeURIComponent(
+            `${config.address.street}, ${config.address.postalCode} ${config.address.city}, Austria`
+          );
+          mapsLink.setAttribute(
+            "href",
+            `https://www.google.com/maps/dir/?api=1&destination=${addressForMaps}`
+          );
         }
-        
+
         // Update facility location text
-        const facilityText = document.querySelector('.facility-description');
-        if (facilityText && facilityText.textContent.includes('Auenfischerstraße 53a')) {
-          facilityText.innerHTML = facilityText.innerHTML.replace(/Auenfischerstraße 53a/g, config.address.street);
+        const facilityText = document.querySelector(".facility-description");
+        if (
+          facilityText &&
+          facilityText.textContent.includes("Auenfischerstraße 53a")
+        ) {
+          facilityText.innerHTML = facilityText.innerHTML.replace(
+            /Auenfischerstraße 53a/g,
+            config.address.street
+          );
         }
       })();
     </script>

@@ -1,6 +1,6 @@
 # Car Dealer Website Template
 
-Modern, deployment-ready single-page website template for car dealerships. Originally built for DirektOnline BS GmbH, now refactored as a reusable template.
+Modern, deployment-ready single-page website template for car dealerships. Currently deployed for CB Handels GmbH, refactored as a reusable template.
 
 **All dealer-specific data is centralized in `config/dealerConfig.js` - see [TEMPLATE-SETUP.md](TEMPLATE-SETUP.md) for configuration instructions.**
 
@@ -114,10 +114,10 @@ Edit the `colors` section in `config/dealerConfig.js`:
 
 ```javascript
 colors: {
-  primary: "#1b8e2d", // Change this hex color
-  primaryRgb: "27, 142, 45", // Update RGB values to match
-  primaryLight: "#22a636",
-  primaryDark: "#156b22"
+  primary: "#004b8d", // Change this hex color (currently set to CB Handels blue)
+  primaryRgb: "0, 75, 141", // Update RGB values to match
+  primaryLight: "#2469a6",
+  primaryDark: "#003564"
 }
 ```
 
@@ -125,8 +125,8 @@ Also update CSS custom properties in `styles.css`:
 
 ```css
 :root {
-  --brand-primary: #1b8e2d; /* Match config value */
-  --brand-primary-rgb: 27, 142, 45; /* Match config value */
+  --brand-primary: #004b8d; /* Match config value (currently CB Handels blue) */
+  --brand-primary-rgb: 0, 75, 141; /* Match config value */
 }
 ```
 
@@ -177,10 +177,10 @@ In `styles.css`, modify:
 # Initialize git repository
 git init
 git add .
-git commit -m "Initial commit: DirektOnline website"
+git commit -m "Initial commit: Car dealership website"
 
 # Push to GitHub (create repo first on github.com)
-git remote add origin https://github.com/YOUR_USERNAME/direktonline.git
+git remote add origin https://github.com/YOUR_USERNAME/your-repo-name.git
 git branch -M main
 git push -u origin main
 ```
@@ -203,7 +203,7 @@ vercel
 # - Set up and deploy? Yes
 # - Which scope? Select your account
 # - Link to existing project? No
-# - Project name? direktonline
+# - Project name? your-project-name
 # - Directory? ./
 # - Override settings? No
 ```
@@ -237,7 +237,7 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-specific-password
-CONTACT_TO_EMAIL=direktonline.at@gmail.com
+CONTACT_TO_EMAIL=your-email@example.com
 
 # Newsletter Google Sheets Integration (optional)
 GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
@@ -253,7 +253,7 @@ NEWSLETTER_SECRET=your-secret-key-here
 ### Step 4: Add Custom Domain (Optional)
 
 1. Go to Project Settings → Domains
-2. Add your domain: `direktonline.at`
+2. Add your domain: `your-domain.com`
 3. Configure DNS records as instructed by Vercel
 4. Wait for DNS propagation (usually 24-48 hours)
 
@@ -284,7 +284,7 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-CONTACT_TO_EMAIL=direktonline.at@gmail.com
+CONTACT_TO_EMAIL=your-email@example.com
 ```
 
 Then run `vercel dev` to test API-based newsletter and appointment booking functionality.
@@ -373,7 +373,7 @@ Blog posts are now rendered with a modern, professional design. Each blog post i
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Post Title - DirektOnline BS GmbH</title>
+    <title>Post Title - Your Company Name</title>
     <meta name="description" content="Post description" />
 
     <!-- Open Graph tags for social sharing -->
@@ -382,7 +382,7 @@ Blog posts are now rendered with a modern, professional design. Each blog post i
     <meta property="og:image" content="/assets/blog/post-image.jpg" />
     <meta
       property="og:url"
-      content="https://direktonline.at/posts/post-slug.html"
+      content="https://your-domain.com/posts/post-slug.html"
     />
 
     <!-- SEO Meta Tags -->
@@ -396,7 +396,7 @@ Blog posts are now rendered with a modern, professional design. Each blog post i
     <meta property="og:type" content="article" />
     <meta
       property="og:url"
-      content="https://direktonline.at/posts/post-slug.html"
+      content="https://your-domain.com/posts/post-slug.html"
     />
     <meta property="og:image" content="/assets/blog/post-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -406,7 +406,7 @@ Blog posts are now rendered with a modern, professional design. Each blog post i
       property="article:published_time"
       content="2024-10-15T00:00:00+01:00"
     />
-    <meta property="article:author" content="DirektOnline BS GmbH" />
+    <meta property="article:author" content="Your Company Name" />
     <meta property="article:section" content="Category" />
 
     <!-- Twitter Card Tags -->
@@ -425,7 +425,7 @@ Blog posts are now rendered with a modern, professional design. Each blog post i
         "datePublished": "2024-10-15",
         "author": {
           "@type": "Organization",
-          "name": "DirektOnline BS GmbH"
+          "name": "Your Company Name"
         }
       }
     </script>
@@ -638,7 +638,7 @@ Industriestraße 5
 #### ✨ New Features
 
 - **Social Media Integration**: Prominent social media section in contact area with branded buttons (Facebook, Instagram, TikTok, YouTube, X) with platform-specific styling and hover effects
-- **Social Media Links Update**: Standardized all social media handles to consistent naming (direktonline.at, @direktonline-at, DirektOnlineAT)
+- **Social Media Links Update**: Standardized all social media handles to consistent naming
 
 #### 🔧 Improvements
 
@@ -669,7 +669,7 @@ Industriestraße 5
 
 #### ✅ Pre-Launch Legal & Technical Updates
 
-- **Warranty Disclaimer**: Added asterisk (\*) to all warranty mentions with legal disclaimer in footer protecting DirektOnline
+- **Warranty Disclaimer**: Added asterisk (\*) to all warranty mentions with legal disclaimer in footer
 - **Date Updates**: Updated all blog post dates and sitemap to November 2025
 - **Blog Post Modern Design**: Converted all blog posts to modern HTML with professional styling and responsive layout
 - **Forms - No SMTP Dependency**: All forms (contact, appointment, newsletter) now use mailto links by default with optional SMTP fallback

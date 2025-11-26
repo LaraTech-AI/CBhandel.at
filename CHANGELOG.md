@@ -1,5 +1,86 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Complete Rebranding - CB Handels GmbH (January 2025)
+
+### 🎨 Full Website Rebranding Completed
+
+#### Overview
+Complete rebranding of the website from DirektOnline BS GmbH template to CB Handels GmbH. All visual elements, content, and references have been updated.
+
+#### Visual & Branding Changes
+
+**Brand Colors:**
+- ✅ Updated CSS brand colors from green (#1b8e2d) to blue (#004b8d)
+- ✅ Updated RGB values: `27, 142, 45` → `0, 75, 141`
+- ✅ Updated light variant: `#22a636` → `#2469a6`
+- ✅ Updated dark variant: `#156b22` → `#003564`
+- ✅ Updated gradient colors throughout styles.css
+- ✅ Updated inline critical CSS in index.html
+
+**Logo:**
+- ✅ Updated logo reference from logo.png to logo.jpg
+- ✅ Updated logo alt text to "CB Handels GmbH Logo"
+- ✅ Updated structured data logo references
+
+**UI Enhancements:**
+- ✅ Made trust badges more transparent (25% opacity light mode, 30% dark mode)
+- ✅ Updated hero header to display "CB Handels GmbH" instead of "CB Handels"
+
+#### Content Updates
+
+**All Text References:**
+- ✅ Removed all "DirektOnline" references from codebase
+- ✅ Updated all company name references to "CB Handels GmbH"
+- ✅ Updated hero headline to full company name
+- ✅ Updated about section title and content
+- ✅ Updated footer company name
+- ✅ Updated FAQ section references
+- ✅ Updated impressum and privacy policy sections
+
+**Blog Posts:**
+- ✅ Updated all 3 markdown files (.md) with CB Handels information
+- ✅ Updated all 3 HTML files (.html) with CB Handels information
+- ✅ Updated author from "DirektOnline Team" to "CB Handels Team"
+- ✅ Updated all location references from Wolfsberg to Reichenfels
+- ✅ Updated all contact information in blog posts
+
+**Meta Tags & SEO:**
+- ✅ Updated HTML title and meta description
+- ✅ Updated Open Graph tags
+- ✅ Updated Twitter Card tags
+- ✅ Updated business contact data meta tags
+- ✅ Updated structured data (JSON-LD) for Organization, LocalBusiness, etc.
+
+**Domain & URLs:**
+- ✅ Updated sitemap.xml from direktonline.at to cbhandel.at
+- ✅ Updated sitemap.html title and canonical URL
+- ✅ Updated robots.txt domain references
+- ✅ Updated vercel.json project name from "direktonline" to "cbhandel"
+- ✅ Removed DirektOnline API endpoints from CSP headers
+
+**JavaScript:**
+- ✅ Updated file header comment
+- ✅ Updated fallback strings for company name, email, and URLs
+- ✅ Updated console log message with new brand color
+- ✅ Updated dynamic content replacement logic
+
+**CSS:**
+- ✅ Updated file header comment to "CB Handels GmbH Website Styles"
+- ✅ Updated brand color comment
+
+#### Files Modified
+- `index.html` - Complete content and meta tag updates
+- `styles.css` - Brand colors and comments
+- `scripts.js` - Fallback strings and comments
+- `posts/*.md` - All blog post markdown files
+- `posts/*.html` - All blog post HTML files
+- `sitemap.xml` - Domain URLs
+- `sitemap.html` - Title and references
+- `robots.txt` - Domain references
+- `vercel.json` - Project name and CSP headers
+
+---
+
 ## Configuration Update - CB Handels GmbH (January 2025)
 
 ### 🔄 Dealer Configuration Update

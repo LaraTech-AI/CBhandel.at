@@ -1,7 +1,7 @@
 /*
- * DirektOnline BS GmbH Website Styles
+ * CB Handels GmbH Website Styles
  * Modern, responsive design with glassmorphism and CSS animations
- * Brand color: #1b8e2d (RGB 27,142,45)
+ * Brand color: #004b8d (RGB 0,75,141)
  */
 
 /* ========================================
@@ -9,10 +9,10 @@
    ======================================== */
 :root {
   /* Brand Colors */
-  --brand-primary: #1b8e2d;
-  --brand-primary-rgb: 27, 142, 45;
-  --brand-primary-light: #22a636;
-  --brand-primary-dark: #156b22;
+  --brand-primary: #004b8d;
+  --brand-primary-rgb: 0, 75, 141;
+  --brand-primary-light: #2469a6;
+  --brand-primary-dark: #003564;
 
   /* Light Mode Colors */
   --bg-primary: #ffffff;
@@ -82,7 +82,7 @@
   --gradient-primary: linear-gradient(
     135deg,
     var(--brand-primary) 0%,
-    #4caf50 50%,
+    #2469a6 50%,
     var(--brand-primary-light) 100%
   );
   --gradient-secondary: linear-gradient(
@@ -93,9 +93,9 @@
   );
   --gradient-accent: linear-gradient(
     135deg,
-    #22a636 0%,
-    #1b8e2d 50%,
-    #156b22 100%
+    #2469a6 0%,
+    #004b8d 50%,
+    #003564 100%
   );
   --gradient-text: linear-gradient(
     135deg,
@@ -1547,15 +1547,15 @@ strong {
 
 /* Make the main hero trust-badges panel equally transparent */
 .trust-badges.glassmorphism {
-  background: rgba(255, 255, 255, 0.42) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 .trust-badges.glassmorphism::before {
   opacity: 0 !important;
 }
 [data-theme="dark"] .trust-badges.glassmorphism {
-  background: rgba(26, 31, 46, 0.48) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(26, 31, 46, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .trust-category {

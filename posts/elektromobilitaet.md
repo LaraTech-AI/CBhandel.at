@@ -2,7 +2,7 @@
 
 **Kategorie**: Trends  
 **Datum**: 1. November 2025  
-**Autor**: DirektOnline Team  
+**Autor**: CB Handels Team  
 **Lesezeit**: 7 Minuten
 
 ---
@@ -215,18 +215,17 @@ Elektroautos sind keine Zukunftsmusik mehr – sie sind Teil unserer Gegenwart. 
 - Einkaufszentren (Atrio, Lind)
 - Schnelllader: 3 Standorte
 
-#### Wolfsberg & Kärnten
+#### Reichenfels & Kärnten
 
-🔌 **20+ Ladepunkte**
+🔌 **20+ Ladepunkte in der Region**
 
-- Wolfsberg Zentrum: 5 Standorte
-- St. Andrä: 3 Standorte
-- Schnelllader: 2 (Wolfsberg Süd, Pack)
+- Reichenfels und Umgebung
+- Schnelllader in der Nähe verfügbar
 
-📍 **Bei DirektOnline BS GmbH**:
+📍 **Bei CB Handels GmbH**:
 
-- 2x 22 kW-Ladepunkte
-- Kostenlos während Wartezeit/Beratung!
+- Ladeinfrastruktur-Beratung
+- Kostenlose Beratung zu E-Mobilität!
 
 #### Autobahnen
 
@@ -386,7 +385,7 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 
 🎯 **EU-Ziel**: Ab 2035 keine neuen Verbrenner mehr!
 
-## E-Mobilität bei DirektOnline
+## E-Mobilität bei CB Handels
 
 ### Unser Service
 
@@ -410,7 +409,7 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 
 ### Aktuelle E-Fahrzeuge
 
-🚗 Besuchen Sie unsere [Fahrzeugsuche](https://direktonline.at#fahrzeuge) und filtern Sie nach "Elektro" oder "Hybrid"!
+🚗 Besuchen Sie unsere [Fahrzeugsuche](https://cbhandel.at#fahrzeuge) und filtern Sie nach "Elektro" oder "Hybrid"!
 
 ---
 
@@ -418,15 +417,15 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 
 Vereinbaren Sie eine **kostenlose Probefahrt** mit einem E-Auto!
 
-📍 **DirektOnline BS GmbH**  
-Auenfischerstraße 53a  
-9400 Wolfsberg
+📍 **CB Handels GmbH**  
+Industriestraße 5  
+9463 Reichenfels, Österreich
 
-📞 **Telefon**: [+43 664 260 81 85](tel:+436642608185)  
-✉️ **E-Mail**: [direktonline.at@gmail.com](mailto:direktonline.at@gmail.com)
+📞 **Telefon**: [+43 664 3882323](tel:+436643882323)  
+✉️ **E-Mail**: [office@cbhandel.at](mailto:office@cbhandel.at)
 
 **Öffnungszeiten**:  
-Montag – Freitag: 08:00 – 19:30 Uhr
+Montag bis Freitag: nach telefonischer Vereinbarung
 
 ---
 
@@ -450,7 +449,7 @@ Montag – Freitag: 08:00 – 19:30 Uhr
 
 ---
 
-**Tags**: #Elektroauto #E-Mobilität #Nachhaltigkeit #Kärnten #Wolfsberg #Zukunft
+**Tags**: #Elektroauto #E-Mobilität #Nachhaltigkeit #Kärnten #Reichenfels #Zukunft
 
 **Weitere Artikel**:
 

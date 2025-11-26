@@ -1,5 +1,5 @@
-# robots.txt for DirektOnline BS GmbH
-# https://direktonline.at/robots.txt
+# robots.txt for CB Handels GmbH
+# https://cbhandel.at/robots.txt
 
 User-agent: *
 Allow: /
@@ -16,7 +16,7 @@ Allow: /assets/
 Allow: /posts/
 
 # Sitemap location
-Sitemap: https://direktonline.at/sitemap.xml
+Sitemap: https://cbhandel.at/sitemap.xml
 
 # Crawl-delay (optional - only if needed)
 # Crawl-delay: 1

@@ -1,5 +1,5 @@
 /**
- * DirektOnline BS GmbH - Main JavaScript
+ * CB Handels GmbH - Main JavaScript
  * Vanilla JavaScript with CSS animations
  */
 
@@ -2422,7 +2422,7 @@ ${data.nachricht || ""}`;
         "Kontaktanfrage von " + (data.name || "Website")
       );
       const emailBody = encodeURIComponent(emailBodyText);
-      const email = (window.dealerConfig && window.dealerConfig.email) || 'direktonline.at@gmail.com';
+      const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
       const mailtoLink = `mailto:${email}?subject=${subject}&body=${emailBody}`;
 
       // Open email client
@@ -2662,7 +2662,7 @@ function initShareModal() {
 
       // Build URL based on share type
       let url = "";
-      let title = (window.dealerConfig && window.dealerConfig.name) || "DirektOnline BS GmbH";
+      let title = (window.dealerConfig && window.dealerConfig.name) || "CB Handels GmbH";
 
       if (currentShareType === "vehicle") {
         // For vehicles, create a shareable URL with vehicle ID
@@ -3917,11 +3917,11 @@ function initQuickView() {
                   return `https:${imgUrl}`;
                 }
                 if (imgUrl.startsWith("/")) {
-                  const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || 'https://direktonline.motornetzwerk.at';
+                  const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || '';
                   return `${baseUrl}${imgUrl}`;
                 }
                 // If relative path, assume it's from the base URL
-                const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || 'https://direktonline.motornetzwerk.at';
+                const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || '';
                 return `${baseUrl}/${imgUrl}`;
               })
               .filter(Boolean);
@@ -5519,7 +5519,7 @@ ${fullMessage}`;
 
         // Build mailto link
         const emailBody = encodeURIComponent(emailBodyText);
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'direktonline.at@gmail.com';
+        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
         const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
           emailSubject
         )}&body=${emailBody}`;
@@ -7033,7 +7033,7 @@ function initNewsletter(formIdPrefix = "") {
         const body = encodeURIComponent(
           `Bitte tragen Sie diese E-Mail in den Newsletter ein:\n\nE-Mail: ${email}`
         );
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'direktonline.at@gmail.com';
+        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
         const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
 
@@ -7335,7 +7335,7 @@ function initAppointmentBooking() {
             data.vehicle || "Nicht angegeben"
           }\n\nNachricht:\n${data.message || "Keine zusätzliche Nachricht"}`
         );
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'direktonline.at@gmail.com';
+        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
         const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
 
@@ -7801,8 +7801,8 @@ window.addEventListener("unhandledrejection", function (e) {
 // ========================================
 
 console.log(
-  `%c🚗 ${(window.dealerConfig && window.dealerConfig.name) || 'DirektOnline BS GmbH'}`,
-  "font-size: 20px; font-weight: bold; color: #1b8e2d;"
+  `%c🚗 ${(window.dealerConfig && window.dealerConfig.name) || 'CB Handels GmbH'}`,
+  "font-size: 20px; font-weight: bold; color: #004b8d;"
 );
 console.log(
   "%cWebsite built with ❤️ by LaraTech.AI",

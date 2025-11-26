@@ -2,7 +2,7 @@
 
 **Kategorie**: Kaufberatung  
 **Datum**: 1. November 2025  
-**Autor**: DirektOnline Team  
+**Autor**: CB Handels Team  
 **Lesezeit**: 8 Minuten
 
 ---
@@ -57,7 +57,7 @@ Gesamtkosten Jahr 1: € 22.350-23.800
 
 ### Wo finde ich gute Gebrauchtwagen?
 
-✅ **Professioneller Händler** (wie DirektOnline)
+✅ **Professioneller Händler** (wie CB Handels)
 
 - Gewährleistung
 - Geprüfte Fahrzeuge
@@ -432,7 +432,7 @@ Auch wenn gerade Service gemacht:
 - Kompressionstest
 - OBD2-Diagnose
 
-## Warum bei DirektOnline kaufen?
+## Warum bei CB Handels kaufen?
 
 ### Ihre Vorteile
 
@@ -471,20 +471,19 @@ Auch wenn gerade Service gemacht:
 
 Schauen Sie sich unsere aktuelle Auswahl an:
 
-🚗 **[Zur Fahrzeugsuche](https://direktonline.at#fahrzeuge)**
+🚗 **[Zur Fahrzeugsuche](https://cbhandel.at#fahrzeuge)**
 
 Oder besuchen Sie uns persönlich:
 
-📍 **DirektOnline BS GmbH**  
-Auenfischerstraße 53a  
-9400 Wolfsberg
+📍 **CB Handels GmbH**  
+Industriestraße 5  
+9463 Reichenfels, Österreich
 
-📞 **Telefon**: [+43 664 260 81 85](tel:+436642608185)  
-✉️ **E-Mail**: [direktonline.at@gmail.com](mailto:direktonline.at@gmail.com)
+📞 **Telefon**: [+43 664 3882323](tel:+436643882323)  
+✉️ **E-Mail**: [office@cbhandel.at](mailto:office@cbhandel.at)
 
 **Öffnungszeiten**:  
-Montag – Freitag: 08:00 – 19:30 Uhr  
-Samstag nach Vereinbarung
+Montag bis Freitag: nach telefonischer Vereinbarung
 
 ---
 
@@ -495,7 +494,7 @@ Drucken Sie unsere Checkliste aus und nehmen Sie sie zur Besichtigung mit!
 
 ---
 
-**Tags**: #Gebrauchtwagen #Autokauf #Kaufberatung #Checkliste #Wolfsberg #Kärnten
+**Tags**: #Gebrauchtwagen #Autokauf #Kaufberatung #Checkliste #Reichenfels #Kärnten
 
 **Weitere Artikel**:
 
