@@ -87,7 +87,7 @@
 
 ### 9. Visuelle Inhalte
 
-- **Logo:** Aktuell `logo.jpg` - Zu prüfen ob korrekt
+- **Logo:** ✅ Aktuell `Logo New.webp` - Aktualisiert und in Verwendung
 - **OG Image:** `og-image.jpg` - Sollte mit CB Handels Branding aktualisiert werden
 - **Facility Images:** `facility-lage.webp` - Sollte Standort von CB Handels zeigen
 
@@ -108,6 +108,8 @@
 
 - ✅ Jahre Erfahrung: 18+ (bereits erledigt)
 - ✅ Adress-Referenzen: Reichenfels (bereits erledigt)
+- ✅ Logo: Logo New.webp (bereits aktualisiert)
+- ✅ Navbar: Padding reduziert, Logo füllt Navbar-Höhe (bereits angepasst)
 
 ### Benötigt Informationen vom Kunden:
 

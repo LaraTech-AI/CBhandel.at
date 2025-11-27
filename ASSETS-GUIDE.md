@@ -30,28 +30,26 @@ assets/
 
 ## 🎨 Logo Files
 
-### logo.svg (PRIMARY - REPLACE THIS!)
+### Logo (PRIMARY - CURRENTLY IN USE)
 
 - **Purpose**: Main logo displayed in header
-- **Format**: SVG (preferred) or PNG with transparent background
-- **Dimensions**: Flexible, but recommended 200x60px or similar aspect ratio
-- **Location**: `assets/logo.svg`
-- **Usage**: Header, footer, loading screen
+- **Format**: WebP (currently using `Logo New.webp`)
+- **Dimensions**: Flexible, optimized for navbar height (70px/65px)
+- **Location**: `assets/Logo New.webp`
+- **Usage**: Header, footer, loading screen, structured data
 
-**Instructions**:
+**Current Status**:
+- ✅ Logo file: `assets/Logo New.webp` - Active and in use
+- ✅ Navbar styling: Logo fills navbar height with reduced padding (0.5rem/0.25rem)
+- ✅ Logo dimensions: 70px height (not scrolled), 65px (scrolled), max-width 280px
 
-1. Export your logo as SVG from Adobe Illustrator/Figma/etc.
-2. Ensure it's on transparent background
-3. Replace `assets/logo.svg` with your file
-4. If using PNG, update `index.html` line 222:
-   ```html
-   <img
-     src="assets/logo.png"
-     alt="DirektOnline BS GmbH Logo"
-     class="logo"
-     id="site-logo"
-   />
-   ```
+**Instructions for Future Updates**:
+
+1. Export your logo as WebP, SVG, or PNG with transparent background
+2. Ensure it's optimized for web use
+3. Replace `assets/Logo New.webp` with your file
+4. Update `index.html` logo references if filename changes
+5. Update structured data logo reference in JSON-LD (line ~720)
 
 ### favicon.svg
 

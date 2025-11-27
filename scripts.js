@@ -4013,7 +4013,7 @@ function initQuickView() {
         console.error("Error retrying vehicle details:", err);
         if (contentSkeleton) contentSkeleton.style.display = "none";
         if (contentError) contentError.style.display = "flex";
-        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 260 81 85';
+        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 3882323';
         announceToScreenReader("vehicles", `Fehler beim erneuten Laden der Fahrzeugdetails. Bitte kontaktieren Sie uns telefonisch unter ${phone}.`);
       });
   });
@@ -5546,7 +5546,7 @@ ${fullMessage}`;
         }, 3000);
       } catch (error) {
         console.error("Inquiry form error:", error);
-        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 260 81 85';
+        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 3882323';
         const errorMsg = `Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${phone}.`;
         alert(errorMsg);
         announceToScreenReader("forms", errorMsg);

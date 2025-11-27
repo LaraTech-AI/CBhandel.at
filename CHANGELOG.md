@@ -1,5 +1,41 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## UI Improvements & Logo Update - CB Handels GmbH (November 2025)
+
+### 🎨 Navbar & Logo Enhancements
+
+#### Overview
+Improved navbar design by reducing padding and adjusting logo size to fill the navbar height. Updated logo to use new WebP format file.
+
+#### Navbar Improvements
+- ✅ Reduced header padding from `1.5rem 0` to `0.5rem 0` (not scrolled)
+- ✅ Reduced scrolled header padding from `1rem 0` to `0.25rem 0`
+- ✅ Logo now fills navbar height without increasing navbar size
+- ✅ Logo height: 70px (not scrolled), 65px (scrolled)
+- ✅ Logo max-width: 280px
+
+#### Logo Update
+- ✅ Updated logo from `assets/logo.jpg` to `assets/Logo New.webp`
+- ✅ Updated logo reference in HTML image tag
+- ✅ Updated logo reference in JSON-LD structured data
+- ✅ Maintained responsive behavior and transitions
+
+#### Files Modified
+- `styles.css` - Reduced header padding, adjusted logo dimensions
+- `index.html` - Updated logo file reference and structured data
+
+#### Documentation Updates
+- ✅ Updated `PERSONALISIERUNGS-PUNKTE.md` - Marked logo as completed
+- ✅ Updated `ASSETS-GUIDE.md` - Documented current logo file and navbar styling
+
+### 🗑️ Content Removed/Altered
+- **Altered**: Header padding reduced to make navbar more compact
+- **Altered**: Logo file changed from `logo.jpg` to `Logo New.webp`
+- **Altered**: Logo dimensions adjusted to fill navbar height
+- **Preserved**: All existing functionality, responsive behavior, and transitions
+
+---
+
 ## Personalization Updates - CB Handels GmbH (January 2025)
 
 ### 🎯 Company-Specific Personalization
