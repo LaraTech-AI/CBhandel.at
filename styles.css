@@ -12503,3 +12503,72 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   border-color: var(--glass-border-hover);
   color: var(--brand-primary);
 }
+
+/* ========================================
+   GLOBAL SCROLLBAR STYLES
+   ======================================== */
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-primary) var(--bg-secondary);
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--brand-primary-rgb), 0.5);
+  border-radius: 20px;
+  border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-primary);
+}
+
+/* ========================================
+   VISUAL ENHANCEMENTS
+   ======================================== */
+
+/* Enhanced Card Hover Effects */
+.glassmorphism {
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.glassmorphism:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 
+              0 5px 15px rgba(0, 0, 0, 0.05);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .glassmorphism:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 
+              0 5px 15px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Refined Header Scrolled State */
+.header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(var(--brand-primary-rgb), 0.1);
+}
+
+[data-theme="dark"] .header.scrolled {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Consistent Service Icon Stroke */
+.service-icon svg,
+.facility-icon svg,
+.feature-icon svg {
+  stroke-width: 1.5;
+}
