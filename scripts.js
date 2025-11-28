@@ -287,7 +287,7 @@ function renderVehicleCard(vehicle) {
           src="${vehicle.image || "assets/vehicles/placeholder.jpg"}"
           alt="${vehicle.title}"
           loading="lazy"
-          onerror="this.src='assets/vehicles/placeholder.jpg'"
+          onerror="if(this.src.indexOf('placeholder.jpg')===-1){this.src='assets/vehicles/placeholder.jpg';this.onerror=null;}"
         />
         ${badgeHtml}
         <div class="card-image-overlay">
@@ -469,7 +469,7 @@ function renderVehicleListItem(vehicle) {
         vehicle.image || "assets/vehicles/placeholder.jpg"
       }" alt="${escapeHtml(
     vehicle.title
-  )}" loading="lazy" onerror="this.src='assets/vehicles/placeholder.jpg'" />
+  )}" loading="lazy" onerror="if(this.src.indexOf('placeholder.jpg')===-1){this.src='assets/vehicles/placeholder.jpg';this.onerror=null;}" />
     </div>
     <div class="list-item-content">
       <h3 class="list-item-title">${escapeHtml(vehicle.title)}</h3>
@@ -4024,12 +4024,21 @@ function initQuickView() {
    */
   async function fetchAdditionalImages(vehicleUrl, existingImages = []) {
     try {
+      // Early return if we already have enough images (6+)
+      if (existingImages.length >= 6) return [];
+      
       // Extract vehicle ID from URL if available
       const urlMatch = vehicleUrl.match(/vid=([^&]+)/);
       if (!urlMatch || existingImages.length === 0) return [];
 
       const vehicleId = urlMatch[1];
       const baseUrl = existingImages[0];
+      
+      // Skip if baseUrl is placeholder or invalid
+      if (!baseUrl || baseUrl.includes('placeholder') || baseUrl.includes('kein-bild')) {
+        return [];
+      }
+      
       const additionalImages = [];
 
       // Strategy 1: Try common URL patterns based on existing image URL
@@ -4073,14 +4082,31 @@ function initQuickView() {
       );
 
       // Test which URLs actually exist (preload and check if they load)
-      const imagePromises = uniquePatterns.slice(0, 10).map((url) => {
+      // Limit to 5 attempts to reduce failed requests
+      const imagePromises = uniquePatterns.slice(0, 5).map((url) => {
         return new Promise((resolve) => {
           const img = new Image();
-          img.onload = () => resolve(url);
-          img.onerror = () => resolve(null);
+          let resolved = false;
+          img.onload = () => {
+            if (!resolved) {
+              resolved = true;
+              resolve(url);
+            }
+          };
+          img.onerror = () => {
+            if (!resolved) {
+              resolved = true;
+              resolve(null);
+            }
+          };
           img.src = url;
-          // Timeout after 1.5 seconds
-          setTimeout(() => resolve(null), 1500);
+          // Timeout after 1 second (reduced from 1.5s)
+          setTimeout(() => {
+            if (!resolved) {
+              resolved = true;
+              resolve(null);
+            }
+          }, 1000);
         });
       });
 
