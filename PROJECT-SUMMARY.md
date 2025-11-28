@@ -453,7 +453,7 @@ Animation durations are controlled via CSS in `styles.css`:
 
 ### Contact Details ✅
 
-- Phone: +43 664 260 81 85
+- Phone: +43 664 3882323
 - Email: direktonline.at@gmail.com
 - Address: Auenfischerstraße 53a, 9400 Wolfsberg
 - Google Maps embedded

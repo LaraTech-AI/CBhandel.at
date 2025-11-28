@@ -28,7 +28,7 @@ All automated tests have passed successfully. The template refactoring is comple
 - Dealer: DirektOnline BS GmbH
 - Location: Wolfsberg, Kärnten
 - Email: direktonline.at@gmail.com
-- Phone: +43 664 260 81 85
+- Phone: +43 664 3882323
 - Data Source: motornetzwerk (ID: 1003459)
 - CORS Origins: 6 configured
 

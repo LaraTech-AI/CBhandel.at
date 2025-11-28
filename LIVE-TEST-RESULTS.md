@@ -28,7 +28,7 @@ From browser snapshot, content displays correctly:
 - **Location:** "Ihr Autohändler in Wolfsberg, Kärnten" ✅
 - **Footer:** "DirektOnline BS GmbH" in footer ✅
 - **Contact Info:** 
-  - Phone: "+43 664 260 81 85" visible ✅
+  - Phone: "+43 664 3882323" visible ✅
   - Email: "direktonline.at@gmail.com" visible ✅
   - Address: "Auenfischerstraße 53a, 9400 Wolfsberg" visible ✅
 

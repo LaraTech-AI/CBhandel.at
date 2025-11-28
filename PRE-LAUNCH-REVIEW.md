@@ -111,7 +111,7 @@
 - ✅ Realistic review content
 
 ### Contact Information
-- ✅ Phone number: +43 664 260 81 85
+- ✅ Phone number: +43 664 3882323
 - ✅ Email: direktonline.at@gmail.com
 - ✅ Physical address clearly stated
 - ✅ Opening hours specified
