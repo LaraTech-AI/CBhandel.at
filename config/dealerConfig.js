@@ -75,24 +75,29 @@ module.exports = {
   },
   
   // Vehicle / Machine Data Source
-  // To be wired up later (Autoscout, Gebrauchtwagen.at, etc.)
+  // Supports: 'motornetzwerk', 'willhaben', 'autoscout24', 'combined'
   dataSource: {
-    type: "unknown",
-    dealerId: "",
-    baseUrl: "",
+    type: "combined", // Use combined to fetch from multiple sources
+    dealerId: "1006018", // Organization ID from willhaben
+    dealerSlug: "cb-handels-gmbh", // Dealer slug for URL construction
+    baseUrl: "https://cbhandel.at",
     apiEndpoints: {
       pkw: "",
       nutzfahrzeuge: ""
     },
     sourceUrls: {
-      pkw: "",
-      nutzfahrzeuge: ""
+      pkw: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
+      nutzfahrzeuge: "https://www.autoscout24.at/haendler/cb-handels-gmbh?atype=X",
+      willhaben: "https://www.willhaben.at/iad/haendler/cb-handels-gmbh/auto",
+      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines"
     },
     // Reference links for manual import / scraping / sync
     referenceLinks: {
+      willhaben: "https://www.willhaben.at/iad/haendler/cb-handels-gmbh/auto",
       autoscout24: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
+      autoscout24Transporter: "https://www.autoscout24.at/haendler/cb-handels-gmbh?atype=X",
+      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines",
       gebrauchtwagenAt: "https://www.gebrauchtwagen.at/handlerwagen/?cid=14166681",
-      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561",
       mascus: "https://www.mascus.at/cb-handels-gmbh/8bf11bd0,1,relevance,searchdealer.html"
     }
   },
