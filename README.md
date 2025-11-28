@@ -633,6 +633,16 @@ Industriestraße 5
 
 ## 📝 Changelog
 
+### Version 2.22.0 - January 2025
+
+#### ✨ New Features
+
+- **Visual Enhancements**: Custom global scrollbar with brand colors, enhanced card hover effects with improved lift and shadows, refined sticky header with better visual separation, and consistent icon stroke width across all icons
+
+#### 🔧 Improvements
+
+- **Visual Polish**: Improved depth perception with multi-layer shadows, better border color transitions, enhanced dark mode support for all visual elements
+
 ### Version 2.21.0 - November 2025
 
 #### ✨ New Features

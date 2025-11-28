@@ -108,6 +108,56 @@ Improved navbar design by reducing padding and adjusting logo size to fill the n
 
 ---
 
+## Visual Enhancements - CB Handels GmbH (January 2025)
+
+### 🎨 Visual Polish & Refinements
+
+#### Overview
+Added comprehensive visual enhancements to improve user experience and design consistency across the website, including custom scrollbar styling, enhanced card interactions, refined header states, and consistent icon styling.
+
+#### Visual Improvements
+
+**Custom Global Scrollbar:**
+- ✅ Brand-colored scrollbar for Firefox and WebKit browsers
+- ✅ Smooth hover effects with brand color transitions
+- ✅ Consistent with site design and brand identity
+- ✅ Location: `styles.css` (lines ~12508-12535)
+
+**Enhanced Card Hover Effects:**
+- ✅ Improved lift effect (translateY(-5px)) for better depth perception
+- ✅ Enhanced shadow depth with multi-layer shadows
+- ✅ Better border color transitions on hover
+- ✅ Dark mode support with adjusted shadow values
+- ✅ Location: `styles.css` (lines ~12541-12557)
+
+**Refined Sticky Header:**
+- ✅ Improved visual separation with enhanced shadow
+- ✅ Subtle brand-colored border when scrolled
+- ✅ Better contrast and visibility when header is in scrolled state
+- ✅ Dark mode support with adjusted border colors
+- ✅ Location: `styles.css` (lines ~12559-12567)
+
+**Consistent Icon Styling:**
+- ✅ Standardized stroke width (1.5px) across all icons
+- ✅ Applies to service, facility, and feature icons
+- ✅ Improved visual consistency throughout the site
+- ✅ Location: `styles.css` (lines ~12569-12574)
+
+#### Files Modified
+- `styles.css` - Added visual enhancements section (lines ~12508-12575)
+
+#### Documentation Created
+- ✅ **Created**: `VISUAL-IMPROVEMENTS-GUIDE.md` - Complete guide for applying visual improvements to template repository, including code examples and application methods
+
+### 🗑️ Content Removed/Altered
+- **Added**: Custom scrollbar styling (no existing scrollbar styles were removed)
+- **Enhanced**: Card hover effects (improved existing transitions)
+- **Enhanced**: Header scrolled state (improved existing styling)
+- **Standardized**: Icon stroke width (unified existing icon styles)
+- **Preserved**: All existing functionality and responsive behavior
+
+---
+
 ## Personalization Updates - CB Handels GmbH (January 2025)
 
 ### 🎯 Company-Specific Personalization
