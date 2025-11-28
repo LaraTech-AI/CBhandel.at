@@ -24,7 +24,7 @@ Modern, deployment-ready single-page website template for car dealerships. Curre
 - **Process Section**: 5-step buying process guide with visual indicators and descriptions
 - **Team & Facilities**: Team member profiles and dealership facilities showcase
 - **FAQ Section**: Frequently asked questions accordion with expand/collapse functionality
-- **Dynamic Vehicle Data**: Real-time vehicle listings from motornetzwerk.at via API with enhanced vehicle details endpoint for quick view
+- **Dynamic Vehicle Data**: Multi-source vehicle fetching from AutoScout24, Willhaben, and Landwirt.com with combined results, real-time vehicle listings via API with enhanced vehicle details endpoint for quick view
 - **Blog Enhancements**: Category navigation, improved card design, concise excerpts (2-line max), quick reading (2 min), clickable cards
 - **Visual Polish**: Advanced gradients, glassmorphism effects, smooth animations
 - **Vehicle Data Scraping**: Puppeteer integration for dynamic vehicle data extraction from motornetzwerk.at

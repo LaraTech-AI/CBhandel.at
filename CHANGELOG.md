@@ -1,5 +1,77 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Multi-Source Vehicle Fetching - CB Handels GmbH (November 2025)
+
+### 🚗 Multi-Source Vehicle Integration
+
+#### Overview
+Implemented comprehensive multi-source vehicle fetching system that aggregates vehicles from AutoScout24, Willhaben, and Landwirt.com, providing maximum vehicle coverage and eliminating dependency on single-source iframes.
+
+#### New Features
+
+**Multi-Source Vehicle Fetcher:**
+- ✅ **AutoScout24 Integration**: Fetches cars and transporters from AutoScout24 dealer pages
+- ✅ **Willhaben Integration**: Fetches vehicles from Willhaben.at dealer profiles
+- ✅ **Landwirt.com Integration**: Fetches machines/baumaschinen from Landwirt.com dealer pages
+- ✅ **Combined Mode**: Automatically fetches from all sources and combines results with deduplication
+- ✅ **Smart Filtering**: Filters out invalid entries (garbage data, JS code, HTML fragments)
+- ✅ **Category Support**: Properly categorizes vehicles as PKW, Nutzfahrzeuge, or Baumaschinen
+
+**Data Source Types:**
+- ✅ `combined` - Fetches from all available sources (recommended)
+- ✅ `autoscout24` - AutoScout24 only
+- ✅ `willhaben` - Willhaben.at only
+- ✅ `motornetzwerk` - Legacy motornetzwerk.at support (maintained for backward compatibility)
+
+#### Technical Implementation
+
+**Vehicle Service Layer:**
+- ✅ Enhanced `lib/vehicleService.js` with multi-source fetchers
+- ✅ `fetchFromAutoscout()` - Parses AutoScout24 HTML for vehicle data
+- ✅ `fetchFromWillhaben()` - Extracts vehicles from Willhaben structured data and HTML
+- ✅ `fetchFromLandwirt()` - Extracts machines from Landwirt.com pages
+- ✅ `parseAutoscoutFromHtml()` - Robust HTML parsing with pattern matching
+- ✅ `parseWillhabenVehicles()` - Structured data and HTML extraction
+- ✅ `parseLandwirtMachines()` - Machine data extraction with known patterns
+
+**Configuration Updates:**
+- ✅ Updated `config/dealerConfig.js` to use `type: "combined"`
+- ✅ Added all source URLs (AutoScout24, Willhaben, Landwirt)
+- ✅ Updated `config/dealerConfig.browser.js` to match server config
+- ✅ Added reference links for all data sources
+
+**Data Quality:**
+- ✅ Title validation (filters JS code, HTML fragments, invalid strings)
+- ✅ Price validation (realistic price ranges)
+- ✅ Duplicate detection (by title similarity)
+- ✅ Vehicle ID generation from URLs or structured data
+
+#### Files Modified
+- `lib/vehicleService.js` - Added multi-source fetchers (AutoScout24, Willhaben, Landwirt)
+- `config/dealerConfig.js` - Changed to `type: "combined"` with all source URLs
+- `config/dealerConfig.browser.js` - Updated to match server configuration
+- `README.md` - Updated to mention multi-source vehicle fetching
+- `TEMPLATE-SETUP.md` - Added documentation for all data source types
+
+#### Files Created
+- None (enhanced existing files)
+
+#### Test Results
+- ✅ Successfully fetches 8 vehicles from AutoScout24
+- ✅ Successfully fetches 1 vehicle from Willhaben
+- ✅ Successfully fetches 6 machines from Landwirt.com
+- ✅ Combined total: 15 vehicles/machines
+- ✅ All vehicles have proper titles, prices, and metadata
+- ✅ Proper categorization (PKW, Nutzfahrzeuge, Baumaschinen)
+
+### 🗑️ Content Removed/Altered
+- **Altered**: `dataSource.type` changed from `"willhaben"` to `"combined"` in dealerConfig
+- **Altered**: Vehicle fetching now uses multiple sources instead of single iframe
+- **Preserved**: All existing vehicle display functionality, API endpoints, and UI components
+- **Preserved**: Backward compatibility with motornetzwerk data source type
+
+---
+
 ## UI Improvements & Logo Update - CB Handels GmbH (November 2025)
 
 ### 🎨 Navbar & Logo Enhancements

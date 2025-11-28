@@ -78,7 +78,62 @@ social: {
 ```
 
 ### Vehicle Data Source
-Currently supports `motornetzwerk` type. Future support for `willhaben`, `gebrauchtwagen`, and `combined` is planned.
+Supports multiple data source types: `motornetzwerk`, `willhaben`, `autoscout24`, and `combined` (recommended for maximum vehicle coverage).
+
+#### Combined Mode (Recommended)
+Fetches vehicles from multiple sources and combines results:
+
+```javascript
+dataSource: {
+  type: "combined",
+  dealerId: "YOUR_DEALER_ID",
+  dealerSlug: "your-dealer-slug", // Used for URL construction
+  baseUrl: "https://yourdomain.com",
+  apiEndpoints: {
+    pkw: "",
+    nutzfahrzeuge: ""
+  },
+  sourceUrls: {
+    pkw: "https://www.autoscout24.at/haendler/your-dealer-slug",
+    nutzfahrzeuge: "https://www.autoscout24.at/haendler/your-dealer-slug?atype=X",
+    willhaben: "https://www.willhaben.at/iad/haendler/your-dealer-slug/auto",
+    landwirt: "https://www.landwirt.com/dealer/info/your-dealer-slug/machines"
+  }
+}
+```
+
+#### AutoScout24 Mode
+Fetches vehicles from AutoScout24 (cars and transporters):
+
+```javascript
+dataSource: {
+  type: "autoscout24",
+  dealerSlug: "your-dealer-slug",
+  baseUrl: "https://yourdomain.com",
+  sourceUrls: {
+    pkw: "https://www.autoscout24.at/haendler/your-dealer-slug",
+    nutzfahrzeuge: "https://www.autoscout24.at/haendler/your-dealer-slug?atype=X"
+  }
+}
+```
+
+#### Willhaben Mode
+Fetches vehicles from Willhaben.at:
+
+```javascript
+dataSource: {
+  type: "willhaben",
+  dealerId: "YOUR_ORG_ID",
+  dealerSlug: "your-dealer-slug",
+  baseUrl: "https://yourdomain.com",
+  sourceUrls: {
+    pkw: "https://www.willhaben.at/iad/haendler/your-dealer-slug/auto"
+  }
+}
+```
+
+#### Motornetzwerk Mode (Legacy)
+Fetches vehicles from motornetzwerk.at:
 
 ```javascript
 dataSource: {
