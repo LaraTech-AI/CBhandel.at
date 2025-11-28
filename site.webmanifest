@@ -1,0 +1,19 @@
+{
+  "name": "CB Handels GmbH",
+  "short_name": "CB Handels",
+  "description": "CB Handels GmbH – Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen in Reichenfels, Kärnten",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#004b8d",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
+

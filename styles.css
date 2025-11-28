@@ -507,7 +507,7 @@ body.reduced-motion .reveal-on-scroll {
   #quick-view-description {
     column-count: 1;
   }
-  
+
   .description-content .description-section-title {
     font-size: 1rem;
     margin: 1.25rem 0 0.625rem 0;
@@ -1394,9 +1394,9 @@ strong {
   background-clip: text;
   animation: gradientText 4s ease-in-out infinite;
   /* Text shadow for depth and readability (works with gradient) */
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6)) 
-          drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4))
-          drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
   font-weight: 900;
   letter-spacing: -0.01em;
   /* Fallback solid color for browsers that don't support background-clip */
@@ -1569,7 +1569,7 @@ strong {
   opacity: 0 !important;
 }
 [data-theme="dark"] .trust-badges.glassmorphism {
-  background: rgba(26, 31, 46, 0.30) !important;
+  background: rgba(26, 31, 46, 0.3) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -2929,7 +2929,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     border-color: var(--brand-primary);
     color: var(--brand-primary);
     font-weight: 700;
-    box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1), 0 4px 12px rgba(var(--brand-primary-rgb), 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1),
+      0 4px 12px rgba(var(--brand-primary-rgb), 0.15);
     transform: none;
   }
 
@@ -12539,20 +12540,19 @@ html {
 
 /* Enhanced Card Hover Effects */
 .glassmorphism {
-  transition: transform var(--transition-base), box-shadow var(--transition-base),
-    border-color var(--transition-base), background-color var(--transition-base);
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base), border-color var(--transition-base),
+    background-color var(--transition-base);
 }
 
 .glassmorphism:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 
-              0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="dark"] .glassmorphism:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 
-              0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
