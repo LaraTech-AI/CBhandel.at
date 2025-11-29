@@ -1,5 +1,47 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Image Extraction & Performance Optimization - CB Handels GmbH (November 2025)
+
+### 🖼️ Image Pool Pre-Collection & Porsche Fix
+
+#### Overview
+Fixed missing Porsche vehicle thumbnails and optimized image extraction by implementing a pre-collection image pool system. This ensures all vehicles receive images reliably, regardless of HTML structure variations.
+
+#### Image Pool Implementation
+- ✅ **Pre-Collection System**: All images are now collected in an `imagePool` Map before processing vehicles
+- ✅ **Single Regex Pass**: Optimized image collection to use a single regex pass instead of multiple searches
+- ✅ **Quality Preference**: Automatically prefers 480x360 images over 250x188 for better quality
+- ✅ **UUID-Based Matching**: Images are matched to vehicles using vehicle UUIDs for accurate pairing
+- ✅ **Fallback Support**: Falls back to HTML section search if image not found in pool
+
+#### Code Simplification
+- ✅ **Removed Redundant Fallbacks**: Eliminated complex price-based extraction fallback (100+ lines removed)
+- ✅ **Streamlined Logic**: Simplified fallback chain from 4 levels to 3 levels
+- ✅ **Performance Improvement**: Reduced regex operations and HTML parsing overhead
+- ✅ **Maintainability**: Cleaner, more readable code structure
+
+#### Bug Fixes
+- ✅ **Porsche Thumbnail Issue**: Fixed missing images for Porsche Macan vehicles
+- ✅ **All Vehicles**: Ensured all vehicles now receive images from the pre-collected pool
+- ✅ **Image Quality**: Improved image quality by preferring higher resolution versions
+
+#### Test Results
+- ✅ All 8 vehicles now display thumbnails correctly
+- ✅ Porsche vehicles (2) now show images properly
+- ✅ Image loading performance improved
+- ✅ Code complexity reduced (~100 lines removed)
+
+#### Files Modified
+- `lib/vehicleService.js` - Added image pool pre-collection, simplified fallback logic, optimized image matching
+
+### 🗑️ Content Removed/Altered
+- **Removed**: Complex price-based extraction fallback (redundant with image UUID extraction)
+- **Removed**: Final fallback price+image combination matching (simplified to image UUID extraction)
+- **Altered**: Image extraction now uses pre-collected pool instead of per-vehicle HTML search
+- **Preserved**: All existing vehicle data extraction functionality and accuracy
+
+---
+
 ## Multi-Source Vehicle Fetching Improvements - CB Handels GmbH (November 2025)
 
 ### 🔧 Data Extraction Enhancements
@@ -89,7 +131,8 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - ✅ All vehicles have proper titles, prices, years, and metadata
 - ✅ Proper categorization (PKW, Nutzfahrzeuge, Baumaschinen)
 - ✅ Years display correctly (2017, 2020, 2018, 2016, 2025)
-- ✅ Images correctly matched to vehicles using UUIDs
+- ✅ All vehicles have images correctly matched using image pool system
+- ✅ Porsche vehicles and all other vehicles display thumbnails reliably
 
 ### 🗑️ Content Removed/Altered
 - **Altered**: `dataSource.type` changed from `"willhaben"` to `"combined"` in dealerConfig
