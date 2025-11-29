@@ -833,9 +833,16 @@ function getFilteredAndSortedVehicles() {
     document.querySelector("#fahrzeuge .filter-tab.active")?.dataset.filter ||
     "all";
   if (activeFilter !== "all") {
-    // Special handling for nutzfahrzeuge category filter
-    if (activeFilter === "nutzfahrzeuge") {
+    // Special handling for category filters (pkw, nutzfahrzeuge, baumaschinen)
+    if (activeFilter === "pkw") {
+      vehicles = vehicles.filter((v) => v.category === "pkw");
+    } else if (activeFilter === "nutzfahrzeuge") {
       vehicles = vehicles.filter((v) => v.category === "nutzfahrzeuge");
+    } else if (activeFilter === "baumaschinen") {
+      // Handle both "baumaschine" (singular) and "baumaschinen" (plural) category values
+      vehicles = vehicles.filter((v) => 
+        v.category === "baumaschine" || v.category === "baumaschinen"
+      );
     } else {
       // Use existing category determination for other filters (new, price-reduced)
       vehicles = vehicles.filter((v) => determineCategory(v) === activeFilter);
