@@ -908,6 +908,9 @@ strong {
 
 .logo-container {
   flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .logo-link {
@@ -926,16 +929,16 @@ strong {
 }
 
 .logo {
-  height: 70px;
+  height: 100%;
+  max-height: 70px;
   width: auto;
   max-width: 280px;
   object-fit: contain;
-  border-radius: 12px;
-  transition: transform var(--transition-base), height var(--transition-base);
+  transition: transform var(--transition-base), max-height var(--transition-base);
 }
 
 .header.scrolled .logo {
-  height: 65px;
+  max-height: 65px;
   max-width: 280px;
 }
 
