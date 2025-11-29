@@ -9,7 +9,7 @@
 
 ## Die O-bis-O-Regel: Ihr Leitfaden für sicheres Fahren
 
-Die goldene Regel für den Reifenwechsel kennen viele Autofahrer: **Von Oktober bis Ostern** sollten Winterreifen aufgezogen sein. Aber warum ist der rechtzeitige Wechsel so wichtig, und was müssen Sie beachten?
+Die goldene Regel für den Reifenwechsel kennen viele Fahrer: **Von Oktober bis Ostern** sollten Winterreifen aufgezogen sein – ob bei Pkw, Nutzfahrzeugen oder Maschinen. Aber warum ist der rechtzeitige Wechsel so wichtig, und was müssen Sie beachten? Bei CB Handels GmbH beraten wir Sie kompetent und ehrlich zu allen Fragen rund um Reifen und Sicherheit.
 
 ![Winterreifen im Schnee](../assets/blog/winter-reifen.jpg)
 
@@ -159,35 +159,45 @@ A: Kompromiss zwischen Sommer- und Winterreifen. Akzeptabel für Regionen mit mi
 A: Empfohlen! Bei Allradfahrzeugen sogar Pflicht. Unterschiedliche Profile beeinträchtigen Fahrverhalten und ESP.
 
 **Q: Lohnt sich Reifenwechsel mit Einlagerung?**  
-A: Ja! Reifen werden geschont, Sie sparen Platz, und haben stets frische, ausgewuchtete Reifen.
+A: Ja! Reifen werden geschont, Sie sparen Platz, und haben stets frische, ausgewuchtete Reifen. Bei CB Handels lagern wir Ihre Reifen fachgerecht in klimatisierten Räumen – für optimale Qualität und Langlebigkeit.
 
-## Unser Service für Sie
+**Q: Gilt das auch für Nutzfahrzeuge und Maschinen?**  
+A: Ja! Wir beraten Sie kompetent zu Reifen für alle Fahrzeugtypen – von Pkw über Transporter und Lkw bis hin zu landwirtschaftlichen Maschinen. Jedes Fahrzeug hat spezifische Anforderungen, die wir transparent mit Ihnen besprechen.
 
-Bei **CB Handels GmbH** in Reichenfels sind Sie in besten Händen:
+## Unser Service für Sie – Qualität und Transparenz
 
-🔧 **Reifenservice**
+Bei **CB Handels GmbH** in Reichenfels sind Sie in besten Händen. Wir stehen für **Qualität, Transparenz und erstklassigen Service** – nicht nur beim Fahrzeugkauf, sondern auch bei der Wartung und Pflege Ihrer Fahrzeuge und Maschinen.
 
-- Wechsel inkl. Auswuchten
-- Professioneller Sicherheitscheck
-- Kostenlose Sichtprüfung
+🔧 **Reifenservice mit Qualitätsgarantie**
 
-📦 **Einlagerung**
+- Professioneller Reifenwechsel inkl. Auswuchten
+- Sorgfältiger Sicherheitscheck nach höchsten Standards
+- Kostenlose, unverbindliche Sichtprüfung
+- Service für Pkw, Nutzfahrzeuge und Maschinen
+- Transparente Preise – keine versteckten Kosten
 
-- Klimatisierte Lagerräume
-- Fachgerechte Lagerung
-- Jährlicher Zustandscheck
+📦 **Einlagerung – fachgerecht und sicher**
 
-🛒 **Reifenverkauf**
+- Klimatisierte Lagerräume für optimale Bedingungen
+- Fachgerechte Lagerung nach Herstellerrichtlinien
+- Jährlicher Zustandscheck inklusive
+- Langfristige Partnerschaft – auch nach dem Kauf
+
+🛒 **Reifenverkauf – kompetente Beratung**
 
 - Große Auswahl aller Marken
-- Kompetente Beratung
+- Ehrliche, kompetente Beratung zu allen Fragen
+- Individuelle Empfehlungen für Ihre Fahrzeuge
 - Montage am gleichen Tag möglich
+- Faire Preise und transparente Kommunikation
+
+**Bei CB Handels sind Sie nicht nur Kunde – Sie sind unser Partner. Wir sind auch nach dem Kauf für Sie da.**
 
 ---
 
 ## Jetzt Termin vereinbaren!
 
-Kommen Sie vor dem ersten Schnee zu uns!
+Kommen Sie vor dem ersten Schnee zu uns! Unser Team berät Sie kompetent und ehrlich zu allen Fragen rund um Reifenwechsel, Einlagerung und Reifenkauf – für Pkw, Nutzfahrzeuge und Maschinen. Bei CB Handels finden Sie einen Partner, der auch nach dem Kauf für Sie da ist.
 
 📞 **Telefon**: [+43 664 3882323](tel:+436643882323)  
 ✉️ **E-Mail**: [office@cbhandel.at](mailto:office@cbhandel.at)  

@@ -9,7 +9,7 @@
 
 ## Die Revolution auf unseren Straßen hat längst begonnen
 
-Elektroautos sind keine Zukunftsmusik mehr – sie sind Teil unserer Gegenwart. Besonders in Kärnten wächst die Elektromobilität rasant. Doch lohnt sich ein Elektroauto für Sie? Wir zeigen Ihnen Vor- und Nachteile, beantworten die wichtigsten Fragen und geben einen Überblick über die Ladeinfrastruktur in unserer Region.
+Elektroautos sind keine Zukunftsmusik mehr – sie sind Teil unserer Gegenwart. Besonders in Kärnten wächst die Elektromobilität rasant. Doch lohnt sich ein Elektrofahrzeug für Sie – ob Pkw, Nutzfahrzeug oder Maschine? Bei CB Handels GmbH beraten wir Sie transparent und ehrlich zu allen Aspekten der E-Mobilität. Wir zeigen Ihnen Vor- und Nachteile, beantworten die wichtigsten Fragen und geben einen Überblick über die Ladeinfrastruktur in unserer Region.
 
 ![Elektroauto lädt](../assets/blog/elektroauto-vorteile.jpg)
 
@@ -312,7 +312,11 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 - Brandgefahr niedriger als bei Verbrennern
 - Feuerwehren sind geschult
 
-## E-Auto kaufen: Darauf achten!
+## E-Fahrzeug kaufen: Darauf achten!
+
+### Qualität und Transparenz beim Kauf
+
+Bei CB Handels GmbH legen wir größten Wert auf **Qualität und Transparenz**. Jedes Elektrofahrzeug – ob Pkw, Nutzfahrzeug oder Maschine – durchläuft bei uns eine sorgfältige Prüfung. Wir zeigen Ihnen transparent alle relevanten Informationen und beraten Sie ehrlich, ob ein E-Fahrzeug zu Ihren Bedürfnissen passt.
 
 ### Neu kaufen
 
@@ -326,7 +330,7 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 2. **Tesla Model 3**: ab € 42.000
 
    - Reichweite: 510 km
-   - Technologie-Führe r, Supercharger-Netz
+   - Technologie-Führer, Supercharger-Netz
 
 3. **Hyundai Ioniq 5**: ab € 44.000
 
@@ -337,14 +341,15 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
    - Reichweite: 410 km
    - Viel Platz, günstig
 
-### Gebraucht kaufen
+### Gebraucht kaufen – mit professioneller Prüfung
 
-✅ **Worauf achten**:
+✅ **Bei CB Handels achten wir für Sie auf**:
 
-- Batteriezustandsbericht (SOH = State of Health)
-- Ladehistorie
-- Software-Updates durchgeführt?
-- Garantie übertragbar?
+- Batteriezustandsbericht (SOH = State of Health) – wir prüfen jeden Akku sorgfältig
+- Ladehistorie – vollständige Transparenz über die Nutzung
+- Software-Updates – alle Updates durchgeführt und dokumentiert
+- Garantie – klare Regelungen, auch bei gebrauchten Fahrzeugen
+- Sorgfältige Aufbereitung – jedes Fahrzeug wird professionell geprüft
 
 **Gute gebrauchte E-Autos**:
 
@@ -353,7 +358,11 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 - VW e-Golf (ab € 20.000)
 - BMW i3 (ab € 18.000)
 
-**Tipp**: Batteriemiete beachten (bei älteren Modellen)!
+**Tipp**: Batteriemiete beachten (bei älteren Modellen)! Wir klären alle Details transparent mit Ihnen.
+
+### E-Nutzfahrzeuge und E-Maschinen
+
+Auch im Bereich der **Nutzfahrzeuge und Maschinen** gewinnt die Elektromobilität an Bedeutung. Ob Transporter, Lkw oder landwirtschaftliche Maschinen – wir beraten Sie kompetent zu allen Optionen und finden gemeinsam die beste Lösung für Ihre Anforderungen.
 
 ## Unsere Empfehlung
 
@@ -385,37 +394,47 @@ Nach ~50.000 km ist E-Auto klimafreundlicher!
 
 🎯 **EU-Ziel**: Ab 2035 keine neuen Verbrenner mehr!
 
-## E-Mobilität bei CB Handels
+## E-Mobilität bei CB Handels – Ihr Partner für die Zukunft
+
+### Unser Versprechen: Qualität, Transparenz und erstklassiger Service
+
+Bei CB Handels GmbH stehen **Qualität, Transparenz und erstklassiger Service** im Mittelpunkt. Wir sind nicht nur Ihr Händler – wir sind Ihr langfristiger Partner, der auch nach dem Kauf für Sie da ist.
 
 ### Unser Service
 
-✅ **Beratung**:
+✅ **Kompetente und ehrliche Beratung**:
 
-- Kostenlose E-Mobilitäts-Beratung
+- Kostenlose, unverbindliche E-Mobilitäts-Beratung
+- Transparente Aufklärung über Vor- und Nachteile
 - Probefahrten mit aktuellen E-Modellen
-- Reichweiten-Check für Ihre Strecken
+- Reichweiten-Check für Ihre individuellen Strecken
+- Beratung zu Pkw, Nutzfahrzeugen und Maschinen
 
-✅ **Verkauf**:
+✅ **Verkauf mit Qualitätsgarantie**:
 
 - Große Auswahl E-Autos & Plug-in-Hybride
+- Sorgfältig geprüfte und aufbereitete Fahrzeuge
+- Transparente Preise – keine versteckten Kosten
 - Finanzierung & Förderungs-Abwicklung
-- Garantie & Service
+- Umfassende Garantie & Service
 
-✅ **Ladeinfrastruktur**:
+✅ **Ladeinfrastruktur-Beratung**:
 
-- Kostenlos laden während Besuch
-- Wallbox-Beratung
-- Installation-Partner
+- Kostenlos laden während Ihres Besuchs
+- Individuelle Wallbox-Beratung
+- Installation-Partner für zuverlässige Umsetzung
 
 ### Aktuelle E-Fahrzeuge
 
 🚗 Besuchen Sie unsere [Fahrzeugsuche](https://cbhandel.at#fahrzeuge) und filtern Sie nach "Elektro" oder "Hybrid"!
 
+**Bei uns kaufen Sie nicht einfach nur ein Fahrzeug – Sie gewinnen einen langfristigen Partner, der auch nach dem Kauf für Sie da ist.**
+
 ---
 
-## Bereit für die Zukunft?
+## Bereit für die Zukunft? Wir begleiten Sie!
 
-Vereinbaren Sie eine **kostenlose Probefahrt** mit einem E-Auto!
+Vereinbaren Sie eine **kostenlose, unverbindliche Probefahrt** mit einem E-Fahrzeug! Unser Team berät Sie kompetent und ehrlich – ob für Pkw, Nutzfahrzeug oder Maschine. Bei CB Handels finden Sie einen Partner, der Ihre Bedürfnisse versteht und transparent berät.
 
 📍 **CB Handels GmbH**  
 Industriestraße 5  

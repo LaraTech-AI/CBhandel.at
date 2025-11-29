@@ -9,7 +9,7 @@
 
 ## Ihr Leitfaden zum erfolgreichen Gebrauchtwagenkauf
 
-Der Kauf eines Gebrauchtwagens will gut überlegt sein. Mit unserer umfassenden Checkliste und wertvollen Insider-Tipps finden Sie das perfekte Auto zum fairen Preis – ohne böse Überraschungen!
+Der Kauf eines Gebrauchtwagens, Nutzfahrzeugs oder einer Maschine will gut überlegt sein. Bei CB Handels GmbH stehen **Qualität, Transparenz und erstklassiger Service** im Mittelpunkt. Mit unserer umfassenden Checkliste und wertvollen Insider-Tipps finden Sie das perfekte Fahrzeug oder die passende Maschine zum fairen Preis – ohne böse Überraschungen. Wir sind Ihr langfristiger Partner, der auch nach dem Kauf für Sie da ist.
 
 ![Gebrauchtwagen Inspektion](../assets/blog/gebrauchtwagen-kauf.jpg)
 
@@ -55,20 +55,22 @@ Gesamtkosten Jahr 1: € 22.350-23.800
 
 ## Die Fahrzeugsuche
 
-### Wo finde ich gute Gebrauchtwagen?
+### Wo finde ich gute Gebrauchtwagen, Nutzfahrzeuge oder Maschinen?
 
-✅ **Professioneller Händler** (wie CB Handels)
+✅ **Professioneller Händler** (wie CB Handels GmbH)
 
-- Gewährleistung
-- Geprüfte Fahrzeuge
-- Beratung und Service
-- Finanzierungshilfe
+- **Qualität**: Jedes Fahrzeug wird sorgfältig geprüft und aufbereitet
+- **Transparenz**: Faire Preise, keine versteckten Kosten, ehrliche Beratung
+- **Service**: Umfassende Gewährleistung und langfristige Partnerschaft
+- **Kompetenz**: Unser Team berät Sie ehrlich bei Pkw, Nutzfahrzeugen und Maschinen
+- **Finanzierungshilfe**: Unterstützung bei der Finanzierung
 
 ⚠️ **Privatkauf**
 
 - Oft günstiger
 - Aber: Keine Gewährleistung
 - Höheres Risiko
+- Keine professionelle Prüfung
 
 🔍 **Online-Plattformen**
 
@@ -77,6 +79,7 @@ Gesamtkosten Jahr 1: € 22.350-23.800
 - Mobile.de
 - Große Auswahl
 - Preisvergleich möglich
+- ⚠️ Aber: Vorsicht vor unseriösen Angeboten!
 
 ### Welche Marken/Modelle sind empfehlenswert?
 
@@ -434,46 +437,51 @@ Auch wenn gerade Service gemacht:
 
 ## Warum bei CB Handels kaufen?
 
-### Ihre Vorteile
+### Ihre Vorteile – Qualität, Transparenz und erstklassiger Service
 
-✅ **100% geprüfte Fahrzeuge**
+✅ **100% geprüfte Fahrzeuge und Maschinen**
 
-- Jedes Auto durchläuft unseren 100-Punkte-Check
+- Jedes Fahrzeug durchläuft unseren sorgfältigen Qualitäts-Check
 - Garantiert keine Unfallwagen
-- Wartungshistorie lückenlos
+- Wartungshistorie lückenlos dokumentiert
+- Professionelle Aufbereitung nach höchsten Standards
+- Gilt für Pkw, Nutzfahrzeuge und Maschinen
 
-✅ **Transparente Preise**
+✅ **Transparente Preise – keine Überraschungen**
 
-- Faire Marktpreise
-- Keine versteckten Kosten
-- Inzahlungnahme möglich
+- Faire Marktpreise, die wir transparent kommunizieren
+- Keine versteckten Kosten – was Sie sehen, ist was Sie zahlen
+- Inzahlungnahme möglich mit fairer Bewertung
+- Ehrliche Beratung zu Preis und Wert
 
-✅ **Umfassende Garantie**
+✅ **Umfassende Garantie und Service**
 
 - Mindestens 12 Monate Gewährleistung
-- Optional: Garantieverlängerung
+- Optional: Garantieverlängerung für zusätzliche Sicherheit
 - Mobilitätsgarantie
+- Langfristige Partnerschaft auch nach dem Kauf
 
-✅ **Rundum-Service**
+✅ **Rundum-Service – Ihr Partner für alles**
 
-- Finanzierungsvermittlung
+- Finanzierungsvermittlung mit fairen Konditionen
 - Versicherungsberatung
-- Zulassung übernehmen wir
-- Kostenlose Probefahrt
+- Zulassung übernehmen wir für Sie
+- Kostenlose, unverbindliche Probefahrt
+- Kompetente Beratung zu allen Fragen
 
 ### Unser Versprechen
 
-> "Bei uns kaufen Sie kein Auto – Sie gewinnen einen langfristigen Partner!"
+> "CB Handels GmbH steht für Qualität, Transparenz und erstklassigen Service. Bei uns kaufen Sie nicht einfach nur ein Fahrzeug oder eine Maschine – Sie gewinnen einen langfristigen Partner, der auch nach dem Kauf für Sie da ist."
 
 ---
 
-## Bereit für Ihren Traumwagen?
+## Bereit für Ihr Traumfahrzeug oder Ihre Maschine?
 
-Schauen Sie sich unsere aktuelle Auswahl an:
+Schauen Sie sich unsere aktuelle Auswahl an – von Pkw über Nutzfahrzeuge bis hin zu Maschinen:
 
 🚗 **[Zur Fahrzeugsuche](https://cbhandel.at#fahrzeuge)**
 
-Oder besuchen Sie uns persönlich:
+Oder besuchen Sie uns persönlich für eine kompetente und ehrliche Beratung:
 
 📍 **CB Handels GmbH**  
 Industriestraße 5  

@@ -1,6 +1,8 @@
 /* Modern Blog Post Styles */
 :root {
-  --blog-primary: #1b8e2d;
+  --blog-primary: #004b8d;
+  --blog-primary-light: #2469a6;
+  --blog-primary-dark: #003564;
   --blog-text: #333;
   --blog-text-secondary: #666;
   --blog-bg: #fff;
@@ -264,13 +266,13 @@ body {
   font-weight: 600;
   margin-top: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(27, 142, 45, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 75, 141, 0.3);
 }
 
 .blog-back-link:hover {
-  background: #156522;
+  background: var(--blog-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(27, 142, 45, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 75, 141, 0.4);
 }
 
 @media (max-width: 768px) {

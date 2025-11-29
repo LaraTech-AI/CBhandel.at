@@ -1,5 +1,46 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Blog Articles Theme Adaptation & Brand Color Update (January 2025)
+
+### ✨ Content Updates
+
+#### Blog Articles Theme Alignment
+- ✅ **E-Mobilität Article**: Updated to emphasize CB Handels' core values (Quality, Transparency, Service) and include references to commercial vehicles and machinery
+- ✅ **Gebrauchtwagen kaufen Article**: Enhanced to reflect partnership approach, quality standards, and transparency values. Added references to Nutzfahrzeuge and Maschinen
+- ✅ **Reifenwechsel Article**: Updated to include commercial vehicles/machinery context and emphasize service quality and long-term partnership
+
+#### Key Content Changes
+- ✅ **Company Values Integration**: All articles now emphasize "Qualität, Transparenz und erstklassigen Service"
+- ✅ **Partnership Messaging**: Added messaging about being a "langfristiger Partner" (long-term partner) throughout articles
+- ✅ **Scope Expansion**: Articles now reference Pkw, Nutzfahrzeuge, and Maschinen (not just cars)
+- ✅ **Professional Tone**: Enhanced to match CB Handels' professional, trustworthy, and partner-focused approach
+
+### 🎨 Visual Updates
+
+#### Brand Color Consistency
+- ✅ **Blog Styles Update**: Changed blog article primary color from green (#1b8e2d) to CB Handels blue (#004b8d)
+- ✅ **Color Variables**: Added brand color variants (--blog-primary-light, --blog-primary-dark) for consistency
+- ✅ **Hover Effects**: Updated all hover states and shadows to use blue brand color
+- ✅ **Visual Consistency**: Blog articles now match main website's color scheme
+
+### 📁 Files Modified
+
+- `posts/elektromobilitaet.md` - Content updates emphasizing values and commercial vehicles/machinery
+- `posts/elektromobilitaet.html` - HTML version updated to match markdown changes
+- `posts/gebrauchtwagen-kaufen.md` - Enhanced with partnership messaging and expanded scope
+- `posts/gebrauchtwagen-kaufen.html` - HTML version updated to match markdown changes
+- `posts/reifenwechsel.md` - Updated to include commercial vehicles/machinery and service quality
+- `posts/reifenwechsel.html` - HTML version updated to match markdown changes
+- `posts/blog-styles.css` - Brand color updated from green to blue (#004b8d)
+
+### 🗑️ Content Removed/Altered
+
+- **Updated**: Blog article content to align with CB Handels brand values and messaging
+- **Updated**: Blog article color scheme from green to blue to match main website
+- **Preserved**: All existing blog article structure, formatting, and functionality
+
+---
+
 ## Social Media & Google Reviews Integration (January 2025)
 
 ### ✨ New Features
