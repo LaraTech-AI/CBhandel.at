@@ -985,6 +985,11 @@ strong {
   padding: 0;
 }
 
+/* Hide social section on desktop - only show in mobile menu */
+.nav-social-section {
+  display: none;
+}
+
 .nav-link {
   font-size: 0.95rem;
   font-weight: 500;
@@ -11567,6 +11572,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   /* Mobile Menu Social Section */
   .nav-social-section {
+    display: block;
     list-style: none;
     margin-top: 0.5rem;
     padding-top: 0.75rem;
