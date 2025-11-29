@@ -1,5 +1,46 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Vehicle Card Features Enhancement - CB Handels GmbH (November 2025)
+
+### 🏷️ Fuel Type Display in Card Features
+
+#### Overview
+Enhanced vehicle cards to display fuel type in the card-features section alongside transmission type, providing users with more comprehensive vehicle information at a glance.
+
+#### New Features
+- ✅ **Fuel Type in Features**: Added fuel type (Diesel, Benzin, Elektro, Hybrid) to the card-features section
+- ✅ **Dual Display**: Fuel type now appears both as a badge in the card header and as a feature tag below the specs
+- ✅ **Comprehensive Support**: Supports all common fuel types with intelligent matching
+- ✅ **Fallback Handling**: Uses original fuel type value if it doesn't match known patterns
+
+#### Technical Implementation
+- Updated `renderVehicleCard()` function in `scripts.js`
+- Fuel type is added to the `features` array before transmission
+- Features are displayed as `feature-tag` elements in the `card-features` section
+
+#### User Experience
+- Users can now see fuel type information in two places:
+  1. As a badge in the card header (existing)
+  2. As a feature tag in the card-features section (new)
+- Better visibility of fuel type information for quick scanning
+- Consistent display format with transmission type
+
+#### Files Modified
+- `scripts.js` - Added fuel type to features array in `renderVehicleCard()` function
+
+#### Test Results
+- ✅ Fuel type displays correctly for all vehicles (Diesel, Benzin)
+- ✅ Fuel type appears alongside transmission in card-features section
+- ✅ All 8 vehicles show correct fuel type information
+- ✅ Fallback works for unknown fuel types
+
+### 🗑️ Content Removed/Altered
+- **Altered**: `card-features` section now displays both fuel type and transmission (previously only transmission)
+- **Preserved**: Fuel type badge in card header remains unchanged
+- **Preserved**: All existing vehicle card functionality and styling
+
+---
+
 ## Image Extraction & Performance Optimization - CB Handels GmbH (November 2025)
 
 ### 🖼️ Image Pool Pre-Collection & Porsche Fix
