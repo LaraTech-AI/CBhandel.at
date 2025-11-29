@@ -1,5 +1,105 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Multi-Source Vehicle Details API Support (January 2025)
+
+### 🔧 Vehicle Details API Enhancement
+
+#### Overview
+Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data sources (AutoScout24, Willhaben, Landwirt) in addition to motornetzwerk. Previously, the API only worked with motornetzwerk vehicles (numeric IDs), causing 400 errors for vehicles from other sources.
+
+#### Problem Fixed
+- ✅ **400 Error for Non-Motornetzwerk Vehicles**: AutoScout24 vehicles (IDs like `autoscout-9277a327-...`), Willhaben vehicles, and Landwirt machines were rejected with 400 errors
+- ✅ **Limited Source Support**: API only accepted numeric vehicle IDs (motornetzwerk format)
+- ✅ **Missing Vehicle Details**: Quick view modal showed error state for vehicles from AutoScout24, Willhaben, and Landwirt
+
+#### Solution Implemented
+
+**Multi-Source Support:**
+- ✅ **Flexible ID Validation**: Removed strict numeric-only validation, now accepts all ID formats
+- ✅ **Vehicles List Integration**: API first checks the vehicles list (includes all sources) before falling back to motornetzwerk API
+- ✅ **Smart Fallback Logic**: For numeric IDs not found in vehicles list, falls back to motornetzwerk API
+- ✅ **Data Transformation**: Added `transformVehicleFromList()` function to convert vehicle data from list format to API response format
+
+**Technical Implementation:**
+- ✅ Added vehicles list caching (30-minute TTL) to reduce API calls
+- ✅ Implemented source detection based on vehicle ID format (autoscout-, landwirt-, numeric)
+- ✅ Enhanced error handling with clear error messages
+- ✅ Maintained backward compatibility with motornetzwerk vehicles
+
+#### Benefits
+
+**User Experience:**
+- ✅ **All Vehicles Work**: Quick view modal now loads details for vehicles from all sources
+- ✅ **No More Errors**: Eliminated "Daten konnten nicht geladen werden" error for AutoScout24/Willhaben/Landwirt vehicles
+- ✅ **Consistent Experience**: All vehicles show detailed information in quick view modal
+
+**Technical:**
+- ✅ **Better Performance**: Vehicles list caching reduces redundant API calls
+- ✅ **Maintainable**: Clear separation between source detection and data fetching
+- ✅ **Extensible**: Easy to add support for additional data sources in the future
+
+#### Files Modified
+- `api/vehicle-details.js` - Enhanced to support multi-source vehicles with vehicles list integration and fallback logic
+
+#### Test Results
+- ✅ AutoScout24 vehicles (Porsche, etc.) now load details correctly
+- ✅ Willhaben vehicles load details correctly
+- ✅ Landwirt machines load details correctly
+- ✅ Motornetzwerk vehicles continue to work (backward compatible)
+- ✅ Error handling works correctly for missing vehicles
+
+### 🗑️ Content Removed/Altered
+- **Removed**: Strict numeric-only vehicle ID validation that rejected non-motornetzwerk vehicles
+- **Altered**: API now checks vehicles list first before motornetzwerk API (changed lookup order)
+- **Added**: New `transformVehicleFromList()` function for converting list data to API format
+- **Added**: Vehicles list caching mechanism (30-minute TTL)
+- **Preserved**: All existing motornetzwerk API functionality and response format
+- **Preserved**: All existing error handling and caching mechanisms
+
+---
+
+## Content Updates for Multi-Product Offering - CB Handels GmbH (January 2025)
+
+### 📝 CTA Button & Trust Badge Updates
+
+#### Overview
+Updated hero section CTA button and trust badges to reflect the business's expanded product offering beyond just vehicles (Autos) to include machines (Maschinen), making the messaging more inclusive and accurate.
+
+#### Content Changes
+
+**CTA Button Update:**
+- ✅ **Text Change**: Updated hero CTA button from "Finde dein passendes Auto" to "Finde dein passendes Fahrzeug"
+- ✅ **Broader Scope**: "Fahrzeug" (vehicle) is more generic and encompasses all types of vehicles and machines
+- ✅ **Better Alignment**: Matches the business offering of "Kraftfahrzeuge & Maschinen" (Motor vehicles & Machines)
+
+**Trust Badge Update:**
+- ✅ **Text Enhancement**: Updated trust badge from "Geprüfte Fahrzeuge" to "Geprüfte Fahrzeuge & Maschinen"
+- ✅ **Complete Coverage**: Now explicitly mentions both vehicles and machines in the trust badge
+- ✅ **Consistent Messaging**: Aligns with hero location text "Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
+
+#### Technical Implementation
+
+**Code Changes:**
+- ✅ Updated CTA button text in `index.html` hero section (line 1079)
+- ✅ Updated trust badge text in `index.html` trust badges section (line 1090)
+
+#### Files Modified
+- `index.html` - Updated CTA button text and trust badge text in hero section
+
+#### Test Results
+- ✅ CTA button displays "Finde dein passendes Fahrzeug" correctly
+- ✅ Trust badge displays "Geprüfte Fahrzeuge & Maschinen" correctly
+- ✅ All styling and functionality preserved
+- ✅ No visual or functional regressions
+
+### 🗑️ Content Removed/Altered
+- **Altered**: Hero CTA button text changed from "Finde dein passendes Auto" to "Finde dein passendes Fahrzeug"
+- **Altered**: Trust badge text changed from "Geprüfte Fahrzeuge" to "Geprüfte Fahrzeuge & Maschinen"
+- **Preserved**: All existing hero section styling, animations, and functionality
+- **Preserved**: All other trust badges and hero content remain unchanged
+
+---
+
 ## FOUC Fix & CSS Loading Optimization - CB Handels GmbH (December 2025)
 
 ### 🎨 Flash of Unstyled Content (FOUC) Fix
@@ -2861,5 +2961,5 @@ All API files now use `dealerConfig` instead of hardcoded values:
 ---
 
 **Contact**: direktonline.at@gmail.com  
-**Last Updated**: November 2025  
-**Current Version**: 2.21.0
+**Last Updated**: January 2025  
+**Current Version**: 2.22.0

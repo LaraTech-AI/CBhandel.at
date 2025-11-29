@@ -171,7 +171,7 @@ The following files have been refactored to use the configuration:
 
 ### API Files (All use `dealerConfig`)
 - `api/vehicles.js` - Uses config for URLs and CORS
-- `api/vehicle-details.js` - Uses config for dealer ID and info
+- `api/vehicle-details.js` - Fetches detailed vehicle information by vid. Supports all data sources (AutoScout24, Willhaben, Landwirt, motornetzwerk) with intelligent fallback logic. Uses config for dealer ID and info.
 - `api/contact.js` - Uses config for email content and CORS
 - `api/newsletter.js` - Uses config for email content and CORS
 - `api/appointment.js` - Uses config for email content and CORS
