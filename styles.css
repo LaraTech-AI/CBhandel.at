@@ -11517,6 +11517,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .mobile-menu-toggle {
     display: flex;
     flex-shrink: 0;
+    min-width: 44px;
   }
 
   .nav-menu {
@@ -11553,7 +11554,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .logo-container {
     flex-shrink: 1;
     min-width: 0;
-    max-width: calc(100% - 120px); /* Reserve space for burger menu and other controls */
+    max-width: calc(100% - 150px); /* Reserve space for burger menu, search, and theme toggle */
   }
 
   .logo-link {
@@ -11563,7 +11564,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   .logo {
     height: 45px;
-    max-width: 120px;
+    max-width: 220px;
     width: auto;
   }
 
@@ -11949,7 +11950,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .logo-container {
     flex-shrink: 1;
     min-width: 0;
-    max-width: calc(100% - 110px); /* Reserve space for burger menu and other controls */
+    max-width: calc(100% - 130px); /* Reserve space for burger menu, search, and theme toggle */
   }
 
   .logo-link {
@@ -11959,7 +11960,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   .logo {
     height: 38px;
-    max-width: 100px;
+    max-width: 180px;
     width: auto;
   }
 
