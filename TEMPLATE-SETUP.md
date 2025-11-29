@@ -73,7 +73,8 @@ social: {
   tiktok: "https://www.tiktok.com/@yourpage",
   youtube: "https://www.youtube.com/@yourpage",
   twitter: "https://x.com/YourHandle",
-  twitterHandle: "@yourhandle"
+  twitterHandle: "@yourhandle",
+  googleReview: "https://g.page/r/YOUR_GOOGLE_REVIEW_LINK/review" // Optional: Google Reviews link
 }
 ```
 

@@ -13,13 +13,14 @@ Modern, deployment-ready single-page website template for car dealerships. Curre
 - **Interactive Features**: Magnetic buttons, scroll reveal, testimonial slider with swipe gestures, vehicle comparison, financing calculator, trade-in calculator with hash navigation support, back-to-top button with smooth scroll
 - **WhatsApp-Focused Contact**: Direct communication via WhatsApp (primary), phone, and email - no form spam
 - **Social Media Integration**: Prominent social media section in contact area with branded buttons (Facebook, Instagram, TikTok, YouTube, X) with platform-specific styling and hover effects
+- **Google Reviews Integration**: Clickable Google Reviews badge in testimonials section, dedicated review section in contact area with review link and QR code for easy customer feedback
 - **Modern Newsletter Subscription**: Enhanced newsletter forms with modern 2025 design, real-time validation, interactive privacy checkbox, dual placement (footer & contact section), loading states, and comprehensive accessibility features
 - **Appointment Booking**: Dedicated API endpoint for appointment bookings with date validation and confirmation emails
 - **Dark Mode**: Toggle between light and dark themes (loads in light mode by default)
 - **Accessibility**: ARIA attributes, semantic HTML, keyboard navigation, skip-to-content link, focus management in modals, ARIA live regions for dynamic content announcements
 - **Enhanced Hero**: Animated gradients, trust badges, improved CTAs
 - **Vehicle Features**: Quick view modal with enhanced vehicle details API, touch-friendly mobile image gallery with swipe gestures, comparison tool, filtering & sorting, share functionality, vehicle inquiry form, real-time search
-- **Trust Indicators**: Enhanced trust badges, real Google reviews, animated statistics
+- **Trust Indicators**: Enhanced trust badges, real Google reviews, animated statistics, Google Reviews integration with direct review link and QR code
 - **Services Section**: Comprehensive service showcase (inspection, warranty, financing, trade-in) with interactive cards and hash-based navigation to calculators
 - **Process Section**: 5-step buying process guide with visual indicators and descriptions
 - **Team & Facilities**: Team member profiles and dealership facilities showcase
@@ -656,11 +657,27 @@ Industriestraße 5
 
 #### ✨ New Features
 
+- **Instagram Handle Update**: Updated Instagram handle from `cbhandel` to `cbhandelsgmbh` to match official profile
+- **Google Reviews Integration**: Complete Google Reviews integration with clickable badge, review button, dedicated review section with link and QR code support (`assets/qrcode.png`)
 - **Visual Enhancements**: Custom global scrollbar with brand colors, enhanced card hover effects with improved lift and shadows, refined sticky header with better visual separation, and consistent icon stroke width across all icons
 
 #### 🔧 Improvements
 
+- **Dynamic Link Management**: Enhanced script to automatically update Google review links from configuration
+- **Responsive Review Section**: Mobile-optimized Google Reviews section with QR code display
 - **Visual Polish**: Improved depth perception with multi-layer shadows, better border color transitions, enhanced dark mode support for all visual elements
+
+### Version 2.22.0 - January 2025
+
+#### ✨ New Features
+
+- **Instagram Handle Update**: Updated Instagram handle from `cbhandel` to `cbhandelsgmbh` to match official profile
+- **Google Reviews Integration**: Complete Google Reviews integration with clickable badge, review button, dedicated review section with link and QR code support
+
+#### 🔧 Improvements
+
+- **Dynamic Link Management**: Enhanced script to automatically update Google review links from configuration
+- **Responsive Review Section**: Mobile-optimized Google Reviews section with QR code display
 
 ### Version 2.21.0 - November 2025
 

@@ -1,5 +1,45 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Social Media & Google Reviews Integration (January 2025)
+
+### ✨ New Features
+
+#### Instagram Handle Update
+- ✅ **Updated Instagram Handle**: Changed from `cbhandel` to `cbhandelsgmbh` to match official Instagram profile
+- ✅ **Configuration Updated**: Updated Instagram links in both `dealerConfig.js` and `dealerConfig.browser.js`
+- ✅ **Dynamic Link Updates**: All Instagram links throughout the website now use the new handle
+
+#### Google Reviews Integration
+- ✅ **Clickable Google Reviews Badge**: Google Reviews badge in testimonials section is now clickable and opens the review form
+- ✅ **Review Button in Testimonials**: Added "Bewertung bei Google hinterlassen" button below testimonials section
+- ✅ **Dedicated Review Section**: New Google Reviews section in contact area with:
+  - Review link button with Google branding
+  - QR code display for easy mobile access
+  - Descriptive text explaining the importance of reviews
+- ✅ **QR Code Support**: QR code image support (`assets/qrcode.png`) for sharing review link with customers
+- ✅ **Configuration Integration**: Google review link added to social media configuration (`config.social.googleReview`)
+
+### 🔧 Improvements
+
+- ✅ **Dynamic Link Management**: Enhanced script to automatically update Google review links from configuration
+- ✅ **Responsive Design**: Google Reviews section fully responsive with mobile-optimized layout
+- ✅ **Accessibility**: Proper ARIA labels and keyboard navigation for all review links
+
+### 📁 Files Modified
+
+- `config/dealerConfig.js` - Added `googleReview` to social media config, updated Instagram handle
+- `config/dealerConfig.browser.js` - Added `googleReview` to social media config, updated Instagram handle
+- `index.html` - Added Google Reviews section, made badge clickable, added review button, integrated QR code
+- `styles.css` - Added styles for Google Reviews section, review buttons, and QR code container
+
+### 🗑️ Content Removed/Altered
+
+- **Updated**: Instagram handle from `cbhandel` to `cbhandelsgmbh` across all instances
+- **Added**: Google Reviews integration with link and QR code support
+- **Preserved**: All existing social media functionality and styling
+
+---
+
 ## Bug Fix: Willhaben Parser Validation (January 2025)
 
 ### 🐛 Critical Bug Fix: Missing Title/Price Validation

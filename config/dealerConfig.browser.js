@@ -69,11 +69,12 @@
     // Social Media
     social: {
       facebook: "https://www.facebook.com/cbhandel",
-      instagram: "https://www.instagram.com/cbhandel",
+      instagram: "https://www.instagram.com/cbhandelsgmbh/",
       tiktok: "https://www.tiktok.com/@cbhandel",
       youtube: "https://www.youtube.com/@cbhandel",
       twitter: "https://x.com/cbhandel",
-      twitterHandle: "@cbhandel"
+      twitterHandle: "@cbhandel",
+      googleReview: "https://g.page/r/CVRmGd5zMxr1EBM/review"
     },
     
     // Vehicle Data Source

@@ -4600,6 +4600,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .google-reviews-badge::before {
@@ -6185,6 +6188,193 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 @media (max-width: 480px) {
   .contact-social-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Google Review CTA Button in Testimonials */
+.google-review-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.google-review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3);
+  transition: all var(--transition-base);
+}
+
+.google-review-btn:hover {
+  background: linear-gradient(135deg, #34a853 0%, #4285f4 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(66, 133, 244, 0.4);
+}
+
+.google-review-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Google Reviews Section in Contact Area */
+.google-reviews-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--glass-bg) 0%,
+    rgba(var(--brand-primary-rgb), 0.05) 100%
+  );
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+.google-reviews-section-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--brand-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.google-reviews-section-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.google-reviews-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.google-reviews-link-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-google-review {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-google-review:hover {
+  background: linear-gradient(135deg, #34a853 0%, #4285f4 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(66, 133, 244, 0.4);
+}
+
+.btn-google-review svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.google-reviews-qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.google-reviews-qr-wrapper {
+  position: relative;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-reviews-qr-code {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.google-reviews-qr-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+.google-reviews-qr-placeholder svg {
+  opacity: 0.3;
+}
+
+.qr-placeholder-text {
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.qr-placeholder-text code {
+  background: var(--bg-tertiary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--brand-primary);
+}
+
+.google-reviews-qr-hint {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* Responsive adjustments for Google Reviews Section */
+@media (max-width: 768px) {
+  .google-reviews-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .google-reviews-section {
+    padding: 1.5rem;
+  }
+
+  .google-reviews-qr-code {
+    max-width: 150px;
   }
 }
 
