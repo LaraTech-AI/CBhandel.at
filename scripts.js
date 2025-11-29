@@ -182,6 +182,21 @@ function renderVehicleCard(vehicle) {
 
   // Features/badges
   const features = [];
+  if (vehicle.fuelType) {
+    const fuel = vehicle.fuelType.toLowerCase();
+    if (fuel.includes("diesel")) {
+      features.push("Diesel");
+    } else if (fuel.includes("benzin")) {
+      features.push("Benzin");
+    } else if (fuel.includes("elektro")) {
+      features.push("Elektro");
+    } else if (fuel.includes("hybrid")) {
+      features.push("Hybrid");
+    } else {
+      // Fallback: use the fuel type as-is if it doesn't match known patterns
+      features.push(vehicle.fuelType);
+    }
+  }
   if (vehicle.transmission) {
     const trans = vehicle.transmission.toLowerCase();
     if (trans.includes("automatik")) features.push("Automatik");
