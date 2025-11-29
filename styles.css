@@ -3288,14 +3288,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 }
 
 .fuel-badge {
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #5a6c7d 0%, #4a5a6a 100%);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 2px 8px rgba(90, 108, 125, 0.3);
 }
 
 /* Enhanced Badge Animations */

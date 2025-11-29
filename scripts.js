@@ -490,8 +490,20 @@ function renderVehicleListItem(vehicle) {
 
 /**
  * Determine vehicle Category for filtering
+ * Uses the vehicle's category property (pkw, nutzfahrzeuge, baumaschinen) if available,
+ * otherwise falls back to price/year-based categories
  */
 function determineCategory(vehicle) {
+  // First, check if vehicle has a category property (pkw, nutzfahrzeuge, baumaschinen)
+  if (vehicle.category) {
+    // Normalize category values
+    const category = vehicle.category.toLowerCase();
+    if (category === 'pkw' || category === 'nutzfahrzeuge' || category === 'baumaschinen' || category === 'baumaschine') {
+      return category === 'baumaschine' ? 'baumaschinen' : category;
+    }
+  }
+  
+  // Fallback to price/year-based categories for special offers
   if (vehicle.price && vehicle.price < 15000) return "top-offer";
   if (vehicle.year && vehicle.year >= new Date().getFullYear() - 2)
     return "new";

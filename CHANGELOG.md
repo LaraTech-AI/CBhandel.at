@@ -1,5 +1,72 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Vehicle Categorization & UI Improvements (January 2025)
+
+### 🎨 Fuel Badge Color Update
+
+#### Overview
+Updated fuel type badge color from green to a neutral blue-gray gradient to better match the overall design aesthetic and brand colors.
+
+#### Changes
+- ✅ **Color Update**: Changed fuel badge background from green gradient (`#4caf50` to `#45a049`) to blue-gray gradient (`#5a6c7d` to `#4a5a6a`)
+- ✅ **Shadow Update**: Updated box-shadow color to match new badge color
+- ✅ **Design Consistency**: Badge now aligns better with the overall color scheme
+
+#### Files Modified
+- `styles.css` - Updated `.fuel-badge` styling (lines 3290-3299)
+
+### 🚗 Enhanced Vehicle Categorization
+
+#### Overview
+Improved vehicle categorization system to properly separate PKW (passenger cars), Nutzfahrzeuge (commercial vehicles), and Baumaschinen (construction machines) across all data sources.
+
+#### Problem Fixed
+- ✅ **Incorrect Categorization**: All vehicles were being categorized as PKW regardless of actual type
+- ✅ **Missing Category Detection**: `determineCategory()` function ignored vehicle's category property
+- ✅ **Limited Willhaben Detection**: Willhaben vehicles only used title keywords for category detection
+
+#### Solution Implemented
+
+**Category Detection Improvements:**
+- ✅ **Enhanced `determineCategory()` Function**: Now uses vehicle's `category` property (pkw, nutzfahrzeuge, baumaschinen) as primary source
+- ✅ **Multi-Method Willhaben Detection**: Implemented 4-tier detection system for Willhaben vehicles:
+  1. **URL Pattern Analysis**: Checks URL for category indicators (`/nutzfahrzeuge/`, `/transporter/`, etc.)
+  2. **Structured Data (JSON-LD)**: Extracts category from `item.category`, `item.vehicleType`, or `item.additionalProperty`
+  3. **HTML Attributes**: Checks HTML class names and data attributes for category indicators
+  4. **Title Keywords**: Fallback method using keyword matching (only if other methods fail)
+- ✅ **Improved Structured Data Extraction**: Enhanced Willhaben parser to extract more data from JSON-LD (title, price, URL, category)
+
+**Technical Implementation:**
+- ✅ Updated `determineCategory()` to prioritize vehicle's category property
+- ✅ Added category normalization (baumaschine → baumaschinen)
+- ✅ Enhanced Willhaben parser with comprehensive category detection
+- ✅ Maintained backward compatibility with price/year-based special categories
+
+#### Benefits
+
+**User Experience:**
+- ✅ **Accurate Filtering**: Filter tabs (PKW, Nutzfahrzeuge, Baumaschinen) now correctly separate vehicles
+- ✅ **Better Organization**: Vehicles are properly categorized regardless of data source
+- ✅ **Consistent Behavior**: All data sources (AutoScout24, Willhaben, Landwirt, Motornetzwerk) use consistent categorization
+
+**Technical:**
+- ✅ **More Reliable**: Multiple detection methods increase accuracy
+- ✅ **Better Data Extraction**: Enhanced use of structured data from Willhaben
+- ✅ **Maintainable**: Clear priority order for category detection methods
+
+#### Files Modified
+- `scripts.js` - Enhanced `determineCategory()` function to use vehicle category property
+- `lib/vehicleService.js` - Enhanced Willhaben category detection with multi-method approach
+
+### 🗑️ Content Removed/Altered
+- **Altered**: Fuel badge color changed from green to blue-gray gradient
+- **Altered**: `determineCategory()` function now prioritizes vehicle's category property over price/year
+- **Added**: Multi-method category detection for Willhaben vehicles (URL, structured data, HTML attributes, title keywords)
+- **Enhanced**: Willhaben parser now extracts more data from structured data (JSON-LD)
+- **Preserved**: All existing filtering functionality and special category detection (top-offer, new)
+
+---
+
 ## Multi-Source Vehicle Details API Support (January 2025)
 
 ### 🔧 Vehicle Details API Enhancement
