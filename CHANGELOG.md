@@ -1,5 +1,48 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Bug Fix: Willhaben Parser Validation (January 2025)
+
+### 🐛 Critical Bug Fix: Missing Title/Price Validation
+
+#### Overview
+Fixed a critical bug in the Willhaben vehicle parser that caused a 500 error in the `/api/vehicles` endpoint. The parser was attempting to add vehicles to the array without validating that both title and price were present.
+
+#### Problem Fixed
+- ✅ **500 Server Error**: `/api/vehicles` endpoint returned 500 error, preventing all vehicles from loading
+- ✅ **Missing Validation**: Willhaben parser was missing the `if (title && price)` check before adding vehicles to the array
+- ✅ **Broken Vehicle Loading**: Website showed "Aktuell sind keine Fahrzeuge verfügbar" (no vehicles available)
+
+#### Solution Implemented
+- ✅ **Restored Validation Check**: Added missing `if (title && price)` validation before `vehicles.push()` in `parseWillhabenVehicles()` function
+- ✅ **Proper Error Handling**: Vehicles without title or price are now skipped with a warning log instead of causing a server error
+- ✅ **Maintained Functionality**: All existing parsing logic and category detection remain intact
+
+#### Benefits
+**User Experience:**
+- ✅ **Vehicles Load Correctly**: All vehicles now load and display properly on the website
+- ✅ **No More Errors**: Eliminated 500 error that prevented vehicle listings from appearing
+- ✅ **Stable Service**: API endpoint now handles edge cases gracefully
+
+**Technical:**
+- ✅ **Better Error Handling**: Invalid vehicle data is skipped rather than crashing the parser
+- ✅ **Maintainable**: Clear validation ensures only complete vehicle data is added
+- ✅ **Robust**: Parser now handles missing data gracefully
+
+#### Files Modified
+- `lib/vehicleService.js` - Added missing `if (title && price)` validation check before `vehicles.push()` (line 679)
+
+#### Test Results
+- ✅ `/api/vehicles` endpoint now returns 200 status with vehicle data
+- ✅ All 8 vehicles load and display correctly on the website
+- ✅ Vehicles with missing title or price are skipped without errors
+- ✅ Category filtering continues to work correctly
+
+### 🗑️ Content Removed/Altered
+- **Fixed**: Missing validation check that caused 500 error
+- **Preserved**: All existing parsing logic, category detection, and data extraction functionality
+
+---
+
 ## Vehicle Categorization & UI Improvements (January 2025)
 
 ### 🎨 Fuel Badge Color Update
