@@ -633,6 +633,18 @@ Industriestraße 5
 
 ## 📝 Changelog
 
+### Version 2.23.0 - November 2025
+
+#### ✨ New Features
+
+- **Fuel Type Display**: Added fuel type (Diesel, Benzin, Elektro, Hybrid) display in vehicle card features section alongside transmission type for better vehicle information visibility
+- **Category Filter Buttons**: Added dedicated filter buttons for vehicle categories (PKW, Nutzfahrzeuge, Baumaschinen) in the Fahrzeuge section for improved navigation
+
+#### 🔧 Improvements
+
+- **Filter Buttons Optimization**: Optimized filter buttons to stay in one row with reduced size to prevent wrapping and improve mobile responsiveness
+- **Vehicle Information Enhancement**: Fuel type now displayed in both card features and vehicle details for comprehensive vehicle information
+
 ### Version 2.22.0 - January 2025
 
 #### ✨ New Features

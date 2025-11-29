@@ -1,5 +1,61 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Vehicle Features & Filter Enhancements - CB Handels GmbH (November 2025)
+
+### 🚗 Fuel Type Display & Category Filters
+
+#### Overview
+Enhanced vehicle information display by adding fuel type to vehicle cards and implementing dedicated category filter buttons for improved navigation and vehicle discovery.
+
+#### New Features
+
+**Fuel Type Display:**
+- ✅ **Card Features Enhancement**: Added fuel type (Diesel, Benzin, Elektro, Hybrid) display in vehicle card features section
+- ✅ **Dual Display**: Fuel type shown alongside transmission type for comprehensive vehicle information
+- ✅ **Fallback Support**: Handles unknown fuel types gracefully with fallback display
+- ✅ **Consistent Display**: Fuel type appears in both card features and vehicle details modal
+
+**Category Filter Buttons:**
+- ✅ **PKW Filter**: Dedicated filter button for passenger cars (PKW)
+- ✅ **Nutzfahrzeuge Filter**: Filter button for commercial vehicles (Nutzfahrzeuge)
+- ✅ **Baumaschinen Filter**: Filter button for construction machinery (Baumaschinen)
+- ✅ **Improved Navigation**: Quick access to specific vehicle categories without scrolling
+
+#### UI Improvements
+
+**Filter Buttons Optimization:**
+- ✅ **Single Row Layout**: Filter buttons optimized to stay in one row
+- ✅ **Reduced Size**: Smaller button sizes to prevent wrapping on mobile devices
+- ✅ **Better Responsiveness**: Improved mobile experience with compact filter layout
+- ✅ **Visual Consistency**: Maintained design consistency with existing filter system
+
+#### Technical Implementation
+
+**Code Changes:**
+- ✅ Enhanced `scripts.js` with fuel type display logic in vehicle card rendering
+- ✅ Added fuel type extraction and display in `card-features` section
+- ✅ Implemented category filter buttons in `index.html` Fahrzeuge section
+- ✅ Updated filter logic to handle category-based filtering (PKW, Nutzfahrzeuge, Baumaschinen)
+- ✅ Optimized filter button CSS in `styles.css` for single-row layout
+
+#### Files Modified
+- `scripts.js` - Added fuel type display in vehicle card features (15 lines added)
+- `index.html` - Added category filter buttons (PKW, Nutzfahrzeuge, Baumaschinen)
+- `styles.css` - Optimized filter buttons for single-row layout
+
+#### Test Results
+- ✅ Fuel type displays correctly for all vehicle types (Diesel, Benzin, Elektro, Hybrid)
+- ✅ Category filters work correctly for PKW, Nutzfahrzeuge, and Baumaschinen
+- ✅ Filter buttons stay in one row on all screen sizes
+- ✅ Mobile responsiveness maintained with optimized button sizes
+
+### 🗑️ Content Removed/Altered
+- **Altered**: Vehicle card features now include fuel type alongside transmission type
+- **Altered**: Filter buttons optimized for single-row layout with reduced sizes
+- **Preserved**: All existing vehicle filtering, sorting, and display functionality
+
+---
+
 ## Image Extraction & Performance Optimization - CB Handels GmbH (November 2025)
 
 ### 🖼️ Image Pool Pre-Collection & Porsche Fix
