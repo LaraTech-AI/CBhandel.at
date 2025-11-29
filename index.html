@@ -467,19 +467,81 @@
       rel="stylesheet"
     />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-Z3R9T8BD6M"
-    ></script>
+    <!-- Google Consent Mode v2 - Set defaults before consent banner -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-
-      gtag("config", "G-Z3R9T8BD6M");
+      
+      // Set default consent state to 'denied' (Consent Mode v2)
+      gtag('consent', 'default', {
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500,
+      });
+      
+      gtag('js', new Date());
+      
+      // Check if consent was already granted and load Google tag if so
+      (function() {
+        const cookieConsent = localStorage.getItem('cookieConsent');
+        if (cookieConsent) {
+          try {
+            const consent = JSON.parse(cookieConsent);
+            if (consent.analytics) {
+              // User previously granted consent, load Google tag immediately
+              loadGoogleTag();
+              updateConsentMode(true, consent.functional || false, consent.analytics);
+            }
+          } catch (e) {
+            console.error('Error parsing cookie consent:', e);
+          }
+        }
+      })();
+      
+      // Function to load Google tag script dynamically
+      function loadGoogleTag() {
+        if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+          return; // Already loaded
+        }
+        
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z3R9T8BD6M';
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(gtagScript, firstScript);
+        
+        // Configure Google Analytics after script loads
+        gtagScript.onload = function() {
+          gtag('config', 'G-Z3R9T8BD6M');
+        };
+      }
+      
+      // Function to update consent mode
+      function updateConsentMode(necessary, functional, analytics) {
+        if (analytics) {
+          gtag('consent', 'update', {
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted',
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted'
+          });
+        } else {
+          gtag('consent', 'update', {
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'ad_storage': 'denied',
+            'analytics_storage': 'denied'
+          });
+        }
+      }
+      
+      // Make functions globally available for cookie consent handler
+      window.loadGoogleTag = loadGoogleTag;
+      window.updateConsentMode = updateConsentMode;
     </script>
 
     <!-- JSON-LD Structured Data for LocalBusiness -->

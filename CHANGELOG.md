@@ -1,5 +1,82 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Google Consent Mode v2 Implementation (January 2025)
+
+### 🔒 Privacy & Compliance
+
+#### Overview
+Implemented Google Consent Mode v2 to ensure GDPR compliance and proper consent management for Google Analytics tracking. The implementation follows Google's official Consent Mode v2 guidelines and integrates seamlessly with the existing cookie consent banner.
+
+#### Consent Mode v2 Features
+- ✅ **Consent Mode v2 Parameters**: Implemented all required v2 parameters:
+  - `ad_user_data`: Controls sending user data for advertising
+  - `ad_personalization`: Controls personalized advertising
+  - `ad_storage`: Controls advertising cookies
+  - `analytics_storage`: Controls analytics cookies
+- ✅ **Default Denied State**: All consent parameters default to `'denied'` before user interaction
+- ✅ **Dynamic Script Loading**: Google tag script only loads after user grants analytics consent
+- ✅ **Cookie Banner Integration**: Seamlessly integrated with existing cookie consent banner
+- ✅ **Persistent Consent**: Consent preferences stored in localStorage for returning users
+- ✅ **Automatic Loading**: For returning users with existing consent, Google tag loads immediately
+
+#### Implementation Details
+- **Basic Consent Mode**: Uses basic consent mode approach - blocks Google tag from loading until consent is granted
+- **Consent Defaults**: Set in `<head>` before any Google tag scripts
+- **Dynamic Loading**: `loadGoogleTag()` function dynamically injects Google tag script when consent is granted
+- **Consent Updates**: `updateConsentMode()` function updates consent state based on user choices
+- **Cross-Page Support**: Implemented on all pages (main page and all blog posts)
+
+#### Files Modified
+- `index.html` - Updated Google Analytics implementation with Consent Mode v2
+- `posts/elektromobilitaet.html` - Updated with Consent Mode v2
+- `posts/reifenwechsel.html` - Updated with Consent Mode v2
+- `posts/gebrauchtwagen-kaufen.html` - Updated with Consent Mode v2
+- `scripts.js` - Updated cookie consent handler to integrate with Consent Mode v2
+
+#### Google Analytics Tracking ID Update
+- **Updated**: Tracking ID from `G-PWL0D86EB3` to `G-Z3R9T8BD6M`
+- **Applied**: New tracking ID on all pages (main page and blog posts)
+
+#### Technical Implementation
+```javascript
+// Consent Mode defaults set before Google tag loads
+gtag('consent', 'default', {
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'wait_for_update': 500,
+});
+
+// Dynamic loading when consent granted
+function loadGoogleTag() {
+  // Dynamically injects Google tag script
+  // Only called when user grants analytics consent
+}
+```
+
+#### Impact
+- ✅ **GDPR Compliance**: Fully compliant with GDPR requirements for consent management
+- ✅ **Privacy-First**: No tracking occurs until explicit user consent
+- ✅ **Google Compliance**: Meets Google's EU user consent policy requirements
+- ✅ **Better User Trust**: Transparent consent management builds user trust
+- ✅ **Future-Proof**: Uses latest Consent Mode v2 standard
+
+#### Testing
+- ✅ **Local Testing**: Verified consent mode defaults are set correctly
+- ✅ **Dynamic Loading**: Confirmed Google tag only loads after consent
+- ✅ **Cookie Banner**: Verified integration with existing cookie consent system
+- ✅ **Returning Users**: Tested that returning users with consent get immediate tag loading
+
+### 🗑️ Content Removed/Altered
+- **Updated**: Google Analytics tracking ID from `G-PWL0D86EB3` to `G-Z3R9T8BD6M` on all pages
+- **Replaced**: Static Google tag script loading with dynamic consent-based loading
+- **Enhanced**: Cookie consent handler to integrate with Google Consent Mode v2
+- **Added**: Consent Mode v2 parameters (`ad_user_data`, `ad_personalization`) - previously missing
+- **Preserved**: All existing cookie consent banner functionality and UI
+
+---
+
 ## Favicon & Sitemap Optimization (November 2025)
 
 ### 🎨 Favicon Implementation

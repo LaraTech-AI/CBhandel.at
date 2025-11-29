@@ -6808,6 +6808,17 @@ function initCookieBanner() {
       timestamp: Date.now(),
     };
     localStorage.setItem("cookieConsent", JSON.stringify(consent));
+    
+    // Integrate with Google Consent Mode v2
+    if (typeof window.updateConsentMode === 'function') {
+      window.updateConsentMode(necessary, functional, analytics);
+    }
+    
+    // Load Google tag if analytics consent is granted
+    if (analytics && typeof window.loadGoogleTag === 'function') {
+      window.loadGoogleTag();
+    }
+    
     hideCookieBanner();
   }
 

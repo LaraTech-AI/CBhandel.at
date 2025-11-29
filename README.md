@@ -603,9 +603,16 @@ Change the `data-count` attribute to your desired number.
 
 ## 📊 Analytics Setup
 
-### Google Analytics 4
+### Google Analytics 4 with Consent Mode v2
 
-✅ **Implemented** - Google Analytics 4 tracking is active on all pages with measurement ID `G-PWL0D86EB3`.
+✅ **Implemented** - Google Analytics 4 tracking with Google Consent Mode v2 (GDPR-compliant) is active on all pages with measurement ID `G-Z3R9T8BD6M`.
+
+**Key Features:**
+- ✅ **Consent Mode v2**: Implements Google's Consent Mode v2 with all required parameters (`ad_user_data`, `ad_personalization`, `ad_storage`, `analytics_storage`)
+- ✅ **GDPR Compliant**: Google tag only loads after user grants consent via cookie banner
+- ✅ **Default Denied State**: All consent parameters default to `'denied'` before user interaction
+- ✅ **Dynamic Loading**: Google tag script loads dynamically only when analytics consent is granted
+- ✅ **Persistent Consent**: Consent preferences stored in localStorage for returning users
 
 The tracking code is included in:
 
@@ -614,7 +621,13 @@ The tracking code is included in:
 - `posts/reifenwechsel.html`
 - `posts/gebrauchtwagen-kaufen.html`
 
-All pages track page views automatically. Additional event tracking can be added to `scripts.js` for custom interactions.
+**How it works:**
+1. On page load, Consent Mode defaults are set to `'denied'` for all parameters
+2. Google tag script does NOT load until user grants consent
+3. When user clicks "Accept" on cookie banner, consent is updated to `'granted'` and Google tag loads dynamically
+4. For returning users with existing consent, Google tag loads immediately on page load
+
+All pages track page views automatically after consent is granted. Additional event tracking can be added to `scripts.js` for custom interactions.
 
 ### Vercel Analytics
 
@@ -860,7 +873,7 @@ Industriestraße 5
 
 #### ✨ New Features
 
-- **GDPR Compliance**: Cookie consent banner with granular cookie settings and enhanced privacy policy section
+- **GDPR Compliance**: Cookie consent banner with granular cookie settings, enhanced privacy policy section, and Google Consent Mode v2 integration
 
 ### Version 2.2.0 - January 2025
 
