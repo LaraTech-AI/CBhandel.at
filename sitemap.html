@@ -6,11 +6,16 @@
     <title>Sitemap - CB Handels GmbH</title>
     <meta name="description" content="Übersicht aller Seiten auf cbhandel.at - Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten">
     <link rel="canonical" href="https://cbhandel.at/sitemap.html">
+    <link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/sitemap.html" />
+    <link rel="alternate" hreflang="de" href="https://cbhandel.at/sitemap.html" />
+    <link rel="alternate" hreflang="x-default" href="https://cbhandel.at/sitemap.html" />
     <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="stylesheet" href="styles.css">
     <style>
         .sitemap-container {
@@ -73,28 +78,51 @@
         <div class="sitemap-section">
             <h2>Hauptseiten</h2>
             <ul class="sitemap-list">
-                <li><a href="/">Startseite</a></li>
+                <li>
+                    <a href="/">Startseite</a>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                        CB Handels GmbH - Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen in Reichenfels, Kärnten
+                    </p>
+                </li>
             </ul>
         </div>
         
         <div class="sitemap-section">
             <h2>Blog-Artikel</h2>
             <ul class="sitemap-list">
-                <li><a href="/posts/reifenwechsel.html">Der richtige Zeitpunkt für den Reifenwechsel</a></li>
-                <li><a href="/posts/gebrauchtwagen-kaufen.html">Gebrauchtwagen kaufen: Worauf Sie achten sollten</a></li>
-                <li><a href="/posts/elektromobilitaet.html">E-Mobilität in Kärnten: Zukunft oder Gegenwart?</a></li>
+                <li>
+                    <a href="/posts/reifenwechsel.html">Der richtige Zeitpunkt für den Reifenwechsel</a>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                        Reifenwechsel-Ratgeber: O-bis-O-Regel, Winterreifenpflicht in Österreich, Profiltiefe prüfen
+                    </p>
+                </li>
+                <li>
+                    <a href="/posts/gebrauchtwagen-kaufen.html">Gebrauchtwagen kaufen: Worauf Sie achten sollten</a>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                        Kaufberatung für Gebrauchtwagen: Checkliste, Besichtigung, Probefahrt, Dokumentenprüfung
+                    </p>
+                </li>
+                <li>
+                    <a href="/posts/elektromobilitaet.html">E-Mobilität in Kärnten: Zukunft oder Gegenwart?</a>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.25rem; margin-bottom: 0.5rem;">
+                        Elektroautos in Kärnten: Entwicklung, Ladeinfrastruktur, Vor- und Nachteile, Förderungen
+                    </p>
+                </li>
             </ul>
         </div>
         
         <div class="sitemap-section">
             <h2>Seitenbereiche</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+                Diese Bereiche sind Teil der Startseite und können direkt über Ankerlinks erreicht werden:
+            </p>
             <ul class="sitemap-list">
-                <li><a href="/#fahrzeuge">Fahrzeuge</a></li>
-                <li><a href="/#ueber">Über uns</a></li>
-                <li><a href="/#services">Leistungen</a></li>
-                <li><a href="/#blog">Blog</a></li>
-                <li><a href="/#faq">FAQ</a></li>
-                <li><a href="/#kontakt">Kontakt</a></li>
+                <li><a href="/#fahrzeuge">Fahrzeuge</a> - Unsere Fahrzeugauswahl</li>
+                <li><a href="/#ueber">Über uns</a> - Informationen über CB Handels GmbH</li>
+                <li><a href="/#services">Leistungen</a> - Unsere Dienstleistungen</li>
+                <li><a href="/#blog">Blog</a> - Aktuelle Artikel und Ratgeber</li>
+                <li><a href="/#faq">FAQ</a> - Häufig gestellte Fragen</li>
+                <li><a href="/#kontakt">Kontakt</a> - Kontaktinformationen und Anfahrt</li>
             </ul>
         </div>
         
@@ -106,6 +134,51 @@
             </ul>
         </div>
     </div>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CB Handels GmbH",
+      "url": "https://cbhandel.at",
+      "description": "CB Handels GmbH - Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen in Reichenfels, Kärnten",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://cbhandel.at/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "url": "https://cbhandel.at/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Der richtige Zeitpunkt für den Reifenwechsel",
+            "url": "https://cbhandel.at/posts/reifenwechsel.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Gebrauchtwagen kaufen: Worauf Sie achten sollten",
+            "url": "https://cbhandel.at/posts/gebrauchtwagen-kaufen.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "E-Mobilität in Kärnten: Zukunft oder Gegenwart?",
+            "url": "https://cbhandel.at/posts/elektromobilitaet.html"
+          }
+        ]
+      }
+    }
+    </script>
 </body>
 </html>
 

@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
   
-  <!-- Homepage -->
+  <!-- Homepage - Highest Priority -->
   <!-- Note: Hash sections (#fahrzeuge, #blog, #services, #faq, #ueber, #kontakt) 
        are part of the homepage and will be indexed as part of the main page content.
        They should NOT be listed as separate URLs in the sitemap. -->
   <url>
-    <loc>https://cbhandel.at</loc>
+    <loc>https://cbhandel.at/</loc>
     <lastmod>2025-11-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <!-- Multilingual alternatives -->
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cbhandel.at/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cbhandel.at/" />
+    <!-- Key images for homepage -->
+    <image:image>
+      <image:loc>https://cbhandel.at/assets/og-image.jpg</image:loc>
+      <image:title>CB Handels GmbH - Kraftfahrzeuge &amp; Maschinen in Reichenfels, Kärnten</image:title>
+      <image:caption>CB Handels GmbH - Ihr Partner für den Handel mit Kraftfahrzeugen und Maschinen</image:caption>
+    </image:image>
   </url>
   
-  <!-- Blog Posts -->
+  <!-- Blog Posts - High Priority for SEO -->
   <url>
     <loc>https://cbhandel.at/posts/reifenwechsel.html</loc>
     <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/posts/reifenwechsel.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cbhandel.at/posts/reifenwechsel.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cbhandel.at/posts/reifenwechsel.html" />
+    <image:image>
+      <image:loc>https://cbhandel.at/assets/blog/winter-reifen.jpg</image:loc>
+      <image:title>Reifenwechsel - Der richtige Zeitpunkt</image:title>
+      <image:caption>Reifenwechsel-Ratgeber: O-bis-O-Regel, Winterreifenpflicht in Österreich</image:caption>
+    </image:image>
   </url>
   
   <url>
@@ -28,6 +50,14 @@
     <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/posts/gebrauchtwagen-kaufen.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cbhandel.at/posts/gebrauchtwagen-kaufen.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cbhandel.at/posts/gebrauchtwagen-kaufen.html" />
+    <image:image>
+      <image:loc>https://cbhandel.at/assets/blog/gebrauchtwagen-kauf.jpg</image:loc>
+      <image:title>Gebrauchtwagen kaufen: Worauf Sie achten sollten</image:title>
+      <image:caption>Kaufberatung für Gebrauchtwagen: Checkliste, Besichtigung, Probefahrt</image:caption>
+    </image:image>
   </url>
   
   <url>
@@ -35,15 +65,25 @@
     <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/posts/elektromobilitaet.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cbhandel.at/posts/elektromobilitaet.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cbhandel.at/posts/elektromobilitaet.html" />
+    <image:image>
+      <image:loc>https://cbhandel.at/assets/blog/elektroauto-vorteile.jpg</image:loc>
+      <image:title>E-Mobilität in Kärnten: Zukunft oder Gegenwart?</image:title>
+      <image:caption>Elektroautos in Kärnten: Entwicklung, Ladeinfrastruktur, Vor- und Nachteile</image:caption>
+    </image:image>
   </url>
   
-  <!-- HTML Sitemap -->
+  <!-- HTML Sitemap - Lower Priority, but important for user navigation -->
   <url>
     <loc>https://cbhandel.at/sitemap.html</loc>
     <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://cbhandel.at/sitemap.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cbhandel.at/sitemap.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cbhandel.at/sitemap.html" />
   </url>
   
 </urlset>
-
