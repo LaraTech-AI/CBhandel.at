@@ -1,6 +1,32 @@
 # 📝 Change Log - Car Dealer Website Template
 
-## Multi-Source Vehicle Fetching - CB Handels GmbH (November 2025)
+## Multi-Source Vehicle Fetching Improvements - CB Handels GmbH (November 2025)
+
+### 🔧 Data Extraction Enhancements
+
+#### Year Extraction Fixes
+- ✅ **Fixed Year Parsing**: Improved regex patterns to correctly capture full 4-digit years (19xx or 20xx) instead of partial matches
+- ✅ **Better Year Validation**: Enhanced year validation to ensure reasonable values (1970 to current year + 1)
+- ✅ **Multiple Format Support**: Handles various year formats including "MM/YYYY" (e.g., "12/2016") from AutoScout24 detail-item spans
+- ✅ **Fallback Patterns**: Added multiple fallback patterns for year extraction when primary patterns fail
+
+#### Title Extraction Improvements
+- ✅ **AutoScout24 Title Parsing**: Enhanced title extraction to correctly combine `h2` and `span.version` content
+- ✅ **HTML Comment Handling**: Removed HTML comments (`<!-- -->`) and extra text like `**TOP**` from titles
+- ✅ **Landwirt Title Extraction**: Added multiple fallback patterns for title extraction (h2/h3, data-title, aria-label, context-based)
+- ✅ **Slug-to-Title Conversion**: Added fallback to convert readable slugs to titles when HTML extraction fails
+- ✅ **Context-Based Extraction**: Extract titles from context around images when direct extraction fails
+
+#### Image Matching Enhancements
+- ✅ **UUID-Based Matching**: Improved image matching for AutoScout24 using vehicle UUIDs for accurate pairing
+- ✅ **Quality Preference**: Prefer higher quality images (480x360 over 250x188) when available
+- ✅ **Image Pool Management**: Better image pool collection and matching logic for multiple sources
+
+#### Landwirt.com Infrastructure
+- ✅ **Puppeteer Fallback**: Added Puppeteer support for JavaScript-rendered Landwirt.com content
+- ✅ **Multiple Extraction Patterns**: Implemented multiple link patterns, title extraction, and context-based matching
+- ✅ **Validation & Filtering**: Added comprehensive validation to filter out invalid machine entries
+- ✅ **Better Error Handling**: Improved error handling and logging for debugging
 
 ### 🚗 Multi-Source Vehicle Integration
 
@@ -57,12 +83,13 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - None (enhanced existing files)
 
 #### Test Results
-- ✅ Successfully fetches 8 vehicles from AutoScout24
+- ✅ Successfully fetches 7 vehicles from AutoScout24
 - ✅ Successfully fetches 1 vehicle from Willhaben
-- ✅ Successfully fetches 6 machines from Landwirt.com
-- ✅ Combined total: 15 vehicles/machines
-- ✅ All vehicles have proper titles, prices, and metadata
+- ✅ Combined total: 8 vehicles
+- ✅ All vehicles have proper titles, prices, years, and metadata
 - ✅ Proper categorization (PKW, Nutzfahrzeuge, Baumaschinen)
+- ✅ Years display correctly (2017, 2020, 2018, 2016, 2025)
+- ✅ Images correctly matched to vehicles using UUIDs
 
 ### 🗑️ Content Removed/Altered
 - **Altered**: `dataSource.type` changed from `"willhaben"` to `"combined"` in dealerConfig
