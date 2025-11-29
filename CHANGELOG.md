@@ -104,11 +104,12 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 
 #### Google Reviews Integration
 - ✅ **Clickable Google Reviews Badge**: Google Reviews badge in testimonials section is now clickable and opens the review form
-- ✅ **Review Button in Testimonials**: Added "Bewertung bei Google hinterlassen" button below testimonials section
-- ✅ **Dedicated Review Section**: New Google Reviews section in contact area with:
+- ✅ **Dedicated Review Section**: Google Reviews section positioned directly under testimonials section (moved from contact area) with:
   - Review link button with Google branding
-  - QR code display for easy mobile access
+  - Clickable QR code (wrapped in anchor tag) that opens Google Review link in new tab
   - Descriptive text explaining the importance of reviews
+  - Updated hint text: "QR-Code scannen oder klicken, um direkt eine Bewertung zu hinterlassen"
+- ✅ **QR Code Clickability**: QR code is now fully clickable with hover effects (lift animation, shadow, border) to indicate interactivity
 - ✅ **QR Code Support**: QR code image support (`assets/qrcode.png`) for sharing review link with customers
 - ✅ **Configuration Integration**: Google review link added to social media configuration (`config.social.googleReview`)
 
@@ -122,13 +123,15 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 
 - `config/dealerConfig.js` - Added `googleReview` to social media config, updated Instagram handle
 - `config/dealerConfig.browser.js` - Added `googleReview` to social media config, updated Instagram handle
-- `index.html` - Added Google Reviews section, made badge clickable, added review button, integrated QR code
-- `styles.css` - Added styles for Google Reviews section, review buttons, and QR code container
+- `index.html` - Moved Google Reviews section from contact area to under testimonials, made QR code clickable (wrapped in anchor), updated hint text
+- `styles.css` - Added hover effects for clickable QR code wrapper, updated styles for Google Reviews section
 
 ### 🗑️ Content Removed/Altered
 
 - **Updated**: Instagram handle from `cbhandel` to `cbhandelsgmbh` across all instances
-- **Added**: Google Reviews integration with link and QR code support
+- **Added**: Google Reviews integration with clickable link and clickable QR code support
+- **Moved**: Google Reviews section from contact area to directly under testimonials section for better thematic placement
+- **Enhanced**: QR code is now clickable with hover effects for better UX
 - **Preserved**: All existing social media functionality and styling
 
 ---
