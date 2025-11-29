@@ -4,6 +4,7 @@
  */
 
 const crypto = require("crypto");
+const dealerConfig = require('../config/dealerConfig.js');
 
 function base64UrlEncode(input) {
   return Buffer.from(input)
@@ -49,14 +50,7 @@ function verifyToken(token, secret) {
 
 module.exports = async (req, res) => {
   // Set CORS headers with origin whitelist
-  const allowedOrigins = [
-    "https://direktonline.at",
-    "https://www.direktonline.at",
-    "https://onlinedirekt.at",
-    "https://www.onlinedirekt.at",
-    "https://direktonline.vercel.app",
-    "http://localhost:3000",
-  ];
+  const allowedOrigins = dealerConfig.corsOrigins;
 
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {

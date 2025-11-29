@@ -4,7 +4,7 @@
  */
 
 const nodemailer = require("nodemailer");
-const dealerConfig = require('../config/dealerConfig.js');
+const dealerConfig = require("../config/dealerConfig.js");
 
 // Rate limiting store (in-memory, resets on cold start)
 const rateLimitStore = new Map();
@@ -49,7 +49,9 @@ function sanitize(input) {
   if (typeof input !== "string") return "";
   return input
     .trim()
+    .replace(/[\x00-\x1F\x7F]/g, "") // Remove control characters
     .replace(/[<>]/g, "") // Remove angle brackets
+    .replace(/[\r\n]/g, " ") // Replace newlines with spaces (prevent email injection)
     .substring(0, 1000); // Limit length
 }
 
@@ -277,8 +279,12 @@ IP-Adresse: ${clientIP}
       <p>Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden – in der Regel innerhalb von 24 Stunden.</p>
       <div class="contact-info">
         <strong>Für dringende Anfragen erreichen Sie uns unter:</strong><br>
-        Telefon: <a href="tel:${dealerConfig.phone.replace(/\s/g, '')}">${dealerConfig.phone}</a><br>
-        E-Mail: <a href="mailto:${dealerConfig.email}">${dealerConfig.email}</a><br><br>
+        Telefon: <a href="tel:${dealerConfig.phone.replace(/\s/g, "")}">${
+        dealerConfig.phone
+      }</a><br>
+        E-Mail: <a href="mailto:${dealerConfig.email}">${
+        dealerConfig.email
+      }</a><br><br>
         <strong>Öffnungszeiten:</strong><br>
         ${dealerConfig.openingHours.weekdays}
       </div>
@@ -307,8 +313,7 @@ IP-Adresse: ${clientIP}
     // Return user-friendly error message
     return res.status(500).json({
       success: false,
-      error:
-        `Es ist ein Fehler beim Senden der Nachricht aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${dealerConfig.phone}.`,
+      error: `Es ist ein Fehler beim Senden der Nachricht aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${dealerConfig.phone}.`,
     });
   }
 };

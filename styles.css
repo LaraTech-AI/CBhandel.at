@@ -6319,6 +6319,15 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.google-reviews-qr-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(66, 133, 244, 0.3);
+  border: 2px solid rgba(66, 133, 244, 0.2);
 }
 
 .google-reviews-qr-code {
@@ -11507,6 +11516,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   /* Mobile Navigation */
   .mobile-menu-toggle {
     display: flex;
+    flex-shrink: 0;
+    z-index: 1001;
+    position: relative;
   }
 
   .nav-menu {
@@ -11543,11 +11555,19 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .logo-container {
     flex-shrink: 1;
     min-width: 0;
+    max-width: calc(100% - 140px); /* Reserve space for burger menu and other buttons */
+    overflow: hidden;
+  }
+
+  .logo-link {
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .logo {
-    height: 45px;
-    max-width: 140px;
+    height: 40px;
+    max-width: 90px;
+    width: auto;
   }
 
   .header-actions {
@@ -11932,11 +11952,19 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .logo-container {
     flex-shrink: 1;
     min-width: 0;
+    max-width: calc(100% - 120px); /* Reserve space for burger menu and other buttons on small screens */
+    overflow: hidden;
+  }
+
+  .logo-link {
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .logo {
-    height: 38px;
-    max-width: 110px;
+    height: 35px;
+    max-width: 75px;
+    width: auto;
   }
 
   .header-actions {

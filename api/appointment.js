@@ -65,7 +65,9 @@ function sanitize(input) {
   if (typeof input !== "string") return "";
   return input
     .trim()
+    .replace(/[\x00-\x1F\x7F]/g, '') // Remove control characters
     .replace(/[<>]/g, "") // Remove angle brackets
+    .replace(/[\r\n]/g, ' ') // Replace newlines with spaces (prevent email injection)
     .substring(0, 1000); // Limit length
 }
 

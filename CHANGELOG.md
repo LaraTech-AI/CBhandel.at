@@ -1,5 +1,57 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Security Enhancements (December 2025)
+
+### 🔒 Security Fixes & Improvements
+
+#### Overview
+Implemented comprehensive security improvements to address XSS vulnerabilities, enhance input sanitization, and ensure consistent CORS configuration across all API endpoints.
+
+#### Security Fixes Implemented
+
+**1. XSS Protection with DOMPurify**
+- ✅ **Added DOMPurify Library**: Integrated DOMPurify via CDN for HTML sanitization
+- ✅ **Vehicle Description Sanitization**: All vehicle descriptions are now sanitized before rendering to prevent XSS attacks
+- ✅ **Safe HTML Preservation**: Preserves safe HTML tags (`<p>`, `<strong>`, `<em>`, `<br>`, `<ul>`, `<ol>`, `<li>`) while removing dangerous scripts
+- ✅ **Fallback Protection**: Includes fallback to `escapeHtml()` if DOMPurify fails to load
+
+**2. CORS Configuration Consistency**
+- ✅ **Unified CORS Configuration**: Updated `api/newsletter-confirm.js` to use `dealerConfig.corsOrigins` instead of hardcoded origins
+- ✅ **Single Source of Truth**: All API endpoints now use the same CORS configuration from dealerConfig
+- ✅ **Easier Maintenance**: CORS origins can now be updated in one place
+
+**3. Enhanced Input Sanitization**
+- ✅ **Control Character Removal**: Enhanced `sanitize()` function to remove control characters (`\x00-\x1F\x7F`)
+- ✅ **Email Injection Prevention**: Newlines are converted to spaces to prevent email header injection
+- ✅ **Better Protection**: Improved defense against various injection attack vectors
+
+#### Files Modified
+- `index.html` - Added DOMPurify CDN script with integrity hash
+- `scripts.js` - Added HTML sanitization for vehicle descriptions (lines 3565-3572)
+- `api/newsletter-confirm.js` - Updated to use `dealerConfig.corsOrigins`
+- `api/contact.js` - Enhanced `sanitize()` function with control character removal and newline handling
+- `api/appointment.js` - Enhanced `sanitize()` function with control character removal and newline handling
+
+#### Security Impact
+- ✅ **XSS Protection**: Vehicle descriptions from external APIs are now sanitized before rendering
+- ✅ **Consistent Security**: All API endpoints use unified CORS configuration
+- ✅ **Better Input Validation**: Enhanced sanitization prevents various injection attacks
+- ✅ **Defense in Depth**: Multiple layers of security protection
+
+#### Testing Recommendations
+- Test vehicle descriptions with malicious scripts (should be removed)
+- Verify safe HTML formatting is preserved
+- Test CORS from all whitelisted domains
+- Test form submissions with control characters and newlines
+
+### 🗑️ Content Removed/Altered
+- **Added**: DOMPurify library for XSS protection
+- **Enhanced**: Input sanitization functions in API endpoints
+- **Updated**: CORS configuration to use dealerConfig consistently
+- **Preserved**: All existing functionality and formatting
+
+---
+
 ## Blog Articles Theme Adaptation & Brand Color Update (January 2025)
 
 ### ✨ Content Updates

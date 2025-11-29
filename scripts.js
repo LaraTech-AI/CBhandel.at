@@ -3562,8 +3562,17 @@ function initQuickView() {
               .replace(/\s+/g, ' ') // Normalize spaces
               .trim();
             
+            // Step 7: Sanitize HTML to prevent XSS attacks (preserves safe HTML like <p>, <strong>)
+            // DOMPurify removes malicious scripts while keeping safe formatting tags
+            const sanitizedDescription = typeof DOMPurify !== 'undefined' 
+              ? DOMPurify.sanitize(formattedDescription, {
+                  ALLOWED_TAGS: ['p', 'strong', 'em', 'br', 'ul', 'ol', 'li'],
+                  ALLOWED_ATTR: ['class']
+                })
+              : escapeHtml(formattedDescription); // Fallback if DOMPurify not loaded
+            
             // Wrap in container with class for styling
-            descEl.innerHTML = `<div class="description-content">${formattedDescription}</div>`;
+            descEl.innerHTML = `<div class="description-content">${sanitizedDescription}</div>`;
           }
 
           // Comprehensive Specifications Section - Show ALL available data from motornetzwerk.at
