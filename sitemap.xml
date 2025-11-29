@@ -10,7 +10,7 @@
        They should NOT be listed as separate URLs in the sitemap. -->
   <url>
     <loc>https://cbhandel.at</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -18,21 +18,21 @@
   <!-- Blog Posts -->
   <url>
     <loc>https://cbhandel.at/posts/reifenwechsel.html</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cbhandel.at/posts/gebrauchtwagen-kaufen.html</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cbhandel.at/posts/elektromobilitaet.html</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -40,7 +40,7 @@
   <!-- HTML Sitemap -->
   <url>
     <loc>https://cbhandel.at/sitemap.html</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

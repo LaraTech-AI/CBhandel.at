@@ -121,6 +121,6 @@ After deployment, verify:
 
 ---
 
-**Fixes Applied:** January 15, 2025  
+**Fixes Applied:** November 29, 2025  
 **Report:** See `SEO-ANALYSIS-REPORT.md` for full analysis
 
