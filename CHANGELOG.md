@@ -1,5 +1,65 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Mobile Navigation & Touch Improvements (January 2025)
+
+### 🔧 Mobile UX Enhancements
+
+#### Overview
+Enhanced mobile navigation menu with improved visibility, expanded menu items, and social media integration. Fixed touch scrolling issues on testimonials section for better mobile user experience.
+
+#### Mobile Navigation Improvements
+
+**1. Burger Menu Visibility & Styling**
+- ✅ **Reduced Transparency**: Changed mobile menu background from 75% to 90% opacity in light mode for better readability
+- ✅ **Text Color Fix**: Fixed white text color issue - menu links now display in dark text (`var(--text-primary)`) with proper contrast
+- ✅ **Dark Mode Support**: Maintained 98% opacity for dark mode with proper background colors
+- ✅ **Enhanced Backdrop**: Added backdrop filter with saturation for improved visual effect
+
+**2. Expanded Menu Items**
+- ✅ **FAQ Link**: Added FAQ section link to mobile menu navigation
+- ✅ **Impressum Link**: Added Impressum (legal notice) link to mobile menu
+- ✅ **Unser Autohaus**: Added link to facilities/dealership section (`#autohaus`)
+- ✅ **Unsere Leistungen**: Added link to services section (`#services`)
+- ✅ **Complete Navigation**: Menu now includes all major sections: Home, Fahrzeuge, Über uns, Unser Autohaus, Unsere Leistungen, Blog, Kontakt, FAQ, Impressum
+
+**3. Social Media Integration**
+- ✅ **Social Section**: Added "Folgen Sie uns" (Follow Us) section to mobile menu
+- ✅ **Social Icons**: Integrated 5 social media platforms with circular icon buttons:
+  - Facebook (https://www.facebook.com/cbhandel)
+  - Instagram (https://www.instagram.com/cbhandelsgmbh/)
+  - TikTok (https://www.tiktok.com/@cbhandel)
+  - YouTube (https://www.youtube.com/@cbhandel)
+  - X/Twitter (https://x.com/cbhandel)
+- ✅ **Hover Effects**: Social icons feature brand color hover effects with smooth transitions
+- ✅ **Visual Divider**: Added divider between navigation links and social section
+
+**4. Touch Scrolling Fix**
+- ✅ **Testimonials Scrolling**: Fixed touch scrolling issue where vertical page scrolling was blocked on testimonials section
+- ✅ **Improved Detection**: Enhanced swipe detection logic - requires horizontal movement to be at least 2x vertical movement before preventing scroll
+- ✅ **Better Thresholds**: Increased minimum horizontal movement threshold to 15px for more accurate swipe detection
+- ✅ **CSS Enhancement**: Added `touch-action: pan-y` to testimonials slider to explicitly allow vertical scrolling
+
+#### Files Modified
+- `index.html` - Added FAQ, Impressum, Unser Autohaus, Unsere Leistungen links; added social media section with icons; added `id="autohaus"` to facilities section
+- `styles.css` - Updated mobile menu background opacity (90% light mode, 98% dark mode); fixed nav-link text color; added social media styling; added testimonials slider touch-action
+- `scripts.js` - Improved touch swipe detection for testimonials; added social link menu closing behavior
+
+#### Mobile UX Impact
+- ✅ **Better Readability**: Less transparent menu with proper text contrast improves menu visibility
+- ✅ **Complete Navigation**: All major sections now accessible from mobile menu
+- ✅ **Social Integration**: Quick access to social media profiles directly from menu
+- ✅ **Smooth Scrolling**: Fixed touch scrolling allows natural vertical page scrolling on mobile devices
+- ✅ **Improved Touch**: Better swipe detection prevents accidental scroll blocking
+
+### 🗑️ Content Removed/Altered
+- **Updated**: Mobile menu background opacity from 75% to 90% (light mode) for better visibility
+- **Fixed**: Mobile menu text color from white to dark text for proper contrast
+- **Enhanced**: Mobile menu now includes 9 navigation items (previously 5) plus social media section
+- **Improved**: Touch scrolling detection logic for testimonials section
+- **Preserved**: All existing mobile menu functionality, animations, and responsive behavior
+
+---
+
 ## Mobile Logo Responsive Fix (January 2025)
 
 ### 🔧 Mobile UI Improvements

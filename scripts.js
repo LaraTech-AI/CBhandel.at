@@ -1492,6 +1492,18 @@ function initMobileMenu() {
       navMenu.classList.remove("active");
     });
   });
+  
+  // Close menu when clicking on social links (but allow external navigation)
+  const socialLinks = navMenu.querySelectorAll(".nav-social-link");
+  socialLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      // Small delay to allow navigation to external sites
+      setTimeout(() => {
+        mobileMenuToggle.classList.remove("active");
+        navMenu.classList.remove("active");
+      }, 100);
+    });
+  });
 
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
@@ -2007,29 +2019,47 @@ function initTestimonialsSlider() {
     let touchEndY = 0;
     let isDragging = false;
     let isHorizontalSwipe = false;
+    let hasMoved = false;
 
     function handleTouchStart(e) {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
       isDragging = true;
       isHorizontalSwipe = false;
+      hasMoved = false;
       // Pause auto-play during swipe
       clearInterval(autoPlayInterval);
     }
 
     function handleTouchMove(e) {
       if (!isDragging) return;
+      
       touchEndX = e.touches[0].clientX;
       touchEndY = e.touches[0].clientY;
 
       const deltaX = Math.abs(touchEndX - touchStartX);
       const deltaY = Math.abs(touchEndY - touchStartY);
 
-      // Only prevent default if the swipe is clearly horizontal (more horizontal than vertical)
-      // This allows vertical page scrolling to work smoothly
-      if (deltaX > deltaY && deltaX > 10) {
-        isHorizontalSwipe = true;
-        e.preventDefault(); // Prevent page scroll only for horizontal swipes
+      // Only mark as moved if there's significant movement
+      if (deltaX > 5 || deltaY > 5) {
+        hasMoved = true;
+      }
+
+      // Only prevent default if the swipe is CLEARLY horizontal
+      // Use a stricter ratio: horizontal movement must be at least 2x vertical movement
+      // AND must have moved at least 15px horizontally
+      // This ensures vertical scrolling works smoothly
+      if (deltaX > 15 && deltaX > deltaY * 2) {
+        if (!isHorizontalSwipe) {
+          isHorizontalSwipe = true;
+        }
+        e.preventDefault(); // Prevent page scroll only for clear horizontal swipes
+      } else {
+        // If it's not clearly horizontal, allow normal scrolling
+        // Reset horizontal swipe flag if vertical movement dominates
+        if (deltaY > deltaX * 1.5) {
+          isHorizontalSwipe = false;
+        }
       }
     }
 
@@ -2040,8 +2070,11 @@ function initTestimonialsSlider() {
       const swipeDistance = touchStartX - touchEndX;
       const minSwipeDistance = 50; // Minimum distance for swipe recognition
 
-      // Only process swipe if it was a horizontal swipe
-      if (isHorizontalSwipe && Math.abs(swipeDistance) > minSwipeDistance) {
+      // Only process swipe if:
+      // 1. It was clearly identified as a horizontal swipe
+      // 2. The swipe distance is sufficient
+      // 3. The user actually moved (not just a tap)
+      if (isHorizontalSwipe && hasMoved && Math.abs(swipeDistance) > minSwipeDistance) {
         if (swipeDistance > 0) {
           // Swipe left - next slide
           const newIndex =
@@ -2054,6 +2087,10 @@ function initTestimonialsSlider() {
           goToSlide(newIndex, "prev");
         }
       }
+
+      // Reset flags
+      isHorizontalSwipe = false;
+      hasMoved = false;
 
       // Resume auto-play after swipe
       autoPlayInterval = setInterval(() => {
