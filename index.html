@@ -287,6 +287,28 @@
         max-width: 100%;
         position: relative;
       }
+      /* Skip to content link - Critical for preventing FOUC */
+      body > .skip-to-content {
+        position: absolute !important;
+        top: -100px !important;
+        left: 0 !important;
+        z-index: 10001;
+        padding: 1rem 1.5rem;
+        background: var(--brand-primary);
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 0 0 4px 0;
+        transition: top var(--transition-base);
+        display: inline-block;
+        width: auto;
+        height: auto;
+      }
+      body > .skip-to-content:focus {
+        top: 0 !important;
+        outline: 3px solid var(--brand-primary);
+        outline-offset: 2px;
+      }
       /* Header - Critical */
       .header {
         position: fixed;
@@ -417,14 +439,9 @@
       }
     </style>
 
-    <!-- Stylesheets - Load asynchronously after critical CSS -->
-    <link
-      rel="stylesheet"
-      href="styles.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript><link rel="stylesheet" href="styles.css" /></noscript>
+    <!-- Stylesheets - Load synchronously after critical CSS -->
+    <!-- Since critical CSS is inline, synchronous loading won't cause FOUC -->
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- Font Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

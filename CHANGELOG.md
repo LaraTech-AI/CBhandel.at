@@ -1,5 +1,73 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## FOUC Fix & CSS Loading Optimization - CB Handels GmbH (December 2025)
+
+### 🎨 Flash of Unstyled Content (FOUC) Fix
+
+#### Overview
+Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigation were briefly visible in unstyled state on page load. Implemented best-practice solution using critical CSS and synchronous loading.
+
+#### Problem Fixed
+- ✅ **FOUC Issue**: Skip link, logo, and navigation elements were visible unstyled for a fraction of a second
+- ✅ **Async CSS Hack**: Removed unreliable `media="print"` async loading trick
+- ✅ **Body Hiding**: Removed JavaScript-based body hiding mechanism that could impact accessibility and SEO
+
+#### Solution Implemented
+
+**Critical CSS Enhancement:**
+- ✅ **Skip Link Styles**: Added skip-to-content link styles to critical inline CSS
+- ✅ **Immediate Styling**: Skip link properly hidden from start (top: -100px) in critical CSS
+- ✅ **Focus State**: Proper focus styles included in critical CSS for accessibility
+
+**CSS Loading Optimization:**
+- ✅ **Synchronous Loading**: Changed to standard synchronous CSS loading (best practice)
+- ✅ **No FOUC**: Critical CSS prevents flash since above-the-fold content is styled immediately
+- ✅ **Preload Hint**: Maintained `<link rel="preload">` for early CSS fetch
+- ✅ **Simplified Code**: Removed complex async loading hack and body hiding JavaScript
+
+#### Technical Implementation
+
+**Code Changes:**
+- ✅ Added skip link styles to critical inline CSS in `index.html` (lines 300-321)
+- ✅ Removed `media="print"` async loading hack from stylesheet link
+- ✅ Removed body visibility JavaScript toggle (css-loading/css-loaded classes)
+- ✅ Simplified to standard `<link rel="stylesheet">` synchronous loading
+- ✅ Removed unnecessary body initialization script
+
+#### Benefits
+
+**Performance & UX:**
+- ✅ **No FOUC**: Page renders correctly from first paint
+- ✅ **Faster Perceived Load**: Critical styles applied immediately
+- ✅ **Better Accessibility**: Content visible to screen readers immediately
+- ✅ **SEO Friendly**: Content visible to crawlers without JavaScript dependency
+
+**Code Quality:**
+- ✅ **Simpler**: Removed ~15 lines of hacky code
+- ✅ **Standard Approach**: Follows web standards and best practices
+- ✅ **More Reliable**: No dependency on JavaScript execution timing
+- ✅ **Maintainable**: Easier to understand and maintain
+
+#### Files Modified
+- `index.html` - Added skip link styles to critical CSS, simplified CSS loading, removed body hiding script
+
+#### Test Results
+- ✅ No FOUC on page load
+- ✅ Skip link properly hidden until focused
+- ✅ Logo and navigation styled from first paint
+- ✅ All styles load correctly
+- ✅ No accessibility issues
+
+### 🗑️ Content Removed/Altered
+- **Removed**: Async CSS loading hack (`media="print"` with `onload` handler)
+- **Removed**: Body visibility JavaScript toggle (`css-loading`/`css-loaded` classes)
+- **Removed**: Body initialization script that added loading classes
+- **Altered**: CSS loading changed from async hack to standard synchronous loading
+- **Added**: Skip link styles in critical CSS for immediate styling
+- **Preserved**: All existing critical CSS, preload hints, and styling functionality
+
+---
+
 ## Vehicle Features & Filter Enhancements - CB Handels GmbH (November 2025)
 
 ### 🚗 Fuel Type Display & Category Filters
