@@ -930,6 +930,7 @@ strong {
   width: auto;
   max-width: 280px;
   object-fit: contain;
+  border-radius: 12px;
   transition: transform var(--transition-base), height var(--transition-base);
 }
 
