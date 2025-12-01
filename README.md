@@ -724,18 +724,6 @@ Industriestraße 5
 - **Responsive Review Section**: Mobile-optimized Google Reviews section with QR code display
 - **Visual Polish**: Improved depth perception with multi-layer shadows, better border color transitions, enhanced dark mode support for all visual elements
 
-### Version 2.22.0 - January 2025
-
-#### ✨ New Features
-
-- **Instagram Handle Update**: Updated Instagram handle from `cbhandel` to `cbhandelsgmbh` to match official profile
-- **Google Reviews Integration**: Complete Google Reviews integration with clickable badge, review button, dedicated review section with link and QR code support
-
-#### 🔧 Improvements
-
-- **Dynamic Link Management**: Enhanced script to automatically update Google review links from configuration
-- **Responsive Review Section**: Mobile-optimized Google Reviews section with QR code display
-
 ### Version 2.21.0 - November 2025
 
 #### ✨ New Features

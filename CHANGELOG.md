@@ -2897,6 +2897,95 @@ All API files now use `dealerConfig` instead of hardcoded values:
 
 ---
 
+## Version 2.26.0 (January 2025)
+
+### 🐛 Bug Fixes
+
+- **Mobile Quick-View Image Scrolling**: Fixed issue where quick-view main image was scrollable on mobile instead of fitting in viewport. Changed to viewport-based sizing (50vh) and removed overflow scrolling
+- **Tablet Button Sizing**: Fixed oversized image zoom button icons on tablets by adding tablet-specific media query (769px-968px) with medium sizing (56px button, 32px icon)
+- **Mobile Image Zoom Button**: Increased mobile image zoom button size to 72px with 44px icon for better touch targets
+
+### 🔧 Improvements
+
+- **Responsive Sizing**: Split media queries into tablet (769px-968px) and mobile (below 768px) breakpoints for optimal button sizing across devices
+- **Viewport Fitting**: Images now properly fit within mobile viewport without causing unwanted scrolling
+- **Touch Gestures**: Improved touch action handling to allow horizontal swipe while preventing vertical scrolling
+
+---
+
+## Version 2.25.0 (January 2025)
+
+### 🐛 Critical Fixes
+
+- **Inquiry Form Email Sending**: Fixed critical issue where inquiry form showed success animation but didn't actually send emails. Replaced mailto link with proper API endpoint (`/api/inquiry`) that sends emails via nodemailer with vehicle details and auto-reply confirmation
+- **Checkbox Click Issue**: Fixed critical usability issue where privacy checkbox couldn't be clicked after hovering over submit button. Added proper z-index and pointer-events to ensure checkbox remains clickable
+- **Mobile Icon Visibility**: Fixed invisible icons on mobile devices for image zoom button and all lightbox buttons (close, zoom, navigation). Increased button sizes from 40-48px to 56px and icon sizes from 22-24px to 32px with improved stroke width
+- **UI Styling Improvements**: Enhanced checkbox visibility with proper background colors for light/dark themes, improved compare button opacity and contrast for better readability
+
+### ✨ New Features
+
+- **Inquiry API Endpoint**: Created `/api/inquiry.js` serverless function for reliable email delivery of vehicle inquiries with rate limiting, input sanitization, and auto-reply emails
+
+### 🔧 Improvements
+
+- **Form Submission**: Inquiry form now uses API endpoint instead of unreliable mailto links
+- **Mobile UX**: All interactive buttons on mobile devices now have clearly visible icons
+- **Accessibility**: Improved checkbox and button visibility across all themes
+
+---
+
+## Version 2.24.0 (January 2025)
+
+### 🔧 Content Updates
+
+- **CTA Button Update**: Changed hero CTA button text from "Finde dein passendes Auto" to "Finde dein passendes Fahrzeug" to better reflect the business offering of both vehicles and machines
+- **Trust Badge Enhancement**: Updated trust badge from "Geprüfte Fahrzeuge" to "Geprüfte Fahrzeuge & Maschinen" to explicitly include machines in the messaging
+
+---
+
+## Version 2.23.0 (November 2025)
+
+### ✨ New Features
+
+- **Fuel Type Display**: Added fuel type (Diesel, Benzin, Elektro, Hybrid) display in vehicle card features section alongside transmission type for better vehicle information visibility
+- **Category Filter Buttons**: Added dedicated filter buttons for vehicle categories (PKW, Nutzfahrzeuge, Baumaschinen) in the Fahrzeuge section for improved navigation
+
+### 🔧 Improvements
+
+- **Filter Buttons Optimization**: Optimized filter buttons to stay in one row with reduced size to prevent wrapping and improve mobile responsiveness
+- **Vehicle Information Enhancement**: Fuel type now displayed in both card features and vehicle details for comprehensive vehicle information
+
+---
+
+## Version 2.22.0 (January 2025)
+
+### ✨ New Features
+
+- **Instagram Handle Update**: Updated Instagram handle from `cbhandel` to `cbhandelsgmbh` to match official profile
+- **Google Reviews Integration**: Complete Google Reviews integration with clickable badge, review button, dedicated review section with link and QR code support (`assets/qrcode.png`)
+- **Visual Enhancements**: Custom global scrollbar with brand colors, enhanced card hover effects with improved lift and shadows, refined sticky header with better visual separation, and consistent icon stroke width across all icons
+
+### 🔧 Improvements
+
+- **Dynamic Link Management**: Enhanced script to automatically update Google review links from configuration
+- **Responsive Review Section**: Mobile-optimized Google Reviews section with QR code display
+- **Visual Polish**: Improved depth perception with multi-layer shadows, better border color transitions, enhanced dark mode support for all visual elements
+
+---
+
+## Version 2.21.0 (November 2025)
+
+### ✨ New Features
+
+- **Social Media Integration**: Prominent social media section in contact area with branded buttons (Facebook, Instagram, TikTok, YouTube, X) with platform-specific styling and hover effects
+- **Social Media Links Update**: Standardized all social media handles to consistent naming
+
+### 🔧 Improvements
+
+- **Contact Section Layout Optimization**: Equal width columns for better visual balance, map repositioned to full width below contact columns, more compact appointment section with reduced spacing
+
+---
+
 ## Version 2.20.0 (November 1, 2025)
 
 ### 🔧 Blog Section Improvements
