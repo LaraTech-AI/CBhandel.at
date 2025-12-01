@@ -3228,16 +3228,18 @@ function initQuickView() {
             )
           : null);
 
+      // Check for images array (Zweispurig/Landwirt) or allImages (motornetzwerk)
+      const imagesArray = vehicleDataForImages?.images || vehicleDataForImages?.allImages;
+      
       if (
         vehicleDataForImages &&
-        vehicleDataForImages.allImages &&
-        Array.isArray(vehicleDataForImages.allImages) &&
-        vehicleDataForImages.allImages.length > 0
+        imagesArray &&
+        Array.isArray(imagesArray) &&
+        imagesArray.length > 0
       ) {
         // Use all images from vehicle data as initial set
         // Will be enhanced with more images from details API
-        quickViewState.vehicleImages =
-          vehicleDataForImages.allImages.filter(Boolean);
+        quickViewState.vehicleImages = imagesArray.filter(Boolean);
         console.log(
           `Quick View: Found ${quickViewState.vehicleImages.length} images for vehicle ${quickViewState.currentVehicleId}`,
           quickViewState.vehicleImages

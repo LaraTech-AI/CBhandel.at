@@ -48,7 +48,8 @@ function stripHtml(html) {
  * Transform vehicle data from vehicles list to our format
  */
 function transformVehicleFromList(vehicle) {
-  const images = vehicle.allImages || (vehicle.image ? [vehicle.image] : []);
+  // Support both 'images' (Zweispurig/Landwirt) and 'allImages' (motornetzwerk)
+  const images = vehicle.images || vehicle.allImages || (vehicle.image ? [vehicle.image] : []);
   
   return {
     vid: String(vehicle.id || ""),
@@ -120,8 +121,8 @@ function transformVehicleFromList(vehicle) {
     description: vehicle.description || "",
     descriptionHtml: vehicle.description || null,
 
-    // Equipment - empty for now (could be enhanced later)
-    equipment: [],
+    // Equipment - from Zweispurig vehicles or properties from Landwirt machines
+    equipment: vehicle.equipment || vehicle.properties || [],
 
     // Images - all of them
     images: images,
