@@ -651,6 +651,20 @@ Industriestraße 5
 
 ## 📝 Changelog
 
+### Version 2.26.0 - January 2025
+
+#### 🐛 Bug Fixes
+
+- **Mobile Quick-View Image Scrolling**: Fixed issue where quick-view main image was scrollable on mobile instead of fitting in viewport. Changed to viewport-based sizing (50vh) and removed overflow scrolling
+- **Tablet Button Sizing**: Fixed oversized image zoom button icons on tablets by adding tablet-specific media query (769px-968px) with medium sizing (56px button, 32px icon)
+- **Mobile Image Zoom Button**: Increased mobile image zoom button size to 72px with 44px icon for better touch targets
+
+#### 🔧 Improvements
+
+- **Responsive Sizing**: Split media queries into tablet (769px-968px) and mobile (below 768px) breakpoints for optimal button sizing across devices
+- **Viewport Fitting**: Images now properly fit within mobile viewport without causing unwanted scrolling
+- **Touch Gestures**: Improved touch action handling to allow horizontal swipe while preventing vertical scrolling
+
 ### Version 2.25.0 - January 2025
 
 #### 🐛 Critical Fixes

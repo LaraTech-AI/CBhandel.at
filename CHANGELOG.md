@@ -1,37 +1,88 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Mobile Quick-View and Tablet Button Sizing Fixes (January 2025)
+
+### 🐛 Bug Fixes
+
+#### Overview
+Fixed mobile quick-view image scrolling issue where images were scrollable instead of fitting in the viewport, and adjusted tablet image zoom button sizing to prevent oversized icons.
+
+#### Fixes
+- ✅ **Mobile Quick-View Image Scrolling**: Fixed critical issue where quick-view main image container was scrollable on mobile instead of fitting within viewport. Changed from fixed heights to viewport-based sizing (50vh) and removed overflow scrolling
+- ✅ **Tablet Button Sizing**: Fixed oversized image zoom button icons on tablets by splitting media queries into tablet-specific (769px-968px) and mobile-specific (below 768px) breakpoints
+- ✅ **Mobile Image Zoom Button**: Increased mobile image zoom button size from 56px to 72px and icon from 32px to 44px for better touch targets
+
+#### Technical Details
+- **Mobile Image Container**: Changed `max-height` from `60vh` with `min-height: 350px` to `50vh` with `min-height: 0` to prevent viewport overflow
+- **Overflow Control**: Changed `overflow-y: auto` to `overflow: visible` on image section to prevent unwanted scrolling
+- **Image Sizing**: Changed image from fixed `height: 280px` to `height: 100%` to properly fill responsive container
+- **Touch Action**: Changed `touch-action` from `pan-y pinch-zoom` to `pan-x pinch-zoom` to prevent vertical scrolling while allowing horizontal swipe gestures
+- **Media Query Split**: Separated tablet (769px-968px) and mobile (below 768px) breakpoints:
+  - Tablets: 56px button, 32px icon, 3px stroke
+  - Mobile: 72px button, 44px icon, 3.5px stroke
+
+#### Files Modified
+- `styles.css` - Fixed mobile quick-view image container sizing, split tablet/mobile media queries for image zoom button
+
+#### Impact
+- ✅ **Mobile UX**: Images now fit properly in viewport without causing unwanted scrolling
+- ✅ **Tablet UX**: Button icons are appropriately sized for tablet screens
+- ✅ **Touch Targets**: Mobile buttons maintain large touch targets for better usability
+- ✅ **Responsive Design**: Proper sizing across all device breakpoints
+
+#### Test Results
+- ✅ **Mobile Viewport**: Images fit within viewport without scrolling
+- ✅ **Tablet Sizing**: Button icons display at appropriate size (32px) on tablets
+- ✅ **Mobile Sizing**: Button icons display at large size (44px) on mobile phones
+- ✅ **Touch Gestures**: Horizontal swipe gestures work correctly, vertical scrolling prevented
+
+#### 🗑️ Content Removed/Altered
+- **Updated**: Mobile image section from `max-height: 60vh` with `min-height: 350px` to `max-height: 50vh` with `min-height: 0`
+- **Changed**: Image element from fixed `height: 280px` to responsive `height: 100%`
+- **Split**: Single `@media (max-width: 968px)` into separate tablet and mobile breakpoints
+- **Adjusted**: Tablet button size from 72px to 56px, icon from 44px to 32px
+
+---
+
 ## Image Gallery Display Fix (January 2025)
 
 ### 🐛 Bug Fix
 
 #### Overview
+
 Fixed critical issue where quick-view modal displayed only one image instead of all available images (14-41 per vehicle/machine) from detail pages. The frontend code was checking for `allImages` property (used by motornetzwerk) but Zweispurig and Landwirt vehicles use `images` property.
 
 #### Fix
+
 - ✅ **Image Property Compatibility**: Updated frontend to check for both `images` (Zweispurig/Landwirt) and `allImages` (motornetzwerk) properties
 - ✅ **API Compatibility**: Updated vehicle-details API to support both image property names
 - ✅ **Equipment/Properties Support**: Added equipment and properties data from Zweispurig/Landwirt vehicles in vehicle-details API response
 
 #### Technical Details
+
 - **Frontend**: Modified `scripts.js` to check `vehicle.images || vehicle.allImages` instead of only `vehicle.allImages`
 - **API**: Updated `api/vehicle-details.js` to transform both `images` and `allImages` properties
 - **Data Flow**: Ensures all images from detail page fetching (14-36 for Zweispurig, 14-41 for Landwirt) are properly displayed in quick-view modal
 
 #### Files Modified
+
 - `scripts.js` - Updated image detection logic to support both property names
 - `api/vehicle-details.js` - Added support for `images` property and equipment/properties data
 
 #### Impact
+
 - ✅ **User Experience**: All imported images (14-41 per vehicle) now display in quick-view modal
 - ✅ **Compatibility**: Works with all data sources (Zweispurig, Landwirt, motornetzwerk)
 - ✅ **Navigation**: Users can now navigate through all available images using arrows or thumbnails
 
 #### Test Results
+
 - ✅ **Zweispurig vehicles**: 14-36 images per vehicle now display correctly
 - ✅ **Landwirt machines**: 14-41 images per machine now display correctly
 - ✅ **Image navigation**: All images accessible via navigation arrows and thumbnails
 
 #### 🗑️ Content Removed/Altered
+
 - **Updated**: Image detection logic from single property check (`allImages`) to dual property check (`images || allImages`)
 - **Enhanced**: Vehicle-details API to include equipment/properties from Zweispurig/Landwirt vehicles
 
@@ -42,14 +93,17 @@ Fixed critical issue where quick-view modal displayed only one image instead of 
 ### 🐛 Critical Bug Fixes
 
 #### Overview
+
 Fixed critical issues affecting form submission, user interaction, and mobile usability. The inquiry form was showing success animations but not actually sending emails, checkboxes became unclickable after hovering over buttons, and mobile icons were invisible.
 
 #### Critical Fixes
+
 - ✅ **Inquiry Form Email Sending**: Fixed critical production issue where inquiry form displayed success animation but emails were never sent. Replaced unreliable mailto link implementation with proper API endpoint (`/api/inquiry.js`) that sends emails via nodemailer
 - ✅ **Checkbox Click Issue**: Fixed critical usability bug where privacy checkbox in inquiry form couldn't be clicked after hovering over submit button. Added proper z-index layering and pointer-events to ensure checkbox remains interactive
 - ✅ **Mobile Icon Visibility**: Fixed invisible icons on mobile devices for image zoom button and all lightbox buttons (close, zoom, navigation). Significantly increased button and icon sizes for mobile viewport
 
 #### New Features
+
 - ✅ **Inquiry API Endpoint**: Created `/api/inquiry.js` serverless function for reliable email delivery:
   - Sends inquiry emails with vehicle details (title, price) to business
   - Sends auto-reply confirmation emails to customers
@@ -59,6 +113,7 @@ Fixed critical issues affecting form submission, user interaction, and mobile us
   - Comprehensive error handling
 
 #### UI/UX Improvements
+
 - ✅ **Checkbox Styling**: Enhanced checkbox visibility with proper background colors for light/dark themes, improved border contrast
 - ✅ **Compare Button Styling**: Improved opacity and contrast for "Zum Vergleich hinzufügen" button, better visibility in both themes
 - ✅ **Mobile Button Sizes**: Increased all mobile button sizes:
@@ -68,6 +123,7 @@ Fixed critical issues affecting form submission, user interaction, and mobile us
 - ✅ **Button Backgrounds**: Improved background opacity and border visibility on mobile for all interactive buttons
 
 #### Technical Details
+
 - **Form Submission**: Changed from `mailto:` link to `fetch()` API call with JSON payload
 - **Z-Index Layering**: Checkbox and label now have `z-index: 10`, submit button has `z-index: 1`
 - **Pointer Events**: Explicit `pointer-events: auto` on checkbox and label to ensure clickability
@@ -75,11 +131,13 @@ Fixed critical issues affecting form submission, user interaction, and mobile us
 - **API Endpoint**: Follows same pattern as existing `/api/contact.js` and `/api/appointment.js` endpoints
 
 #### Files Modified
+
 - `api/inquiry.js` - **NEW FILE**: Created inquiry form API endpoint with email sending
 - `scripts.js` - Updated `initVehicleInquiry()` function to use API endpoint instead of mailto
 - `styles.css` - Fixed checkbox z-index/pointer-events, enhanced mobile button sizes, improved styling for checkbox and compare button
 
 #### Impact
+
 - ✅ **Production Critical**: Inquiry form now actually sends emails (was showing fake success)
 - ✅ **User Experience**: Checkbox is now always clickable regardless of button hover state
 - ✅ **Mobile Usability**: All buttons now have clearly visible icons on mobile devices
@@ -87,12 +145,14 @@ Fixed critical issues affecting form submission, user interaction, and mobile us
 - ✅ **Professional**: Auto-reply emails provide better customer experience
 
 #### Test Results
+
 - ✅ **Inquiry Form**: Successfully sends emails with vehicle details and receives auto-reply
 - ✅ **Checkbox Interaction**: Clickable even after hovering over submit button
 - ✅ **Mobile Icons**: All buttons clearly visible with proper icon sizes on mobile viewport
 - ✅ **Styling**: Checkbox and compare button have proper contrast in both light and dark themes
 
 #### 🗑️ Content Removed/Altered
+
 - **Replaced**: Mailto link implementation in inquiry form with API endpoint
 - **Updated**: Checkbox CSS positioning from `position: static` to `position: relative` with z-index
 - **Enhanced**: Mobile button sizes and icon visibility (increased from 22-24px to 32px)
@@ -106,9 +166,11 @@ Fixed critical issues affecting form submission, user interaction, and mobile us
 ### 🚗 Comprehensive Data Enrichment
 
 #### Overview
+
 Enhanced vehicle and machine data fetching to automatically retrieve full detail pages from source websites, providing comprehensive information including all images, equipment lists, properties, descriptions, and technical specifications. Improved image display and UI styling for better user experience.
 
 #### New Features
+
 - ✅ **Detail Page Fetching**: Automatic fetching of individual vehicle/machine detail pages for complete data enrichment
 - ✅ **Zweispurig Detail Pages**: Fetches full vehicle details including:
   - All images (14-36 per vehicle, full-size instead of thumbnails)
@@ -124,11 +186,13 @@ Enhanced vehicle and machine data fetching to automatically retrieve full detail
 - ✅ **Compare Button Styling**: Improved visibility and contrast for compare checkbox button in quick-view modal with theme-specific styles
 
 #### Changes
+
 - **Image Extraction**: Fixed Landwirt image domain from `images.landwirt.com` to `static.landwirt.com` for correct image retrieval
 - **Image Display**: Main vehicle images now fill container completely (slight cropping acceptable) instead of showing with letterboxing
 - **Compare Button**: Enhanced styling with better background opacity, improved checkbox visibility, and explicit light/dark theme support
 
 #### Technical Details
+
 - **Detail Page Functions**: Added `fetchZweispurigDetailPage()` and `fetchLandwirtDetailPage()` functions
 - **Rate Limiting**: Implemented 200ms delay between detail page requests to avoid rate limiting
 - **Error Handling**: Graceful fallback if detail page fetch fails - returns basic data from listing page
@@ -136,22 +200,26 @@ Enhanced vehicle and machine data fetching to automatically retrieve full detail
 - **Logo Filtering**: Filters out dealer logos from Landwirt image extraction
 
 #### Files Modified
+
 - `lib/vehicleService.js` - Added detail page fetching functions, enhanced `fetchFromZweispurig()` and `fetchFromLandwirt()` to enrich data with detail pages, fixed image domain for Landwirt
 - `styles.css` - Changed `.quick-view-main-image img` from `object-fit: contain` to `object-fit: cover`, enhanced `.compare-checkbox-btn-modal` styling with better contrast and theme-specific styles
 
 #### Impact
+
 - ✅ **Richer Data**: Vehicles now include complete equipment lists and descriptions
 - ✅ **More Images**: All available images are fetched (not just thumbnails)
 - ✅ **Better UX**: Images fill the viewport better, compare button is clearly visible
 - ✅ **Complete Information**: Technical specifications and properties are fully populated
 
 #### Test Results
+
 - ✅ **Zweispurig**: 6 vehicles with 14-36 images each, 16-42 equipment items, full descriptions
 - ✅ **Landwirt**: 6 machines with 14-41 images each, 39-68 properties, full descriptions
 - ✅ **Image Display**: Main images now fill container properly
 - ✅ **Compare Button**: Clearly visible in both light and dark themes
 
 #### 🗑️ Content Removed/Altered
+
 - **Updated**: Image display CSS from `object-fit: contain` to `object-fit: cover` (removed letterboxing)
 - **Fixed**: Landwirt image extraction domain from `images.landwirt.com` to `static.landwirt.com`
 - **Enhanced**: Compare button styling with improved contrast and theme-specific visibility
@@ -163,42 +231,50 @@ Enhanced vehicle and machine data fetching to automatically retrieve full detail
 ### 🚗 Vehicle Fetching Improvements
 
 #### Overview
+
 Migrated primary vehicle data source from AutoScout24 to Zweispurig.at for more reliable and easier-to-parse vehicle listings. Improved Landwirt.com machine parsing with enhanced article-based extraction.
 
 #### New Features
+
 - ✅ **Zweispurig.at Integration**: Added `fetchFromZweispurig()` function as primary vehicle source
 - ✅ **Improved Parsing**: Section-based HTML parsing for accurate vehicle data extraction
 - ✅ **Enhanced Landwirt Parsing**: Rewrote `parseLandwirtMachines()` with article-based extraction for better machine data accuracy
 - ✅ **Better Year Extraction**: Fixed year parsing to correctly extract registration dates from Zweispurig format (MM/YYYY)
 
 #### Changes
+
 - **Primary Source**: Zweispurig.at (`https://www.zweispurig.at/cb-handels-gmbh-reichenfels/autohaendler-fahrzeuge/103417/`) now primary vehicle source
 - **AutoScout24**: Disabled in combined mode (code preserved for potential future use)
 - **Willhaben**: Disabled in combined mode (using Zweispurig as primary instead)
 - **Landwirt.com**: Enhanced parsing with improved article element extraction, better price detection, and category classification
 
 #### Technical Details
+
 - **Zweispurig Parser**: Extracts vehicles by splitting HTML sections using `<hr>` separators for accurate per-vehicle data isolation
 - **Landwirt Parser**: Uses `<article>` elements and detail links (`/detail/{slug}-{id}`) for reliable machine identification
 - **Data Extraction**: Correctly extracts title, price, year, mileage, fuel type, power, transmission, images, and category
 - **Category Detection**: Multi-method category detection (PKW vs Nutzfahrzeuge) based on title keywords, URL patterns, and vehicle type indicators
 
 #### Files Modified
+
 - `lib/vehicleService.js` - Added `fetchFromZweispurig()` and `parseZweispurigVehicles()` functions, rewrote `parseLandwirtMachines()`, disabled AutoScout24/Willhaben in combined mode
 - `config/dealerConfig.js` - Updated `sourceUrls` to include Zweispurig as primary, reorganized with comments for active vs disabled sources
 
 #### Impact
+
 - ✅ **More Reliable**: Zweispurig.at provides cleaner HTML structure for easier parsing
 - ✅ **Better Accuracy**: Section-based parsing prevents data bleeding between vehicles
 - ✅ **Improved Machines**: Enhanced Landwirt parsing correctly extracts all machine details
 - ✅ **Maintained Compatibility**: All existing vehicle API endpoints continue to work
 
 #### Test Results
+
 - ✅ **6 vehicles** successfully fetched from Zweispurig.at with correct prices and years
 - ✅ **6 machines** successfully fetched from Landwirt.com with accurate details
 - ✅ **Total: 12 items** combined from both sources
 
 #### 🗑️ Content Removed/Altered
+
 - **Disabled**: AutoScout24 vehicle fetching in combined mode (code preserved, not deleted)
 - **Disabled**: Willhaben vehicle fetching in combined mode (code preserved, not deleted)
 - **Updated**: `config/dealerConfig.js` `sourceUrls` section - Zweispurig added as primary, AutoScout24/Willhaben moved to comments
@@ -211,9 +287,11 @@ Migrated primary vehicle data source from AutoScout24 to Zweispurig.at for more 
 ### 🔒 Privacy & Compliance
 
 #### Overview
+
 Implemented Google Consent Mode v2 to ensure GDPR compliance and proper consent management for Google Analytics tracking. The implementation follows Google's official Consent Mode v2 guidelines and integrates seamlessly with the existing cookie consent banner.
 
 #### Consent Mode v2 Features
+
 - ✅ **Consent Mode v2 Parameters**: Implemented all required v2 parameters:
   - `ad_user_data`: Controls sending user data for advertising
   - `ad_personalization`: Controls personalized advertising
@@ -226,6 +304,7 @@ Implemented Google Consent Mode v2 to ensure GDPR compliance and proper consent 
 - ✅ **Automatic Loading**: For returning users with existing consent, Google tag loads immediately
 
 #### Implementation Details
+
 - **Basic Consent Mode**: Uses basic consent mode approach - blocks Google tag from loading until consent is granted
 - **Consent Defaults**: Set in `<head>` before any Google tag scripts
 - **Dynamic Loading**: `loadGoogleTag()` function dynamically injects Google tag script when consent is granted
@@ -233,6 +312,7 @@ Implemented Google Consent Mode v2 to ensure GDPR compliance and proper consent 
 - **Cross-Page Support**: Implemented on all pages (main page and all blog posts)
 
 #### Files Modified
+
 - `index.html` - Updated Google Analytics implementation with Consent Mode v2
 - `posts/elektromobilitaet.html` - Updated with Consent Mode v2
 - `posts/reifenwechsel.html` - Updated with Consent Mode v2
@@ -240,18 +320,20 @@ Implemented Google Consent Mode v2 to ensure GDPR compliance and proper consent 
 - `scripts.js` - Updated cookie consent handler to integrate with Consent Mode v2
 
 #### Google Analytics Tracking ID Update
+
 - **Updated**: Tracking ID from `G-PWL0D86EB3` to `G-Z3R9T8BD6M`
 - **Applied**: New tracking ID on all pages (main page and blog posts)
 
 #### Technical Implementation
+
 ```javascript
 // Consent Mode defaults set before Google tag loads
-gtag('consent', 'default', {
-  'ad_user_data': 'denied',
-  'ad_personalization': 'denied',
-  'ad_storage': 'denied',
-  'analytics_storage': 'denied',
-  'wait_for_update': 500,
+gtag("consent", "default", {
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  ad_storage: "denied",
+  analytics_storage: "denied",
+  wait_for_update: 500,
 });
 
 // Dynamic loading when consent granted
@@ -262,6 +344,7 @@ function loadGoogleTag() {
 ```
 
 #### Impact
+
 - ✅ **GDPR Compliance**: Fully compliant with GDPR requirements for consent management
 - ✅ **Privacy-First**: No tracking occurs until explicit user consent
 - ✅ **Google Compliance**: Meets Google's EU user consent policy requirements
@@ -269,12 +352,14 @@ function loadGoogleTag() {
 - ✅ **Future-Proof**: Uses latest Consent Mode v2 standard
 
 #### Testing
+
 - ✅ **Local Testing**: Verified consent mode defaults are set correctly
 - ✅ **Dynamic Loading**: Confirmed Google tag only loads after consent
 - ✅ **Cookie Banner**: Verified integration with existing cookie consent system
 - ✅ **Returning Users**: Tested that returning users with consent get immediate tag loading
 
 ### 🗑️ Content Removed/Altered
+
 - **Updated**: Google Analytics tracking ID from `G-PWL0D86EB3` to `G-Z3R9T8BD6M` on all pages
 - **Replaced**: Static Google tag script loading with dynamic consent-based loading
 - **Enhanced**: Cookie consent handler to integrate with Google Consent Mode v2
@@ -288,9 +373,11 @@ function loadGoogleTag() {
 ### 🎨 Favicon Implementation
 
 #### Overview
+
 Replaced template favicon with custom CB initials favicon and implemented comprehensive favicon setup for Google Search compatibility.
 
 #### Favicon Updates
+
 - ✅ **Custom CB Favicon**: Created favicon with "CB" initials on brand blue (#004b8d) background
 - ✅ **Multiple Formats**: Generated SVG (48x48), PNG (16x16, 32x32, 48x48, 180x180), and ICO formats
 - ✅ **Root-Level favicon.ico**: Created and placed in root directory for Google Search (Google checks `/favicon.ico` first)
@@ -299,6 +386,7 @@ Replaced template favicon with custom CB initials favicon and implemented compre
 - ✅ **Cross-Platform Support**: Includes Apple touch icon for iOS devices
 
 #### Files Created/Modified
+
 - `assets/favicon.svg` - Updated with CB initials (48x48)
 - `favicon.ico` - Created in root directory
 - `assets/favicon.png` - 48x48 PNG version
@@ -312,9 +400,11 @@ Replaced template favicon with custom CB initials favicon and implemented compre
 ### 🗺️ Sitemap Optimization
 
 #### Overview
+
 Completely overhauled XML and HTML sitemaps following Google SEO best practices and Context7 recommendations for optimal search engine indexing.
 
 #### XML Sitemap Enhancements
+
 - ✅ **XML Namespaces**: Added proper namespaces (image, xhtml) for extended functionality
 - ✅ **Image Sitemap**: Added image metadata (title, caption, location) for all pages
 - ✅ **Multilingual Support**: Added hreflang tags (de-AT, de, x-default) to all entries
@@ -324,6 +414,7 @@ Completely overhauled XML and HTML sitemaps following Google SEO best practices 
 - ✅ **Schema Validation**: Proper XML schema references for validation
 
 #### HTML Sitemap Improvements
+
 - ✅ **Structured Data**: Added JSON-LD ItemList schema for better SEO
 - ✅ **Page Descriptions**: Added descriptive text for each page and blog post
 - ✅ **Hreflang Tags**: Added multilingual alternate links
@@ -331,6 +422,7 @@ Completely overhauled XML and HTML sitemaps following Google SEO best practices 
 - ✅ **Favicon References**: Updated to use all favicon formats
 
 #### SEO Best Practices Implemented
+
 - ✅ **Google SEO Guidelines**: Follows official Google SEO Starter Guide recommendations
 - ✅ **Context7 Recommendations**: Implements best practices from Context7 documentation
 - ✅ **Image Indexing**: Images now properly indexed with metadata
@@ -338,12 +430,14 @@ Completely overhauled XML and HTML sitemaps following Google SEO best practices 
 - ✅ **Structured Data**: Enhanced schema markup for rich snippets
 
 #### Files Modified
+
 - `sitemap.xml` - Complete rewrite with best practices
 - `sitemap.html` - Enhanced with structured data and descriptions
 - `FAVICON-SETUP.md` - Updated to reflect completion status
 - `SEO-IMPROVEMENTS-SUMMARY.md` - Added sitemap optimization section
 
 #### Impact
+
 - ✅ **Google Search Favicon**: Favicon will appear in Google Search results once indexed
 - ✅ **Better Image Indexing**: Images properly indexed with metadata
 - ✅ **Improved Crawling**: Enhanced sitemap structure improves search engine crawling
@@ -352,6 +446,7 @@ Completely overhauled XML and HTML sitemaps following Google SEO best practices 
 - ✅ **Better Discovery**: Improved content discovery and indexing
 
 ### 🗑️ Content Removed/Altered
+
 - **Removed**: Template favicon (green background with "D" letter)
 - **Replaced**: All favicon files with CB initials version
 - **Updated**: Sitemap dates from placeholder to accurate current dates
@@ -367,17 +462,20 @@ Completely overhauled XML and HTML sitemaps following Google SEO best practices 
 ### 🔧 Mobile UX Enhancements
 
 #### Overview
+
 Enhanced mobile navigation menu with improved visibility, expanded menu items, and social media integration. Fixed touch scrolling issues on testimonials section for better mobile user experience.
 
 #### Mobile Navigation Improvements
 
 **1. Burger Menu Visibility & Styling**
+
 - ✅ **Reduced Transparency**: Changed mobile menu background from 75% to 90% opacity in light mode for better readability
 - ✅ **Text Color Fix**: Fixed white text color issue - menu links now display in dark text (`var(--text-primary)`) with proper contrast
 - ✅ **Dark Mode Support**: Maintained 98% opacity for dark mode with proper background colors
 - ✅ **Enhanced Backdrop**: Added backdrop filter with saturation for improved visual effect
 
 **2. Expanded Menu Items**
+
 - ✅ **FAQ Link**: Added FAQ section link to mobile menu navigation
 - ✅ **Impressum Link**: Added Impressum (legal notice) link to mobile menu
 - ✅ **Unser Autohaus**: Added link to facilities/dealership section (`#autohaus`)
@@ -385,6 +483,7 @@ Enhanced mobile navigation menu with improved visibility, expanded menu items, a
 - ✅ **Complete Navigation**: Menu now includes all major sections: Home, Fahrzeuge, Über uns, Unser Autohaus, Unsere Leistungen, Blog, Kontakt, FAQ, Impressum
 
 **3. Social Media Integration**
+
 - ✅ **Social Section**: Added "Folgen Sie uns" (Follow Us) section to mobile menu
 - ✅ **Social Icons**: Integrated 5 social media platforms with circular icon buttons:
   - Facebook (https://www.facebook.com/cbhandel)
@@ -396,12 +495,14 @@ Enhanced mobile navigation menu with improved visibility, expanded menu items, a
 - ✅ **Visual Divider**: Added divider between navigation links and social section
 
 **4. Touch Scrolling Fix**
+
 - ✅ **Testimonials Scrolling**: Fixed touch scrolling issue where vertical page scrolling was blocked on testimonials section
 - ✅ **Improved Detection**: Enhanced swipe detection logic - requires horizontal movement to be at least 2x vertical movement before preventing scroll
 - ✅ **Better Thresholds**: Increased minimum horizontal movement threshold to 15px for more accurate swipe detection
 - ✅ **CSS Enhancement**: Added `touch-action: pan-y` to testimonials slider to explicitly allow vertical scrolling
 
 **5. Mobile Menu Spacing Optimization**
+
 - ✅ **Reduced Menu Gap**: Decreased gap between menu items from `1.5rem` to `0.5rem` for tighter, more compact layout
 - ✅ **Optimized Link Spacing**: Reduced link padding from `0.75rem` to `0.5rem` and font size from `1.125rem` to `1rem`
 - ✅ **Compact Container**: Reduced menu padding from `6rem 2rem 2rem` to `5rem 1.5rem 1.5rem` for better screen utilization
@@ -412,11 +513,13 @@ Enhanced mobile navigation menu with improved visibility, expanded menu items, a
 - ✅ **Tighter Social Gap**: Reduced gap between social icons from `0.75rem` to `0.5rem`
 
 #### Files Modified
+
 - `index.html` - Added FAQ, Impressum, Unser Autohaus, Unsere Leistungen links; added social media section with icons; added `id="autohaus"` to facilities section
 - `styles.css` - Updated mobile menu background opacity (90% light mode, 98% dark mode); fixed nav-link text color; added social media styling; added testimonials slider touch-action; optimized spacing for better mobile fit
 - `scripts.js` - Improved touch swipe detection for testimonials; added social link menu closing behavior
 
 #### Mobile UX Impact
+
 - ✅ **Better Readability**: Less transparent menu with proper text contrast improves menu visibility
 - ✅ **Complete Navigation**: All major sections now accessible from mobile menu
 - ✅ **Social Integration**: Quick access to social media profiles directly from menu
@@ -426,6 +529,7 @@ Enhanced mobile navigation menu with improved visibility, expanded menu items, a
 - ✅ **Improved Density**: More compact layout allows users to see more content at once while maintaining readability
 
 ### 🗑️ Content Removed/Altered
+
 - **Updated**: Mobile menu background opacity from 75% to 90% (light mode) for better visibility
 - **Fixed**: Mobile menu text color from white to dark text for proper contrast
 - **Enhanced**: Mobile menu now includes 9 navigation items (previously 5) plus social media section
@@ -442,35 +546,42 @@ Enhanced mobile navigation menu with improved visibility, expanded menu items, a
 ### 🔧 Mobile UI Improvements
 
 #### Overview
+
 Fixed mobile logo sizing issue where the logo was covering the burger menu button on mobile devices. Implemented responsive constraints to ensure proper spacing while maintaining logo visibility.
 
 #### Mobile Logo Fixes Implemented
 
 **1. Logo Container Constraints**
+
 - ✅ **Max-Width Constraints**: Added `max-width: calc(100% - 150px)` for tablets/mobile (768px breakpoint) to reserve space for burger menu, search icon, and theme toggle
 - ✅ **Small Phone Optimization**: Added `max-width: calc(100% - 130px)` for small phones (480px breakpoint)
 - ✅ **Flex Shrink Protection**: Ensured logo container can shrink but burger menu remains protected with `flex-shrink: 0`
 
 **2. Logo Size Optimization**
+
 - ✅ **Tablet/Mobile Size**: Increased logo `max-width` to `220px` (from 140px) for better visibility on tablets and mobile devices
 - ✅ **Small Phone Size**: Increased logo `max-width` to `180px` (from 110px) for small phone screens
 - ✅ **Height Preservation**: Maintained logo heights at `45px` (tablet/mobile) and `38px` (small phones)
 
 **3. Layout Improvements**
+
 - ✅ **Spacing Enhancement**: Increased gap from `0.5rem` to `0.75rem` in mobile navigation container for better element separation
 - ✅ **Link Constraints**: Added `max-width: 100%` to logo-link to ensure it respects container bounds
 - ✅ **Burger Menu Protection**: Added `min-width: 44px` to mobile menu toggle to prevent it from being squeezed
 
 #### Files Modified
+
 - `styles.css` - Updated mobile logo styles (lines 11517-11566, 11942-11949)
 
 #### Mobile UI Impact
+
 - ✅ **No Overlap**: Logo no longer covers burger menu button on any mobile device size
 - ✅ **Better Visibility**: Larger logo size (220px/180px) maintains brand presence while respecting layout constraints
 - ✅ **Improved UX**: Better spacing and touch targets for mobile navigation
 - ✅ **Responsive Design**: Proper constraints ensure layout works across all mobile screen sizes
 
 ### 🗑️ Content Removed/Altered
+
 - **Updated**: Mobile logo max-width constraints to prevent burger menu overlap
 - **Increased**: Logo sizes for better visibility (220px tablet/mobile, 180px small phones)
 - **Enhanced**: Mobile navigation spacing and layout constraints
@@ -483,16 +594,19 @@ Fixed mobile logo sizing issue where the logo was covering the burger menu butto
 ### 🔍 Comprehensive SEO Analysis & Improvements
 
 #### Overview
+
 Conducted comprehensive SEO audit and implemented critical fixes to improve search engine visibility, regional targeting, and overall SEO performance.
 
 #### SEO Fixes Implemented
 
 **1. Sitemap Date Corrections**
+
 - ✅ **Fixed Future Dates**: Updated all sitemap `lastmod` dates from `2025-11-03` (future) to `2025-11-29` (current)
 - ✅ **Accurate Last Modified**: All URLs now have correct last modification dates
 - ✅ **Search Engine Trust**: Accurate dates improve search engine crawling priority and trust
 
 **2. Dynamic Image Alt Text Enhancement**
+
 - ✅ **Default Alt Text Added**: Added descriptive default alt text to dynamic images:
   - Lightbox image: `alt="Fahrzeugbild"` (was empty)
   - Quick view image: `alt="Fahrzeugansicht"` (was empty)
@@ -501,22 +615,26 @@ Conducted comprehensive SEO audit and implemented critical fixes to improve sear
 - ✅ **Accessibility Fallback**: Default values provide accessibility even before JavaScript loads
 
 **3. Redirect Page SEO Enhancement**
+
 - ✅ **Meta Tags Added**: Added proper meta description to redirect page
 - ✅ **Canonical URL**: Added canonical tag pointing to main page section
 - ✅ **Open Graph Tags**: Added complete Open Graph tags for social sharing
 - ✅ **Improved Title**: Updated title from generic "Weiterleitung zu Fahrzeuge" to "Fahrzeuge - CB Handels GmbH | Reichenfels, Kärnten"
 
 **4. Hreflang Tags for Regional Targeting**
+
 - ✅ **Homepage**: Added hreflang tags (de-AT, de, x-default) to homepage
 - ✅ **Blog Posts**: Added hreflang tags to all blog posts for regional targeting
 - ✅ **Austrian SEO**: Better targeting for Austrian and German search results
 
 **5. Blog Post Date Corrections**
+
 - ✅ **Publication Dates**: Kept original publication dates (2025-11-01) as correct
 - ✅ **Modification Dates**: Updated `dateModified` to current date (2025-11-29) in JSON-LD structured data
 - ✅ **Content Freshness**: Accurate modification dates signal content freshness to search engines
 
 #### Files Modified
+
 - `sitemap.xml` - Updated all lastmod dates to 2025-11-29
 - `index.html` - Added hreflang tags, improved dynamic image alt text
 - `fahrzeuge/index.html` - Enhanced with meta description, canonical URL, Open Graph tags
@@ -525,6 +643,7 @@ Conducted comprehensive SEO audit and implemented critical fixes to improve sear
 - `posts/elektromobilitaet.html` - Added hreflang tags, updated modification date
 
 #### SEO Impact
+
 - ✅ **Search Engine Trust**: Accurate sitemap dates improve crawling priority
 - ✅ **Accessibility**: Better alt text improves accessibility and image SEO
 - ✅ **Regional Targeting**: Hreflang tags improve rankings in Austrian/German searches
@@ -532,10 +651,12 @@ Conducted comprehensive SEO audit and implemented critical fixes to improve sear
 - ✅ **Redirect SEO**: Redirect pages now have proper SEO signals
 
 #### Documentation Created
+
 - `SEO-ANALYSIS-REPORT.md` - Comprehensive SEO audit report with detailed findings
 - `SEO-FIXES-APPLIED.md` - Summary of all fixes applied with impact analysis
 
 ### 🗑️ Content Removed/Altered
+
 - **Updated**: Sitemap dates from future dates to current date
 - **Added**: Default alt text to dynamic images for accessibility
 - **Enhanced**: Redirect page with proper SEO meta tags
@@ -550,27 +671,32 @@ Conducted comprehensive SEO audit and implemented critical fixes to improve sear
 ### 🔒 Security Fixes & Improvements
 
 #### Overview
+
 Implemented comprehensive security improvements to address XSS vulnerabilities, enhance input sanitization, and ensure consistent CORS configuration across all API endpoints.
 
 #### Security Fixes Implemented
 
 **1. XSS Protection with DOMPurify**
+
 - ✅ **Added DOMPurify Library**: Integrated DOMPurify via CDN for HTML sanitization
 - ✅ **Vehicle Description Sanitization**: All vehicle descriptions are now sanitized before rendering to prevent XSS attacks
 - ✅ **Safe HTML Preservation**: Preserves safe HTML tags (`<p>`, `<strong>`, `<em>`, `<br>`, `<ul>`, `<ol>`, `<li>`) while removing dangerous scripts
 - ✅ **Fallback Protection**: Includes fallback to `escapeHtml()` if DOMPurify fails to load
 
 **2. CORS Configuration Consistency**
+
 - ✅ **Unified CORS Configuration**: Updated `api/newsletter-confirm.js` to use `dealerConfig.corsOrigins` instead of hardcoded origins
 - ✅ **Single Source of Truth**: All API endpoints now use the same CORS configuration from dealerConfig
 - ✅ **Easier Maintenance**: CORS origins can now be updated in one place
 
 **3. Enhanced Input Sanitization**
+
 - ✅ **Control Character Removal**: Enhanced `sanitize()` function to remove control characters (`\x00-\x1F\x7F`)
 - ✅ **Email Injection Prevention**: Newlines are converted to spaces to prevent email header injection
 - ✅ **Better Protection**: Improved defense against various injection attack vectors
 
 #### Files Modified
+
 - `index.html` - Added DOMPurify CDN script with integrity hash
 - `scripts.js` - Added HTML sanitization for vehicle descriptions (lines 3565-3572)
 - `api/newsletter-confirm.js` - Updated to use `dealerConfig.corsOrigins`
@@ -578,18 +704,21 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 - `api/appointment.js` - Enhanced `sanitize()` function with control character removal and newline handling
 
 #### Security Impact
+
 - ✅ **XSS Protection**: Vehicle descriptions from external APIs are now sanitized before rendering
 - ✅ **Consistent Security**: All API endpoints use unified CORS configuration
 - ✅ **Better Input Validation**: Enhanced sanitization prevents various injection attacks
 - ✅ **Defense in Depth**: Multiple layers of security protection
 
 #### Testing Recommendations
+
 - Test vehicle descriptions with malicious scripts (should be removed)
 - Verify safe HTML formatting is preserved
 - Test CORS from all whitelisted domains
 - Test form submissions with control characters and newlines
 
 ### 🗑️ Content Removed/Altered
+
 - **Added**: DOMPurify library for XSS protection
 - **Enhanced**: Input sanitization functions in API endpoints
 - **Updated**: CORS configuration to use dealerConfig consistently
@@ -602,11 +731,13 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 ### ✨ Content Updates
 
 #### Blog Articles Theme Alignment
+
 - ✅ **E-Mobilität Article**: Updated to emphasize CB Handels' core values (Quality, Transparency, Service) and include references to commercial vehicles and machinery
 - ✅ **Gebrauchtwagen kaufen Article**: Enhanced to reflect partnership approach, quality standards, and transparency values. Added references to Nutzfahrzeuge and Maschinen
 - ✅ **Reifenwechsel Article**: Updated to include commercial vehicles/machinery context and emphasize service quality and long-term partnership
 
 #### Key Content Changes
+
 - ✅ **Company Values Integration**: All articles now emphasize "Qualität, Transparenz und erstklassigen Service"
 - ✅ **Partnership Messaging**: Added messaging about being a "langfristiger Partner" (long-term partner) throughout articles
 - ✅ **Scope Expansion**: Articles now reference Pkw, Nutzfahrzeuge, and Maschinen (not just cars)
@@ -615,6 +746,7 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 ### 🎨 Visual Updates
 
 #### Brand Color Consistency
+
 - ✅ **Blog Styles Update**: Changed blog article primary color from green (#1b8e2d) to CB Handels blue (#004b8d)
 - ✅ **Color Variables**: Added brand color variants (--blog-primary-light, --blog-primary-dark) for consistency
 - ✅ **Hover Effects**: Updated all hover states and shadows to use blue brand color
@@ -643,11 +775,13 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 ### ✨ New Features
 
 #### Instagram Handle Update
+
 - ✅ **Updated Instagram Handle**: Changed from `cbhandel` to `cbhandelsgmbh` to match official Instagram profile
 - ✅ **Configuration Updated**: Updated Instagram links in both `dealerConfig.js` and `dealerConfig.browser.js`
 - ✅ **Dynamic Link Updates**: All Instagram links throughout the website now use the new handle
 
 #### Google Reviews Integration
+
 - ✅ **Clickable Google Reviews Badge**: Google Reviews badge in testimonials section is now clickable and opens the review form
 - ✅ **Dedicated Review Section**: Google Reviews section positioned directly under testimonials section (moved from contact area) with:
   - Review link button with Google branding
@@ -686,39 +820,48 @@ Implemented comprehensive security improvements to address XSS vulnerabilities, 
 ### 🐛 Critical Bug Fix: Missing Title/Price Validation
 
 #### Overview
+
 Fixed a critical bug in the Willhaben vehicle parser that caused a 500 error in the `/api/vehicles` endpoint. The parser was attempting to add vehicles to the array without validating that both title and price were present.
 
 #### Problem Fixed
+
 - ✅ **500 Server Error**: `/api/vehicles` endpoint returned 500 error, preventing all vehicles from loading
 - ✅ **Missing Validation**: Willhaben parser was missing the `if (title && price)` check before adding vehicles to the array
 - ✅ **Broken Vehicle Loading**: Website showed "Aktuell sind keine Fahrzeuge verfügbar" (no vehicles available)
 
 #### Solution Implemented
+
 - ✅ **Restored Validation Check**: Added missing `if (title && price)` validation before `vehicles.push()` in `parseWillhabenVehicles()` function
 - ✅ **Proper Error Handling**: Vehicles without title or price are now skipped with a warning log instead of causing a server error
 - ✅ **Maintained Functionality**: All existing parsing logic and category detection remain intact
 
 #### Benefits
+
 **User Experience:**
+
 - ✅ **Vehicles Load Correctly**: All vehicles now load and display properly on the website
 - ✅ **No More Errors**: Eliminated 500 error that prevented vehicle listings from appearing
 - ✅ **Stable Service**: API endpoint now handles edge cases gracefully
 
 **Technical:**
+
 - ✅ **Better Error Handling**: Invalid vehicle data is skipped rather than crashing the parser
 - ✅ **Maintainable**: Clear validation ensures only complete vehicle data is added
 - ✅ **Robust**: Parser now handles missing data gracefully
 
 #### Files Modified
+
 - `lib/vehicleService.js` - Added missing `if (title && price)` validation check before `vehicles.push()` (line 679)
 
 #### Test Results
+
 - ✅ `/api/vehicles` endpoint now returns 200 status with vehicle data
 - ✅ All 8 vehicles load and display correctly on the website
 - ✅ Vehicles with missing title or price are skipped without errors
 - ✅ Category filtering continues to work correctly
 
 ### 🗑️ Content Removed/Altered
+
 - **Fixed**: Missing validation check that caused 500 error
 - **Preserved**: All existing parsing logic, category detection, and data extraction functionality
 
@@ -729,22 +872,27 @@ Fixed a critical bug in the Willhaben vehicle parser that caused a 500 error in 
 ### 🎨 Fuel Badge Color Update
 
 #### Overview
+
 Updated fuel type badge color from green to a neutral blue-gray gradient to better match the overall design aesthetic and brand colors.
 
 #### Changes
+
 - ✅ **Color Update**: Changed fuel badge background from green gradient (`#4caf50` to `#45a049`) to blue-gray gradient (`#5a6c7d` to `#4a5a6a`)
 - ✅ **Shadow Update**: Updated box-shadow color to match new badge color
 - ✅ **Design Consistency**: Badge now aligns better with the overall color scheme
 
 #### Files Modified
+
 - `styles.css` - Updated `.fuel-badge` styling (lines 3290-3299)
 
 ### 🚗 Enhanced Vehicle Categorization
 
 #### Overview
+
 Improved vehicle categorization system to properly separate PKW (passenger cars), Nutzfahrzeuge (commercial vehicles), and Baumaschinen (construction machines) across all data sources.
 
 #### Problem Fixed
+
 - ✅ **Incorrect Categorization**: All vehicles were being categorized as PKW regardless of actual type
 - ✅ **Missing Category Detection**: `determineCategory()` function ignored vehicle's category property
 - ✅ **Limited Willhaben Detection**: Willhaben vehicles only used title keywords for category detection
@@ -752,6 +900,7 @@ Improved vehicle categorization system to properly separate PKW (passenger cars)
 #### Solution Implemented
 
 **Category Detection Improvements:**
+
 - ✅ **Enhanced `determineCategory()` Function**: Now uses vehicle's `category` property (pkw, nutzfahrzeuge, baumaschinen) as primary source
 - ✅ **Multi-Method Willhaben Detection**: Implemented 4-tier detection system for Willhaben vehicles:
   1. **URL Pattern Analysis**: Checks URL for category indicators (`/nutzfahrzeuge/`, `/transporter/`, etc.)
@@ -761,6 +910,7 @@ Improved vehicle categorization system to properly separate PKW (passenger cars)
 - ✅ **Improved Structured Data Extraction**: Enhanced Willhaben parser to extract more data from JSON-LD (title, price, URL, category)
 
 **Technical Implementation:**
+
 - ✅ Updated `determineCategory()` to prioritize vehicle's category property
 - ✅ Added category normalization (baumaschine → baumaschinen)
 - ✅ Enhanced Willhaben parser with comprehensive category detection
@@ -769,20 +919,24 @@ Improved vehicle categorization system to properly separate PKW (passenger cars)
 #### Benefits
 
 **User Experience:**
+
 - ✅ **Accurate Filtering**: Filter tabs (PKW, Nutzfahrzeuge, Baumaschinen) now correctly separate vehicles
 - ✅ **Better Organization**: Vehicles are properly categorized regardless of data source
 - ✅ **Consistent Behavior**: All data sources (AutoScout24, Willhaben, Landwirt, Motornetzwerk) use consistent categorization
 
 **Technical:**
+
 - ✅ **More Reliable**: Multiple detection methods increase accuracy
 - ✅ **Better Data Extraction**: Enhanced use of structured data from Willhaben
 - ✅ **Maintainable**: Clear priority order for category detection methods
 
 #### Files Modified
+
 - `scripts.js` - Enhanced `determineCategory()` function to use vehicle category property
 - `lib/vehicleService.js` - Enhanced Willhaben category detection with multi-method approach
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: Fuel badge color changed from green to blue-gray gradient
 - **Altered**: `determineCategory()` function now prioritizes vehicle's category property over price/year
 - **Added**: Multi-method category detection for Willhaben vehicles (URL, structured data, HTML attributes, title keywords)
@@ -796,9 +950,11 @@ Improved vehicle categorization system to properly separate PKW (passenger cars)
 ### 🔧 Vehicle Details API Enhancement
 
 #### Overview
+
 Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data sources (AutoScout24, Willhaben, Landwirt) in addition to motornetzwerk. Previously, the API only worked with motornetzwerk vehicles (numeric IDs), causing 400 errors for vehicles from other sources.
 
 #### Problem Fixed
+
 - ✅ **400 Error for Non-Motornetzwerk Vehicles**: AutoScout24 vehicles (IDs like `autoscout-9277a327-...`), Willhaben vehicles, and Landwirt machines were rejected with 400 errors
 - ✅ **Limited Source Support**: API only accepted numeric vehicle IDs (motornetzwerk format)
 - ✅ **Missing Vehicle Details**: Quick view modal showed error state for vehicles from AutoScout24, Willhaben, and Landwirt
@@ -806,12 +962,14 @@ Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data s
 #### Solution Implemented
 
 **Multi-Source Support:**
+
 - ✅ **Flexible ID Validation**: Removed strict numeric-only validation, now accepts all ID formats
 - ✅ **Vehicles List Integration**: API first checks the vehicles list (includes all sources) before falling back to motornetzwerk API
 - ✅ **Smart Fallback Logic**: For numeric IDs not found in vehicles list, falls back to motornetzwerk API
 - ✅ **Data Transformation**: Added `transformVehicleFromList()` function to convert vehicle data from list format to API response format
 
 **Technical Implementation:**
+
 - ✅ Added vehicles list caching (30-minute TTL) to reduce API calls
 - ✅ Implemented source detection based on vehicle ID format (autoscout-, landwirt-, numeric)
 - ✅ Enhanced error handling with clear error messages
@@ -820,19 +978,23 @@ Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data s
 #### Benefits
 
 **User Experience:**
+
 - ✅ **All Vehicles Work**: Quick view modal now loads details for vehicles from all sources
 - ✅ **No More Errors**: Eliminated "Daten konnten nicht geladen werden" error for AutoScout24/Willhaben/Landwirt vehicles
 - ✅ **Consistent Experience**: All vehicles show detailed information in quick view modal
 
 **Technical:**
+
 - ✅ **Better Performance**: Vehicles list caching reduces redundant API calls
 - ✅ **Maintainable**: Clear separation between source detection and data fetching
 - ✅ **Extensible**: Easy to add support for additional data sources in the future
 
 #### Files Modified
+
 - `api/vehicle-details.js` - Enhanced to support multi-source vehicles with vehicles list integration and fallback logic
 
 #### Test Results
+
 - ✅ AutoScout24 vehicles (Porsche, etc.) now load details correctly
 - ✅ Willhaben vehicles load details correctly
 - ✅ Landwirt machines load details correctly
@@ -840,6 +1002,7 @@ Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data s
 - ✅ Error handling works correctly for missing vehicles
 
 ### 🗑️ Content Removed/Altered
+
 - **Removed**: Strict numeric-only vehicle ID validation that rejected non-motornetzwerk vehicles
 - **Altered**: API now checks vehicles list first before motornetzwerk API (changed lookup order)
 - **Added**: New `transformVehicleFromList()` function for converting list data to API format
@@ -854,16 +1017,19 @@ Enhanced the `/api/vehicle-details` endpoint to support vehicles from all data s
 ### 📝 CTA Button & Trust Badge Updates
 
 #### Overview
+
 Updated hero section CTA button and trust badges to reflect the business's expanded product offering beyond just vehicles (Autos) to include machines (Maschinen), making the messaging more inclusive and accurate.
 
 #### Content Changes
 
 **CTA Button Update:**
+
 - ✅ **Text Change**: Updated hero CTA button from "Finde dein passendes Auto" to "Finde dein passendes Fahrzeug"
 - ✅ **Broader Scope**: "Fahrzeug" (vehicle) is more generic and encompasses all types of vehicles and machines
 - ✅ **Better Alignment**: Matches the business offering of "Kraftfahrzeuge & Maschinen" (Motor vehicles & Machines)
 
 **Trust Badge Update:**
+
 - ✅ **Text Enhancement**: Updated trust badge from "Geprüfte Fahrzeuge" to "Geprüfte Fahrzeuge & Maschinen"
 - ✅ **Complete Coverage**: Now explicitly mentions both vehicles and machines in the trust badge
 - ✅ **Consistent Messaging**: Aligns with hero location text "Kraftfahrzeuge & Maschinen in Reichenfels, Kärnten"
@@ -871,19 +1037,23 @@ Updated hero section CTA button and trust badges to reflect the business's expan
 #### Technical Implementation
 
 **Code Changes:**
+
 - ✅ Updated CTA button text in `index.html` hero section (line 1079)
 - ✅ Updated trust badge text in `index.html` trust badges section (line 1090)
 
 #### Files Modified
+
 - `index.html` - Updated CTA button text and trust badge text in hero section
 
 #### Test Results
+
 - ✅ CTA button displays "Finde dein passendes Fahrzeug" correctly
 - ✅ Trust badge displays "Geprüfte Fahrzeuge & Maschinen" correctly
 - ✅ All styling and functionality preserved
 - ✅ No visual or functional regressions
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: Hero CTA button text changed from "Finde dein passendes Auto" to "Finde dein passendes Fahrzeug"
 - **Altered**: Trust badge text changed from "Geprüfte Fahrzeuge" to "Geprüfte Fahrzeuge & Maschinen"
 - **Preserved**: All existing hero section styling, animations, and functionality
@@ -896,9 +1066,11 @@ Updated hero section CTA button and trust badges to reflect the business's expan
 ### 🎨 Flash of Unstyled Content (FOUC) Fix
 
 #### Overview
+
 Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigation were briefly visible in unstyled state on page load. Implemented best-practice solution using critical CSS and synchronous loading.
 
 #### Problem Fixed
+
 - ✅ **FOUC Issue**: Skip link, logo, and navigation elements were visible unstyled for a fraction of a second
 - ✅ **Async CSS Hack**: Removed unreliable `media="print"` async loading trick
 - ✅ **Body Hiding**: Removed JavaScript-based body hiding mechanism that could impact accessibility and SEO
@@ -906,11 +1078,13 @@ Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigati
 #### Solution Implemented
 
 **Critical CSS Enhancement:**
+
 - ✅ **Skip Link Styles**: Added skip-to-content link styles to critical inline CSS
 - ✅ **Immediate Styling**: Skip link properly hidden from start (top: -100px) in critical CSS
 - ✅ **Focus State**: Proper focus styles included in critical CSS for accessibility
 
 **CSS Loading Optimization:**
+
 - ✅ **Synchronous Loading**: Changed to standard synchronous CSS loading (best practice)
 - ✅ **No FOUC**: Critical CSS prevents flash since above-the-fold content is styled immediately
 - ✅ **Preload Hint**: Maintained `<link rel="preload">` for early CSS fetch
@@ -919,6 +1093,7 @@ Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigati
 #### Technical Implementation
 
 **Code Changes:**
+
 - ✅ Added skip link styles to critical inline CSS in `index.html` (lines 300-321)
 - ✅ Removed `media="print"` async loading hack from stylesheet link
 - ✅ Removed body visibility JavaScript toggle (css-loading/css-loaded classes)
@@ -928,21 +1103,25 @@ Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigati
 #### Benefits
 
 **Performance & UX:**
+
 - ✅ **No FOUC**: Page renders correctly from first paint
 - ✅ **Faster Perceived Load**: Critical styles applied immediately
 - ✅ **Better Accessibility**: Content visible to screen readers immediately
 - ✅ **SEO Friendly**: Content visible to crawlers without JavaScript dependency
 
 **Code Quality:**
+
 - ✅ **Simpler**: Removed ~15 lines of hacky code
 - ✅ **Standard Approach**: Follows web standards and best practices
 - ✅ **More Reliable**: No dependency on JavaScript execution timing
 - ✅ **Maintainable**: Easier to understand and maintain
 
 #### Files Modified
+
 - `index.html` - Added skip link styles to critical CSS, simplified CSS loading, removed body hiding script
 
 #### Test Results
+
 - ✅ No FOUC on page load
 - ✅ Skip link properly hidden until focused
 - ✅ Logo and navigation styled from first paint
@@ -950,6 +1129,7 @@ Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigati
 - ✅ No accessibility issues
 
 ### 🗑️ Content Removed/Altered
+
 - **Removed**: Async CSS loading hack (`media="print"` with `onload` handler)
 - **Removed**: Body visibility JavaScript toggle (`css-loading`/`css-loaded` classes)
 - **Removed**: Body initialization script that added loading classes
@@ -964,17 +1144,20 @@ Fixed Flash of Unstyled Content (FOUC) issue where skip link, logo, and navigati
 ### 🚗 Fuel Type Display & Category Filters
 
 #### Overview
+
 Enhanced vehicle information display by adding fuel type to vehicle cards and implementing dedicated category filter buttons for improved navigation and vehicle discovery.
 
 #### New Features
 
 **Fuel Type Display:**
+
 - ✅ **Card Features Enhancement**: Added fuel type (Diesel, Benzin, Elektro, Hybrid) display in vehicle card features section
 - ✅ **Dual Display**: Fuel type shown alongside transmission type for comprehensive vehicle information
 - ✅ **Fallback Support**: Handles unknown fuel types gracefully with fallback display
 - ✅ **Consistent Display**: Fuel type appears in both card features and vehicle details modal
 
 **Category Filter Buttons:**
+
 - ✅ **PKW Filter**: Dedicated filter button for passenger cars (PKW)
 - ✅ **Nutzfahrzeuge Filter**: Filter button for commercial vehicles (Nutzfahrzeuge)
 - ✅ **Baumaschinen Filter**: Filter button for construction machinery (Baumaschinen)
@@ -983,6 +1166,7 @@ Enhanced vehicle information display by adding fuel type to vehicle cards and im
 #### UI Improvements
 
 **Filter Buttons Optimization:**
+
 - ✅ **Single Row Layout**: Filter buttons optimized to stay in one row
 - ✅ **Reduced Size**: Smaller button sizes to prevent wrapping on mobile devices
 - ✅ **Better Responsiveness**: Improved mobile experience with compact filter layout
@@ -991,6 +1175,7 @@ Enhanced vehicle information display by adding fuel type to vehicle cards and im
 #### Technical Implementation
 
 **Code Changes:**
+
 - ✅ Enhanced `scripts.js` with fuel type display logic in vehicle card rendering
 - ✅ Added fuel type extraction and display in `card-features` section
 - ✅ Implemented category filter buttons in `index.html` Fahrzeuge section
@@ -998,17 +1183,20 @@ Enhanced vehicle information display by adding fuel type to vehicle cards and im
 - ✅ Optimized filter button CSS in `styles.css` for single-row layout
 
 #### Files Modified
+
 - `scripts.js` - Added fuel type display in vehicle card features (15 lines added)
 - `index.html` - Added category filter buttons (PKW, Nutzfahrzeuge, Baumaschinen)
 - `styles.css` - Optimized filter buttons for single-row layout
 
 #### Test Results
+
 - ✅ Fuel type displays correctly for all vehicle types (Diesel, Benzin, Elektro, Hybrid)
 - ✅ Category filters work correctly for PKW, Nutzfahrzeuge, and Baumaschinen
 - ✅ Filter buttons stay in one row on all screen sizes
 - ✅ Mobile responsiveness maintained with optimized button sizes
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: Vehicle card features now include fuel type alongside transmission type
 - **Altered**: Filter buttons optimized for single-row layout with reduced sizes
 - **Preserved**: All existing vehicle filtering, sorting, and display functionality
@@ -1020,9 +1208,11 @@ Enhanced vehicle information display by adding fuel type to vehicle cards and im
 ### 🖼️ Image Pool Pre-Collection & Porsche Fix
 
 #### Overview
+
 Fixed missing Porsche vehicle thumbnails and optimized image extraction by implementing a pre-collection image pool system. This ensures all vehicles receive images reliably, regardless of HTML structure variations.
 
 #### Image Pool Implementation
+
 - ✅ **Pre-Collection System**: All images are now collected in an `imagePool` Map before processing vehicles
 - ✅ **Single Regex Pass**: Optimized image collection to use a single regex pass instead of multiple searches
 - ✅ **Quality Preference**: Automatically prefers 480x360 images over 250x188 for better quality
@@ -1030,26 +1220,31 @@ Fixed missing Porsche vehicle thumbnails and optimized image extraction by imple
 - ✅ **Fallback Support**: Falls back to HTML section search if image not found in pool
 
 #### Code Simplification
+
 - ✅ **Removed Redundant Fallbacks**: Eliminated complex price-based extraction fallback (100+ lines removed)
 - ✅ **Streamlined Logic**: Simplified fallback chain from 4 levels to 3 levels
 - ✅ **Performance Improvement**: Reduced regex operations and HTML parsing overhead
 - ✅ **Maintainability**: Cleaner, more readable code structure
 
 #### Bug Fixes
+
 - ✅ **Porsche Thumbnail Issue**: Fixed missing images for Porsche Macan vehicles
 - ✅ **All Vehicles**: Ensured all vehicles now receive images from the pre-collected pool
 - ✅ **Image Quality**: Improved image quality by preferring higher resolution versions
 
 #### Test Results
+
 - ✅ All 8 vehicles now display thumbnails correctly
 - ✅ Porsche vehicles (2) now show images properly
 - ✅ Image loading performance improved
 - ✅ Code complexity reduced (~100 lines removed)
 
 #### Files Modified
+
 - `lib/vehicleService.js` - Added image pool pre-collection, simplified fallback logic, optimized image matching
 
 ### 🗑️ Content Removed/Altered
+
 - **Removed**: Complex price-based extraction fallback (redundant with image UUID extraction)
 - **Removed**: Final fallback price+image combination matching (simplified to image UUID extraction)
 - **Altered**: Image extraction now uses pre-collected pool instead of per-vehicle HTML search
@@ -1062,12 +1257,14 @@ Fixed missing Porsche vehicle thumbnails and optimized image extraction by imple
 ### 🔧 Data Extraction Enhancements
 
 #### Year Extraction Fixes
+
 - ✅ **Fixed Year Parsing**: Improved regex patterns to correctly capture full 4-digit years (19xx or 20xx) instead of partial matches
 - ✅ **Better Year Validation**: Enhanced year validation to ensure reasonable values (1970 to current year + 1)
 - ✅ **Multiple Format Support**: Handles various year formats including "MM/YYYY" (e.g., "12/2016") from AutoScout24 detail-item spans
 - ✅ **Fallback Patterns**: Added multiple fallback patterns for year extraction when primary patterns fail
 
 #### Title Extraction Improvements
+
 - ✅ **AutoScout24 Title Parsing**: Enhanced title extraction to correctly combine `h2` and `span.version` content
 - ✅ **HTML Comment Handling**: Removed HTML comments (`<!-- -->`) and extra text like `**TOP**` from titles
 - ✅ **Landwirt Title Extraction**: Added multiple fallback patterns for title extraction (h2/h3, data-title, aria-label, context-based)
@@ -1075,11 +1272,13 @@ Fixed missing Porsche vehicle thumbnails and optimized image extraction by imple
 - ✅ **Context-Based Extraction**: Extract titles from context around images when direct extraction fails
 
 #### Image Matching Enhancements
+
 - ✅ **UUID-Based Matching**: Improved image matching for AutoScout24 using vehicle UUIDs for accurate pairing
 - ✅ **Quality Preference**: Prefer higher quality images (480x360 over 250x188) when available
 - ✅ **Image Pool Management**: Better image pool collection and matching logic for multiple sources
 
 #### Landwirt.com Infrastructure
+
 - ✅ **Puppeteer Fallback**: Added Puppeteer support for JavaScript-rendered Landwirt.com content
 - ✅ **Multiple Extraction Patterns**: Implemented multiple link patterns, title extraction, and context-based matching
 - ✅ **Validation & Filtering**: Added comprehensive validation to filter out invalid machine entries
@@ -1088,11 +1287,13 @@ Fixed missing Porsche vehicle thumbnails and optimized image extraction by imple
 ### 🚗 Multi-Source Vehicle Integration
 
 #### Overview
+
 Implemented comprehensive multi-source vehicle fetching system that aggregates vehicles from AutoScout24, Willhaben, and Landwirt.com, providing maximum vehicle coverage and eliminating dependency on single-source iframes.
 
 #### New Features
 
 **Multi-Source Vehicle Fetcher:**
+
 - ✅ **AutoScout24 Integration**: Fetches cars and transporters from AutoScout24 dealer pages
 - ✅ **Willhaben Integration**: Fetches vehicles from Willhaben.at dealer profiles
 - ✅ **Landwirt.com Integration**: Fetches machines/baumaschinen from Landwirt.com dealer pages
@@ -1101,6 +1302,7 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - ✅ **Category Support**: Properly categorizes vehicles as PKW, Nutzfahrzeuge, or Baumaschinen
 
 **Data Source Types:**
+
 - ✅ `combined` - Fetches from all available sources (recommended)
 - ✅ `autoscout24` - AutoScout24 only
 - ✅ `willhaben` - Willhaben.at only
@@ -1109,6 +1311,7 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 #### Technical Implementation
 
 **Vehicle Service Layer:**
+
 - ✅ Enhanced `lib/vehicleService.js` with multi-source fetchers
 - ✅ `fetchFromAutoscout()` - Parses AutoScout24 HTML for vehicle data
 - ✅ `fetchFromWillhaben()` - Extracts vehicles from Willhaben structured data and HTML
@@ -1118,18 +1321,21 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - ✅ `parseLandwirtMachines()` - Machine data extraction with known patterns
 
 **Configuration Updates:**
+
 - ✅ Updated `config/dealerConfig.js` to use `type: "combined"`
 - ✅ Added all source URLs (AutoScout24, Willhaben, Landwirt)
 - ✅ Updated `config/dealerConfig.browser.js` to match server config
 - ✅ Added reference links for all data sources
 
 **Data Quality:**
+
 - ✅ Title validation (filters JS code, HTML fragments, invalid strings)
 - ✅ Price validation (realistic price ranges)
 - ✅ Duplicate detection (by title similarity)
 - ✅ Vehicle ID generation from URLs or structured data
 
 #### Files Modified
+
 - `lib/vehicleService.js` - Added multi-source fetchers (AutoScout24, Willhaben, Landwirt)
 - `config/dealerConfig.js` - Changed to `type: "combined"` with all source URLs
 - `config/dealerConfig.browser.js` - Updated to match server configuration
@@ -1137,9 +1343,11 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - `TEMPLATE-SETUP.md` - Added documentation for all data source types
 
 #### Files Created
+
 - None (enhanced existing files)
 
 #### Test Results
+
 - ✅ Successfully fetches 7 vehicles from AutoScout24
 - ✅ Successfully fetches 1 vehicle from Willhaben
 - ✅ Combined total: 8 vehicles
@@ -1150,6 +1358,7 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 - ✅ Porsche vehicles and all other vehicles display thumbnails reliably
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: `dataSource.type` changed from `"willhaben"` to `"combined"` in dealerConfig
 - **Altered**: Vehicle fetching now uses multiple sources instead of single iframe
 - **Preserved**: All existing vehicle display functionality, API endpoints, and UI components
@@ -1162,9 +1371,11 @@ Implemented comprehensive multi-source vehicle fetching system that aggregates v
 ### 🎨 Navbar & Logo Enhancements
 
 #### Overview
+
 Improved navbar design by reducing padding and adjusting logo size to fill the navbar height. Updated logo to use new WebP format file.
 
 #### Navbar Improvements
+
 - ✅ Reduced header padding from `1.5rem 0` to `0.5rem 0` (not scrolled)
 - ✅ Reduced scrolled header padding from `1rem 0` to `0.25rem 0`
 - ✅ Logo now fills navbar height without increasing navbar size
@@ -1172,20 +1383,24 @@ Improved navbar design by reducing padding and adjusting logo size to fill the n
 - ✅ Logo max-width: 280px
 
 #### Logo Update
+
 - ✅ Updated logo from `assets/logo.jpg` to `assets/Logo New.webp`
 - ✅ Updated logo reference in HTML image tag
 - ✅ Updated logo reference in JSON-LD structured data
 - ✅ Maintained responsive behavior and transitions
 
 #### Files Modified
+
 - `styles.css` - Reduced header padding, adjusted logo dimensions
 - `index.html` - Updated logo file reference and structured data
 
 #### Documentation Updates
+
 - ✅ Updated `PERSONALISIERUNGS-PUNKTE.md` - Marked logo as completed
 - ✅ Updated `ASSETS-GUIDE.md` - Documented current logo file and navbar styling
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: Header padding reduced to make navbar more compact
 - **Altered**: Logo file changed from `logo.jpg` to `Logo New.webp`
 - **Altered**: Logo dimensions adjusted to fill navbar height
@@ -1198,17 +1413,20 @@ Improved navbar design by reducing padding and adjusting logo size to fill the n
 ### 🎨 Visual Polish & Refinements
 
 #### Overview
+
 Added comprehensive visual enhancements to improve user experience and design consistency across the website, including custom scrollbar styling, enhanced card interactions, refined header states, and consistent icon styling.
 
 #### Visual Improvements
 
 **Custom Global Scrollbar:**
+
 - ✅ Brand-colored scrollbar for Firefox and WebKit browsers
 - ✅ Smooth hover effects with brand color transitions
 - ✅ Consistent with site design and brand identity
 - ✅ Location: `styles.css` (lines ~12508-12535)
 
 **Enhanced Card Hover Effects:**
+
 - ✅ Improved lift effect (translateY(-5px)) for better depth perception
 - ✅ Enhanced shadow depth with multi-layer shadows
 - ✅ Better border color transitions on hover
@@ -1216,6 +1434,7 @@ Added comprehensive visual enhancements to improve user experience and design co
 - ✅ Location: `styles.css` (lines ~12541-12557)
 
 **Refined Sticky Header:**
+
 - ✅ Improved visual separation with enhanced shadow
 - ✅ Subtle brand-colored border when scrolled
 - ✅ Better contrast and visibility when header is in scrolled state
@@ -1223,18 +1442,22 @@ Added comprehensive visual enhancements to improve user experience and design co
 - ✅ Location: `styles.css` (lines ~12559-12567)
 
 **Consistent Icon Styling:**
+
 - ✅ Standardized stroke width (1.5px) across all icons
 - ✅ Applies to service, facility, and feature icons
 - ✅ Improved visual consistency throughout the site
 - ✅ Location: `styles.css` (lines ~12569-12574)
 
 #### Files Modified
+
 - `styles.css` - Added visual enhancements section (lines ~12508-12575)
 
 #### Documentation Created
+
 - ✅ **Created**: `VISUAL-IMPROVEMENTS-GUIDE.md` - Complete guide for applying visual improvements to template repository, including code examples and application methods
 
 ### 🗑️ Content Removed/Altered
+
 - **Added**: Custom scrollbar styling (no existing scrollbar styles were removed)
 - **Enhanced**: Card hover effects (improved existing transitions)
 - **Enhanced**: Header scrolled state (improved existing styling)
@@ -1248,16 +1471,19 @@ Added comprehensive visual enhancements to improve user experience and design co
 ### 🎯 Company-Specific Personalization
 
 #### Overview
+
 Updated website content to reflect accurate company information for CB Handels GmbH, including years of experience calculation and remaining address references.
 
 #### Content Updates
 
 **Years of Experience:**
+
 - ✅ Updated statistics from "15+ Jahre Erfahrung" to "18+ Jahre Erfahrung"
 - ✅ Calculated based on company founding date: 02.02.2007
 - ✅ Updated in `index.html` statistics section (line 1381)
 
 **Address References:**
+
 - ✅ Fixed remaining "Wolfsberg" references to "Reichenfels"
 - ✅ Updated facility location card: "Gut erreichbar in Wolfsberg" → "Gut erreichbar in Reichenfels"
 - ✅ Updated contact section address display
@@ -1265,17 +1491,21 @@ Updated website content to reflect accurate company information for CB Handels G
 - ✅ Enhanced JavaScript address replacement logic to catch all instances
 
 **Location Descriptions:**
+
 - ✅ Updated facility card description from "Auenfischerstraße 53a" to "Industriestraße 5"
 - ✅ Updated all address text references throughout the page
 
 #### Files Modified
+
 - `index.html` - Updated years of experience statistic, address references, location descriptions, and JavaScript replacement logic
 
 #### Documentation Created
+
 - ✅ **Created**: `FRAGEBOGEN-PERSONALISIERUNG.md` - Comprehensive German questionnaire for business owner covering 14 sections (company history, statistics, services, target audience, values, opening hours, location, reviews, visual content, social media, contact, offers, legal info, additional wishes)
 - ✅ **Created**: `PERSONALISIERUNGS-PUNKTE.md` - Summary document listing completed personalization points and items requiring customer input
 
 #### Items Identified for Future Updates (Requires Customer Input)
+
 - Statistics verification (customer count, ratings)
 - Google Maps coordinates update (currently using Wolfsberg coordinates)
 - Real customer testimonials/reviews
@@ -1286,13 +1516,16 @@ Updated website content to reflect accurate company information for CB Handels G
 - Blog content personalization
 
 ### 📁 Files Modified
+
 - `index.html` - Statistics, address references, location descriptions
 
 ### 📁 Files Created
+
 - `FRAGEBOGEN-PERSONALISIERUNG.md` - German questionnaire for business owner
 - `PERSONALISIERUNGS-PUNKTE.md` - Personalization points summary
 
 ### 🗑️ Content Removed/Altered
+
 - **Altered**: Years of experience statistic from 15+ to 18+ years
 - **Altered**: All remaining Wolfsberg address references to Reichenfels
 - **Altered**: Facility location descriptions to reflect correct location
@@ -1305,11 +1538,13 @@ Updated website content to reflect accurate company information for CB Handels G
 ### 🎨 Full Website Rebranding Completed
 
 #### Overview
+
 Complete rebranding of the website from DirektOnline BS GmbH template to CB Handels GmbH. All visual elements, content, and references have been updated.
 
 #### Visual & Branding Changes
 
 **Brand Colors:**
+
 - ✅ Updated CSS brand colors from green (#1b8e2d) to blue (#004b8d)
 - ✅ Updated RGB values: `27, 142, 45` → `0, 75, 141`
 - ✅ Updated light variant: `#22a636` → `#2469a6`
@@ -1318,17 +1553,20 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 - ✅ Updated inline critical CSS in index.html
 
 **Logo:**
+
 - ✅ Updated logo reference from logo.png to logo.jpg
 - ✅ Updated logo alt text to "CB Handels GmbH Logo"
 - ✅ Updated structured data logo references
 
 **UI Enhancements:**
+
 - ✅ Made trust badges more transparent (25% opacity light mode, 30% dark mode)
 - ✅ Updated hero header to display "CB Handels GmbH" instead of "CB Handels"
 
 #### Content Updates
 
 **All Text References:**
+
 - ✅ Removed all "DirektOnline" references from codebase
 - ✅ Updated all company name references to "CB Handels GmbH"
 - ✅ Updated hero headline to full company name
@@ -1338,6 +1576,7 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 - ✅ Updated impressum and privacy policy sections
 
 **Blog Posts:**
+
 - ✅ Updated all 3 markdown files (.md) with CB Handels information
 - ✅ Updated all 3 HTML files (.html) with CB Handels information
 - ✅ Updated author from "DirektOnline Team" to "CB Handels Team"
@@ -1345,6 +1584,7 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 - ✅ Updated all contact information in blog posts
 
 **Meta Tags & SEO:**
+
 - ✅ Updated HTML title and meta description
 - ✅ Updated Open Graph tags
 - ✅ Updated Twitter Card tags
@@ -1352,6 +1592,7 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 - ✅ Updated structured data (JSON-LD) for Organization, LocalBusiness, etc.
 
 **Domain & URLs:**
+
 - ✅ Updated sitemap.xml from direktonline.at to cbhandel.at
 - ✅ Updated sitemap.html title and canonical URL
 - ✅ Updated robots.txt domain references
@@ -1359,16 +1600,19 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 - ✅ Removed DirektOnline API endpoints from CSP headers
 
 **JavaScript:**
+
 - ✅ Updated file header comment
 - ✅ Updated fallback strings for company name, email, and URLs
 - ✅ Updated console log message with new brand color
 - ✅ Updated dynamic content replacement logic
 
 **CSS:**
+
 - ✅ Updated file header comment to "CB Handels GmbH Website Styles"
 - ✅ Updated brand color comment
 
 #### Files Modified
+
 - `index.html` - Complete content and meta tag updates
 - `styles.css` - Brand colors and comments
 - `scripts.js` - Fallback strings and comments
@@ -1386,33 +1630,39 @@ Complete rebranding of the website from DirektOnline BS GmbH template to CB Hand
 ### 🔄 Dealer Configuration Update
 
 #### Overview
+
 The dealer configuration has been updated from DirektOnline BS GmbH to CB Handels GmbH, reflecting the current deployment of the template.
 
 #### Configuration Changes
 
 **Company Information:**
+
 - **Name**: Updated from "DirektOnline BS GmbH" to "CB Handels GmbH"
 - **Legal Name**: Updated to "CB Handels GmbH"
 - **Managing Director**: Added "Ing. Christian Baumgartner"
 
 **Address:**
+
 - **Street**: Updated from "Auenfischerstraße 53a" to "Industriestraße 5"
 - **City**: Updated from "Wolfsberg" to "Reichenfels"
 - **Postal Code**: Updated from "9400" to "9463"
 - **Secondary Location**: Removed (set to `null` - no secondary location known)
 
 **Contact Information:**
+
 - **Email**: Updated from "direktonline.at@gmail.com" to "office@cbhandel.at"
 - **Phone**: Updated from "+43 664 260 81 85" to "+43 664 3882323"
 - **Opening Hours**: Updated from "Montag – Freitag: 08:00 – 19:30 Uhr" to "Montag bis Freitag: nach telefonischer Vereinbarung"
 
 **Legal/Company Info:**
+
 - **Company Register**: Updated from "FN 637100m" to "FN 565866g"
 - **VAT ID**: Updated from "ATU81166319" to "ATU77390636"
 - **GLN, GISA, Tax Number**: Cleared (empty strings)
 - **Bank Details**: Cleared (empty IBAN and BIC)
 
 **SEO Settings:**
+
 - **Site Title**: Updated to "CB Handels GmbH | Kraftfahrzeuge und Maschinen in Reichenfels, Kärnten"
 - **Meta Description**: Updated to reflect CB Handels GmbH focus on vehicles and machinery
 - **Keywords**: Updated to include "CB Handels, Reichenfels, Kärnten, Gebrauchtwagen, Nutzfahrzeuge, Maschinenhandel, Traktoren, Landmaschinen, Autoankauf"
@@ -1420,16 +1670,19 @@ The dealer configuration has been updated from DirektOnline BS GmbH to CB Handel
 - **OG Image URL**: Updated to "https://cbhandel.at/assets/og-image.jpg"
 
 **Branding:**
+
 - **Primary Color**: Updated from green (#1b8e2d) to blue (#004b8d)
 - **Primary RGB**: Updated to "0, 75, 141"
 - **Primary Light**: Updated to "#2469a6"
 - **Primary Dark**: Updated to "#003564"
 
 **Social Media:**
+
 - **All Platforms**: Updated handles from "direktonline.at" / "@direktonline-at" / "DirektOnlineAT" to "cbhandel" / "@cbhandel"
 - **Twitter Handle**: Updated to "@cbhandel"
 
 **Vehicle Data Source:**
+
 - **Type**: Changed from "motornetzwerk" to "unknown" (to be configured later)
 - **Dealer ID**: Cleared (empty string)
 - **Base URL**: Cleared (empty string)
@@ -1442,11 +1695,13 @@ The dealer configuration has been updated from DirektOnline BS GmbH to CB Handel
   - Mascus: https://www.mascus.at/cb-handels-gmbh/8bf11bd0,1,relevance,searchdealer.html
 
 **CORS Origins:**
+
 - Updated from direktonline.at domains to cbhandel.at domains
 - Removed "onlinedirekt.at" domains
 - Updated Vercel preview URL to "https://cbhandel.vercel.app"
 
 **Description:**
+
 - Updated company description to reflect CB Handels GmbH focus on vehicles, commercial vehicles, and machinery
 
 ### 📁 Files Modified
@@ -1482,20 +1737,25 @@ The dealer configuration has been updated from DirektOnline BS GmbH to CB Handel
 ### 🔄 Major Refactoring: Converted to Reusable Template
 
 #### Overview
+
 The DirektOnline website has been refactored into a reusable car dealership template. All dealer-specific data has been extracted into centralized configuration files, making it easy to customize for any dealer.
 
 #### Configuration System
+
 - **Created**: `config/dealerConfig.js` - Node.js/serverless configuration file containing all dealer-specific data
 - **Created**: `config/dealerConfig.browser.js` - Browser-compatible configuration (exposes `window.dealerConfig`)
 - **Centralized Data**: Company info, address, contact, legal details, SEO settings, social media, vehicle data source, CORS origins
 
 #### Vehicle Service Abstraction
+
 - **Created**: `lib/vehicleService.js` - Abstraction layer for vehicle data fetching
 - **Extensible**: Currently supports `motornetzwerk`, designed for future support of `willhaben`, `gebrauchtwagen`, and `combined` sources
 - **Moved Logic**: Vehicle fetching logic extracted from `api/vehicles.js` to service layer
 
 #### API Refactoring
+
 All API files now use `dealerConfig` instead of hardcoded values:
+
 - **api/vehicles.js**: Uses config for URLs, CORS origins, calls `vehicleService.getVehicles()`
 - **api/vehicle-details.js**: Uses config for dealer ID and dealer info
 - **api/contact.js**: Uses config for email content, company name, CORS
@@ -1503,18 +1763,20 @@ All API files now use `dealerConfig` instead of hardcoded values:
 - **api/appointment.js**: Uses config for email content, opening hours, website URLs, CORS
 
 #### Frontend Refactoring
-- **index.html**: 
+
+- **index.html**:
   - Loads `config/dealerConfig.browser.js` script
   - Populates meta tags dynamically from config
   - Generates JSON-LD structured data from config
   - Populates visible content (company name, address, contact info, social links) from config
-- **scripts.js**: 
+- **scripts.js**:
   - Uses `window.dealerConfig` for email links (22 references)
   - Uses config for error messages with phone numbers
   - Uses config for image URL construction
   - Fallback values provided for safety
 
 #### Documentation
+
 - **Created**: `TEMPLATE-SETUP.md` - Comprehensive setup guide for new dealers
 - **Created**: `TEST-RESULTS.md` - Automated test results
 - **Created**: `LIVE-TEST-RESULTS.md` - Live server test results
@@ -1568,22 +1830,26 @@ All API files now use `dealerConfig` instead of hardcoded values:
 ### 🚀 Performance Optimizations
 
 #### Phase 1: Core Performance Improvements
+
 - **Logo Image Dimensions**: Added width/height attributes (250x60) to logo image to prevent Cumulative Layout Shift (CLS)
 - **Google Analytics Preconnect**: Added preconnect links for `googletagmanager.com` and `google-analytics.com` domains to reduce connection time
 - **Font Display**: Verified `font-display=swap` is present in Google Fonts URL for faster text rendering
 
 #### Phase 2: Critical CSS Inlining
+
 - **Critical CSS Extraction**: Extracted and inlined critical CSS for above-the-fold content (header, hero section, base styles)
 - **Async CSS Loading**: Main stylesheet loads asynchronously using media="print" technique with noscript fallback
 - **Faster First Contentful Paint**: Eliminated render-blocking CSS for improved FCP scores
 
 #### Phase 4: Image & Resource Optimization
+
 - **LCP Image Preload**: Added preload with `fetchpriority="high"` for hero background image (LCP candidate)
 - **Strategic Prefetch**: Added prefetch hints for common blog post navigation paths (`/posts/reifenwechsel.html`, `/posts/gebrauchtwagen-kaufen.html`, `/posts/elektromobilitaet.html`)
 
 ### ♿ Accessibility Enhancements
 
 #### Phase 3: Comprehensive Accessibility Improvements
+
 - **Skip-to-Content Link**: Added keyboard-accessible skip link that appears on focus, allowing users to jump directly to main content
 - **Focus Management**: Improved focus trapping and restoration in all modals (search, appointment booking, video testimonial) using `setupModalA11y` helper
 - **ARIA Live Regions**: Added three ARIA live regions for dynamic content announcements:
@@ -1595,6 +1861,7 @@ All API files now use `dealerConfig` instead of hardcoded values:
 ### 🔍 SEO Enhancements
 
 #### Phase 4: Structured Data & Error Handling
+
 - **Review/Rating Schema**: Added comprehensive Review/Rating structured data (Schema.org) for testimonials:
   - AggregateRating with 4.9 rating and 4 reviews
   - Individual Review objects for each testimonial with author, date, rating, and review body
@@ -1607,7 +1874,7 @@ All API files now use `dealerConfig` instead of hardcoded values:
 
 ### 📁 Files Modified
 
-- **index.html**: 
+- **index.html**:
   - Added logo width/height attributes
   - Added Google Analytics preconnect links
   - Added critical CSS inline styles
@@ -1617,9 +1884,9 @@ All API files now use `dealerConfig` instead of hardcoded values:
   - Added hero image preload with fetchpriority
   - Added blog post prefetch hints
   - Added Review/Rating structured data
-- **styles.css**: 
+- **styles.css**:
   - Added skip-to-content link styles
-- **scripts.js**: 
+- **scripts.js**:
   - Added `announceToScreenReader()` helper function
   - Updated vehicle loading to announce status
   - Updated form submissions to announce status
