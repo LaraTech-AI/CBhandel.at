@@ -10124,10 +10124,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 .quick-view-main-image img {
   width: 100%;
-  height: auto;
-  max-height: 400px;
+  height: 400px;
   max-width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
 }
@@ -10772,20 +10771,22 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   cursor: pointer;
   transition: all var(--transition-base);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .compare-checkbox-btn-modal span {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .compare-checkbox-btn-modal:hover {
@@ -10794,15 +10795,51 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 }
 
 .compare-checkbox-btn-modal .compare-checkbox-modal {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  accent-color: var(--brand-primary);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
 }
 
 .compare-checkbox-btn-modal:has(.compare-checkbox-modal:checked),
 .compare-checkbox-btn-modal.has-checked {
-  background: rgba(var(--brand-primary-rgb), 0.1);
+  background: rgba(var(--brand-primary-rgb), 0.15);
   border-color: var(--brand-primary);
+}
+
+/* Light theme specific fixes for compare button */
+[data-theme="light"] .compare-checkbox-btn-modal {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  color: #212529;
+}
+
+[data-theme="light"] .compare-checkbox-btn-modal span {
+  color: #212529;
+}
+
+[data-theme="light"] .compare-checkbox-btn-modal .compare-checkbox-modal {
+  background: #fff;
+  border-color: #ced4da;
+}
+
+/* Dark theme specific fixes for compare button */
+[data-theme="dark"] .compare-checkbox-btn-modal {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .compare-checkbox-btn-modal span {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .compare-checkbox-btn-modal .compare-checkbox-modal {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .share-vehicle-btn-modal {
@@ -10984,8 +11021,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     max-height: 300px;
     min-height: 250px;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Hide navigation arrows on mobile - use swipe gestures instead */
