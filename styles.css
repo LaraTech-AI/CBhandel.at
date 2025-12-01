@@ -12820,10 +12820,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   /* Mobile Modals - Full Screen on Small Devices */
   .modal,
-  .quick-view-modal,
   .comparison-modal,
   .financing-modal {
     padding: 1rem;
+  }
+
+  /* Quick view modal is handled separately above at 968px breakpoint */
+  .quick-view-modal {
+    padding: 0 !important;
   }
 
   .modal-content {
