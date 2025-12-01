@@ -135,14 +135,16 @@ module.exports = async (req, res) => {
     const sanitizedVehiclePrice = vehiclePrice ? sanitize(vehiclePrice) : null;
 
     // Validate environment variables
-    if (
-      !process.env.SMTP_HOST ||
-      !process.env.SMTP_PORT ||
-      !process.env.SMTP_USER ||
-      !process.env.SMTP_PASS ||
-      !process.env.CONTACT_TO_EMAIL
-    ) {
-      console.error("Missing required environment variables");
+    const missingVars = [];
+    if (!process.env.SMTP_HOST) missingVars.push("SMTP_HOST");
+    if (!process.env.SMTP_PORT) missingVars.push("SMTP_PORT");
+    if (!process.env.SMTP_USER) missingVars.push("SMTP_USER");
+    if (!process.env.SMTP_PASS) missingVars.push("SMTP_PASS");
+    if (!process.env.CONTACT_TO_EMAIL) missingVars.push("CONTACT_TO_EMAIL");
+
+    if (missingVars.length > 0) {
+      console.error("Missing required environment variables:", missingVars.join(", "));
+      console.error("Available env vars:", Object.keys(process.env).filter(k => k.startsWith("SMTP") || k === "CONTACT_TO_EMAIL"));
       return res.status(500).json({
         success: false,
         error:
@@ -150,16 +152,43 @@ module.exports = async (req, res) => {
       });
     }
 
+    // Parse SMTP port
+    const smtpPort = parseInt(process.env.SMTP_PORT, 10);
+    const isSecurePort = smtpPort === 465;
+
     // Create nodemailer transporter
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT),
-      secure: process.env.SMTP_PORT === "465", // true for 465, false for other ports
+      port: smtpPort,
+      secure: isSecurePort, // true for 465 (SSL), false for other ports (TLS)
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      // Add connection timeout and retry options
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
+      // For ports other than 465, require TLS
+      requireTLS: !isSecurePort,
+      // For port 465, disable TLS requirement (uses SSL directly)
+      tls: {
+        rejectUnauthorized: false, // Allow self-signed certificates if needed
+      },
     });
+
+    // Log SMTP configuration (without sensitive data)
+    console.log("SMTP Configuration:", {
+      host: process.env.SMTP_HOST,
+      port: smtpPort,
+      secure: isSecurePort,
+      user: process.env.SMTP_USER,
+      hasPassword: !!process.env.SMTP_PASS,
+      contactEmail: process.env.CONTACT_TO_EMAIL,
+    });
+
+    // Note: We skip verify() as some SMTP servers don't support it
+    // but still allow sending emails. We'll catch errors during sendMail() instead.
 
     // Build email subject
     const emailSubject = sanitizedVehicleTitle
@@ -268,8 +297,17 @@ IP-Adresse: ${clientIP}
       `.trim(),
     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    // Send email to business
+    console.log("Attempting to send inquiry email to:", process.env.CONTACT_TO_EMAIL);
+    try {
+      const businessEmailResult = await transporter.sendMail(mailOptions);
+      console.log("Business email sent successfully:", businessEmailResult.messageId);
+    } catch (businessEmailError) {
+      console.error("Failed to send business email:", businessEmailError.message);
+      console.error("Business email error code:", businessEmailError.code);
+      console.error("Business email error response:", businessEmailError.response);
+      throw businessEmailError; // Re-throw to be caught by outer catch
+    }
 
     // Send auto-reply to customer
     const autoReplyOptions = {
@@ -330,7 +368,18 @@ IP-Adresse: ${clientIP}
       `.trim(),
     };
 
-    await transporter.sendMail(autoReplyOptions);
+    // Send auto-reply email to customer
+    console.log("Attempting to send auto-reply email to:", sanitizedEmail);
+    try {
+      const autoReplyResult = await transporter.sendMail(autoReplyOptions);
+      console.log("Auto-reply email sent successfully:", autoReplyResult.messageId);
+    } catch (autoReplyError) {
+      // Log error but don't fail the entire request if auto-reply fails
+      console.error("Failed to send auto-reply email:", autoReplyError.message);
+      console.error("Auto-reply error code:", autoReplyError.code);
+      console.error("Auto-reply error response:", autoReplyError.response);
+      // Continue - the main inquiry was sent successfully
+    }
 
     // Return success response
     return res.status(200).json({
@@ -339,11 +388,29 @@ IP-Adresse: ${clientIP}
     });
   } catch (error) {
     console.error("Inquiry form error:", error);
+    console.error("Error message:", error.message);
+    console.error("Error code:", error.code);
+    console.error("Error response:", error.response);
+    console.error("Error responseCode:", error.responseCode);
+    console.error("Error command:", error.command);
+
+    // Provide more specific error messages based on error type
+    let errorMessage = `Es ist ein Fehler beim Senden der Anfrage aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${dealerConfig.phone}.`;
+
+    if (error.code === "ECONNREFUSED" || error.code === "ETIMEDOUT") {
+      errorMessage = "SMTP-Server-Verbindungsfehler. Bitte überprüfen Sie die Server-Konfiguration.";
+    } else if (error.code === "EAUTH") {
+      errorMessage = "SMTP-Authentifizierungsfehler. Bitte überprüfen Sie Benutzername und Passwort.";
+    } else if (error.responseCode === 535) {
+      errorMessage = "SMTP-Authentifizierungsfehler. Bitte überprüfen Sie die Anmeldedaten.";
+    } else if (error.responseCode === 550) {
+      errorMessage = "E-Mail-Adresse nicht gefunden oder ungültig.";
+    }
 
     // Return user-friendly error message
     return res.status(500).json({
       success: false,
-      error: `Es ist ein Fehler beim Senden der Anfrage aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${dealerConfig.phone}.`,
+      error: errorMessage,
     });
   }
 };

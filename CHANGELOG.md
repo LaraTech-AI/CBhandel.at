@@ -17,6 +17,7 @@ Added comprehensive email configuration documentation for the inquiry form SMTP 
 #### Documentation Details
 
 **EMAIL_SETUP.md** includes:
+
 - Overview of inquiry form email system (notification + auto-reply)
 - Required environment variables table
 - Setup instructions for Gmail, Office 365, and custom SMTP
@@ -28,6 +29,7 @@ Added comprehensive email configuration documentation for the inquiry form SMTP 
 - Security best practices
 
 **VERCEL_ENV_CONFIG.md** includes:
+
 - Quick copy-paste configuration values
 - Step-by-step Vercel dashboard instructions
 - Environment variable setup checklist

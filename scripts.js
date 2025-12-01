@@ -3228,6 +3228,43 @@ function initQuickView() {
             )
           : null);
 
+      // Helper function to filter out invalid images (logos, placeholders, etc.)
+      const filterInvalidImages = (imgUrl) => {
+        if (!imgUrl || typeof imgUrl !== "string") return false;
+        const urlLower = imgUrl.toLowerCase();
+        
+        // Filter out Landwirt logos and icons
+        if (urlLower.includes("static.landwirt.com")) {
+          if (urlLower.includes("mobileicons")) return false;
+          if (urlLower.includes("apple-touch-icon")) return false;
+          if (urlLower.includes("platzhalter")) return false;
+          if (urlLower.includes("/logo")) return false;
+          if (urlLower.includes("icon")) return false;
+          if (urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i)) return false;
+          if (urlLower.match(/-\d*vb\.(jpg|jpeg|png|webp)$/i)) return false;
+        }
+        
+        // Filter out common non-vehicle images
+        if (
+          urlLower.includes("logo") ||
+          urlLower.includes("icon") ||
+          urlLower.includes("favicon") ||
+          urlLower.includes("social") ||
+          urlLower.includes("mobileicons") ||
+          urlLower.includes("apple-touch-icon") ||
+          urlLower.includes("platzhalter") ||
+          urlLower.includes("placeholder") ||
+          urlLower.includes("no-image")
+        ) return false;
+        
+        // Zweispurig: ensure valid pattern (should have vehicleId_numbers.jpg)
+        if (urlLower.includes("files.zweispurig.at")) {
+          if (!urlLower.match(/\d+_\d+\.(jpg|jpeg|png|webp)$/i)) return false;
+        }
+        
+        return true;
+      };
+      
       // Check for images array (Zweispurig/Landwirt) or allImages (motornetzwerk)
       const imagesArray = vehicleDataForImages?.images || vehicleDataForImages?.allImages;
       
@@ -3237,11 +3274,11 @@ function initQuickView() {
         Array.isArray(imagesArray) &&
         imagesArray.length > 0
       ) {
-        // Use all images from vehicle data as initial set
+        // Use all images from vehicle data as initial set, but filter out invalid ones
         // Will be enhanced with more images from details API
-        quickViewState.vehicleImages = imagesArray.filter(Boolean);
+        quickViewState.vehicleImages = imagesArray.filter(img => img && filterInvalidImages(img));
         console.log(
-          `Quick View: Found ${quickViewState.vehicleImages.length} images for vehicle ${quickViewState.currentVehicleId}`,
+          `Quick View: Found ${imagesArray.length} images, filtered to ${quickViewState.vehicleImages.length} valid images for vehicle ${quickViewState.currentVehicleId}`,
           quickViewState.vehicleImages
         );
 
@@ -3250,15 +3287,15 @@ function initQuickView() {
           `Quick View: Initial ${quickViewState.vehicleImages.length} images. Will be enhanced by details API...`
         );
       } else if (vehicleDataForImages && vehicleDataForImages.image) {
-        // Fallback: use single image from vehicle data
-        // Will be enhanced by vehicle-details API call below
-        quickViewState.vehicleImages = [vehicleDataForImages.image];
+        // Fallback: use single image from vehicle data (if valid)
+        const singleImage = filterInvalidImages(vehicleDataForImages.image) ? [vehicleDataForImages.image] : [];
+        quickViewState.vehicleImages = singleImage;
         console.log(
           `Quick View: Using single image. Will be enhanced by details API...`
         );
       } else {
-        // Final fallback: use main image from card
-        quickViewState.vehicleImages = [mainImageSrc].filter(Boolean);
+        // Final fallback: use main image from card (if valid)
+        quickViewState.vehicleImages = mainImageSrc && filterInvalidImages(mainImageSrc) ? [mainImageSrc] : [];
       }
     } else {
       // No vehicle ID, just use main image
@@ -3950,13 +3987,20 @@ function initQuickView() {
                   urlLower.includes("logo") ||
                   urlLower.includes("icon") ||
                   urlLower.includes("favicon") ||
-                  urlLower.includes("social")
+                  urlLower.includes("social") ||
+                  urlLower.includes("mobileicons") ||
+                  urlLower.includes("apple-touch-icon") ||
+                  urlLower.includes("platzhalter")
                 )
                   return false;
 
-                // Filter out Landwirt low-resolution thumbnails (patterns like -0kl.jpg, -kl.jpg)
-                if (urlLower.includes("static.landwirt.com") && urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i))
-                  return false;
+                // Filter out Landwirt low-resolution thumbnails and logos (patterns like -0kl.jpg, -kl.jpg, -0vb.jpg, -vb.jpg)
+                if (urlLower.includes("static.landwirt.com")) {
+                  if (urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i)) return false;
+                  if (urlLower.match(/-\d*vb\.(jpg|jpeg|png|webp)$/i)) return false;
+                  if (urlLower.includes("mobileicons")) return false;
+                  if (urlLower.includes("platzhalter")) return false;
+                }
 
                 // Must be an image file or look like a vehicle image URL
                 const hasImageExtension =
@@ -4402,12 +4446,42 @@ function initQuickView() {
   // This ensures buttons created after initialization still work
   document.addEventListener("click", (e) => {
     const quickViewBtn = e.target.closest(".quick-view-btn");
-    if (!quickViewBtn) return;
+    if (quickViewBtn) {
+      e.stopPropagation();
+      e.preventDefault();
+      const vehicleCard = quickViewBtn.closest(".vehicle-card");
+      if (vehicleCard) {
+        openQuickView(vehicleCard);
+      }
+      return;
+    }
 
-    e.stopPropagation();
-    const vehicleCard = quickViewBtn.closest(".vehicle-card");
-    if (vehicleCard) {
-      openQuickView(vehicleCard);
+    // Handle Details button clicks
+    const detailsBtn = e.target.closest("a.btn-primary.btn-sm");
+    if (detailsBtn && detailsBtn.href && detailsBtn.href.includes("#fahrzeuge/vehicle/")) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Extract vehicle ID from href
+      const hrefMatch = detailsBtn.href.match(/fahrzeuge\/vehicle\/([^\/\?]+)/);
+      if (hrefMatch) {
+        const vehicleId = hrefMatch[1];
+        const vehicleCard = detailsBtn.closest(".vehicle-card, .vehicle-list-item");
+        
+        if (vehicleCard) {
+          // Update hash and open quick view
+          window.location.hash = `#fahrzeuge/vehicle/${vehicleId}`;
+          // Small delay to ensure hash is set, then open quick view
+          setTimeout(() => {
+            if (window.openQuickView) {
+              window.openQuickView(vehicleId);
+            }
+          }, 50);
+        } else {
+          // Fallback: just set hash and let hashchange handler deal with it
+          window.location.hash = `#fahrzeuge/vehicle/${vehicleId}`;
+        }
+      }
     }
   });
 
