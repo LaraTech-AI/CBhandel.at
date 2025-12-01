@@ -10004,6 +10004,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   animation: modalSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  background: var(--bg-primary);
 }
 
 @keyframes modalSlideIn {
@@ -11008,6 +11009,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
+    overflow: hidden !important; /* Prevent content from overflowing, let body scroll */
+    background: var(--bg-primary) !important;
   }
 
   /* Ensure close button is visible on mobile */
