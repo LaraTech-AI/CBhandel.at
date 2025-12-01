@@ -20,7 +20,7 @@ Modern, deployment-ready single-page website template for car dealerships. Curre
 - **Dark Mode**: Toggle between light and dark themes (loads in light mode by default)
 - **Accessibility**: ARIA attributes, semantic HTML, keyboard navigation, skip-to-content link, focus management in modals, ARIA live regions for dynamic content announcements
 - **Enhanced Hero**: Animated gradients, trust badges, improved CTAs
-- **Vehicle Features**: Quick view modal with enhanced vehicle details API, touch-friendly mobile image gallery with swipe gestures, comparison tool, filtering & sorting, share functionality, vehicle inquiry form, real-time search
+- **Vehicle Features**: Quick view modal with enhanced vehicle details API, touch-friendly mobile image gallery with swipe gestures, comparison tool, filtering & sorting, share functionality, vehicle inquiry form with API-based email sending, real-time search
 - **Trust Indicators**: Enhanced trust badges, real Google reviews, animated statistics, Google Reviews integration with direct review link and QR code
 - **Services Section**: Comprehensive service showcase (inspection, warranty, financing, trade-in) with interactive cards and hash-based navigation to calculators
 - **Process Section**: 5-step buying process guide with visual indicators and descriptions
@@ -49,7 +49,8 @@ dealership/
 │   ├── vehicle-details.js    # Vercel serverless function for detailed vehicle information by vid (uses dealerConfig)
 │   ├── newsletter.js         # Vercel serverless function for newsletter subscriptions (uses dealerConfig)
 │   ├── newsletter-confirm.js # Vercel serverless function for newsletter double opt-in confirmation
-│   └── appointment.js        # Vercel serverless function for appointment bookings (uses dealerConfig)
+│   ├── appointment.js        # Vercel serverless function for appointment bookings (uses dealerConfig)
+│   └── inquiry.js            # Vercel serverless function for vehicle inquiry form submissions (uses dealerConfig)
 ├── assets/
 │   ├── logo.svg              # Company logo
 │   ├── favicon.svg           # Favicon
@@ -649,6 +650,25 @@ Industriestraße 5
 ---
 
 ## 📝 Changelog
+
+### Version 2.25.0 - January 2025
+
+#### 🐛 Critical Fixes
+
+- **Inquiry Form Email Sending**: Fixed critical issue where inquiry form showed success animation but didn't actually send emails. Replaced mailto link with proper API endpoint (`/api/inquiry`) that sends emails via nodemailer with vehicle details and auto-reply confirmation
+- **Checkbox Click Issue**: Fixed critical usability issue where privacy checkbox couldn't be clicked after hovering over submit button. Added proper z-index and pointer-events to ensure checkbox remains clickable
+- **Mobile Icon Visibility**: Fixed invisible icons on mobile devices for image zoom button and all lightbox buttons (close, zoom, navigation). Increased button sizes from 40-48px to 56px and icon sizes from 22-24px to 32px with improved stroke width
+- **UI Styling Improvements**: Enhanced checkbox visibility with proper background colors for light/dark themes, improved compare button opacity and contrast for better readability
+
+#### ✨ New Features
+
+- **Inquiry API Endpoint**: Created `/api/inquiry.js` serverless function for reliable email delivery of vehicle inquiries with rate limiting, input sanitization, and auto-reply emails
+
+#### 🔧 Improvements
+
+- **Form Submission**: Inquiry form now uses API endpoint instead of unreliable mailto links
+- **Mobile UX**: All interactive buttons on mobile devices now have clearly visible icons
+- **Accessibility**: Improved checkbox and button visibility across all themes
 
 ### Version 2.24.0 - January 2025
 

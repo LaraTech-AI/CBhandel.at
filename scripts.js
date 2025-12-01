@@ -5589,47 +5589,44 @@ function initVehicleInquiry() {
       btnLoading.style.display = "block";
 
       try {
-        // Build message with vehicle info
-        let fullMessage = message;
-        let emailSubject = "Fahrzeug-Anfrage";
-        if (currentVehicle) {
-          emailSubject = `Fahrzeug-Anfrage: ${currentVehicle.title}`;
-          fullMessage = `Fahrzeug-Anfrage: ${currentVehicle.title}
-Preis: ${currentVehicle.price}
+        // Prepare vehicle info
+        const vehicleTitle = currentVehicle?.title || null;
+        const vehiclePrice = currentVehicle?.price || null;
 
-Nachricht:
-${message}`;
+        // Determine API endpoint URL
+        const apiUrl = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+          ? 'http://localhost:3000/api/inquiry'
+          : '/api/inquiry';
+
+        // Send inquiry to API
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            message,
+            privacy: privacy ? "accepted" : "",
+            vehicleTitle,
+            vehiclePrice,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Fehler beim Senden der Anfrage");
         }
-
-        // Build email body
-        const emailBodyText = `Name: ${name}
-E-Mail: ${email}
-Telefon: ${phone || "Nicht angegeben"}
-
-${fullMessage}`;
-
-        // Build mailto link
-        const emailBody = encodeURIComponent(emailBodyText);
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
-        const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
-          emailSubject
-        )}&body=${emailBody}`;
-
-        // Open email client using a temporary anchor element (more reliable than window.location)
-        const mailtoAnchor = document.createElement("a");
-        mailtoAnchor.href = mailtoLink;
-        mailtoAnchor.style.display = "none";
-        document.body.appendChild(mailtoAnchor);
-        mailtoAnchor.click();
-
-        // Clean up after a short delay
-        setTimeout(() => {
-          document.body.removeChild(mailtoAnchor);
-        }, 100);
 
         // Show success message
         inquiryForm.style.display = "none";
         inquirySuccess.style.display = "block";
+
+        // Reset form
+        inquiryForm.reset();
 
         // Auto-close after 3 seconds
         setTimeout(() => {
@@ -5638,7 +5635,7 @@ ${fullMessage}`;
       } catch (error) {
         console.error("Inquiry form error:", error);
         const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 3882323';
-        const errorMsg = `Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${phone}.`;
+        const errorMsg = error.message || `Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${phone}.`;
         alert(errorMsg);
         announceToScreenReader("forms", errorMsg);
       } finally {

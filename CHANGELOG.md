@@ -1,5 +1,69 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Critical Fixes: Inquiry Form, Checkbox Interaction, and Mobile UI (January 2025)
+
+### 🐛 Critical Bug Fixes
+
+#### Overview
+Fixed critical issues affecting form submission, user interaction, and mobile usability. The inquiry form was showing success animations but not actually sending emails, checkboxes became unclickable after hovering over buttons, and mobile icons were invisible.
+
+#### Critical Fixes
+- ✅ **Inquiry Form Email Sending**: Fixed critical production issue where inquiry form displayed success animation but emails were never sent. Replaced unreliable mailto link implementation with proper API endpoint (`/api/inquiry.js`) that sends emails via nodemailer
+- ✅ **Checkbox Click Issue**: Fixed critical usability bug where privacy checkbox in inquiry form couldn't be clicked after hovering over submit button. Added proper z-index layering and pointer-events to ensure checkbox remains interactive
+- ✅ **Mobile Icon Visibility**: Fixed invisible icons on mobile devices for image zoom button and all lightbox buttons (close, zoom, navigation). Significantly increased button and icon sizes for mobile viewport
+
+#### New Features
+- ✅ **Inquiry API Endpoint**: Created `/api/inquiry.js` serverless function for reliable email delivery:
+  - Sends inquiry emails with vehicle details (title, price) to business
+  - Sends auto-reply confirmation emails to customers
+  - Includes rate limiting (5 requests per hour per IP)
+  - Input sanitization and validation
+  - CORS whitelist protection
+  - Comprehensive error handling
+
+#### UI/UX Improvements
+- ✅ **Checkbox Styling**: Enhanced checkbox visibility with proper background colors for light/dark themes, improved border contrast
+- ✅ **Compare Button Styling**: Improved opacity and contrast for "Zum Vergleich hinzufügen" button, better visibility in both themes
+- ✅ **Mobile Button Sizes**: Increased all mobile button sizes:
+  - Image zoom button: 48px → 56px (icon: 24px → 32px)
+  - Lightbox buttons (close, zoom, nav): 40px → 56px (icon: 22px → 32px)
+  - Stroke width increased to 3px for better visibility
+- ✅ **Button Backgrounds**: Improved background opacity and border visibility on mobile for all interactive buttons
+
+#### Technical Details
+- **Form Submission**: Changed from `mailto:` link to `fetch()` API call with JSON payload
+- **Z-Index Layering**: Checkbox and label now have `z-index: 10`, submit button has `z-index: 1`
+- **Pointer Events**: Explicit `pointer-events: auto` on checkbox and label to ensure clickability
+- **Mobile Media Queries**: Enhanced `@media (max-width: 768px)` and `@media (max-width: 968px)` rules with larger button/icon sizes
+- **API Endpoint**: Follows same pattern as existing `/api/contact.js` and `/api/appointment.js` endpoints
+
+#### Files Modified
+- `api/inquiry.js` - **NEW FILE**: Created inquiry form API endpoint with email sending
+- `scripts.js` - Updated `initVehicleInquiry()` function to use API endpoint instead of mailto
+- `styles.css` - Fixed checkbox z-index/pointer-events, enhanced mobile button sizes, improved styling for checkbox and compare button
+
+#### Impact
+- ✅ **Production Critical**: Inquiry form now actually sends emails (was showing fake success)
+- ✅ **User Experience**: Checkbox is now always clickable regardless of button hover state
+- ✅ **Mobile Usability**: All buttons now have clearly visible icons on mobile devices
+- ✅ **Reliability**: API-based email sending is more reliable than mailto links
+- ✅ **Professional**: Auto-reply emails provide better customer experience
+
+#### Test Results
+- ✅ **Inquiry Form**: Successfully sends emails with vehicle details and receives auto-reply
+- ✅ **Checkbox Interaction**: Clickable even after hovering over submit button
+- ✅ **Mobile Icons**: All buttons clearly visible with proper icon sizes on mobile viewport
+- ✅ **Styling**: Checkbox and compare button have proper contrast in both light and dark themes
+
+#### 🗑️ Content Removed/Altered
+- **Replaced**: Mailto link implementation in inquiry form with API endpoint
+- **Updated**: Checkbox CSS positioning from `position: static` to `position: relative` with z-index
+- **Enhanced**: Mobile button sizes and icon visibility (increased from 22-24px to 32px)
+- **Improved**: Compare button opacity from transparent to fully visible
+- **Fixed**: Checkbox background colors for proper visibility in both themes
+
+---
+
 ## Enhanced Vehicle Data Fetching with Detail Pages (January 2025)
 
 ### 🚗 Comprehensive Data Enrichment

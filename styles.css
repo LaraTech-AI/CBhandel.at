@@ -8965,6 +8965,19 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   accent-color: var(--brand-primary);
   flex-shrink: 0;
   pointer-events: auto;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+}
+
+[data-theme="light"] .inquiry-form .checkbox-label input[type="checkbox"] {
+  background-color: #ffffff;
+  border-color: #ced4da;
+}
+
+[data-theme="dark"] .inquiry-form .checkbox-label input[type="checkbox"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .inquiry-form .checkbox-label span {
@@ -9848,21 +9861,21 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 @media (max-width: 768px) {
   .lightbox-nav {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.25) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
   }
 
   .lightbox-nav svg {
     color: white !important;
     stroke: white !important;
     fill: none !important;
-    width: 22px !important;
-    height: 22px !important;
+    width: 32px !important;
+    height: 32px !important;
     display: block !important;
     opacity: 1 !important;
-    stroke-width: 2.5 !important;
+    stroke-width: 3 !important;
     visibility: visible !important;
   }
 
@@ -9874,6 +9887,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     fill: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    stroke-width: 3 !important;
   }
 
   .lightbox-prev {
@@ -9886,15 +9900,19 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   .lightbox-close,
   .lightbox-zoom {
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
     top: 1rem;
-    background: rgba(255, 255, 255, 0.25) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
   }
 
   .lightbox-zoom {
     left: 1rem;
+  }
+
+  .lightbox-close {
+    right: 1rem;
   }
 
   .lightbox-close svg,
@@ -9902,11 +9920,11 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     color: white !important;
     stroke: white !important;
     fill: none !important;
-    width: 22px !important;
-    height: 22px !important;
+    width: 32px !important;
+    height: 32px !important;
     display: block !important;
     opacity: 1 !important;
-    stroke-width: 2.5 !important;
+    stroke-width: 3 !important;
     visibility: visible !important;
   }
 
@@ -9922,6 +9940,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     fill: none !important;
     opacity: 1 !important;
     visibility: visible !important;
+    stroke-width: 3 !important;
   }
 
   .lightbox-gallery {
@@ -10244,8 +10263,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     top: 0.75rem;
     left: 0.75rem;
     right: auto;
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 10;
@@ -10260,8 +10279,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   }
 
   .image-zoom-btn svg {
-    width: 24px !important;
-    height: 24px !important;
+    width: 32px !important;
+    height: 32px !important;
     stroke-width: 3 !important;
     color: #1b1b1b !important;
     stroke: #1b1b1b !important;
@@ -10786,6 +10805,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
+  opacity: 1;
 }
 
 .compare-checkbox-btn-modal span {
@@ -10818,9 +10838,10 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 /* Light theme specific fixes for compare button */
 [data-theme="light"] .compare-checkbox-btn-modal {
-  background: #f8f9fa;
-  border-color: #dee2e6;
+  background: #ffffff;
+  border-color: #ced4da;
   color: #212529;
+  opacity: 1;
 }
 
 [data-theme="light"] .compare-checkbox-btn-modal span {
@@ -10834,9 +10855,10 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 /* Dark theme specific fixes for compare button */
 [data-theme="dark"] .compare-checkbox-btn-modal {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
+  opacity: 1;
 }
 
 [data-theme="dark"] .compare-checkbox-btn-modal span {
