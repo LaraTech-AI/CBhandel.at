@@ -3954,6 +3954,10 @@ function initQuickView() {
                 )
                   return false;
 
+                // Filter out Landwirt low-resolution thumbnails (patterns like -0kl.jpg, -kl.jpg)
+                if (urlLower.includes("static.landwirt.com") && urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i))
+                  return false;
+
                 // Must be an image file or look like a vehicle image URL
                 const hasImageExtension =
                   urlLower.endsWith(".jpg") ||
@@ -3993,13 +3997,13 @@ function initQuickView() {
               })
               .filter(Boolean);
 
-            // Merge with existing images, avoiding duplicates
+            // Merge with existing images, avoiding duplicates and filtering out empty/invalid
             const merged = [
               ...new Set([
-                ...(quickViewState.vehicleImages || []),
+                ...(quickViewState.vehicleImages || []).filter(img => img && typeof img === 'string' && img.trim().length > 0),
                 ...validImages,
               ]),
-            ];
+            ].filter(img => img && typeof img === 'string' && img.trim().length > 0);
 
             if (merged.length > 0) {
               console.log(
@@ -4270,6 +4274,11 @@ function initQuickView() {
     thumbnailsContainer.innerHTML = "";
 
     quickViewState.vehicleImages.forEach((imgSrc, index) => {
+      // Skip empty or invalid image URLs
+      if (!imgSrc || typeof imgSrc !== 'string' || imgSrc.trim().length === 0) {
+        return;
+      }
+      
       const thumbnail = document.createElement("button");
       thumbnail.className = `quick-view-thumbnail ${
         index === quickViewState.currentImageIndex ? "active" : ""

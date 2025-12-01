@@ -10545,6 +10545,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: opacity 0.3s ease;
 }
 
@@ -10941,18 +10942,27 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 /* Tablet styles (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   .quick-view-thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    display: flex;
     gap: 0.5rem;
-    overflow-x: visible;
-    max-height: none;
+    overflow-x: auto;
     padding: 0.5rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    max-height: 70px;
   }
 
   .quick-view-thumbnail {
-    width: 60px;
-    height: 45px;
+    width: 70px;
+    height: 50px;
     flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .quick-view-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .quick-view-main-image {
@@ -11144,6 +11154,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
 
   /* Ensure buttons are easily tappable */
