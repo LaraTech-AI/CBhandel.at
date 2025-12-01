@@ -10263,8 +10263,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     top: 0.75rem;
     left: 0.75rem;
     right: auto;
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 10;
@@ -10279,9 +10279,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   }
 
   .image-zoom-btn svg {
-    width: 32px !important;
-    height: 32px !important;
-    stroke-width: 3 !important;
+    width: 44px !important;
+    height: 44px !important;
+    stroke-width: 3.5 !important;
     color: #1b1b1b !important;
     stroke: #1b1b1b !important;
     fill: none !important;
@@ -10297,7 +10297,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     fill: none !important;
     opacity: 1 !important;
     visibility: visible !important;
-    stroke-width: 3 !important;
+    stroke-width: 3.5 !important;
   }
 
   [data-theme="dark"] .image-zoom-btn svg {
