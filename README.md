@@ -222,36 +222,41 @@ vercel
    - **Install Command**: (leave empty)
 4. Click "Deploy"
 
-### Step 3: Configure Environment Variables (Optional)
+### Step 3: Configure Environment Variables
 
-**Note**: The website now uses mailto links for all forms (contact, appointment, newsletter). SMTP configuration is **optional** and only needed if you want to use API-based email sending.
+**Note**: The **vehicle inquiry form** requires SMTP configuration for email sending. Contact and appointment forms use mailto links (no configuration needed).
 
-#### Option 1: Mailto Links (Default - No Configuration Needed)
+#### Required: SMTP Configuration for Inquiry Form
 
-All forms (contact, appointment booking, newsletter) use mailto links by default. No environment variables needed. Forms will open the user's email client with pre-filled content.
-
-#### Option 2: SMTP Configuration (Optional)
-
-If you want to use API-based email sending instead of mailto, add these environment variables in Vercel Dashboard (Settings → Environment Variables):
+The vehicle inquiry form (`/api/inquiry`) sends emails via SMTP and **requires** these environment variables to be configured in Vercel Dashboard (Settings → Environment Variables):
 
 ```env
-# SMTP Configuration (optional, for API-based email sending)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-specific-password
-CONTACT_TO_EMAIL=your-email@example.com
+# SMTP Configuration (REQUIRED for inquiry form)
+SMTP_HOST=mail.cbhandel.at
+SMTP_PORT=465
+SMTP_USER=office@cbhandel.at
+SMTP_PASS=your-email-account-password
+CONTACT_TO_EMAIL=office@cbhandel.at
+```
 
-# Newsletter Google Sheets Integration (optional)
+**For CB Handels GmbH production**, use these exact values:
+- `SMTP_HOST`: `mail.cbhandel.at`
+- `SMTP_PORT`: `465` (SSL encryption)
+- `SMTP_USER`: `office@cbhandel.at`
+- `SMTP_PASS`: Your email account password
+- `CONTACT_TO_EMAIL`: `office@cbhandel.at`
+
+See [EMAIL_SETUP.md](EMAIL_SETUP.md) for detailed setup instructions and alternative SMTP providers (Gmail, Office 365, etc.).
+
+#### Optional: Other Email Services
+
+**Contact Form & Appointment Booking**: Use mailto links by default (no configuration needed). Forms will open the user's email client with pre-filled content.
+
+**Newsletter**: Optional Google Sheets integration:
+```env
 GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 NEWSLETTER_SECRET=your-secret-key-here
 ```
-
-#### Gmail SMTP Setup (Optional):
-
-1. Enable 2-factor authentication on your Google account
-2. Generate an [App Password](https://myaccount.google.com/apppasswords)
-3. Use the app password as `SMTP_PASS`
 
 ### Step 4: Add Custom Domain (Optional)
 
@@ -278,19 +283,21 @@ vercel dev
 
 ### Testing Forms Locally
 
-**Forms work out of the box** with mailto links. No configuration needed for basic functionality.
+**Contact and appointment forms** work out of the box with mailto links. No configuration needed.
 
-If you want to test API-based email sending (optional), create `.env` file in project root:
+**Inquiry form requires SMTP configuration** to send emails. Create `.env.local` file in project root:
 
 ```env
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-CONTACT_TO_EMAIL=your-email@example.com
+SMTP_HOST=mail.cbhandel.at
+SMTP_PORT=465
+SMTP_USER=office@cbhandel.at
+SMTP_PASS=your-email-account-password
+CONTACT_TO_EMAIL=office@cbhandel.at
 ```
 
-Then run `vercel dev` to test API-based newsletter and appointment booking functionality.
+Then run `vercel dev` to test the inquiry form email sending functionality.
+
+See [EMAIL_SETUP.md](EMAIL_SETUP.md) for detailed setup instructions and alternative SMTP providers.
 
 ## 📝 Contact Methods
 

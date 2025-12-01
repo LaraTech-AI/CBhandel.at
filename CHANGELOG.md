@@ -1,5 +1,61 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Email Configuration Documentation (January 2025)
+
+### 📚 Documentation Updates
+
+#### Overview
+
+Added comprehensive email configuration documentation for the inquiry form SMTP setup, including production-ready configuration for CB Handels GmbH.
+
+#### New Features
+
+- ✅ **EMAIL_SETUP.md**: Complete email configuration guide with setup instructions for Gmail, Office 365, and custom SMTP servers
+- ✅ **VERCEL_ENV_CONFIG.md**: Quick reference guide for setting up environment variables in Vercel with step-by-step instructions
+- ✅ **Production Configuration**: Added specific CB Handels GmbH SMTP settings (mail.cbhandel.at, port 465, SSL)
+
+#### Documentation Details
+
+**EMAIL_SETUP.md** includes:
+- Overview of inquiry form email system (notification + auto-reply)
+- Required environment variables table
+- Setup instructions for Gmail, Office 365, and custom SMTP
+- CB Handels GmbH production configuration (Option 3 - Recommended)
+- Local development setup guide
+- Production setup instructions for Vercel
+- Testing procedures
+- Troubleshooting guide
+- Security best practices
+
+**VERCEL_ENV_CONFIG.md** includes:
+- Quick copy-paste configuration values
+- Step-by-step Vercel dashboard instructions
+- Environment variable setup checklist
+- Testing and troubleshooting tips
+
+#### Files Added
+
+- `EMAIL_SETUP.md` - Comprehensive email configuration guide (184 lines)
+- `VERCEL_ENV_CONFIG.md` - Quick reference for Vercel environment setup
+
+#### Files Modified
+
+- `README.md` - Updated Step 3 to clarify that inquiry form requires SMTP configuration (not optional), while contact/appointment forms use mailto links
+
+#### Impact
+
+- ✅ **Developer Experience**: Clear, comprehensive documentation for email setup
+- ✅ **Production Ready**: Specific configuration for CB Handels GmbH production environment
+- ✅ **Multiple Options**: Support for Gmail, Office 365, and custom SMTP servers
+- ✅ **Quick Reference**: Easy-to-follow Vercel setup guide
+
+#### 🗑️ Content Removed/Altered
+
+- **Updated**: README.md Step 3 section to clarify inquiry form requires SMTP (not optional), while other forms use mailto
+- **Clarified**: Distinction between required SMTP for inquiry form vs optional mailto for contact/appointment forms
+
+---
+
 ## Mobile Quick-View and Tablet Button Sizing Fixes (January 2025)
 
 ### 🐛 Bug Fixes
