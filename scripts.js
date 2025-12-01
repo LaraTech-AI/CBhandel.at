@@ -3268,34 +3268,107 @@ function initQuickView() {
       // Check for images array (Zweispurig/Landwirt) or allImages (motornetzwerk)
       const imagesArray = vehicleDataForImages?.images || vehicleDataForImages?.allImages;
       
+      // Helper function to validate images by testing if they load
+      const validateImageLoad = (imgUrl) => {
+        return new Promise((resolve) => {
+          if (!imgUrl || typeof imgUrl !== 'string') {
+            resolve(false);
+            return;
+          }
+          const testImg = new Image();
+          const timeout = setTimeout(() => {
+            testImg.onload = null;
+            testImg.onerror = null;
+            resolve(false);
+          }, 2000); // 2 second timeout
+          
+          testImg.onload = () => {
+            clearTimeout(timeout);
+            resolve(true);
+          };
+          
+          testImg.onerror = () => {
+            clearTimeout(timeout);
+            resolve(false);
+          };
+          
+          testImg.src = imgUrl;
+        });
+      };
+      
       if (
         vehicleDataForImages &&
         imagesArray &&
         Array.isArray(imagesArray) &&
         imagesArray.length > 0
       ) {
-        // Use all images from vehicle data as initial set, but filter out invalid ones
-        // Will be enhanced with more images from details API
-        quickViewState.vehicleImages = imagesArray.filter(img => img && filterInvalidImages(img));
+        // Filter out invalid images first (pattern matching)
+        const filteredImages = imagesArray.filter(img => img && filterInvalidImages(img));
         console.log(
-          `Quick View: Found ${imagesArray.length} images, filtered to ${quickViewState.vehicleImages.length} valid images for vehicle ${quickViewState.currentVehicleId}`,
-          quickViewState.vehicleImages
+          `Quick View: Found ${imagesArray.length} images, filtered to ${filteredImages.length} valid images (pattern check) for vehicle ${quickViewState.currentVehicleId}`
         );
-
-        // Images will be enhanced by vehicle-details API call below
+        
+        // Validate images by testing if they actually load (async, but we'll start with filtered list)
+        quickViewState.vehicleImages = filteredImages; // Set initial list
         console.log(
-          `Quick View: Initial ${quickViewState.vehicleImages.length} images. Will be enhanced by details API...`
+          `Quick View: Initial ${filteredImages.length} images. Will be validated and enhanced by details API...`
         );
+        
+        // Validate images in background (non-blocking)
+        Promise.all(filteredImages.map(img => validateImageLoad(img)))
+          .then(results => {
+            const validatedImages = filteredImages.filter((_, idx) => results[idx]);
+            if (validatedImages.length !== filteredImages.length) {
+              console.log(
+                `Quick View: Image validation: ${filteredImages.length} → ${validatedImages.length} working images`
+              );
+              quickViewState.vehicleImages = validatedImages;
+              if (quickViewState.currentImageIndex >= validatedImages.length) {
+                quickViewState.currentImageIndex = Math.max(0, validatedImages.length - 1);
+              }
+              updateThumbnails();
+              if (validatedImages.length > 0) {
+                updateMainImage();
+              }
+            }
+          })
+          .catch(err => {
+            console.warn("Quick View: Image validation error:", err);
+            // Keep filtered images even if validation fails
+          });
       } else if (vehicleDataForImages && vehicleDataForImages.image) {
         // Fallback: use single image from vehicle data (if valid)
-        const singleImage = filterInvalidImages(vehicleDataForImages.image) ? [vehicleDataForImages.image] : [];
-        quickViewState.vehicleImages = singleImage;
+        if (filterInvalidImages(vehicleDataForImages.image)) {
+          quickViewState.vehicleImages = [vehicleDataForImages.image];
+          // Validate it loads
+          validateImageLoad(vehicleDataForImages.image).then(valid => {
+            if (!valid) {
+              console.warn(`Quick View: Single image failed to load: ${vehicleDataForImages.image}`);
+              quickViewState.vehicleImages = [];
+              updateThumbnails();
+            }
+          });
+        } else {
+          quickViewState.vehicleImages = [];
+        }
         console.log(
           `Quick View: Using single image. Will be enhanced by details API...`
         );
       } else {
         // Final fallback: use main image from card (if valid)
-        quickViewState.vehicleImages = mainImageSrc && filterInvalidImages(mainImageSrc) ? [mainImageSrc] : [];
+        if (mainImageSrc && filterInvalidImages(mainImageSrc)) {
+          quickViewState.vehicleImages = [mainImageSrc];
+          // Validate it loads
+          validateImageLoad(mainImageSrc).then(valid => {
+            if (!valid) {
+              console.warn(`Quick View: Main image failed to load: ${mainImageSrc}`);
+              quickViewState.vehicleImages = [];
+              updateThumbnails();
+            }
+          });
+        } else {
+          quickViewState.vehicleImages = [];
+        }
       }
     } else {
       // No vehicle ID, just use main image
@@ -4051,12 +4124,70 @@ function initQuickView() {
 
             if (merged.length > 0) {
               console.log(
-                `Quick View: Got ${validImages.length} images from details API, total: ${merged.length} images`
+                `Quick View: Got ${validImages.length} images from details API, total: ${merged.length} images before validation`
               );
-              quickViewState.vehicleImages = merged;
-              quickViewState.currentImageIndex = 0;
-              updateMainImage();
-              updateThumbnails();
+              
+              // Validate images by testing if they actually load (for Zweispurig especially)
+              // This filters out broken/non-loading images
+              const validateImages = async (imageUrls) => {
+                const validationPromises = imageUrls.map(async (imgUrl) => {
+                  return new Promise((resolve) => {
+                    const testImg = new Image();
+                    const timeout = setTimeout(() => {
+                      testImg.onload = null;
+                      testImg.onerror = null;
+                      console.warn(`Quick View: Image validation timeout for ${imgUrl}`);
+                      resolve({ url: imgUrl, valid: false });
+                    }, 3000); // 3 second timeout
+                    
+                    testImg.onload = () => {
+                      clearTimeout(timeout);
+                      resolve({ url: imgUrl, valid: true });
+                    };
+                    
+                    testImg.onerror = () => {
+                      clearTimeout(timeout);
+                      console.warn(`Quick View: Image validation failed (non-loading image): ${imgUrl}`);
+                      resolve({ url: imgUrl, valid: false });
+                    };
+                    
+                    testImg.src = imgUrl;
+                  });
+                });
+                
+                const results = await Promise.all(validationPromises);
+                return results.filter(r => r.valid).map(r => r.url);
+              };
+              
+              // Validate images and update gallery with only working images
+              validateImages(merged).then(validatedImages => {
+                if (validatedImages.length > 0) {
+                  console.log(
+                    `Quick View: Validated ${merged.length} images, ${validatedImages.length} are working`
+                  );
+                  quickViewState.vehicleImages = validatedImages;
+                  // Adjust current index if it's now out of bounds
+                  if (quickViewState.currentImageIndex >= validatedImages.length) {
+                    quickViewState.currentImageIndex = Math.max(0, validatedImages.length - 1);
+                  }
+                  updateMainImage();
+                  updateThumbnails();
+                } else {
+                  console.warn("Quick View: No working images found after validation");
+                  // Keep original images if validation fails (fallback)
+                  quickViewState.vehicleImages = merged;
+                  quickViewState.currentImageIndex = 0;
+                  updateMainImage();
+                  updateThumbnails();
+                }
+              }).catch(error => {
+                console.error("Quick View: Image validation error:", error);
+                // Fallback: use merged images without validation
+                quickViewState.vehicleImages = merged;
+                quickViewState.currentImageIndex = 0;
+                updateMainImage();
+                updateThumbnails();
+              });
             } else {
               console.log(
                 "Quick View: No valid images found in details API response"
@@ -4330,13 +4461,40 @@ function initQuickView() {
       thumbnail.type = "button";
       thumbnail.setAttribute("aria-label", `Bild ${index + 1} von ${quickViewState.vehicleImages.length} anzeigen`);
       thumbnail.setAttribute("aria-pressed", index === quickViewState.currentImageIndex ? "true" : "false");
+      
+      // Create image element to test if it loads
+      const img = document.createElement("img");
+      img.alt = `Vorschaubild ${index + 1}`;
+      
+      // Handle image load error - remove from gallery if it fails
+      img.onerror = () => {
+        console.warn(`Quick View: Thumbnail image failed to load, removing from gallery: ${imgSrc}`);
+        // Remove the failed image from the array
+        quickViewState.vehicleImages = quickViewState.vehicleImages.filter((_, idx) => idx !== index);
+        // Adjust current index if needed
+        if (quickViewState.currentImageIndex >= quickViewState.vehicleImages.length) {
+          quickViewState.currentImageIndex = Math.max(0, quickViewState.vehicleImages.length - 1);
+        }
+        // Re-render thumbnails without the failed image
+        updateThumbnails();
+        // Update main image if current one was removed
+        if (quickViewState.currentImageIndex !== index) {
+          updateMainImage();
+        }
+      };
+      
       // Use data-src for lazy loading, load first 3 immediately
       const shouldLazyLoad = index > 2;
       if (shouldLazyLoad) {
-        thumbnail.innerHTML = `<img data-src="${imgSrc}" alt="Vorschaubild ${index + 1}" loading="lazy" class="thumbnail-lazy" />`;
+        img.setAttribute("data-src", imgSrc);
+        img.setAttribute("loading", "lazy");
+        img.className = "thumbnail-lazy";
       } else {
-        thumbnail.innerHTML = `<img src="${imgSrc}" alt="Vorschaubild ${index + 1}" loading="eager" />`;
+        img.src = imgSrc;
+        img.setAttribute("loading", "eager");
       }
+      
+      thumbnail.appendChild(img);
       thumbnail.addEventListener("click", () => {
         quickViewState.currentImageIndex = index;
         updateMainImage();
