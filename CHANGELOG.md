@@ -1,5 +1,53 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Vehicle Data Source Migration (January 2025)
+
+### 🚗 Vehicle Fetching Improvements
+
+#### Overview
+Migrated primary vehicle data source from AutoScout24 to Zweispurig.at for more reliable and easier-to-parse vehicle listings. Improved Landwirt.com machine parsing with enhanced article-based extraction.
+
+#### New Features
+- ✅ **Zweispurig.at Integration**: Added `fetchFromZweispurig()` function as primary vehicle source
+- ✅ **Improved Parsing**: Section-based HTML parsing for accurate vehicle data extraction
+- ✅ **Enhanced Landwirt Parsing**: Rewrote `parseLandwirtMachines()` with article-based extraction for better machine data accuracy
+- ✅ **Better Year Extraction**: Fixed year parsing to correctly extract registration dates from Zweispurig format (MM/YYYY)
+
+#### Changes
+- **Primary Source**: Zweispurig.at (`https://www.zweispurig.at/cb-handels-gmbh-reichenfels/autohaendler-fahrzeuge/103417/`) now primary vehicle source
+- **AutoScout24**: Disabled in combined mode (code preserved for potential future use)
+- **Willhaben**: Disabled in combined mode (using Zweispurig as primary instead)
+- **Landwirt.com**: Enhanced parsing with improved article element extraction, better price detection, and category classification
+
+#### Technical Details
+- **Zweispurig Parser**: Extracts vehicles by splitting HTML sections using `<hr>` separators for accurate per-vehicle data isolation
+- **Landwirt Parser**: Uses `<article>` elements and detail links (`/detail/{slug}-{id}`) for reliable machine identification
+- **Data Extraction**: Correctly extracts title, price, year, mileage, fuel type, power, transmission, images, and category
+- **Category Detection**: Multi-method category detection (PKW vs Nutzfahrzeuge) based on title keywords, URL patterns, and vehicle type indicators
+
+#### Files Modified
+- `lib/vehicleService.js` - Added `fetchFromZweispurig()` and `parseZweispurigVehicles()` functions, rewrote `parseLandwirtMachines()`, disabled AutoScout24/Willhaben in combined mode
+- `config/dealerConfig.js` - Updated `sourceUrls` to include Zweispurig as primary, reorganized with comments for active vs disabled sources
+
+#### Impact
+- ✅ **More Reliable**: Zweispurig.at provides cleaner HTML structure for easier parsing
+- ✅ **Better Accuracy**: Section-based parsing prevents data bleeding between vehicles
+- ✅ **Improved Machines**: Enhanced Landwirt parsing correctly extracts all machine details
+- ✅ **Maintained Compatibility**: All existing vehicle API endpoints continue to work
+
+#### Test Results
+- ✅ **6 vehicles** successfully fetched from Zweispurig.at with correct prices and years
+- ✅ **6 machines** successfully fetched from Landwirt.com with accurate details
+- ✅ **Total: 12 items** combined from both sources
+
+#### 🗑️ Content Removed/Altered
+- **Disabled**: AutoScout24 vehicle fetching in combined mode (code preserved, not deleted)
+- **Disabled**: Willhaben vehicle fetching in combined mode (code preserved, not deleted)
+- **Updated**: `config/dealerConfig.js` `sourceUrls` section - Zweispurig added as primary, AutoScout24/Willhaben moved to comments
+- **Enhanced**: Landwirt.com machine parsing with completely rewritten extraction logic
+
+---
+
 ## Google Consent Mode v2 Implementation (January 2025)
 
 ### 🔒 Privacy & Compliance

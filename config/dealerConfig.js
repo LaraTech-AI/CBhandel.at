@@ -87,17 +87,24 @@ module.exports = {
       nutzfahrzeuge: ""
     },
     sourceUrls: {
-      pkw: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
-      nutzfahrzeuge: "https://www.autoscout24.at/haendler/cb-handels-gmbh?atype=X",
-      willhaben: "https://www.willhaben.at/iad/haendler/cb-handels-gmbh/auto",
-      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines"
+      // PRIMARY: Zweispurig.at - clean HTML structure, easy to parse
+      zweispurig: "https://www.zweispurig.at/cb-handels-gmbh-reichenfels/autohaendler-fahrzeuge/103417/",
+      // MACHINES: Landwirt.com for agricultural and construction equipment
+      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines",
+      // DISABLED: These sources are kept for reference but not actively used
+      // pkw: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
+      // nutzfahrzeuge: "https://www.autoscout24.at/haendler/cb-handels-gmbh?atype=X",
+      // willhaben: "https://www.willhaben.at/iad/haendler/cb-handels-gmbh/auto"
     },
     // Reference links for manual import / scraping / sync
     referenceLinks: {
+      // PRIMARY SOURCE (actively fetched)
+      zweispurig: "https://www.zweispurig.at/cb-handels-gmbh-reichenfels/autohaendler-fahrzeuge/103417/",
+      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines",
+      // SECONDARY SOURCES (for reference only, not actively fetched)
       willhaben: "https://www.willhaben.at/iad/haendler/cb-handels-gmbh/auto",
       autoscout24: "https://www.autoscout24.at/haendler/cb-handels-gmbh",
       autoscout24Transporter: "https://www.autoscout24.at/haendler/cb-handels-gmbh?atype=X",
-      landwirt: "https://www.landwirt.com/dealer/info/cb-handels-gmbh-10561/machines",
       gebrauchtwagenAt: "https://www.gebrauchtwagen.at/handlerwagen/?cid=14166681",
       mascus: "https://www.mascus.at/cb-handels-gmbh/8bf11bd0,1,relevance,searchdealer.html"
     }

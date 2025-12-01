@@ -79,7 +79,9 @@ social: {
 ```
 
 ### Vehicle Data Source
-Supports multiple data source types: `motornetzwerk`, `willhaben`, `autoscout24`, and `combined` (recommended for maximum vehicle coverage).
+Supports multiple data source types: `motornetzwerk`, `zweispurig`, `willhaben`, `autoscout24`, and `combined` (recommended for maximum vehicle coverage).
+
+**Note**: As of January 2025, `combined` mode uses Zweispurig.at as the primary vehicle source. AutoScout24 and Willhaben are disabled but code preserved for potential future use.
 
 #### Combined Mode (Recommended)
 Fetches vehicles from multiple sources and combines results:
@@ -95,16 +97,35 @@ dataSource: {
     nutzfahrzeuge: ""
   },
   sourceUrls: {
-    pkw: "https://www.autoscout24.at/haendler/your-dealer-slug",
-    nutzfahrzeuge: "https://www.autoscout24.at/haendler/your-dealer-slug?atype=X",
-    willhaben: "https://www.willhaben.at/iad/haendler/your-dealer-slug/auto",
-    landwirt: "https://www.landwirt.com/dealer/info/your-dealer-slug/machines"
+    // PRIMARY: Zweispurig.at - clean HTML structure, easy to parse
+    zweispurig: "https://www.zweispurig.at/your-dealer-slug/autohaendler-fahrzeuge/YOUR_DEALER_ID/",
+    // MACHINES: Landwirt.com for agricultural and construction equipment
+    landwirt: "https://www.landwirt.com/dealer/info/your-dealer-slug/machines",
+    // DISABLED: These sources are kept for reference but not actively used
+    // pkw: "https://www.autoscout24.at/haendler/your-dealer-slug",
+    // nutzfahrzeuge: "https://www.autoscout24.at/haendler/your-dealer-slug?atype=X",
+    // willhaben: "https://www.willhaben.at/iad/haendler/your-dealer-slug/auto"
   }
 }
 ```
 
-#### AutoScout24 Mode
-Fetches vehicles from AutoScout24 (cars and transporters):
+#### Zweispurig Mode (Primary Source)
+Fetches vehicles from Zweispurig.at (Austrian vehicle marketplace):
+
+```javascript
+dataSource: {
+  type: "zweispurig",
+  dealerSlug: "your-dealer-slug-reichenfels", // e.g., "cb-handels-gmbh-reichenfels"
+  dealerId: "YOUR_DEALER_ID", // Numeric ID from Zweispurig URL
+  baseUrl: "https://yourdomain.com",
+  sourceUrls: {
+    zweispurig: "https://www.zweispurig.at/your-dealer-slug/autohaendler-fahrzeuge/YOUR_DEALER_ID/"
+  }
+}
+```
+
+#### AutoScout24 Mode (Disabled in Combined Mode)
+Fetches vehicles from AutoScout24 (cars and transporters). **Note**: Currently disabled in combined mode but code preserved:
 
 ```javascript
 dataSource: {
@@ -118,8 +139,8 @@ dataSource: {
 }
 ```
 
-#### Willhaben Mode
-Fetches vehicles from Willhaben.at:
+#### Willhaben Mode (Disabled in Combined Mode)
+Fetches vehicles from Willhaben.at. **Note**: Currently disabled in combined mode but code preserved:
 
 ```javascript
 dataSource: {
@@ -172,7 +193,7 @@ The following files have been refactored to use the configuration:
 
 ### API Files (All use `dealerConfig`)
 - `api/vehicles.js` - Uses config for URLs and CORS
-- `api/vehicle-details.js` - Fetches detailed vehicle information by vid. Supports all data sources (AutoScout24, Willhaben, Landwirt, motornetzwerk) with intelligent fallback logic. Uses config for dealer ID and info.
+- `api/vehicle-details.js` - Fetches detailed vehicle information by vid. Supports all data sources (Zweispurig, AutoScout24, Willhaben, Landwirt, motornetzwerk) with intelligent fallback logic. Uses config for dealer ID and info.
 - `api/contact.js` - Uses config for email content and CORS
 - `api/newsletter.js` - Uses config for email content and CORS
 - `api/appointment.js` - Uses config for email content and CORS
