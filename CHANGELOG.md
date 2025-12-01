@@ -13,6 +13,7 @@ Added comprehensive email configuration documentation for the inquiry form SMTP 
 - ✅ **EMAIL_SETUP.md**: Complete email configuration guide with setup instructions for Gmail, Office 365, and custom SMTP servers
 - ✅ **VERCEL_ENV_CONFIG.md**: Quick reference guide for setting up environment variables in Vercel with step-by-step instructions
 - ✅ **Production Configuration**: Added specific CB Handels GmbH SMTP settings (mail.cbhandel.at, port 465, SSL)
+- ✅ **Enhanced SMTP Configuration**: Inquiry API includes enhanced timeout handling (30-second timeouts), automatic TLS/SSL detection based on port (465 for SSL, 587 for STARTTLS), TLSv1.2 minimum version requirement, and comprehensive error handling
 
 #### Documentation Details
 
@@ -37,12 +38,13 @@ Added comprehensive email configuration documentation for the inquiry form SMTP 
 
 #### Files Added
 
-- `EMAIL_SETUP.md` - Comprehensive email configuration guide (184 lines)
-- `VERCEL_ENV_CONFIG.md` - Quick reference for Vercel environment setup
+- `EMAIL_SETUP.md` - Comprehensive email configuration guide (220 lines)
+- `VERCEL_ENV_CONFIG.md` - Quick reference for Vercel environment setup (142 lines)
 
 #### Files Modified
 
 - `README.md` - Updated Step 3 to clarify that inquiry form requires SMTP configuration (not optional), while contact/appointment forms use mailto links
+- `api/inquiry.js` - Enhanced SMTP configuration with timeout handling, automatic port-based encryption detection (SSL for 465, STARTTLS for 587), TLS configuration, and improved error logging
 
 #### Impact
 
@@ -50,6 +52,8 @@ Added comprehensive email configuration documentation for the inquiry form SMTP 
 - ✅ **Production Ready**: Specific configuration for CB Handels GmbH production environment
 - ✅ **Multiple Options**: Support for Gmail, Office 365, and custom SMTP servers
 - ✅ **Quick Reference**: Easy-to-follow Vercel setup guide
+- ✅ **Reliability**: Enhanced timeout and TLS configuration improves connection stability and error handling
+- ✅ **Flexibility**: Automatic detection of SSL (port 465) vs STARTTLS (port 587) for seamless port switching
 
 #### 🗑️ Content Removed/Altered
 
