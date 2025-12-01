@@ -388,11 +388,59 @@ body.reduced-motion .reveal-on-scroll {
 #quick-view-description p {
   break-inside: avoid;
   margin-bottom: 1rem;
-  text-align: justify;
+  text-align: left;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+#quick-view-description p:first-child {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
 }
 
 #quick-view-description p:last-child {
   margin-bottom: 0;
+}
+
+/* Styled feature list for bullet points in description */
+.description-content .description-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.description-content .description-features li {
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.description-content .description-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand-primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .description-content .description-features {
+    grid-template-columns: 1fr;
+    gap: 0.375rem;
+  }
+  
+  .description-content .description-features li {
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Highlight price offers in description */

@@ -3088,6 +3088,9 @@ let quickViewState = {
   vehicleImages: [],
   currentVehicleId: null,
   imageFetchTimeout: null,
+  failedImages: new Set(), // Cache for images that failed to load (avoid re-validation)
+  validatedImages: new Set(), // Cache for images that were successfully validated
+  isUpdatingThumbnails: false, // Flag to prevent recursion in thumbnail error handlers
 };
 
 function initQuickView() {
@@ -3191,6 +3194,11 @@ function initQuickView() {
     const mainImageSrc = mainImage?.src || vehicleData?.image || "";
 
     // Get and store vehicle ID for comparison sync (needed before fetching images)
+    // Clear image validation cache when opening a new vehicle
+    if (quickViewState.currentVehicleId !== vehicleId) {
+      quickViewState.failedImages.clear();
+      quickViewState.validatedImages.clear();
+    }
     quickViewState.currentVehicleId = vehicleId;
 
     // Set initial placeholders
@@ -3275,20 +3283,34 @@ function initQuickView() {
             resolve(false);
             return;
           }
+          
+          // Check cache first - skip if already validated or failed
+          if (quickViewState.validatedImages.has(imgUrl)) {
+            resolve(true);
+            return;
+          }
+          if (quickViewState.failedImages.has(imgUrl)) {
+            resolve(false);
+            return;
+          }
+          
           const testImg = new Image();
           const timeout = setTimeout(() => {
             testImg.onload = null;
             testImg.onerror = null;
+            quickViewState.failedImages.add(imgUrl);
             resolve(false);
           }, 2000); // 2 second timeout
           
           testImg.onload = () => {
             clearTimeout(timeout);
+            quickViewState.validatedImages.add(imgUrl);
             resolve(true);
           };
           
           testImg.onerror = () => {
             clearTimeout(timeout);
+            quickViewState.failedImages.add(imgUrl);
             resolve(false);
           };
           
@@ -3302,40 +3324,54 @@ function initQuickView() {
         Array.isArray(imagesArray) &&
         imagesArray.length > 0
       ) {
-        // Filter out invalid images first (pattern matching)
-        const filteredImages = imagesArray.filter(img => img && filterInvalidImages(img));
+        // Filter out invalid images first (pattern matching) and deduplicate
+        const filteredImages = [...new Set(imagesArray.filter(img => img && filterInvalidImages(img)))];
         console.log(
           `Quick View: Found ${imagesArray.length} images, filtered to ${filteredImages.length} valid images (pattern check) for vehicle ${quickViewState.currentVehicleId}`
         );
         
-        // Validate images by testing if they actually load (async, but we'll start with filtered list)
-        quickViewState.vehicleImages = filteredImages; // Set initial list
+        // Pre-filter using cache (skip already failed images)
+        const imagesToValidate = filteredImages.filter(img => !quickViewState.failedImages.has(img));
+        const preValidatedImages = filteredImages.filter(img => quickViewState.validatedImages.has(img));
+        
+        // Set initial list with pre-validated images
+        quickViewState.vehicleImages = [...preValidatedImages, ...imagesToValidate];
         console.log(
-          `Quick View: Initial ${filteredImages.length} images. Will be validated and enhanced by details API...`
+          `Quick View: Initial ${filteredImages.length} images (${preValidatedImages.length} cached valid, ${imagesToValidate.length} to validate). Will be enhanced by details API...`
         );
         
-        // Validate images in background (non-blocking)
-        Promise.all(filteredImages.map(img => validateImageLoad(img)))
-          .then(results => {
-            const validatedImages = filteredImages.filter((_, idx) => results[idx]);
-            if (validatedImages.length !== filteredImages.length) {
-              console.log(
-                `Quick View: Image validation: ${filteredImages.length} → ${validatedImages.length} working images`
-              );
-              quickViewState.vehicleImages = validatedImages;
-              if (quickViewState.currentImageIndex >= validatedImages.length) {
-                quickViewState.currentImageIndex = Math.max(0, validatedImages.length - 1);
+        // Validate only images that haven't been validated yet (non-blocking)
+        if (imagesToValidate.length > 0) {
+          Promise.all(imagesToValidate.map(img => validateImageLoad(img)))
+            .then(results => {
+              const newlyValidatedImages = imagesToValidate.filter((_, idx) => results[idx]);
+              const allValidatedImages = [...preValidatedImages, ...newlyValidatedImages];
+              if (allValidatedImages.length !== filteredImages.length) {
+                console.log(
+                  `Quick View: Image validation: ${filteredImages.length} → ${allValidatedImages.length} working images`
+                );
+                quickViewState.vehicleImages = allValidatedImages;
+                if (quickViewState.currentImageIndex >= allValidatedImages.length) {
+                  quickViewState.currentImageIndex = Math.max(0, allValidatedImages.length - 1);
+                }
+                updateThumbnails();
+                if (allValidatedImages.length > 0) {
+                  updateMainImage();
+                }
               }
-              updateThumbnails();
-              if (validatedImages.length > 0) {
-                updateMainImage();
-              }
-            }
-          })
-          .catch(err => {
-            console.warn("Quick View: Image validation error:", err);
-            // Keep filtered images even if validation fails
-          });
+            })
+            .catch(err => {
+              console.warn("Quick View: Image validation error:", err);
+              // Keep filtered images even if validation fails
+            });
+        } else if (preValidatedImages.length > 0) {
+          // All images were already validated, just update UI
+          quickViewState.vehicleImages = preValidatedImages;
+          updateThumbnails();
+          if (preValidatedImages.length > 0) {
+            updateMainImage();
+          }
+        }
       } else if (vehicleDataForImages && vehicleDataForImages.image) {
         // Fallback: use single image from vehicle data (if valid)
         if (filterInvalidImages(vehicleDataForImages.image)) {
@@ -3672,53 +3708,88 @@ function initQuickView() {
             }
           }
 
-          // Description - simplified formatting to prevent layout issues
+          // Description - improved formatting with better bullet point handling
           if (descEl && data.description) {
             let formattedDescription = data.description.trim();
             
             // Step 1: Normalize whitespace - replace multiple spaces/newlines with single space
             formattedDescription = formattedDescription.replace(/\s+/g, ' ');
             
-            // Step 2: Break into paragraphs intelligently (simple approach)
-            // Split on double line breaks or periods followed by space and capital letter
-            formattedDescription = formattedDescription
+            // Step 2: Split main description from bullet points (• or -)
+            // Look for pattern: text. • item • item or text • item • item
+            const bulletPointPattern = /(?:^|\.\s+)([•·-]\s+[^•·-]+(?:[•·-]\s+[^•·-]+)*)/;
+            const bulletMatch = formattedDescription.match(bulletPointPattern);
+            
+            let mainText = formattedDescription;
+            let bulletPoints = [];
+            
+            if (bulletMatch) {
+              // Split at the first bullet point
+              const splitIndex = formattedDescription.indexOf(bulletMatch[1]);
+              mainText = formattedDescription.substring(0, splitIndex).trim();
+              
+              // Extract all bullet points
+              const bulletText = formattedDescription.substring(splitIndex);
+              bulletPoints = bulletText
+                .split(/[•·-]\s+/)
+                .map(item => item.trim())
+                .filter(item => item.length > 0 && item !== 'uvm.' && item !== 'uvm');
+            }
+            
+            // Step 3: Format main text - remove "Fahrzeugbeschreibung" prefix if present
+            mainText = mainText.replace(/^Fahrzeugbeschreibung\s+/i, '').trim();
+            
+            // Step 4: Break main text into paragraphs intelligently
+            let formattedMainText = mainText
               .replace(/\n\n+/g, '</p><p>') // Split on double line breaks
               .replace(/(\.\s+)([A-ZÄÖÜ])/g, '.</p><p>$2'); // Split on period + space + capital letter
             
-            // Step 3: Wrap in paragraph tags if not already wrapped
-            if (!formattedDescription.startsWith('<p>')) {
-              formattedDescription = '<p>' + formattedDescription;
+            // Wrap in paragraph tags if not already wrapped
+            if (!formattedMainText.startsWith('<p>')) {
+              formattedMainText = '<p>' + formattedMainText;
             }
-            if (!formattedDescription.endsWith('</p>')) {
-              formattedDescription = formattedDescription + '</p>';
+            if (!formattedMainText.endsWith('</p>')) {
+              formattedMainText = formattedMainText + '</p>';
             }
             
-            // Step 4: Clean up empty paragraphs
-            formattedDescription = formattedDescription
+            // Step 5: Clean up empty paragraphs
+            formattedMainText = formattedMainText
               .replace(/<p>\s*<\/p>/g, '') // Remove empty paragraphs
               .replace(/(<p>)\s*(<p>)/g, '$2') // Remove nested paragraphs
               .replace(/(<\/p>)\s*(<\/p>)/g, '$2'); // Remove duplicate closing tags
             
-            // Step 5: Highlight price offers (simple - no complex structures)
-            formattedDescription = formattedDescription
+            // Step 6: Highlight price offers in main text
+            formattedMainText = formattedMainText
               .replace(/(\d{1,3}(?:\.\d{3})*\s*€\s*(?:Nachlass|Rabatt|günstiger))/gi, 
                 '<strong class="price-offer">$1</strong>')
               .replace(/(Statt\s+\d{1,3}(?:\.\d{3})*\s*€\s+jetzt\s+nur\s+\d{1,3}(?:\.\d{3})*\s*€)/gi,
                 '<strong class="price-offer">$1</strong>');
             
-            // Step 6: Final cleanup - normalize spaces
-            formattedDescription = formattedDescription
-              .replace(/\s+/g, ' ') // Normalize spaces
-              .trim();
+            // Step 7: Format bullet points as styled list
+            let bulletListHtml = '';
+            if (bulletPoints.length > 0) {
+              bulletListHtml = '<ul class="description-features">';
+              bulletPoints.forEach(point => {
+                if (point && point.trim() && point.trim() !== 'uvm' && point.trim() !== 'uvm.') {
+                  bulletListHtml += `<li>${point.trim()}</li>`;
+                }
+              });
+              bulletListHtml += '</ul>';
+            }
             
-            // Step 7: Sanitize HTML to prevent XSS attacks (preserves safe HTML like <p>, <strong>)
-            // DOMPurify removes malicious scripts while keeping safe formatting tags
+            // Step 8: Combine main text and bullet points
+            let finalDescription = formattedMainText;
+            if (bulletListHtml) {
+              finalDescription += bulletListHtml;
+            }
+            
+            // Step 9: Sanitize HTML to prevent XSS attacks
             const sanitizedDescription = typeof DOMPurify !== 'undefined' 
-              ? DOMPurify.sanitize(formattedDescription, {
+              ? DOMPurify.sanitize(finalDescription, {
                   ALLOWED_TAGS: ['p', 'strong', 'em', 'br', 'ul', 'ol', 'li'],
                   ALLOWED_ATTR: ['class']
                 })
-              : escapeHtml(formattedDescription); // Fallback if DOMPurify not loaded
+              : escapeHtml(finalDescription); // Fallback if DOMPurify not loaded
             
             // Wrap in container with class for styling
             descEl.innerHTML = `<div class="description-content">${sanitizedDescription}</div>`;
@@ -4441,45 +4512,66 @@ function initQuickView() {
   }
 
   function updateThumbnails() {
+    // Prevent recursion if already updating
+    if (quickViewState.isUpdatingThumbnails) {
+      return;
+    }
+    quickViewState.isUpdatingThumbnails = true;
+    
     const thumbnailsContainer = document.querySelector(
       ".quick-view-thumbnails"
     );
-    if (!thumbnailsContainer) return;
+    if (!thumbnailsContainer) {
+      quickViewState.isUpdatingThumbnails = false;
+      return;
+    }
     
     thumbnailsContainer.innerHTML = "";
 
-    quickViewState.vehicleImages.forEach((imgSrc, index) => {
-      // Skip empty or invalid image URLs
-      if (!imgSrc || typeof imgSrc !== 'string' || imgSrc.trim().length === 0) {
-        return;
-      }
-      
+    // Filter out images that are already known to fail (from cache)
+    const validImages = quickViewState.vehicleImages.filter(imgSrc => 
+      imgSrc && 
+      typeof imgSrc === 'string' && 
+      imgSrc.trim().length > 0 &&
+      !quickViewState.failedImages.has(imgSrc)
+    );
+
+    validImages.forEach((imgSrc, index) => {
       const thumbnail = document.createElement("button");
       thumbnail.className = `quick-view-thumbnail ${
         index === quickViewState.currentImageIndex ? "active" : ""
       }`;
       thumbnail.type = "button";
-      thumbnail.setAttribute("aria-label", `Bild ${index + 1} von ${quickViewState.vehicleImages.length} anzeigen`);
+      thumbnail.setAttribute("aria-label", `Bild ${index + 1} von ${validImages.length} anzeigen`);
       thumbnail.setAttribute("aria-pressed", index === quickViewState.currentImageIndex ? "true" : "false");
       
       // Create image element to test if it loads
       const img = document.createElement("img");
       img.alt = `Vorschaubild ${index + 1}`;
       
-      // Handle image load error - remove from gallery if it fails
+      // Handle image load error - remove from gallery if it fails (only if not already in cache)
       img.onerror = () => {
-        console.warn(`Quick View: Thumbnail image failed to load, removing from gallery: ${imgSrc}`);
-        // Remove the failed image from the array
-        quickViewState.vehicleImages = quickViewState.vehicleImages.filter((_, idx) => idx !== index);
-        // Adjust current index if needed
-        if (quickViewState.currentImageIndex >= quickViewState.vehicleImages.length) {
-          quickViewState.currentImageIndex = Math.max(0, quickViewState.vehicleImages.length - 1);
-        }
-        // Re-render thumbnails without the failed image
-        updateThumbnails();
-        // Update main image if current one was removed
-        if (quickViewState.currentImageIndex !== index) {
-          updateMainImage();
+        // Add to failed cache to prevent re-validation
+        quickViewState.failedImages.add(imgSrc);
+        
+        // Only remove and re-render if this image is still in the array
+        const currentIndex = quickViewState.vehicleImages.indexOf(imgSrc);
+        if (currentIndex !== -1) {
+          console.warn(`Quick View: Thumbnail image failed to load, removing from gallery: ${imgSrc}`);
+          // Remove the failed image from the array
+          quickViewState.vehicleImages = quickViewState.vehicleImages.filter(url => url !== imgSrc);
+          // Adjust current index if needed
+          if (quickViewState.currentImageIndex >= quickViewState.vehicleImages.length) {
+            quickViewState.currentImageIndex = Math.max(0, quickViewState.vehicleImages.length - 1);
+          }
+          // Re-render thumbnails without the failed image (only if not already updating)
+          if (!quickViewState.isUpdatingThumbnails) {
+            updateThumbnails();
+            // Update main image if current one was removed
+            if (quickViewState.currentImageIndex !== currentIndex) {
+              updateMainImage();
+            }
+          }
         }
       };
       
@@ -4505,6 +4597,8 @@ function initQuickView() {
     
     // Setup lazy loading for thumbnails
     setupThumbnailLazyLoading();
+    
+    quickViewState.isUpdatingThumbnails = false;
   }
 
   // Lazy load thumbnails using Intersection Observer
