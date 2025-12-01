@@ -156,8 +156,8 @@ module.exports = async (req, res) => {
     const smtpPort = parseInt(process.env.SMTP_PORT, 10);
     const isSecurePort = smtpPort === 465;
 
-    // Create nodemailer transporter
-    const transporter = nodemailer.createTransport({
+    // Create nodemailer transporter with enhanced configuration
+    const transporterConfig = {
       host: process.env.SMTP_HOST,
       port: smtpPort,
       secure: isSecurePort, // true for 465 (SSL), false for other ports (TLS)
@@ -165,17 +165,28 @@ module.exports = async (req, res) => {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-      // Add connection timeout and retry options
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 10000,
-      socketTimeout: 10000,
+      // Increased timeouts for slower connections
+      connectionTimeout: 30000, // 30 seconds
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
       // For ports other than 465, require TLS
       requireTLS: !isSecurePort,
-      // For port 465, disable TLS requirement (uses SSL directly)
+      // TLS/SSL configuration
       tls: {
         rejectUnauthorized: false, // Allow self-signed certificates if needed
+        minVersion: 'TLSv1.2', // Minimum TLS version
       },
+      // Debug mode for better error messages
+      debug: true,
+      logger: true,
+    };
+
+    console.log("Creating SMTP transporter with config:", {
+      ...transporterConfig,
+      auth: { ...transporterConfig.auth, pass: '[REDACTED]' },
     });
+
+    const transporter = nodemailer.createTransport(transporterConfig);
 
     // Log SMTP configuration (without sensitive data)
     console.log("SMTP Configuration:", {
@@ -387,24 +398,35 @@ IP-Adresse: ${clientIP}
       message: "Anfrage erfolgreich gesendet.",
     });
   } catch (error) {
-    console.error("Inquiry form error:", error);
+    // Comprehensive error logging
+    console.error("=== INQUIRY FORM ERROR ===");
+    console.error("Error type:", error.constructor.name);
     console.error("Error message:", error.message);
     console.error("Error code:", error.code);
+    console.error("Error syscall:", error.syscall);
+    console.error("Error address:", error.address);
+    console.error("Error port:", error.port);
     console.error("Error response:", error.response);
     console.error("Error responseCode:", error.responseCode);
     console.error("Error command:", error.command);
+    console.error("Error stack:", error.stack);
+    console.error("Full error object:", JSON.stringify(error, Object.getOwnPropertyNames(error)));
 
     // Provide more specific error messages based on error type
     let errorMessage = `Es ist ein Fehler beim Senden der Anfrage aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${dealerConfig.phone}.`;
 
-    if (error.code === "ECONNREFUSED" || error.code === "ETIMEDOUT") {
-      errorMessage = "SMTP-Server-Verbindungsfehler. Bitte überprüfen Sie die Server-Konfiguration.";
-    } else if (error.code === "EAUTH") {
+    if (error.code === "ECONNREFUSED") {
+      errorMessage = "SMTP-Server-Verbindungsfehler: Server lehnt Verbindung ab. Bitte überprüfen Sie Host, Port und Firewall-Einstellungen.";
+    } else if (error.code === "ETIMEDOUT" || error.code === "ESOCKETTIMEDOUT") {
+      errorMessage = "SMTP-Server-Verbindungsfehler: Zeitüberschreitung beim Verbinden. Bitte überprüfen Sie die Server-Konfiguration.";
+    } else if (error.code === "ENOTFOUND" || error.code === "EAI_AGAIN") {
+      errorMessage = "SMTP-Server-Verbindungsfehler: Hostname nicht gefunden. Bitte überprüfen Sie SMTP_HOST.";
+    } else if (error.code === "EAUTH" || error.responseCode === 535) {
       errorMessage = "SMTP-Authentifizierungsfehler. Bitte überprüfen Sie Benutzername und Passwort.";
-    } else if (error.responseCode === 535) {
-      errorMessage = "SMTP-Authentifizierungsfehler. Bitte überprüfen Sie die Anmeldedaten.";
     } else if (error.responseCode === 550) {
       errorMessage = "E-Mail-Adresse nicht gefunden oder ungültig.";
+    } else if (error.code === "ECONNRESET") {
+      errorMessage = "SMTP-Server-Verbindungsfehler: Verbindung wurde zurückgesetzt. Möglicherweise blockiert die Firewall die Verbindung.";
     }
 
     // Return user-friendly error message
