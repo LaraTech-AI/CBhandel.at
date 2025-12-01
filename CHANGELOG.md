@@ -1,5 +1,42 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Image Gallery Display Fix (January 2025)
+
+### 🐛 Bug Fix
+
+#### Overview
+Fixed critical issue where quick-view modal displayed only one image instead of all available images (14-41 per vehicle/machine) from detail pages. The frontend code was checking for `allImages` property (used by motornetzwerk) but Zweispurig and Landwirt vehicles use `images` property.
+
+#### Fix
+- ✅ **Image Property Compatibility**: Updated frontend to check for both `images` (Zweispurig/Landwirt) and `allImages` (motornetzwerk) properties
+- ✅ **API Compatibility**: Updated vehicle-details API to support both image property names
+- ✅ **Equipment/Properties Support**: Added equipment and properties data from Zweispurig/Landwirt vehicles in vehicle-details API response
+
+#### Technical Details
+- **Frontend**: Modified `scripts.js` to check `vehicle.images || vehicle.allImages` instead of only `vehicle.allImages`
+- **API**: Updated `api/vehicle-details.js` to transform both `images` and `allImages` properties
+- **Data Flow**: Ensures all images from detail page fetching (14-36 for Zweispurig, 14-41 for Landwirt) are properly displayed in quick-view modal
+
+#### Files Modified
+- `scripts.js` - Updated image detection logic to support both property names
+- `api/vehicle-details.js` - Added support for `images` property and equipment/properties data
+
+#### Impact
+- ✅ **User Experience**: All imported images (14-41 per vehicle) now display in quick-view modal
+- ✅ **Compatibility**: Works with all data sources (Zweispurig, Landwirt, motornetzwerk)
+- ✅ **Navigation**: Users can now navigate through all available images using arrows or thumbnails
+
+#### Test Results
+- ✅ **Zweispurig vehicles**: 14-36 images per vehicle now display correctly
+- ✅ **Landwirt machines**: 14-41 images per machine now display correctly
+- ✅ **Image navigation**: All images accessible via navigation arrows and thumbnails
+
+#### 🗑️ Content Removed/Altered
+- **Updated**: Image detection logic from single property check (`allImages`) to dual property check (`images || allImages`)
+- **Enhanced**: Vehicle-details API to include equipment/properties from Zweispurig/Landwirt vehicles
+
+---
+
 ## Critical Fixes: Inquiry Form, Checkbox Interaction, and Mobile UI (January 2025)
 
 ### 🐛 Critical Bug Fixes
