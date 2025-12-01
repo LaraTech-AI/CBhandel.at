@@ -10258,7 +10258,63 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   transform: scale(1.1);
 }
 
-@media (max-width: 968px) {
+/* Tablet-specific sizing (768px - 968px) */
+@media (min-width: 769px) and (max-width: 968px) {
+  .image-zoom-btn {
+    top: 0.75rem;
+    left: 0.75rem;
+    right: auto;
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+
+  .image-zoom-btn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .image-zoom-btn svg {
+    width: 32px !important;
+    height: 32px !important;
+    stroke-width: 3 !important;
+    color: #1b1b1b !important;
+    stroke: #1b1b1b !important;
+    fill: none !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .image-zoom-btn svg path,
+  .image-zoom-btn svg line,
+  .image-zoom-btn svg circle {
+    stroke: #1b1b1b !important;
+    fill: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    stroke-width: 3 !important;
+  }
+
+  [data-theme="dark"] .image-zoom-btn svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+  }
+
+  [data-theme="dark"] .image-zoom-btn svg path,
+  [data-theme="dark"] .image-zoom-btn svg line,
+  [data-theme="dark"] .image-zoom-btn svg circle {
+    stroke: #ffffff !important;
+  }
+}
+
+/* Mobile-specific sizing (below 768px) */
+@media (max-width: 768px) {
   .image-zoom-btn {
     top: 0.75rem;
     left: 0.75rem;
