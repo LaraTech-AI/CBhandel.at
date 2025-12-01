@@ -6,6 +6,7 @@ Copy and paste these exact values into your Vercel project's Environment Variabl
 
 ### Production Configuration
 
+**Option 1: Port 465 (SSL) - If firewall allows**
 ```
 SMTP_HOST=mail.cbhandel.at
 SMTP_PORT=465
@@ -13,6 +14,17 @@ SMTP_USER=office@cbhandel.at
 SMTP_PASS=[Your email account password]
 CONTACT_TO_EMAIL=office@cbhandel.at
 ```
+
+**Option 2: Port 587 (STARTTLS) - Recommended if 465 is blocked**
+```
+SMTP_HOST=mail.cbhandel.at
+SMTP_PORT=587
+SMTP_USER=office@cbhandel.at
+SMTP_PASS=[Your email account password]
+CONTACT_TO_EMAIL=office@cbhandel.at
+```
+
+**⚠️ IMPORTANT**: If you're getting `ETIMEDOUT` errors on port 465, try port 587 instead. The code automatically handles both ports correctly.
 
 ### Step-by-Step Instructions
 
@@ -58,11 +70,20 @@ CONTACT_TO_EMAIL=office@cbhandel.at
 
 ### Important Notes
 
-- ✅ Port **465** uses **SSL encryption** (secure connection)
-- ✅ The code automatically detects port 465 and uses SSL
+- ✅ Port **465** uses **SSL encryption** (direct SSL connection)
+- ✅ Port **587** uses **STARTTLS** (upgrades to TLS after connection)
+- ✅ The code automatically detects the port and uses the correct encryption method
+- ✅ If port 465 times out (`ETIMEDOUT`), try port 587 instead
 - ✅ Use your **email account password** (not an app password)
 - ✅ All 5 variables are required for the inquiry form to work
 - ✅ After adding variables, you must **redeploy** for changes to take effect
+
+### Troubleshooting Connection Timeouts
+
+If you see `ETIMEDOUT` errors:
+1. **Try port 587**: Change `SMTP_PORT` from `465` to `587` in Vercel
+2. **Check firewall**: Your email server might be blocking Vercel's IP addresses
+3. **Contact hosting provider**: Ask them to whitelist Vercel IP ranges or allow connections from any IP
 
 ### Testing
 

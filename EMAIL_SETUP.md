@@ -68,9 +68,16 @@ The following environment variables must be configured:
 
 2. **Important Notes**:
    - **Port 465** uses SSL encryption (secure connection)
+   - **Port 587** uses STARTTLS (alternative if 465 is blocked)
    - Use the **email account's password** for `SMTP_PASS`
    - All authentication is required (IMAP, POP3, and SMTP)
    - This is the **recommended production configuration** for CB Handels GmbH
+
+3. **If you get `ETIMEDOUT` errors on port 465**:
+   - Try port **587** instead (STARTTLS)
+   - Change `SMTP_PORT` from `465` to `587` in Vercel
+   - The code automatically handles both ports correctly
+   - Port 587 is often less restricted by firewalls
 
 ### Option 4: Custom SMTP Server
 
@@ -145,8 +152,10 @@ After configuration, test the inquiry form:
 4. **Common issues**:
    - Gmail: Make sure you're using an App Password, not your regular password
    - Port 587 vs 465: Use 587 for TLS, 465 for SSL (CB Handels uses 465 with SSL)
-   - Firewall: Some SMTP servers block connections from certain IPs
+   - **ETIMEDOUT on port 465**: Try port 587 instead - it's often less restricted
+   - Firewall: Some SMTP servers block connections from certain IPs (Vercel IPs may be blocked)
    - CB Handels SMTP: Ensure you're using the correct email account password (not an app password)
+   - **Connection timeout**: If port 465 times out, the server may be blocking external connections - try port 587 or contact your hosting provider
 
 ### Rate Limiting
 
