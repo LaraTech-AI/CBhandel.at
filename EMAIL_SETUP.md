@@ -73,11 +73,13 @@ The following environment variables must be configured:
    - All authentication is required (IMAP, POP3, and SMTP)
    - This is the **recommended production configuration** for CB Handels GmbH
 
-3. **If you get `ETIMEDOUT` errors on port 465**:
-   - Try port **587** instead (STARTTLS)
-   - Change `SMTP_PORT` from `465` to `587` in Vercel
-   - The code automatically handles both ports correctly
-   - Port 587 is often less restricted by firewalls
+3. **If you get `ETIMEDOUT` errors on both ports 465 and 587**:
+   - ⚠️ **This indicates your SMTP server is blocking connections from Vercel's IP addresses**
+   - **Solution 1**: Contact your email hosting provider and ask them to:
+     - Whitelist Vercel's IP address ranges
+     - Or allow SMTP connections from any IP address
+   - **Solution 2**: Use Gmail or Office 365 instead (see Options 1 & 2 above)
+   - **Solution 3**: Use a third-party email service like SendGrid, Mailgun, or Resend
 
 ### Option 4: Custom SMTP Server
 
@@ -152,10 +154,35 @@ After configuration, test the inquiry form:
 4. **Common issues**:
    - Gmail: Make sure you're using an App Password, not your regular password
    - Port 587 vs 465: Use 587 for TLS, 465 for SSL (CB Handels uses 465 with SSL)
-   - **ETIMEDOUT on port 465**: Try port 587 instead - it's often less restricted
+   - **ETIMEDOUT on both ports**: Your SMTP server is blocking Vercel IPs - see solutions below
    - Firewall: Some SMTP servers block connections from certain IPs (Vercel IPs may be blocked)
    - CB Handels SMTP: Ensure you're using the correct email account password (not an app password)
-   - **Connection timeout**: If port 465 times out, the server may be blocking external connections - try port 587 or contact your hosting provider
+
+### Connection Timeout (ETIMEDOUT) on Both Ports
+
+**Problem**: Both port 465 and 587 are timing out when connecting to your SMTP server.
+
+**Cause**: Your email server (`mail.cbhandel.at`) is blocking connections from Vercel's IP addresses. This is a firewall/network security policy, not a code issue.
+
+**Solutions** (in order of recommendation):
+
+1. **Contact Your Email Hosting Provider**:
+   - Ask them to whitelist Vercel's IP address ranges
+   - Or configure the firewall to allow SMTP connections from any IP
+   - Provide them with Vercel's IP ranges if needed (they change frequently)
+
+2. **Use Gmail Instead** (Quick Fix):
+   - Set up Gmail with App Password (see Option 1 above)
+   - Gmail allows connections from any IP address
+   - Change environment variables to Gmail settings
+
+3. **Use Office 365** (Alternative):
+   - Set up Office 365 SMTP (see Option 2 above)
+   - Office 365 also allows connections from any IP
+
+4. **Use a Third-Party Email Service**:
+   - Services like SendGrid, Mailgun, or Resend are designed for serverless
+   - They have APIs instead of SMTP (would require code changes)
 
 ### Rate Limiting
 

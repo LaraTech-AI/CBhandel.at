@@ -80,10 +80,32 @@ CONTACT_TO_EMAIL=office@cbhandel.at
 
 ### Troubleshooting Connection Timeouts
 
-If you see `ETIMEDOUT` errors:
-1. **Try port 587**: Change `SMTP_PORT` from `465` to `587` in Vercel
-2. **Check firewall**: Your email server might be blocking Vercel's IP addresses
-3. **Contact hosting provider**: Ask them to whitelist Vercel IP ranges or allow connections from any IP
+**If you see `ETIMEDOUT` errors on BOTH ports 465 and 587:**
+
+⚠️ **This means your SMTP server is blocking connections from Vercel's IP addresses.**
+
+**Solutions:**
+
+1. **Contact Your Email Hosting Provider** (Recommended):
+   - Ask them to whitelist Vercel's IP address ranges
+   - Or configure firewall to allow SMTP from any IP
+   - This is the best long-term solution
+
+2. **Use Gmail Instead** (Quick Fix):
+   - Gmail allows connections from any IP
+   - Set up Gmail with App Password:
+     ```
+     SMTP_HOST=smtp.gmail.com
+     SMTP_PORT=587
+     SMTP_USER=your-email@gmail.com
+     SMTP_PASS=your-16-char-app-password
+     CONTACT_TO_EMAIL=office@cbhandel.at
+     ```
+   - See [EMAIL_SETUP.md](EMAIL_SETUP.md) for Gmail setup instructions
+
+3. **Use Office 365** (Alternative):
+   - Office 365 also allows connections from any IP
+   - See [EMAIL_SETUP.md](EMAIL_SETUP.md) for Office 365 setup
 
 ### Testing
 
