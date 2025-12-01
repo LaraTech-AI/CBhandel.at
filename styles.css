@@ -2147,6 +2147,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 .btn-submit {
   position: relative;
   overflow: visible;
+  z-index: 1;
 }
 
 .btn-submit .btn-text {
@@ -8946,10 +8947,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   align-items: flex-start;
   gap: 0.75rem;
   cursor: pointer;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .inquiry-form .checkbox-label input[type="checkbox"] {
-  position: static;
+  position: relative;
+  z-index: 10;
   opacity: 1;
   width: 20px;
   height: 20px;
@@ -8959,6 +8964,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   cursor: pointer;
   accent-color: var(--brand-primary);
   flex-shrink: 0;
+  pointer-events: auto;
 }
 
 .inquiry-form .checkbox-label span {

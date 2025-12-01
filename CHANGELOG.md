@@ -1,5 +1,62 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Enhanced Vehicle Data Fetching with Detail Pages (January 2025)
+
+### 🚗 Comprehensive Data Enrichment
+
+#### Overview
+Enhanced vehicle and machine data fetching to automatically retrieve full detail pages from source websites, providing comprehensive information including all images, equipment lists, properties, descriptions, and technical specifications. Improved image display and UI styling for better user experience.
+
+#### New Features
+- ✅ **Detail Page Fetching**: Automatic fetching of individual vehicle/machine detail pages for complete data enrichment
+- ✅ **Zweispurig Detail Pages**: Fetches full vehicle details including:
+  - All images (14-36 per vehicle, full-size instead of thumbnails)
+  - Equipment lists (16-42 items: Innen & Komfort, Außen, Sicherheit, Beleuchtung, Parksystem, Multimedia)
+  - Vehicle descriptions (Fahrzeugbeschreibung)
+  - Additional technical data (body type, drivetrain, doors, seats, displacement, interior, CO2, emission class, consumption, previous owners, warranty, service book)
+- ✅ **Landwirt Detail Pages**: Fetches full machine details including:
+  - All images (14-41 per machine from static.landwirt.com)
+  - Properties list (39-68 items: specifications, features, characteristics)
+  - Machine descriptions (Beschreibung)
+  - Technical data from detail tables (power, condition, tire depth, total weight, mileage, hours)
+- ✅ **Image Display Enhancement**: Changed main quick-view images from `object-fit: contain` to `object-fit: cover` for better visual fill
+- ✅ **Compare Button Styling**: Improved visibility and contrast for compare checkbox button in quick-view modal with theme-specific styles
+
+#### Changes
+- **Image Extraction**: Fixed Landwirt image domain from `images.landwirt.com` to `static.landwirt.com` for correct image retrieval
+- **Image Display**: Main vehicle images now fill container completely (slight cropping acceptable) instead of showing with letterboxing
+- **Compare Button**: Enhanced styling with better background opacity, improved checkbox visibility, and explicit light/dark theme support
+
+#### Technical Details
+- **Detail Page Functions**: Added `fetchZweispurigDetailPage()` and `fetchLandwirtDetailPage()` functions
+- **Rate Limiting**: Implemented 200ms delay between detail page requests to avoid rate limiting
+- **Error Handling**: Graceful fallback if detail page fetch fails - returns basic data from listing page
+- **Image Processing**: Converts thumbnail URLs to full-size images for Zweispurig (removes `/sm/` and `/xs/` paths)
+- **Logo Filtering**: Filters out dealer logos from Landwirt image extraction
+
+#### Files Modified
+- `lib/vehicleService.js` - Added detail page fetching functions, enhanced `fetchFromZweispurig()` and `fetchFromLandwirt()` to enrich data with detail pages, fixed image domain for Landwirt
+- `styles.css` - Changed `.quick-view-main-image img` from `object-fit: contain` to `object-fit: cover`, enhanced `.compare-checkbox-btn-modal` styling with better contrast and theme-specific styles
+
+#### Impact
+- ✅ **Richer Data**: Vehicles now include complete equipment lists and descriptions
+- ✅ **More Images**: All available images are fetched (not just thumbnails)
+- ✅ **Better UX**: Images fill the viewport better, compare button is clearly visible
+- ✅ **Complete Information**: Technical specifications and properties are fully populated
+
+#### Test Results
+- ✅ **Zweispurig**: 6 vehicles with 14-36 images each, 16-42 equipment items, full descriptions
+- ✅ **Landwirt**: 6 machines with 14-41 images each, 39-68 properties, full descriptions
+- ✅ **Image Display**: Main images now fill container properly
+- ✅ **Compare Button**: Clearly visible in both light and dark themes
+
+#### 🗑️ Content Removed/Altered
+- **Updated**: Image display CSS from `object-fit: contain` to `object-fit: cover` (removed letterboxing)
+- **Fixed**: Landwirt image extraction domain from `images.landwirt.com` to `static.landwirt.com`
+- **Enhanced**: Compare button styling with improved contrast and theme-specific visibility
+
+---
+
 ## Vehicle Data Source Migration (January 2025)
 
 ### 🚗 Vehicle Fetching Improvements
