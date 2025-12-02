@@ -3135,20 +3135,36 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   z-index: 2;
 }
 
-/* On mobile, move badge to left side in Quick View modal to avoid overlap with close button */
-@media (max-width: 968px) {
-  /* Ensure badges container doesn't create a positioning context */
-  .quick-view-modal .quick-view-badges {
-    position: static;
-  }
+/* Move badge to left side in Quick View modal to avoid overlap with close button (all screen sizes) */
+.quick-view-modal .card-badge,
+.quick-view-modal .quick-view-content .card-badge,
+.quick-view-modal .quick-view-image-section .card-badge,
+.quick-view-modal .quick-view-main-image .card-badge {
+  position: absolute;
+  right: auto !important;
+  left: 1rem !important;
+  top: 1rem;
+  z-index: 5 !important; /* Above image, below close button (z-index: 10) */
+}
 
-  /* Move badge to left side, keeping absolute positioning relative to modal content */
+/* Ensure badges container doesn't create a positioning context in Quick View modal */
+.quick-view-modal .quick-view-badges {
+  position: static;
+}
+
+/* Ensure image sections have relative positioning for badge placement */
+.quick-view-modal .quick-view-main-image {
+  position: relative;
+}
+
+/* On mobile, maintain the same positioning */
+@media (max-width: 968px) {
   .quick-view-modal .card-badge {
     position: absolute;
     right: auto !important;
     left: 1rem !important;
     top: 1rem;
-    z-index: 10 !important; /* Above image, below close button (z-index: 999) */
+    z-index: 5 !important; /* Above image, below close button (z-index: 999 on mobile) */
   }
 }
 
