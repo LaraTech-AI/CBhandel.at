@@ -8,7 +8,7 @@ Modern, deployment-ready single-page website template for car dealerships. Curre
 
 - **Modern UI/UX**: Glassmorphism design, CSS animations, 3D tilt effects
 - **Responsive**: Mobile-first design that works on all devices with enhanced touch interactions, swipe gestures, touch-friendly image galleries, optimized mobile experience, and tablet portrait mode support with adaptive search bar
-- **Performance**: Optimized with lazy loading, skeleton loading, progressive images (blur-up), critical CSS inlining, CSS preloading, DNS prefetch, resource priority hints, LCP image preloading, and strategic prefetch for common navigation paths
+- **Performance**: Optimized with lazy loading, skeleton loading, progressive images (blur-up), critical CSS inlining, CSS preloading, DNS prefetch, resource priority hints, LCP image preloading, strategic prefetch for common navigation paths, client-side API response caching (30-minute TTL), and instant modal data population
 - **Security**: XSS protection with DOMPurify, enhanced input sanitization, CORS whitelisting, security headers (CSP, HSTS), rate limiting, and comprehensive input validation
 - **SEO-Ready**: Structured data (AutoDealer, FAQPage, BreadcrumbList, BlogPosting, Review/Rating), comprehensive Open Graph tags with image dimensions, Twitter cards, local business metadata, meta tags, local keywords, canonical URLs, optimized XML sitemap with image support and multilingual hreflang tags, HTML sitemap with structured data, robots.txt, hreflang tags for regional targeting, optimized alt text, accurate sitemap dates, and custom favicon with CB initials
 - **Interactive Features**: Magnetic buttons, scroll reveal, testimonial slider with swipe gestures, vehicle comparison, financing calculator, trade-in calculator with hash navigation support, back-to-top button with smooth scroll
@@ -20,7 +20,7 @@ Modern, deployment-ready single-page website template for car dealerships. Curre
 - **Dark Mode**: Toggle between light and dark themes (loads in light mode by default)
 - **Accessibility**: ARIA attributes, semantic HTML, keyboard navigation, skip-to-content link, focus management in modals, ARIA live regions for dynamic content announcements
 - **Enhanced Hero**: Animated gradients, trust badges, improved CTAs
-- **Vehicle Features**: Quick view modal with enhanced vehicle details API, touch-friendly mobile image gallery with swipe gestures, comparison tool, filtering & sorting, share functionality, vehicle inquiry form with API-based email sending, real-time search
+- **Vehicle Features**: Quick view modal with enhanced vehicle details API, instant modal loading with client-side caching, immediate data population from available sources, background API enhancement, touch-friendly mobile image gallery with swipe gestures, comparison tool, filtering & sorting, share functionality, vehicle inquiry form with API-based email sending, real-time search
 - **Trust Indicators**: Enhanced trust badges, real Google reviews, animated statistics, Google Reviews integration with direct review link and QR code
 - **Services Section**: Comprehensive service showcase (inspection, warranty, financing, trade-in) with interactive cards and hash-based navigation to calculators
 - **Process Section**: 5-step buying process guide with visual indicators and descriptions

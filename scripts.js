@@ -79,7 +79,10 @@ async function fetchAllVehicles() {
   } catch (error) {
     console.error("Error fetching vehicles:", error);
     // Announce error to screen readers
-    announceToScreenReader("vehicles", "Fehler beim Laden der Fahrzeuge. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch.");
+    announceToScreenReader(
+      "vehicles",
+      "Fehler beim Laden der Fahrzeuge. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch."
+    );
     return [];
   }
 }
@@ -498,11 +501,16 @@ function determineCategory(vehicle) {
   if (vehicle.category) {
     // Normalize category values
     const category = vehicle.category.toLowerCase();
-    if (category === 'pkw' || category === 'nutzfahrzeuge' || category === 'baumaschinen' || category === 'baumaschine') {
-      return category === 'baumaschine' ? 'baumaschinen' : category;
+    if (
+      category === "pkw" ||
+      category === "nutzfahrzeuge" ||
+      category === "baumaschinen" ||
+      category === "baumaschine"
+    ) {
+      return category === "baumaschine" ? "baumaschinen" : category;
     }
   }
-  
+
   // Fallback to price/year-based categories for special offers
   if (vehicle.price && vehicle.price < 15000) return "top-offer";
   if (vehicle.year && vehicle.year >= new Date().getFullYear() - 2)
@@ -532,7 +540,10 @@ async function loadAllVehicles() {
   if (vehicles.length === 0) {
     vehiclesGrid.innerHTML =
       '<div class="loading-vehicles" style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-secondary);"><p>Aktuell sind keine Fahrzeuge verfügbar.</p></div>';
-    announceToScreenReader("vehicles", "Aktuell sind keine Fahrzeuge verfügbar.");
+    announceToScreenReader(
+      "vehicles",
+      "Aktuell sind keine Fahrzeuge verfügbar."
+    );
     return;
   }
 
@@ -852,8 +863,8 @@ function getFilteredAndSortedVehicles() {
       vehicles = vehicles.filter((v) => v.category === "nutzfahrzeuge");
     } else if (activeFilter === "baumaschinen") {
       // Handle both "baumaschine" (singular) and "baumaschinen" (plural) category values
-      vehicles = vehicles.filter((v) => 
-        v.category === "baumaschine" || v.category === "baumaschinen"
+      vehicles = vehicles.filter(
+        (v) => v.category === "baumaschine" || v.category === "baumaschinen"
       );
     } else {
       // Use existing category determination for other filters (new, price-reduced)
@@ -864,8 +875,8 @@ function getFilteredAndSortedVehicles() {
   // Apply car section search if active
   if (carSectionSearchTerm && carSectionSearchTerm.trim().length >= 2) {
     const matchingVehicles = VehicleSearchService.search(carSectionSearchTerm);
-    const matchingIds = new Set(matchingVehicles.map(v => String(v.id)));
-    vehicles = vehicles.filter(v => matchingIds.has(String(v.id)));
+    const matchingIds = new Set(matchingVehicles.map((v) => String(v.id)));
+    vehicles = vehicles.filter((v) => matchingIds.has(String(v.id)));
   }
 
   const sortValue =
@@ -969,22 +980,23 @@ function initBackToTop() {
       // Fallback for older browsers - optimized with requestAnimationFrame
       const scrollDuration = 500;
       const startScroll = window.scrollY;
-      const targetPosition = carSection.getBoundingClientRect().top + window.scrollY;
+      const targetPosition =
+        carSection.getBoundingClientRect().top + window.scrollY;
       const distance = targetPosition - startScroll;
       const startTime = performance.now();
-      
+
       function animateScroll(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / scrollDuration, 1);
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        
+
         window.scrollTo(0, startScroll + distance * easeOutCubic);
-        
+
         if (progress < 1) {
           requestAnimationFrame(animateScroll);
         }
       }
-      
+
       requestAnimationFrame(animateScroll);
     }
 
@@ -1009,19 +1021,19 @@ function initBackToTop() {
       const scrollDuration = 500;
       const startScroll = window.scrollY;
       const startTime = performance.now();
-      
+
       function animateScroll(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / scrollDuration, 1);
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        
+
         window.scrollTo(0, startScroll * (1 - easeOutCubic));
-        
+
         if (progress < 1) {
           requestAnimationFrame(animateScroll);
         }
       }
-      
+
       requestAnimationFrame(animateScroll);
     }
 
@@ -1053,9 +1065,13 @@ function initBackToTop() {
 
   // Handle touch events for better mobile experience
   let touchStartY = 0;
-  backToTopButton.addEventListener("touchstart", (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
+  backToTopButton.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
 
   backToTopButton.addEventListener("touchend", (e) => {
     const touchEndY = e.changedTouches[0].clientY;
@@ -1373,7 +1389,8 @@ function initLoadingAnimation() {
   // Ensure main content is visible - batch style updates to prevent reflow
   const mainContent = document.querySelector("main");
   if (mainContent) {
-    mainContent.style.cssText = "display: block; opacity: 1; visibility: visible; position: relative; z-index: 1;";
+    mainContent.style.cssText =
+      "display: block; opacity: 1; visibility: visible; position: relative; z-index: 1;";
   }
 
   // Ensure body is scrollable
@@ -1492,7 +1509,7 @@ function initMobileMenu() {
       navMenu.classList.remove("active");
     });
   });
-  
+
   // Close menu when clicking on social links (but allow external navigation)
   const socialLinks = navMenu.querySelectorAll(".nav-social-link");
   socialLinks.forEach((link) => {
@@ -2033,7 +2050,7 @@ function initTestimonialsSlider() {
 
     function handleTouchMove(e) {
       if (!isDragging) return;
-      
+
       touchEndX = e.touches[0].clientX;
       touchEndY = e.touches[0].clientY;
 
@@ -2074,7 +2091,11 @@ function initTestimonialsSlider() {
       // 1. It was clearly identified as a horizontal swipe
       // 2. The swipe distance is sufficient
       // 3. The user actually moved (not just a tap)
-      if (isHorizontalSwipe && hasMoved && Math.abs(swipeDistance) > minSwipeDistance) {
+      if (
+        isHorizontalSwipe &&
+        hasMoved &&
+        Math.abs(swipeDistance) > minSwipeDistance
+      ) {
         if (swipeDistance > 0) {
           // Swipe left - next slide
           const newIndex =
@@ -2478,7 +2499,9 @@ ${data.nachricht || ""}`;
         "Kontaktanfrage von " + (data.name || "Website")
       );
       const emailBody = encodeURIComponent(emailBodyText);
-      const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
+      const email =
+        (window.dealerConfig && window.dealerConfig.email) ||
+        "office@cbhandel.at";
       const mailtoLink = `mailto:${email}?subject=${subject}&body=${emailBody}`;
 
       // Open email client
@@ -2718,7 +2741,8 @@ function initShareModal() {
 
       // Build URL based on share type
       let url = "";
-      let title = (window.dealerConfig && window.dealerConfig.name) || "CB Handels GmbH";
+      let title =
+        (window.dealerConfig && window.dealerConfig.name) || "CB Handels GmbH";
 
       if (currentShareType === "vehicle") {
         // For vehicles, create a shareable URL with vehicle ID
@@ -2900,7 +2924,10 @@ function initLightbox() {
   // Open lightbox with image
   function openLightbox(imageElement) {
     // If images are already set from external source (e.g., quick view), use them
-    if (window.lightboxState && window.lightboxState.currentImages().length > 0) {
+    if (
+      window.lightboxState &&
+      window.lightboxState.currentImages().length > 0
+    ) {
       currentImages = window.lightboxState.currentImages();
       currentIndex = window.lightboxState.currentIndex() || 0;
     } else {
@@ -3069,8 +3096,12 @@ function initLightbox() {
     window.lightboxState = {
       currentImages: () => currentImages,
       currentIndex: () => currentIndex,
-      setCurrentImages: (images) => { currentImages = images; },
-      setCurrentIndex: (index) => { currentIndex = index; }
+      setCurrentImages: (images) => {
+        currentImages = images;
+      },
+      setCurrentIndex: (index) => {
+        currentIndex = index;
+      },
     };
   }
 }
@@ -3104,6 +3135,171 @@ function initQuickView() {
   if (!quickViewModal || !quickViewContent) return;
 
   quickViewState.isInitialized = true;
+
+  // Client-side cache for vehicle details API responses
+  const vehicleDetailsCache = new Map();
+  const CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes
+
+  function getCachedVehicleDetails(vid) {
+    const entry = vehicleDetailsCache.get(vid);
+    if (!entry) return null;
+    if (Date.now() - entry.timestamp > CACHE_TTL_MS) {
+      vehicleDetailsCache.delete(vid);
+      return null;
+    }
+    return entry.data;
+  }
+
+  function setCachedVehicleDetails(vid, data) {
+    vehicleDetailsCache.set(vid, { data, timestamp: Date.now() });
+  }
+
+  // Helper function to format description from vehicle data
+  function formatDescription(description) {
+    if (!description || typeof description !== "string") return "";
+
+    let formatted = description.trim();
+    if (!formatted) return "";
+
+    // Normalize whitespace
+    formatted = formatted.replace(/\s+/g, " ");
+
+    // Break into paragraphs intelligently
+    formatted = formatted
+      .replace(/\n\n+/g, "</p><p>")
+      .replace(/(\.\s+)([A-ZÄÖÜ])/g, ".</p><p>$2");
+
+    // Wrap in paragraph tags if not already wrapped
+    if (!formatted.startsWith("<p>")) {
+      formatted = "<p>" + formatted;
+    }
+    if (!formatted.endsWith("</p>")) {
+      formatted = formatted + "</p>";
+    }
+
+    // Clean up empty paragraphs
+    formatted = formatted
+      .replace(/<p>\s*<\/p>/g, "")
+      .replace(/(<p>)\s*(<p>)/g, "$2")
+      .replace(/(<\/p>)\s*(<\/p>)/g, "$2");
+
+    // Highlight price offers
+    formatted = formatted
+      .replace(
+        /(\d{1,3}(?:\.\d{3})*\s*€\s*(?:Nachlass|Rabatt|günstiger))/gi,
+        '<strong class="price-offer">$1</strong>'
+      )
+      .replace(
+        /(Statt\s+\d{1,3}(?:\.\d{3})*\s*€\s+jetzt\s+nur\s+\d{1,3}(?:\.\d{3})*\s*€)/gi,
+        '<strong class="price-offer">$1</strong>'
+      );
+
+    // Final cleanup
+    formatted = formatted.replace(/\s+/g, " ").trim();
+
+    // Sanitize HTML
+    const sanitized =
+      typeof DOMPurify !== "undefined"
+        ? DOMPurify.sanitize(formatted, {
+            ALLOWED_TAGS: ["p", "strong", "em", "br", "ul", "ol", "li"],
+            ALLOWED_ATTR: ["class"],
+          })
+        : escapeHtml(formatted);
+
+    return `<div class="description-content">${sanitized}</div>`;
+  }
+
+  // Populate modal immediately with available data from window.allVehiclesList
+  function populateModalWithAvailableData(vehicleData, descEl, specsDetailEl) {
+    if (!vehicleData) return;
+
+    // Populate description immediately if available
+    if (descEl && vehicleData.description) {
+      descEl.innerHTML = formatDescription(vehicleData.description);
+    }
+
+    // Populate basic specs immediately if available
+    if (specsDetailEl && vehicleData) {
+      const specRows = [];
+
+      if (vehicleData.year) {
+        specRows.push(
+          `<div class="spec-row"><span>Erstzulassung</span><span>${vehicleData.year}</span></div>`
+        );
+      }
+
+      if (vehicleData.mileage && vehicleData.mileage > 1000) {
+        specRows.push(
+          `<div class="spec-row"><span>Kilometerstand</span><span>${vehicleData.mileage.toLocaleString(
+            "de-DE"
+          )} km</span></div>`
+        );
+      }
+
+      if (vehicleData.fuelType) {
+        specRows.push(
+          `<div class="spec-row"><span>Kraftstoffart</span><span>${escapeHtml(
+            vehicleData.fuelType
+          )}</span></div>`
+        );
+      }
+
+      if (vehicleData.power) {
+        if (vehicleData.power.kw && vehicleData.power.ps) {
+          specRows.push(
+            `<div class="spec-row"><span>Leistung</span><span>${vehicleData.power.kw} kW (${vehicleData.power.ps} PS)</span></div>`
+          );
+        } else if (vehicleData.power.kw) {
+          specRows.push(
+            `<div class="spec-row"><span>Leistung</span><span>${vehicleData.power.kw} kW</span></div>`
+          );
+        } else if (vehicleData.power.ps) {
+          specRows.push(
+            `<div class="spec-row"><span>Leistung (PS)</span><span>${vehicleData.power.ps} PS</span></div>`
+          );
+        }
+      }
+
+      if (vehicleData.transmission) {
+        specRows.push(
+          `<div class="spec-row"><span>Getriebe</span><span>${escapeHtml(
+            vehicleData.transmission
+          )}</span></div>`
+        );
+      }
+
+      if (vehicleData.vehicleType) {
+        specRows.push(
+          `<div class="spec-row"><span>Fahrzeugtyp</span><span>${escapeHtml(
+            vehicleData.vehicleType
+          )}</span></div>`
+        );
+      }
+
+      // Show equipment if available
+      if (
+        vehicleData.equipment &&
+        Array.isArray(vehicleData.equipment) &&
+        vehicleData.equipment.length > 0
+      ) {
+        const equipEl = document.getElementById("quick-view-equipment");
+        if (equipEl) {
+          equipEl.innerHTML =
+            `<h3 class="section-title">Ausstattungen</h3>` +
+            `<ul class="equipment-ul">${vehicleData.equipment
+              .slice(0, 80)
+              .map((e) => `<li>${escapeHtml(e)}</li>`)
+              .join("")}</ul>`;
+        }
+      }
+
+      if (specRows.length > 0) {
+        specsDetailEl.innerHTML = `<h3 class="section-title">Technische Daten</h3>${specRows.join(
+          ""
+        )}`;
+      }
+    }
+  }
 
   // A11y wiring - apply to content div which has role="dialog"
   const a11y = setupModalA11y(quickViewContent, {
@@ -3232,7 +3428,7 @@ function initQuickView() {
       const filterInvalidImages = (imgUrl) => {
         if (!imgUrl || typeof imgUrl !== "string") return false;
         const urlLower = imgUrl.toLowerCase();
-        
+
         // Filter out Landwirt logos and icons
         if (urlLower.includes("static.landwirt.com")) {
           if (urlLower.includes("mobileicons")) return false;
@@ -3243,7 +3439,7 @@ function initQuickView() {
           if (urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i)) return false;
           if (urlLower.match(/-\d*vb\.(jpg|jpeg|png|webp)$/i)) return false;
         }
-        
+
         // Filter out common non-vehicle images
         if (
           urlLower.includes("logo") ||
@@ -3255,19 +3451,21 @@ function initQuickView() {
           urlLower.includes("platzhalter") ||
           urlLower.includes("placeholder") ||
           urlLower.includes("no-image")
-        ) return false;
-        
+        )
+          return false;
+
         // Zweispurig: ensure valid pattern (should have vehicleId_numbers.jpg)
         if (urlLower.includes("files.zweispurig.at")) {
           if (!urlLower.match(/\d+_\d+\.(jpg|jpeg|png|webp)$/i)) return false;
         }
-        
+
         return true;
       };
-      
+
       // Check for images array (Zweispurig/Landwirt) or allImages (motornetzwerk)
-      const imagesArray = vehicleDataForImages?.images || vehicleDataForImages?.allImages;
-      
+      const imagesArray =
+        vehicleDataForImages?.images || vehicleDataForImages?.allImages;
+
       if (
         vehicleDataForImages &&
         imagesArray &&
@@ -3276,7 +3474,9 @@ function initQuickView() {
       ) {
         // Use all images from vehicle data as initial set, but filter out invalid ones
         // Will be enhanced with more images from details API
-        quickViewState.vehicleImages = imagesArray.filter(img => img && filterInvalidImages(img));
+        quickViewState.vehicleImages = imagesArray.filter(
+          (img) => img && filterInvalidImages(img)
+        );
         console.log(
           `Quick View: Found ${imagesArray.length} images, filtered to ${quickViewState.vehicleImages.length} valid images for vehicle ${quickViewState.currentVehicleId}`,
           quickViewState.vehicleImages
@@ -3288,14 +3488,19 @@ function initQuickView() {
         );
       } else if (vehicleDataForImages && vehicleDataForImages.image) {
         // Fallback: use single image from vehicle data (if valid)
-        const singleImage = filterInvalidImages(vehicleDataForImages.image) ? [vehicleDataForImages.image] : [];
+        const singleImage = filterInvalidImages(vehicleDataForImages.image)
+          ? [vehicleDataForImages.image]
+          : [];
         quickViewState.vehicleImages = singleImage;
         console.log(
           `Quick View: Using single image. Will be enhanced by details API...`
         );
       } else {
         // Final fallback: use main image from card (if valid)
-        quickViewState.vehicleImages = mainImageSrc && filterInvalidImages(mainImageSrc) ? [mainImageSrc] : [];
+        quickViewState.vehicleImages =
+          mainImageSrc && filterInvalidImages(mainImageSrc)
+            ? [mainImageSrc]
+            : [];
       }
     } else {
       // No vehicle ID, just use main image
@@ -3305,16 +3510,26 @@ function initQuickView() {
     // Clear and populate badges with key specs
     const badgesContainer = document.getElementById("quick-view-badges");
     badgesContainer.innerHTML = "";
-    
+
     // Use vehicleData or parse from specs text
-    const currentData = vehicleData || (vehicleCard ? {
-      year: vehicleCard.dataset.year ? parseInt(vehicleCard.dataset.year) : null,
-      mileage: vehicleCard.dataset.mileage ? parseInt(vehicleCard.dataset.mileage) : null,
-      fuelType: vehicleCard.dataset.fuelType || null,
-      power: vehicleCard.dataset.power ? JSON.parse(vehicleCard.dataset.power) : null,
-      transmission: vehicleCard.dataset.transmission || null
-    } : null);
-    
+    const currentData =
+      vehicleData ||
+      (vehicleCard
+        ? {
+            year: vehicleCard.dataset.year
+              ? parseInt(vehicleCard.dataset.year)
+              : null,
+            mileage: vehicleCard.dataset.mileage
+              ? parseInt(vehicleCard.dataset.mileage)
+              : null,
+            fuelType: vehicleCard.dataset.fuelType || null,
+            power: vehicleCard.dataset.power
+              ? JSON.parse(vehicleCard.dataset.power)
+              : null,
+            transmission: vehicleCard.dataset.transmission || null,
+          }
+        : null);
+
     // Add key specs as badges - use available data
     const specParts = [];
     if (currentData?.year) {
@@ -3322,43 +3537,43 @@ function initQuickView() {
     } else if (vehicleData?.year) {
       specParts.push(String(vehicleData.year));
     }
-    
+
     if (currentData?.mileage && currentData.mileage > 1000) {
       specParts.push(`${currentData.mileage.toLocaleString("de-DE")} km`);
     } else if (vehicleData?.mileage && vehicleData.mileage > 1000) {
       specParts.push(`${vehicleData.mileage.toLocaleString("de-DE")} km`);
     }
-    
+
     if (currentData?.fuelType) {
       specParts.push(currentData.fuelType);
     } else if (vehicleData?.fuelType) {
       specParts.push(vehicleData.fuelType);
     }
-    
+
     const powerData = currentData?.power || vehicleData?.power;
     if (powerData) {
-      if (typeof powerData === 'object' && powerData.kw && powerData.ps) {
+      if (typeof powerData === "object" && powerData.kw && powerData.ps) {
         specParts.push(`${powerData.kw} kW (${powerData.ps} PS)`);
-      } else if (typeof powerData === 'object' && powerData.kw) {
+      } else if (typeof powerData === "object" && powerData.kw) {
         specParts.push(`${powerData.kw} kW`);
-      } else if (typeof powerData === 'object' && powerData.ps) {
+      } else if (typeof powerData === "object" && powerData.ps) {
         specParts.push(`${powerData.ps} PS`);
       }
     }
-    
+
     if (currentData?.transmission) {
       specParts.push(currentData.transmission);
     } else if (vehicleData?.transmission) {
       specParts.push(vehicleData.transmission);
     }
-    
+
     // Create badge elements for each spec
     specParts.forEach((spec) => {
       const badgeEl = document.createElement("span");
       badgeEl.textContent = spec;
       badgesContainer.appendChild(badgeEl);
     });
-    
+
     // Add special badge if available (e.g., "Top Angebot")
     if (badge) {
       const badgeEl = document.createElement("span");
@@ -3438,20 +3653,66 @@ function initQuickView() {
       console.error("Error opening quick view modal:", error);
     }
 
-    // Show loading skeleton for content
+    // Show loading skeleton for content (but populate immediately with available data)
     const contentSkeleton = document.getElementById("content-loading-skeleton");
     const contentError = document.getElementById("content-error-state");
-    const contentSections = document.querySelectorAll("#quick-view-description, #quick-view-specifications, #quick-view-environment, #quick-view-masses, #quick-view-equipment, #quick-view-dealer");
-    
-    // Hide error, show skeleton, hide sections
-    if (contentError) contentError.style.display = "none";
-    if (contentSkeleton) contentSkeleton.style.display = "block";
-    contentSections.forEach(section => {
-      if (section) section.style.display = "none";
-    });
+    const contentSections = document.querySelectorAll(
+      "#quick-view-description, #quick-view-specifications, #quick-view-environment, #quick-view-masses, #quick-view-equipment, #quick-view-dealer"
+    );
 
-    // Fetch full details and populate sections
+    // Hide error, hide skeleton initially (we'll show it only if no data available)
+    if (contentError) contentError.style.display = "none";
+
+    // Immediately populate modal with available data from window.allVehiclesList
+    if (vehicleData && quickViewState.currentVehicleId) {
+      populateModalWithAvailableData(vehicleData, descEl, specsDetailEl);
+      // Show sections that have data, hide skeleton
+      if (contentSkeleton) contentSkeleton.style.display = "none";
+      contentSections.forEach((section) => {
+        if (section && section.innerHTML.trim() !== "") {
+          section.style.display = "";
+        } else {
+          section.style.display = "none";
+        }
+      });
+    } else {
+      // No data available, show skeleton
+      if (contentSkeleton) contentSkeleton.style.display = "block";
+      contentSections.forEach((section) => {
+        if (section) section.style.display = "none";
+      });
+    }
+
+    // Fetch full details and enhance sections (check cache first)
     if (quickViewState.currentVehicleId) {
+      // Check cache first
+      const cachedData = getCachedVehicleDetails(
+        quickViewState.currentVehicleId
+      );
+      if (cachedData) {
+        console.log(
+          `Using cached vehicle details for ${quickViewState.currentVehicleId}`
+        );
+        // Use cached data immediately
+        enhanceModalWithApiData(
+          cachedData,
+          titleEl,
+          priceEl,
+          specsEl,
+          descEl,
+          specsDetailEl,
+          envEl,
+          massEl,
+          equipEl,
+          dealerEl,
+          badge,
+          contentSkeleton,
+          contentSections
+        );
+        return;
+      }
+
+      // Fetch from API (will enhance modal in background)
       fetch(
         `/api/vehicle-details?vid=${encodeURIComponent(
           quickViewState.currentVehicleId
@@ -3465,619 +3726,609 @@ function initQuickView() {
           return r.json();
         })
         .then((data) => {
-          // Hide loading skeleton, show sections
-          if (contentSkeleton) contentSkeleton.style.display = "none";
-          contentSections.forEach(section => {
-            if (section) section.style.display = "";
-          });
-          if (!data || data.error) {
-            console.warn(
-              "Vehicle details not available:",
-              data?.error || "Unknown error"
-            );
-            return;
-          }
-          console.log("Fetched vehicle details:", data);
+          // Cache the response
+          setCachedVehicleDetails(quickViewState.currentVehicleId, data);
 
-          // Title & Price - only update if we have valid data, otherwise keep existing values
-          const genericTitles = [
-            "Spezifikationen",
-            "Fahrzeugdetails",
-            "Details",
-          ];
-          if (data.title && titleEl && !genericTitles.includes(data.title)) {
-            titleEl.textContent = data.title;
-          }
-          if (typeof data.price === "number" && data.price > 0 && priceEl) {
-            priceEl.textContent = `€ ${data.price.toLocaleString("de-DE")},-`;
-          }
-
-          // Specs rewrite - use vehicle-details data if valid, otherwise keep existing specs
-          const specParts = [];
-
-          // Only update if we have valid data (not obviously wrong values)
-          if (
-            data.registrationYear &&
-            data.registrationYear > 1900 &&
-            data.registrationYear <= new Date().getFullYear() + 1
-          ) {
-            specParts.push(`${data.registrationYear}`);
-          }
-
-          // Only use mileage if it's reasonable (not just "100" or other small numbers)
-          if (typeof data.mileage === "number" && data.mileage > 1000) {
-            specParts.push(`${data.mileage.toLocaleString("de-DE")} km`);
-          }
-
-          // Only use fuel if it's a valid fuel type (not "art" or other fragments)
-          const validFuels = [
-            "Diesel",
-            "Benzin",
-            "Elektro",
-            "Hybrid",
-            "CNG",
-            "LPG",
-            "Wasserstoff",
-          ];
-          if (
-            data.engineFuel &&
-            validFuels.some((f) => data.engineFuel.includes(f))
-          ) {
-            specParts.push(data.engineFuel);
-          }
-
-          if (
-            typeof data.engineEffectKw === "number" &&
-            typeof data.engineEffectPs === "number" &&
-            data.engineEffectKw > 0 &&
-            data.engineEffectPs > 0
-          )
-            specParts.push(
-              `${data.engineEffectKw} kW (${data.engineEffectPs} PS)`
-            );
-
-          // Only use transmission if it's a valid value
-          const validTransmissions = [
-            "Automatik",
-            "Schaltgetriebe",
-            "Automatikgetriebe",
-            "CVT",
-            "DSG",
-          ];
-          if (
-            data.transmission &&
-            validTransmissions.some((t) => data.transmission.includes(t))
-          ) {
-            specParts.push(data.transmission);
-          }
-
-          // Only update specs if we have valid data, otherwise keep existing specs from card
-          if (specsEl && specParts.length > 0) {
-            specsEl.textContent = specParts.join(" • ");
-          }
-          
-          // Update badges with fresh API data
-          const badgesContainer = document.getElementById("quick-view-badges");
-          if (badgesContainer) {
-            badgesContainer.innerHTML = "";
-            
-            // Add key specs as badges from API data
-            const badgeSpecs = [];
-            if (data.registrationYear && data.registrationYear > 1900 && data.registrationYear <= new Date().getFullYear() + 1) {
-              badgeSpecs.push(String(data.registrationYear));
-            }
-            if (typeof data.mileage === "number" && data.mileage > 1000) {
-              badgeSpecs.push(`${data.mileage.toLocaleString("de-DE")} km`);
-            }
-            if (data.engineFuel) {
-              badgeSpecs.push(data.engineFuel);
-            }
-            if (data.engineEffectKw && data.engineEffectPs) {
-              badgeSpecs.push(`${data.engineEffectKw} kW (${data.engineEffectPs} PS)`);
-            } else if (data.engineEffectKw) {
-              badgeSpecs.push(`${data.engineEffectKw} kW`);
-            } else if (data.engineEffectPs) {
-              badgeSpecs.push(`${data.engineEffectPs} PS`);
-            }
-            if (data.transmission) {
-              badgeSpecs.push(data.transmission);
-            }
-            
-            // Create badge elements
-            badgeSpecs.forEach((spec) => {
-              const badgeEl = document.createElement("span");
-              badgeEl.textContent = spec;
-              badgesContainer.appendChild(badgeEl);
-            });
-            
-            // Add special badge if available
-            if (badge) {
-              const badgeEl = document.createElement("span");
-              badgeEl.className = "card-badge badge-top-offer";
-              badgeEl.textContent = badge;
-              badgesContainer.appendChild(badgeEl);
-            }
-          }
-
-          // Description - simplified formatting to prevent layout issues
-          if (descEl && data.description) {
-            let formattedDescription = data.description.trim();
-            
-            // Step 1: Normalize whitespace - replace multiple spaces/newlines with single space
-            formattedDescription = formattedDescription.replace(/\s+/g, ' ');
-            
-            // Step 2: Break into paragraphs intelligently (simple approach)
-            // Split on double line breaks or periods followed by space and capital letter
-            formattedDescription = formattedDescription
-              .replace(/\n\n+/g, '</p><p>') // Split on double line breaks
-              .replace(/(\.\s+)([A-ZÄÖÜ])/g, '.</p><p>$2'); // Split on period + space + capital letter
-            
-            // Step 3: Wrap in paragraph tags if not already wrapped
-            if (!formattedDescription.startsWith('<p>')) {
-              formattedDescription = '<p>' + formattedDescription;
-            }
-            if (!formattedDescription.endsWith('</p>')) {
-              formattedDescription = formattedDescription + '</p>';
-            }
-            
-            // Step 4: Clean up empty paragraphs
-            formattedDescription = formattedDescription
-              .replace(/<p>\s*<\/p>/g, '') // Remove empty paragraphs
-              .replace(/(<p>)\s*(<p>)/g, '$2') // Remove nested paragraphs
-              .replace(/(<\/p>)\s*(<\/p>)/g, '$2'); // Remove duplicate closing tags
-            
-            // Step 5: Highlight price offers (simple - no complex structures)
-            formattedDescription = formattedDescription
-              .replace(/(\d{1,3}(?:\.\d{3})*\s*€\s*(?:Nachlass|Rabatt|günstiger))/gi, 
-                '<strong class="price-offer">$1</strong>')
-              .replace(/(Statt\s+\d{1,3}(?:\.\d{3})*\s*€\s+jetzt\s+nur\s+\d{1,3}(?:\.\d{3})*\s*€)/gi,
-                '<strong class="price-offer">$1</strong>');
-            
-            // Step 6: Final cleanup - normalize spaces
-            formattedDescription = formattedDescription
-              .replace(/\s+/g, ' ') // Normalize spaces
-              .trim();
-            
-            // Step 7: Sanitize HTML to prevent XSS attacks (preserves safe HTML like <p>, <strong>)
-            // DOMPurify removes malicious scripts while keeping safe formatting tags
-            const sanitizedDescription = typeof DOMPurify !== 'undefined' 
-              ? DOMPurify.sanitize(formattedDescription, {
-                  ALLOWED_TAGS: ['p', 'strong', 'em', 'br', 'ul', 'ol', 'li'],
-                  ALLOWED_ATTR: ['class']
-                })
-              : escapeHtml(formattedDescription); // Fallback if DOMPurify not loaded
-            
-            // Wrap in container with class for styling
-            descEl.innerHTML = `<div class="description-content">${sanitizedDescription}</div>`;
-          }
-
-          // Comprehensive Specifications Section - Show ALL available data from motornetzwerk.at
-          const specRows = [];
-
-          // Helper to safely display any value (show all data, even if it looks odd)
-          const displayValue = (value) => {
-            if (value === null || value === undefined) return null;
-            if (typeof value === "string") {
-              const cleaned = value.trim();
-              // Only filter out completely empty or whitespace-only values
-              if (!cleaned || cleaned.length === 0) return null;
-              return cleaned;
-            }
-            return String(value);
-          };
-
-          // Vehicle Basic Info - show all available data
-          const make = displayValue(data.make);
-          if (make) {
-            specRows.push(
-              `<div class="spec-row"><span>Marke</span><span>${escapeHtml(
-                make
-              )}</span></div>`
-            );
-          }
-          const model = displayValue(data.model);
-          if (model) {
-            specRows.push(
-              `<div class="spec-row"><span>Modell</span><span>${escapeHtml(
-                model
-              )}</span></div>`
-            );
-          }
-          const carType = displayValue(data.carType);
-          if (carType) {
-            specRows.push(
-              `<div class="spec-row"><span>Fahrzeugtyp</span><span>${escapeHtml(
-                carType
-              )}</span></div>`
-            );
-          }
-          const motorCondition = displayValue(data.motorCondition);
-          if (motorCondition) {
-            specRows.push(
-              `<div class="spec-row"><span>Zustand</span><span>${escapeHtml(
-                motorCondition
-              )}</span></div>`
-            );
-          }
-
-          // Registration
-          if (data.registrationYear) {
-            let regText = `${data.registrationYear}`;
-            if (data.registrationMonth) {
-              regText = `${String(data.registrationMonth).padStart(2, "0")}/${
-                data.registrationYear
-              }`;
-            }
-            specRows.push(
-              `<div class="spec-row"><span>Erstzulassung</span><span>${regText}</span></div>`
-            );
-          }
-
-          // Engine Details - show all available data
-          const engineFuel = displayValue(data.engineFuel);
-          if (engineFuel) {
-            specRows.push(
-              `<div class="spec-row"><span>Kraftstoffart</span><span>${escapeHtml(
-                engineFuel
-              )}</span></div>`
-            );
-          }
-          if (typeof data.engineVolume === "number" && data.engineVolume > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>Hubraum</span><span>${data.engineVolume.toLocaleString(
-                "de-DE"
-              )} ccm</span></div>`
-            );
-          }
-          if (
-            typeof data.engineEffectKw === "number" &&
-            data.engineEffectKw > 0
-          ) {
-            specRows.push(
-              `<div class="spec-row"><span>Leistung</span><span>${data.engineEffectKw} kW</span></div>`
-            );
-          }
-          if (
-            typeof data.engineEffectPs === "number" &&
-            data.engineEffectPs > 0
-          ) {
-            specRows.push(
-              `<div class="spec-row"><span>Leistung (PS)</span><span>${data.engineEffectPs} PS</span></div>`
-            );
-          }
-          if (
-            typeof data.engineCylinder === "number" &&
-            data.engineCylinder > 0
-          ) {
-            specRows.push(
-              `<div class="spec-row"><span>Zylinder</span><span>${data.engineCylinder}</span></div>`
-            );
-          }
-
-          // Transmission & Drive - show all available data
-          const transmission = displayValue(data.transmission);
-          if (transmission) {
-            specRows.push(
-              `<div class="spec-row"><span>Getriebe</span><span>${escapeHtml(
-                transmission
-              )}</span></div>`
-            );
-          }
-          const wheelDrive = displayValue(data.wheelDrive);
-          if (wheelDrive) {
-            specRows.push(
-              `<div class="spec-row"><span>Antrieb</span><span>${escapeHtml(
-                wheelDrive
-              )}</span></div>`
-            );
-          }
-
-          // Mileage
-          if (typeof data.mileage === "number" && data.mileage > 1000) {
-            specRows.push(
-              `<div class="spec-row"><span>Kilometerstand</span><span>${data.mileage.toLocaleString(
-                "de-DE"
-              )} km</span></div>`
-            );
-          }
-
-          // Dimensions & Capacity
-          if (
-            typeof data.numberOfSeats === "number" &&
-            data.numberOfSeats > 0
-          ) {
-            specRows.push(
-              `<div class="spec-row"><span>Sitzplätze</span><span>${data.numberOfSeats}</span></div>`
-            );
-          }
-          if (
-            typeof data.numberOfDoors === "number" &&
-            data.numberOfDoors > 0
-          ) {
-            specRows.push(
-              `<div class="spec-row"><span>Türen</span><span>${data.numberOfDoors}</span></div>`
-            );
-          }
-          const mainExteriorColour = displayValue(data.mainExteriorColour);
-          if (mainExteriorColour) {
-            specRows.push(
-              `<div class="spec-row"><span>Farbe</span><span>${escapeHtml(
-                mainExteriorColour
-              )}</span></div>`
-            );
-          }
-
-          // Model Specification
-          const modelSpec = displayValue(data.modelSpecification);
-          if (modelSpec) {
-            specRows.push(
-              `<div class="spec-row"><span>Modellvariante</span><span>${escapeHtml(
-                modelSpec
-              )}</span></div>`
-            );
-          }
-
-          // Dimensions - add if available
-          if (typeof data.lengthCm === "number" && data.lengthCm > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>Länge</span><span>${(data.lengthCm / 100).toFixed(2)} m</span></div>`
-            );
-          }
-          if (typeof data.widthCm === "number" && data.widthCm > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>Breite</span><span>${(data.widthCm / 100).toFixed(2)} m</span></div>`
-            );
-          }
-
-          // Empty Weight (Leergewicht) - important spec
-          if (typeof data.emptyWeight === "number" && data.emptyWeight > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>Leergewicht</span><span>${data.emptyWeight.toLocaleString(
-                "de-DE"
-              )} kg</span></div>`
-            );
-          }
-
-          // Electric Vehicle Specs
-          if (typeof data.batteryCapacity === "number" && data.batteryCapacity > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>Batteriekapazität</span><span>${data.batteryCapacity} kWh</span></div>`
-            );
-          }
-          if (typeof data.wltpRange === "number" && data.wltpRange > 0) {
-            specRows.push(
-              `<div class="spec-row"><span>WLTP-Reichweite</span><span>${data.wltpRange.toLocaleString(
-                "de-DE"
-              )} km</span></div>`
-            );
-          }
-
-          // Warranty - show all available data
-          const warrantyDuration = displayValue(data.warrantyDuration);
-          if (warrantyDuration) {
-            specRows.push(
-              `<div class="spec-row"><span>Garantie</span><span>${escapeHtml(
-                warrantyDuration
-              )}</span></div>`
-            );
-          }
-
-          // Display specifications if we have any
-          if (specsDetailEl && specRows.length > 0) {
-            specsDetailEl.innerHTML = `<h3 class="section-title">Technische Daten</h3>${specRows.join(
-              ""
-            )}`;
-          }
-
-          // Environment
-          const envRows = [];
-          if (typeof data.consumption === "number")
-            envRows.push(
-              `<div class="spec-row"><span>Verbrauch</span><span>${data.consumption} l/100km</span></div>`
-            );
-          if (typeof data.co2Footprint === "number")
-            envRows.push(
-              `<div class="spec-row"><span>CO₂</span><span>${data.co2Footprint} g/km</span></div>`
-            );
-          if (data.emissionStandard)
-            envRows.push(
-              `<div class="spec-row"><span>Abgasnorm</span><span>${escapeHtml(
-                data.emissionStandard
-              )}</span></div>`
-            );
-          if (envEl && envRows.length) {
-            envEl.innerHTML = `<h3 class="section-title">Umwelt</h3>${envRows.join(
-              ""
-            )}`;
-          }
-
-          // Masses
-          const massRows = [];
-          if (typeof data.totalWeight === "number")
-            massRows.push(
-              `<div class="spec-row"><span>Gesamtgewicht</span><span>${data.totalWeight.toLocaleString(
-                "de-DE"
-              )} kg</span></div>`
-            );
-          if (typeof data.trailerLoad === "number")
-            massRows.push(
-              `<div class="spec-row"><span>max. Anhängelast</span><span>${data.trailerLoad.toLocaleString(
-                "de-DE"
-              )} kg</span></div>`
-            );
-          if (massEl && massRows.length) {
-            massEl.innerHTML = `<h3 class="section-title">Masse</h3>${massRows.join(
-              ""
-            )}`;
-          }
-
-          // Equipment
-          if (
-            equipEl &&
-            Array.isArray(data.equipment) &&
-            data.equipment.length
-          ) {
-            equipEl.innerHTML =
-              `<h3 class="section-title">Ausstattungen</h3>` +
-              `<ul class="equipment-ul">${data.equipment
-                .slice(0, 80)
-                .map((e) => `<li>${escapeHtml(e)}</li>`)
-                .join("")}</ul>`;
-          }
-
-          // Dealer
-          if (dealerEl && data.dealer) {
-            const rows = [];
-            if (data.dealer.name)
-              rows.push(
-                `<div class="dealer-row"><strong>${escapeHtml(
-                  data.dealer.name
-                )}</strong></div>`
-              );
-            if (data.dealer.address)
-              rows.push(
-                `<div class="dealer-row">${escapeHtml(
-                  data.dealer.address
-                )}</div>`
-              );
-            if (data.dealer.phone)
-              rows.push(
-                `<div class="dealer-row"><a href="tel:${data.dealer.phone.replace(
-                  /\s+/g,
-                  ""
-                )}">${escapeHtml(data.dealer.phone)}</a></div>`
-              );
-            if (data.dealer.email)
-              rows.push(
-                `<div class="dealer-row"><a href="mailto:${escapeHtml(
-                  data.dealer.email
-                )}">${escapeHtml(data.dealer.email)}</a></div>`
-              );
-            if (rows.length)
-              dealerEl.innerHTML = `<h3 class="section-title">Anschrift & Kontakt</h3>${rows.join(
-                ""
-              )}`;
-          }
-
-          // Images from details, if available
-          // Filter out placeholder/error images and normalize URLs
-          if (Array.isArray(data.images) && data.images.length) {
-            // Filter out invalid/placeholder images and small icons/logos
-            const validImages = data.images
-              .filter((imgUrl) => {
-                if (!imgUrl || typeof imgUrl !== "string") return false;
-                const urlLower = imgUrl.toLowerCase();
-
-                // Filter out obvious placeholder/error images
-                if (
-                  urlLower.includes("kein") &&
-                  urlLower.includes("bild") &&
-                  urlLower.includes("vorhanden")
-                )
-                  return false;
-                if (
-                  urlLower.includes("placeholder") ||
-                  urlLower.includes("no-image") ||
-                  urlLower.includes("noimage")
-                )
-                  return false;
-
-                // Filter out common non-vehicle images (logos, icons, etc.)
-                if (
-                  urlLower.includes("logo") ||
-                  urlLower.includes("icon") ||
-                  urlLower.includes("favicon") ||
-                  urlLower.includes("social") ||
-                  urlLower.includes("mobileicons") ||
-                  urlLower.includes("apple-touch-icon") ||
-                  urlLower.includes("platzhalter")
-                )
-                  return false;
-
-                // Filter out Landwirt low-resolution thumbnails and logos (patterns like -0kl.jpg, -kl.jpg, -0vb.jpg, -vb.jpg)
-                if (urlLower.includes("static.landwirt.com")) {
-                  if (urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i)) return false;
-                  if (urlLower.match(/-\d*vb\.(jpg|jpeg|png|webp)$/i)) return false;
-                  if (urlLower.includes("mobileicons")) return false;
-                  if (urlLower.includes("platzhalter")) return false;
-                }
-
-                // Must be an image file or look like a vehicle image URL
-                const hasImageExtension =
-                  urlLower.endsWith(".jpg") ||
-                  urlLower.endsWith(".jpeg") ||
-                  urlLower.endsWith(".png") ||
-                  urlLower.endsWith(".webp") ||
-                  urlLower.includes(".jpg") ||
-                  urlLower.includes(".jpeg");
-
-                // Or contains image-related paths (like /images/, /photos/, vehicle ID, etc.)
-                const hasImagePath =
-                  urlLower.includes("/image") ||
-                  urlLower.includes("/photo") ||
-                  urlLower.includes("cache.willhaben") ||
-                  urlLower.includes("motornetzwerk");
-
-                return hasImageExtension || hasImagePath;
-              })
-              .map((imgUrl) => {
-                // Normalize relative URLs to absolute
-                if (
-                  imgUrl.startsWith("http://") ||
-                  imgUrl.startsWith("https://")
-                ) {
-                  return imgUrl;
-                }
-                if (imgUrl.startsWith("//")) {
-                  return `https:${imgUrl}`;
-                }
-                if (imgUrl.startsWith("/")) {
-                  const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || '';
-                  return `${baseUrl}${imgUrl}`;
-                }
-                // If relative path, assume it's from the base URL
-                const baseUrl = (window.dealerConfig && window.dealerConfig.dataSource && window.dealerConfig.dataSource.baseUrl) || '';
-                return `${baseUrl}/${imgUrl}`;
-              })
-              .filter(Boolean);
-
-            // Merge with existing images, avoiding duplicates and filtering out empty/invalid
-            const merged = [
-              ...new Set([
-                ...(quickViewState.vehicleImages || []).filter(img => img && typeof img === 'string' && img.trim().length > 0),
-                ...validImages,
-              ]),
-            ].filter(img => img && typeof img === 'string' && img.trim().length > 0);
-
-            if (merged.length > 0) {
-              console.log(
-                `Quick View: Got ${validImages.length} images from details API, total: ${merged.length} images`
-              );
-              quickViewState.vehicleImages = merged;
-              quickViewState.currentImageIndex = 0;
-              updateMainImage();
-              updateThumbnails();
-            } else {
-              console.log(
-                "Quick View: No valid images found in details API response"
-              );
-            }
-          }
+          // Enhance modal with API data
+          enhanceModalWithApiData(
+            data,
+            titleEl,
+            priceEl,
+            specsEl,
+            descEl,
+            specsDetailEl,
+            envEl,
+            massEl,
+            equipEl,
+            dealerEl,
+            badge,
+            contentSkeleton,
+            contentSections
+          );
         })
         .catch((err) => {
           console.error("Error fetching vehicle details:", err);
-          // Show error state
-          if (contentSkeleton) contentSkeleton.style.display = "none";
-          if (contentError) contentError.style.display = "flex";
-          contentSections.forEach(section => {
-            if (section) section.style.display = "none";
-          });
-          // Announce error to screen readers
-          announceToScreenReader("vehicles", "Fehler beim Laden der Fahrzeugdetails. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch.");
+          // Only show error if we don't have any data displayed
+          const hasData =
+            descEl?.innerHTML.trim() || specsDetailEl?.innerHTML.trim();
+          if (!hasData) {
+            if (contentSkeleton) contentSkeleton.style.display = "none";
+            if (contentError) contentError.style.display = "flex";
+            contentSections.forEach((section) => {
+              if (section) section.style.display = "none";
+            });
+            // Announce error to screen readers
+            announceToScreenReader(
+              "vehicles",
+              "Fehler beim Laden der Fahrzeugdetails. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch."
+            );
+          }
         });
     } else {
       // No vehicle ID, hide skeleton
       if (contentSkeleton) contentSkeleton.style.display = "none";
+    }
+  }
+
+  // Function to enhance modal with API data (extracted from the original fetch handler)
+  function enhanceModalWithApiData(
+    data,
+    titleEl,
+    priceEl,
+    specsEl,
+    descEl,
+    specsDetailEl,
+    envEl,
+    massEl,
+    equipEl,
+    dealerEl,
+    badge,
+    contentSkeleton,
+    contentSections
+  ) {
+    // Hide loading skeleton, show sections
+    if (contentSkeleton) contentSkeleton.style.display = "none";
+    contentSections.forEach((section) => {
+      if (section) section.style.display = "";
+    });
+
+    if (!data || data.error) {
+      console.warn(
+        "Vehicle details not available:",
+        data?.error || "Unknown error"
+      );
+      return;
+    }
+    console.log("Fetched vehicle details:", data);
+
+    // Title & Price - only update if we have valid data, otherwise keep existing values
+    const genericTitles = ["Spezifikationen", "Fahrzeugdetails", "Details"];
+    if (data.title && titleEl && !genericTitles.includes(data.title)) {
+      titleEl.textContent = data.title;
+    }
+    if (typeof data.price === "number" && data.price > 0 && priceEl) {
+      priceEl.textContent = `€ ${data.price.toLocaleString("de-DE")},-`;
+    }
+
+    // Specs rewrite - use vehicle-details data if valid, otherwise keep existing specs
+    const specParts = [];
+
+    // Only update if we have valid data (not obviously wrong values)
+    if (
+      data.registrationYear &&
+      data.registrationYear > 1900 &&
+      data.registrationYear <= new Date().getFullYear() + 1
+    ) {
+      specParts.push(`${data.registrationYear}`);
+    }
+
+    // Only use mileage if it's reasonable (not just "100" or other small numbers)
+    if (typeof data.mileage === "number" && data.mileage > 1000) {
+      specParts.push(`${data.mileage.toLocaleString("de-DE")} km`);
+    }
+
+    // Only use fuel if it's a valid fuel type (not "art" or other fragments)
+    const validFuels = [
+      "Diesel",
+      "Benzin",
+      "Elektro",
+      "Hybrid",
+      "CNG",
+      "LPG",
+      "Wasserstoff",
+    ];
+    if (
+      data.engineFuel &&
+      validFuels.some((f) => data.engineFuel.includes(f))
+    ) {
+      specParts.push(data.engineFuel);
+    }
+
+    if (
+      typeof data.engineEffectKw === "number" &&
+      typeof data.engineEffectPs === "number" &&
+      data.engineEffectKw > 0 &&
+      data.engineEffectPs > 0
+    )
+      specParts.push(`${data.engineEffectKw} kW (${data.engineEffectPs} PS)`);
+
+    // Only use transmission if it's a valid value
+    const validTransmissions = [
+      "Automatik",
+      "Schaltgetriebe",
+      "Automatikgetriebe",
+      "CVT",
+      "DSG",
+    ];
+    if (
+      data.transmission &&
+      validTransmissions.some((t) => data.transmission.includes(t))
+    ) {
+      specParts.push(data.transmission);
+    }
+
+    // Only update specs if we have valid data, otherwise keep existing specs from card
+    if (specsEl && specParts.length > 0) {
+      specsEl.textContent = specParts.join(" • ");
+    }
+
+    // Update badges with fresh API data
+    const badgesContainer = document.getElementById("quick-view-badges");
+    if (badgesContainer) {
+      badgesContainer.innerHTML = "";
+
+      // Add key specs as badges from API data
+      const badgeSpecs = [];
+      if (
+        data.registrationYear &&
+        data.registrationYear > 1900 &&
+        data.registrationYear <= new Date().getFullYear() + 1
+      ) {
+        badgeSpecs.push(String(data.registrationYear));
+      }
+      if (typeof data.mileage === "number" && data.mileage > 1000) {
+        badgeSpecs.push(`${data.mileage.toLocaleString("de-DE")} km`);
+      }
+      if (data.engineFuel) {
+        badgeSpecs.push(data.engineFuel);
+      }
+      if (data.engineEffectKw && data.engineEffectPs) {
+        badgeSpecs.push(
+          `${data.engineEffectKw} kW (${data.engineEffectPs} PS)`
+        );
+      } else if (data.engineEffectKw) {
+        badgeSpecs.push(`${data.engineEffectKw} kW`);
+      } else if (data.engineEffectPs) {
+        badgeSpecs.push(`${data.engineEffectPs} PS`);
+      }
+      if (data.transmission) {
+        badgeSpecs.push(data.transmission);
+      }
+
+      // Create badge elements
+      badgeSpecs.forEach((spec) => {
+        const badgeEl = document.createElement("span");
+        badgeEl.textContent = spec;
+        badgesContainer.appendChild(badgeEl);
+      });
+
+      // Add special badge if available
+      if (badge) {
+        const badgeEl = document.createElement("span");
+        badgeEl.className = "card-badge badge-top-offer";
+        badgeEl.textContent = badge;
+        badgesContainer.appendChild(badgeEl);
+      }
+    }
+
+    // Description - use formatDescription helper if available, otherwise use existing logic
+    if (descEl && data.description) {
+      descEl.innerHTML = formatDescription(data.description);
+    }
+
+    // Comprehensive Specifications Section - Show ALL available data from motornetzwerk.at
+    const specRows = [];
+
+    // Helper to safely display any value (show all data, even if it looks odd)
+    const displayValue = (value) => {
+      if (value === null || value === undefined) return null;
+      if (typeof value === "string") {
+        const cleaned = value.trim();
+        // Only filter out completely empty or whitespace-only values
+        if (!cleaned || cleaned.length === 0) return null;
+        return cleaned;
+      }
+      return String(value);
+    };
+
+    // Vehicle Basic Info - show all available data
+    const make = displayValue(data.make);
+    if (make) {
+      specRows.push(
+        `<div class="spec-row"><span>Marke</span><span>${escapeHtml(
+          make
+        )}</span></div>`
+      );
+    }
+    const model = displayValue(data.model);
+    if (model) {
+      specRows.push(
+        `<div class="spec-row"><span>Modell</span><span>${escapeHtml(
+          model
+        )}</span></div>`
+      );
+    }
+    const carType = displayValue(data.carType);
+    if (carType) {
+      specRows.push(
+        `<div class="spec-row"><span>Fahrzeugtyp</span><span>${escapeHtml(
+          carType
+        )}</span></div>`
+      );
+    }
+    const motorCondition = displayValue(data.motorCondition);
+    if (motorCondition) {
+      specRows.push(
+        `<div class="spec-row"><span>Zustand</span><span>${escapeHtml(
+          motorCondition
+        )}</span></div>`
+      );
+    }
+
+    // Registration
+    if (data.registrationYear) {
+      let regText = `${data.registrationYear}`;
+      if (data.registrationMonth) {
+        regText = `${String(data.registrationMonth).padStart(2, "0")}/${
+          data.registrationYear
+        }`;
+      }
+      specRows.push(
+        `<div class="spec-row"><span>Erstzulassung</span><span>${regText}</span></div>`
+      );
+    }
+
+    // Engine Details - show all available data
+    const engineFuel = displayValue(data.engineFuel);
+    if (engineFuel) {
+      specRows.push(
+        `<div class="spec-row"><span>Kraftstoffart</span><span>${escapeHtml(
+          engineFuel
+        )}</span></div>`
+      );
+    }
+    if (typeof data.engineVolume === "number" && data.engineVolume > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Hubraum</span><span>${data.engineVolume.toLocaleString(
+          "de-DE"
+        )} ccm</span></div>`
+      );
+    }
+    if (typeof data.engineEffectKw === "number" && data.engineEffectKw > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Leistung</span><span>${data.engineEffectKw} kW</span></div>`
+      );
+    }
+    if (typeof data.engineEffectPs === "number" && data.engineEffectPs > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Leistung (PS)</span><span>${data.engineEffectPs} PS</span></div>`
+      );
+    }
+    if (typeof data.engineCylinder === "number" && data.engineCylinder > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Zylinder</span><span>${data.engineCylinder}</span></div>`
+      );
+    }
+
+    // Transmission & Drive - show all available data
+    const transmission = displayValue(data.transmission);
+    if (transmission) {
+      specRows.push(
+        `<div class="spec-row"><span>Getriebe</span><span>${escapeHtml(
+          transmission
+        )}</span></div>`
+      );
+    }
+    const wheelDrive = displayValue(data.wheelDrive);
+    if (wheelDrive) {
+      specRows.push(
+        `<div class="spec-row"><span>Antrieb</span><span>${escapeHtml(
+          wheelDrive
+        )}</span></div>`
+      );
+    }
+
+    // Mileage
+    if (typeof data.mileage === "number" && data.mileage > 1000) {
+      specRows.push(
+        `<div class="spec-row"><span>Kilometerstand</span><span>${data.mileage.toLocaleString(
+          "de-DE"
+        )} km</span></div>`
+      );
+    }
+
+    // Dimensions & Capacity
+    if (typeof data.numberOfSeats === "number" && data.numberOfSeats > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Sitzplätze</span><span>${data.numberOfSeats}</span></div>`
+      );
+    }
+    if (typeof data.numberOfDoors === "number" && data.numberOfDoors > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Türen</span><span>${data.numberOfDoors}</span></div>`
+      );
+    }
+    const mainExteriorColour = displayValue(data.mainExteriorColour);
+    if (mainExteriorColour) {
+      specRows.push(
+        `<div class="spec-row"><span>Farbe</span><span>${escapeHtml(
+          mainExteriorColour
+        )}</span></div>`
+      );
+    }
+
+    // Model Specification
+    const modelSpec = displayValue(data.modelSpecification);
+    if (modelSpec) {
+      specRows.push(
+        `<div class="spec-row"><span>Modellvariante</span><span>${escapeHtml(
+          modelSpec
+        )}</span></div>`
+      );
+    }
+
+    // Dimensions - add if available
+    if (typeof data.lengthCm === "number" && data.lengthCm > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Länge</span><span>${(
+          data.lengthCm / 100
+        ).toFixed(2)} m</span></div>`
+      );
+    }
+    if (typeof data.widthCm === "number" && data.widthCm > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Breite</span><span>${(
+          data.widthCm / 100
+        ).toFixed(2)} m</span></div>`
+      );
+    }
+
+    // Empty Weight (Leergewicht) - important spec
+    if (typeof data.emptyWeight === "number" && data.emptyWeight > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Leergewicht</span><span>${data.emptyWeight.toLocaleString(
+          "de-DE"
+        )} kg</span></div>`
+      );
+    }
+
+    // Electric Vehicle Specs
+    if (typeof data.batteryCapacity === "number" && data.batteryCapacity > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>Batteriekapazität</span><span>${data.batteryCapacity} kWh</span></div>`
+      );
+    }
+    if (typeof data.wltpRange === "number" && data.wltpRange > 0) {
+      specRows.push(
+        `<div class="spec-row"><span>WLTP-Reichweite</span><span>${data.wltpRange.toLocaleString(
+          "de-DE"
+        )} km</span></div>`
+      );
+    }
+
+    // Warranty - show all available data
+    const warrantyDuration = displayValue(data.warrantyDuration);
+    if (warrantyDuration) {
+      specRows.push(
+        `<div class="spec-row"><span>Garantie</span><span>${escapeHtml(
+          warrantyDuration
+        )}</span></div>`
+      );
+    }
+
+    // Display specifications if we have any
+    if (specsDetailEl && specRows.length > 0) {
+      specsDetailEl.innerHTML = `<h3 class="section-title">Technische Daten</h3>${specRows.join(
+        ""
+      )}`;
+    }
+
+    // Environment
+    const envRows = [];
+    if (typeof data.consumption === "number")
+      envRows.push(
+        `<div class="spec-row"><span>Verbrauch</span><span>${data.consumption} l/100km</span></div>`
+      );
+    if (typeof data.co2Footprint === "number")
+      envRows.push(
+        `<div class="spec-row"><span>CO₂</span><span>${data.co2Footprint} g/km</span></div>`
+      );
+    if (data.emissionStandard)
+      envRows.push(
+        `<div class="spec-row"><span>Abgasnorm</span><span>${escapeHtml(
+          data.emissionStandard
+        )}</span></div>`
+      );
+    if (envEl && envRows.length) {
+      envEl.innerHTML = `<h3 class="section-title">Umwelt</h3>${envRows.join(
+        ""
+      )}`;
+    }
+
+    // Masses
+    const massRows = [];
+    if (typeof data.totalWeight === "number")
+      massRows.push(
+        `<div class="spec-row"><span>Gesamtgewicht</span><span>${data.totalWeight.toLocaleString(
+          "de-DE"
+        )} kg</span></div>`
+      );
+    if (typeof data.trailerLoad === "number")
+      massRows.push(
+        `<div class="spec-row"><span>max. Anhängelast</span><span>${data.trailerLoad.toLocaleString(
+          "de-DE"
+        )} kg</span></div>`
+      );
+    if (massEl && massRows.length) {
+      massEl.innerHTML = `<h3 class="section-title">Masse</h3>${massRows.join(
+        ""
+      )}`;
+    }
+
+    // Equipment
+    if (equipEl && Array.isArray(data.equipment) && data.equipment.length) {
+      equipEl.innerHTML =
+        `<h3 class="section-title">Ausstattungen</h3>` +
+        `<ul class="equipment-ul">${data.equipment
+          .slice(0, 80)
+          .map((e) => `<li>${escapeHtml(e)}</li>`)
+          .join("")}</ul>`;
+    }
+
+    // Dealer
+    if (dealerEl && data.dealer) {
+      const rows = [];
+      if (data.dealer.name)
+        rows.push(
+          `<div class="dealer-row"><strong>${escapeHtml(
+            data.dealer.name
+          )}</strong></div>`
+        );
+      if (data.dealer.address)
+        rows.push(
+          `<div class="dealer-row">${escapeHtml(data.dealer.address)}</div>`
+        );
+      if (data.dealer.phone)
+        rows.push(
+          `<div class="dealer-row"><a href="tel:${data.dealer.phone.replace(
+            /\s+/g,
+            ""
+          )}">${escapeHtml(data.dealer.phone)}</a></div>`
+        );
+      if (data.dealer.email)
+        rows.push(
+          `<div class="dealer-row"><a href="mailto:${escapeHtml(
+            data.dealer.email
+          )}">${escapeHtml(data.dealer.email)}</a></div>`
+        );
+      if (rows.length)
+        dealerEl.innerHTML = `<h3 class="section-title">Anschrift & Kontakt</h3>${rows.join(
+          ""
+        )}`;
+    }
+
+    // Images from details, if available
+    // Filter out placeholder/error images and normalize URLs
+    if (Array.isArray(data.images) && data.images.length) {
+      // Filter out invalid/placeholder images and small icons/logos
+      const validImages = data.images
+        .filter((imgUrl) => {
+          if (!imgUrl || typeof imgUrl !== "string") return false;
+          const urlLower = imgUrl.toLowerCase();
+
+          // Filter out obvious placeholder/error images
+          if (
+            urlLower.includes("kein") &&
+            urlLower.includes("bild") &&
+            urlLower.includes("vorhanden")
+          )
+            return false;
+          if (
+            urlLower.includes("placeholder") ||
+            urlLower.includes("no-image") ||
+            urlLower.includes("noimage")
+          )
+            return false;
+
+          // Filter out common non-vehicle images (logos, icons, etc.)
+          if (
+            urlLower.includes("logo") ||
+            urlLower.includes("icon") ||
+            urlLower.includes("favicon") ||
+            urlLower.includes("social") ||
+            urlLower.includes("mobileicons") ||
+            urlLower.includes("apple-touch-icon") ||
+            urlLower.includes("platzhalter")
+          )
+            return false;
+
+          // Filter out Landwirt low-resolution thumbnails and logos (patterns like -0kl.jpg, -kl.jpg, -0vb.jpg, -vb.jpg)
+          if (urlLower.includes("static.landwirt.com")) {
+            if (urlLower.match(/-\d*kl\.(jpg|jpeg|png|webp)$/i)) return false;
+            if (urlLower.match(/-\d*vb\.(jpg|jpeg|png|webp)$/i)) return false;
+            if (urlLower.includes("mobileicons")) return false;
+            if (urlLower.includes("platzhalter")) return false;
+          }
+
+          // Must be an image file or look like a vehicle image URL
+          const hasImageExtension =
+            urlLower.endsWith(".jpg") ||
+            urlLower.endsWith(".jpeg") ||
+            urlLower.endsWith(".png") ||
+            urlLower.endsWith(".webp") ||
+            urlLower.includes(".jpg") ||
+            urlLower.includes(".jpeg");
+
+          // Or contains image-related paths (like /images/, /photos/, vehicle ID, etc.)
+          const hasImagePath =
+            urlLower.includes("/image") ||
+            urlLower.includes("/photo") ||
+            urlLower.includes("cache.willhaben") ||
+            urlLower.includes("motornetzwerk");
+
+          return hasImageExtension || hasImagePath;
+        })
+        .map((imgUrl) => {
+          // Normalize relative URLs to absolute
+          if (imgUrl.startsWith("http://") || imgUrl.startsWith("https://")) {
+            return imgUrl;
+          }
+          if (imgUrl.startsWith("//")) {
+            return `https:${imgUrl}`;
+          }
+          if (imgUrl.startsWith("/")) {
+            const baseUrl =
+              (window.dealerConfig &&
+                window.dealerConfig.dataSource &&
+                window.dealerConfig.dataSource.baseUrl) ||
+              "";
+            return `${baseUrl}${imgUrl}`;
+          }
+          // If relative path, assume it's from the base URL
+          const baseUrl =
+            (window.dealerConfig &&
+              window.dealerConfig.dataSource &&
+              window.dealerConfig.dataSource.baseUrl) ||
+            "";
+          return `${baseUrl}/${imgUrl}`;
+        })
+        .filter(Boolean);
+
+      // Merge with existing images, avoiding duplicates and filtering out empty/invalid
+      const merged = [
+        ...new Set([
+          ...(quickViewState.vehicleImages || []).filter(
+            (img) => img && typeof img === "string" && img.trim().length > 0
+          ),
+          ...validImages,
+        ]),
+      ].filter(
+        (img) => img && typeof img === "string" && img.trim().length > 0
+      );
+
+      if (merged.length > 0) {
+        console.log(
+          `Quick View: Got ${validImages.length} images from details API, total: ${merged.length} images`
+        );
+        quickViewState.vehicleImages = merged;
+        quickViewState.currentImageIndex = 0;
+        updateMainImage();
+        updateThumbnails();
+      } else {
+        console.log(
+          "Quick View: No valid images found in details API response"
+        );
+      }
     }
   }
 
@@ -4086,52 +4337,63 @@ function initQuickView() {
     updateMainImage();
   });
 
-  document.getElementById("retry-content-btn")?.addEventListener("click", () => {
-    if (!quickViewState.currentVehicleId) return;
-    
-    const contentSkeleton = document.getElementById("content-loading-skeleton");
-    const contentError = document.getElementById("content-error-state");
-    const contentSections = document.querySelectorAll("#quick-view-description, #quick-view-specifications, #quick-view-environment, #quick-view-masses, #quick-view-equipment, #quick-view-dealer");
-    
-    // Show loading, hide error
-    if (contentError) contentError.style.display = "none";
-    if (contentSkeleton) contentSkeleton.style.display = "block";
-    contentSections.forEach(section => {
-      if (section) section.style.display = "none";
-    });
+  document
+    .getElementById("retry-content-btn")
+    ?.addEventListener("click", () => {
+      if (!quickViewState.currentVehicleId) return;
 
-    // Retry fetch
-    fetch(
-      `/api/vehicle-details?vid=${encodeURIComponent(
-        quickViewState.currentVehicleId
-      )}`
-    )
-      .then((r) => {
-        if (!r.ok) throw new Error(`API error: ${r.status}`);
-        return r.json();
-      })
-      .then((data) => {
-        if (!data || data.error) {
-          throw new Error(data?.error || "Unknown error");
-        }
-        // Re-open the modal to re-process data
-        // This will trigger a fresh fetch and display
-        const vehicleId = quickViewState.currentVehicleId;
-        if (vehicleId) {
-          closeQuickView();
-          setTimeout(() => {
-            openQuickView(vehicleId, true);
-          }, 300);
-        }
-      })
-      .catch((err) => {
-        console.error("Error retrying vehicle details:", err);
-        if (contentSkeleton) contentSkeleton.style.display = "none";
-        if (contentError) contentError.style.display = "flex";
-        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 3882323';
-        announceToScreenReader("vehicles", `Fehler beim erneuten Laden der Fahrzeugdetails. Bitte kontaktieren Sie uns telefonisch unter ${phone}.`);
+      const contentSkeleton = document.getElementById(
+        "content-loading-skeleton"
+      );
+      const contentError = document.getElementById("content-error-state");
+      const contentSections = document.querySelectorAll(
+        "#quick-view-description, #quick-view-specifications, #quick-view-environment, #quick-view-masses, #quick-view-equipment, #quick-view-dealer"
+      );
+
+      // Show loading, hide error
+      if (contentError) contentError.style.display = "none";
+      if (contentSkeleton) contentSkeleton.style.display = "block";
+      contentSections.forEach((section) => {
+        if (section) section.style.display = "none";
       });
-  });
+
+      // Retry fetch
+      fetch(
+        `/api/vehicle-details?vid=${encodeURIComponent(
+          quickViewState.currentVehicleId
+        )}`
+      )
+        .then((r) => {
+          if (!r.ok) throw new Error(`API error: ${r.status}`);
+          return r.json();
+        })
+        .then((data) => {
+          if (!data || data.error) {
+            throw new Error(data?.error || "Unknown error");
+          }
+          // Re-open the modal to re-process data
+          // This will trigger a fresh fetch and display
+          const vehicleId = quickViewState.currentVehicleId;
+          if (vehicleId) {
+            closeQuickView();
+            setTimeout(() => {
+              openQuickView(vehicleId, true);
+            }, 300);
+          }
+        })
+        .catch((err) => {
+          console.error("Error retrying vehicle details:", err);
+          if (contentSkeleton) contentSkeleton.style.display = "none";
+          if (contentError) contentError.style.display = "flex";
+          const phone =
+            (window.dealerConfig && window.dealerConfig.phone) ||
+            "+43 664 3882323";
+          announceToScreenReader(
+            "vehicles",
+            `Fehler beim erneuten Laden der Fahrzeugdetails. Bitte kontaktieren Sie uns telefonisch unter ${phone}.`
+          );
+        });
+    });
 
   /**
    * Fetch additional images from vehicle detail page
@@ -4141,19 +4403,23 @@ function initQuickView() {
     try {
       // Early return if we already have enough images (6+)
       if (existingImages.length >= 6) return [];
-      
+
       // Extract vehicle ID from URL if available
       const urlMatch = vehicleUrl.match(/vid=([^&]+)/);
       if (!urlMatch || existingImages.length === 0) return [];
 
       const vehicleId = urlMatch[1];
       const baseUrl = existingImages[0];
-      
+
       // Skip if baseUrl is placeholder or invalid
-      if (!baseUrl || baseUrl.includes('placeholder') || baseUrl.includes('kein-bild')) {
+      if (
+        !baseUrl ||
+        baseUrl.includes("placeholder") ||
+        baseUrl.includes("kein-bild")
+      ) {
         return [];
       }
-      
+
       const additionalImages = [];
 
       // Strategy 1: Try common URL patterns based on existing image URL
@@ -4244,23 +4510,25 @@ function initQuickView() {
       const mainImg = document.getElementById("quick-view-main-img");
       const loadingSkeleton = document.getElementById("image-loading-skeleton");
       const errorState = document.getElementById("image-error-state");
-      const title = document.getElementById("quick-view-title")?.textContent || "Fahrzeug";
+      const title =
+        document.getElementById("quick-view-title")?.textContent || "Fahrzeug";
       const currentIndex = quickViewState.currentImageIndex + 1;
       const totalImages = quickViewState.vehicleImages.length;
-      
+
       // Hide error state, show loading skeleton
       if (errorState) errorState.style.display = "none";
       if (loadingSkeleton) loadingSkeleton.style.display = "block";
       mainImg.style.display = "none";
       mainImg.classList.add("loading");
-      
+
       // Preload next and previous images
       preloadAdjacentImages();
-      
+
       // Create new image to preload
       const newImg = new Image();
       newImg.onload = () => {
-        mainImg.src = quickViewState.vehicleImages[quickViewState.currentImageIndex];
+        mainImg.src =
+          quickViewState.vehicleImages[quickViewState.currentImageIndex];
         mainImg.alt = `${title} - Bild ${currentIndex} von ${totalImages}`;
         mainImg.classList.remove("loading");
         if (loadingSkeleton) loadingSkeleton.style.display = "none";
@@ -4272,8 +4540,9 @@ function initQuickView() {
         mainImg.style.display = "none";
         mainImg.classList.remove("loading");
       };
-      newImg.src = quickViewState.vehicleImages[quickViewState.currentImageIndex];
-      
+      newImg.src =
+        quickViewState.vehicleImages[quickViewState.currentImageIndex];
+
       // Update image counter
       const counterText = document.getElementById("image-counter-text");
       const counterVisible = document.getElementById("image-counter-visible");
@@ -4289,19 +4558,19 @@ function initQuickView() {
   // Preload adjacent images for smoother navigation
   function preloadAdjacentImages() {
     if (quickViewState.vehicleImages.length <= 1) return;
-    
+
     const preloadImages = [];
     const currentIndex = quickViewState.currentImageIndex;
     const totalImages = quickViewState.vehicleImages.length;
-    
+
     // Preload next image
     const nextIndex = (currentIndex + 1) % totalImages;
     preloadImages.push(quickViewState.vehicleImages[nextIndex]);
-    
+
     // Preload previous image
     const prevIndex = (currentIndex - 1 + totalImages) % totalImages;
     preloadImages.push(quickViewState.vehicleImages[prevIndex]);
-    
+
     // Preload images
     preloadImages.forEach((src) => {
       const img = new Image();
@@ -4314,28 +4583,38 @@ function initQuickView() {
       ".quick-view-thumbnails"
     );
     if (!thumbnailsContainer) return;
-    
+
     thumbnailsContainer.innerHTML = "";
 
     quickViewState.vehicleImages.forEach((imgSrc, index) => {
       // Skip empty or invalid image URLs
-      if (!imgSrc || typeof imgSrc !== 'string' || imgSrc.trim().length === 0) {
+      if (!imgSrc || typeof imgSrc !== "string" || imgSrc.trim().length === 0) {
         return;
       }
-      
+
       const thumbnail = document.createElement("button");
       thumbnail.className = `quick-view-thumbnail ${
         index === quickViewState.currentImageIndex ? "active" : ""
       }`;
       thumbnail.type = "button";
-      thumbnail.setAttribute("aria-label", `Bild ${index + 1} von ${quickViewState.vehicleImages.length} anzeigen`);
-      thumbnail.setAttribute("aria-pressed", index === quickViewState.currentImageIndex ? "true" : "false");
+      thumbnail.setAttribute(
+        "aria-label",
+        `Bild ${index + 1} von ${quickViewState.vehicleImages.length} anzeigen`
+      );
+      thumbnail.setAttribute(
+        "aria-pressed",
+        index === quickViewState.currentImageIndex ? "true" : "false"
+      );
       // Use data-src for lazy loading, load first 3 immediately
       const shouldLazyLoad = index > 2;
       if (shouldLazyLoad) {
-        thumbnail.innerHTML = `<img data-src="${imgSrc}" alt="Vorschaubild ${index + 1}" loading="lazy" class="thumbnail-lazy" />`;
+        thumbnail.innerHTML = `<img data-src="${imgSrc}" alt="Vorschaubild ${
+          index + 1
+        }" loading="lazy" class="thumbnail-lazy" />`;
       } else {
-        thumbnail.innerHTML = `<img src="${imgSrc}" alt="Vorschaubild ${index + 1}" loading="eager" />`;
+        thumbnail.innerHTML = `<img src="${imgSrc}" alt="Vorschaubild ${
+          index + 1
+        }" loading="eager" />`;
       }
       thumbnail.addEventListener("click", () => {
         quickViewState.currentImageIndex = index;
@@ -4344,52 +4623,59 @@ function initQuickView() {
       });
       thumbnailsContainer.appendChild(thumbnail);
     });
-    
+
     // Setup lazy loading for thumbnails
     setupThumbnailLazyLoading();
   }
 
   // Lazy load thumbnails using Intersection Observer
   function setupThumbnailLazyLoading() {
-    const thumbnailsContainer = document.querySelector(".quick-view-thumbnails");
+    const thumbnailsContainer = document.querySelector(
+      ".quick-view-thumbnails"
+    );
     if (!thumbnailsContainer) return;
-    
+
     const lazyImages = thumbnailsContainer.querySelectorAll("img[data-src]");
     if (lazyImages.length === 0) return;
-    
+
     // Use viewport as root since thumbnails container might not be scrollable
     // Check if container is scrollable, if so use it as root
-    const isScrollable = thumbnailsContainer.scrollWidth > thumbnailsContainer.clientWidth;
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.classList.remove("thumbnail-lazy");
-            img.removeAttribute("data-src");
-            observer.unobserve(img);
+    const isScrollable =
+      thumbnailsContainer.scrollWidth > thumbnailsContainer.clientWidth;
+
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.classList.remove("thumbnail-lazy");
+              img.removeAttribute("data-src");
+              observer.unobserve(img);
+            }
           }
-        }
-      });
-    }, {
-      root: isScrollable ? thumbnailsContainer : null, // Use container if scrollable, otherwise viewport
-      rootMargin: "200px" // Start loading 200px before thumbnail enters viewport
-    });
-    
+        });
+      },
+      {
+        root: isScrollable ? thumbnailsContainer : null, // Use container if scrollable, otherwise viewport
+        rootMargin: "200px", // Start loading 200px before thumbnail enters viewport
+      }
+    );
+
     lazyImages.forEach((img) => {
       imageObserver.observe(img);
     });
-    
+
     // Also load images that are already visible (in case observer hasn't fired yet)
     lazyImages.forEach((img) => {
       const rect = img.getBoundingClientRect();
       const containerRect = thumbnailsContainer.getBoundingClientRect();
-      const isVisible = isScrollable 
-        ? (rect.left >= containerRect.left - 200 && rect.right <= containerRect.right + 200)
-        : (rect.top >= 0 && rect.bottom <= window.innerHeight + 200);
-      
+      const isVisible = isScrollable
+        ? rect.left >= containerRect.left - 200 &&
+          rect.right <= containerRect.right + 200
+        : rect.top >= 0 && rect.bottom <= window.innerHeight + 200;
+
       if (isVisible && img.dataset.src) {
         img.src = img.dataset.src;
         img.classList.remove("thumbnail-lazy");
@@ -4421,7 +4707,7 @@ function initQuickView() {
     if (activeElement && quickViewModal.contains(activeElement)) {
       activeElement.blur();
     }
-    
+
     quickViewModal.classList.remove("active");
     // Set aria-hidden after removing focus to prevent accessibility warnings
     setTimeout(() => {
@@ -4458,16 +4744,22 @@ function initQuickView() {
 
     // Handle Details button clicks
     const detailsBtn = e.target.closest("a.btn-primary.btn-sm");
-    if (detailsBtn && detailsBtn.href && detailsBtn.href.includes("#fahrzeuge/vehicle/")) {
+    if (
+      detailsBtn &&
+      detailsBtn.href &&
+      detailsBtn.href.includes("#fahrzeuge/vehicle/")
+    ) {
       e.preventDefault();
       e.stopPropagation();
-      
+
       // Extract vehicle ID from href
       const hrefMatch = detailsBtn.href.match(/fahrzeuge\/vehicle\/([^\/\?]+)/);
       if (hrefMatch) {
         const vehicleId = hrefMatch[1];
-        const vehicleCard = detailsBtn.closest(".vehicle-card, .vehicle-list-item");
-        
+        const vehicleCard = detailsBtn.closest(
+          ".vehicle-card, .vehicle-list-item"
+        );
+
         if (vehicleCard) {
           // Update hash and open quick view
           window.location.hash = `#fahrzeuge/vehicle/${vehicleId}`;
@@ -4521,7 +4813,7 @@ function initQuickView() {
   // Open image in fullscreen/lightbox
   function openImageFullscreen() {
     if (quickViewState.vehicleImages.length === 0) return;
-    
+
     // Check if lightbox exists and use it
     const lightbox = document.getElementById("lightbox");
     if (lightbox) {
@@ -4539,7 +4831,7 @@ function initQuickView() {
           quickViewModal.setAttribute("aria-hidden", "true");
         }, 100);
       }
-      
+
       // Create temporary image elements for lightbox to work with
       const tempImages = quickViewState.vehicleImages.map((imgSrc, index) => {
         const tempImg = document.createElement("img");
@@ -4548,24 +4840,29 @@ function initQuickView() {
         return {
           src: imgSrc,
           alt: `Bild ${index + 1}`,
-          element: tempImg
+          element: tempImg,
         };
       });
-      
+
       // Update lightbox state with vehicle images first
       if (window.lightboxState) {
         window.lightboxState.setCurrentImages(tempImages);
         window.lightboxState.setCurrentIndex(quickViewState.currentImageIndex);
       }
-      
+
       // Find the clicked image element to trigger lightbox properly
-      const currentImgSrc = quickViewState.vehicleImages[quickViewState.currentImageIndex];
+      const currentImgSrc =
+        quickViewState.vehicleImages[quickViewState.currentImageIndex];
       const lightboxImg = document.getElementById("lightbox-img");
-      const mainImageContainer = document.querySelector(".quick-view-main-image img");
-      
+      const mainImageContainer = document.querySelector(
+        ".quick-view-main-image img"
+      );
+
       // Use the main image element if available, otherwise create a temporary one
-      const imageElement = mainImageContainer || tempImages[quickViewState.currentImageIndex].element;
-      
+      const imageElement =
+        mainImageContainer ||
+        tempImages[quickViewState.currentImageIndex].element;
+
       // Trigger lightbox using the existing openLightbox function if available
       if (typeof window.openLightbox === "function") {
         window.openLightbox(imageElement);
@@ -4577,7 +4874,7 @@ function initQuickView() {
         }
         lightbox.classList.add("active");
         document.body.style.overflow = "hidden";
-        
+
         // Update counter
         const lightboxCurrent = document.getElementById("lightbox-current");
         const lightboxTotal = document.getElementById("lightbox-total");
@@ -4587,7 +4884,7 @@ function initQuickView() {
         if (lightboxTotal) {
           lightboxTotal.textContent = quickViewState.vehicleImages.length;
         }
-        
+
         // Update lightbox gallery if it exists
         const lightboxGallery = document.getElementById("lightbox-gallery");
         if (lightboxGallery && quickViewState.vehicleImages.length > 1) {
@@ -4596,7 +4893,8 @@ function initQuickView() {
             const img = document.createElement("img");
             img.src = imgSrc;
             img.alt = `Bild ${index + 1}`;
-            img.className = index === quickViewState.currentImageIndex ? "active" : "";
+            img.className =
+              index === quickViewState.currentImageIndex ? "active" : "";
             img.addEventListener("click", () => {
               if (lightboxImg) {
                 lightboxImg.src = imgSrc;
@@ -4619,16 +4917,21 @@ function initQuickView() {
             lightboxGallery.appendChild(img);
           });
         }
-        
+
         // Update lightbox counter
         const currentCounter = document.getElementById("lightbox-current");
         const totalCounter = document.getElementById("lightbox-total");
-        if (currentCounter) currentCounter.textContent = quickViewState.currentImageIndex + 1;
-        if (totalCounter) totalCounter.textContent = quickViewState.vehicleImages.length;
+        if (currentCounter)
+          currentCounter.textContent = quickViewState.currentImageIndex + 1;
+        if (totalCounter)
+          totalCounter.textContent = quickViewState.vehicleImages.length;
       }
     } else {
       // Fallback: open image in new tab
-      window.open(quickViewState.vehicleImages[quickViewState.currentImageIndex], "_blank");
+      window.open(
+        quickViewState.vehicleImages[quickViewState.currentImageIndex],
+        "_blank"
+      );
     }
   }
 
@@ -4639,7 +4942,7 @@ function initQuickView() {
   document
     .querySelector(".next-image")
     ?.addEventListener("click", showNextImage);
-  
+
   // Zoom/Fullscreen button
   document
     .getElementById("image-zoom-btn")
@@ -5470,7 +5773,7 @@ function initFinancingCalculator() {
   contactBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     closeFinancingModal();
-    
+
     // Get vehicle ID from financing modal or quick-view modal
     let vehicleId = financingModal.dataset.currentVehicleId;
     if (!vehicleId) {
@@ -5479,7 +5782,7 @@ function initFinancingCalculator() {
         vehicleId = quickViewModal.dataset.currentVehicleId;
       }
     }
-    
+
     if (vehicleId) {
       const vehicleCard = document.querySelector(
         `[data-vehicle-id="${vehicleId}"]`
@@ -5491,22 +5794,22 @@ function initFinancingCalculator() {
           document.querySelector(".quick-view-close")?.click();
           setTimeout(() => {
             // Trigger inquiry modal
-            const inquiryEvent = new CustomEvent('triggerInquiry', {
-              detail: { vehicleCard }
+            const inquiryEvent = new CustomEvent("triggerInquiry", {
+              detail: { vehicleCard },
             });
             window.dispatchEvent(inquiryEvent);
           }, 300);
         } else {
           // Quick view not open, trigger inquiry directly
-          const inquiryEvent = new CustomEvent('triggerInquiry', {
-            detail: { vehicleCard }
+          const inquiryEvent = new CustomEvent("triggerInquiry", {
+            detail: { vehicleCard },
           });
           window.dispatchEvent(inquiryEvent);
         }
         return;
       }
     }
-    
+
     // Fallback: scroll to contact section
     window.location.href = "#kontakt";
   });
@@ -5569,7 +5872,7 @@ function initVehicleInquiry() {
   });
 
   // Listen for custom event from financing-contact-btn
-  window.addEventListener('triggerInquiry', (e) => {
+  window.addEventListener("triggerInquiry", (e) => {
     const vehicleCard = e.detail?.vehicleCard;
     if (vehicleCard) {
       openInquiryModal(vehicleCard);
@@ -5679,9 +5982,11 @@ function initVehicleInquiry() {
         const vehiclePrice = currentVehicle?.price || null;
 
         // Determine API endpoint URL
-        const apiUrl = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
-          ? 'http://localhost:3000/api/inquiry'
-          : '/api/inquiry';
+        const apiUrl =
+          window.location.origin.includes("localhost") ||
+          window.location.origin.includes("127.0.0.1")
+            ? "http://localhost:3000/api/inquiry"
+            : "/api/inquiry";
 
         // Send inquiry to API
         const response = await fetch(apiUrl, {
@@ -5719,8 +6024,12 @@ function initVehicleInquiry() {
         }, 3000);
       } catch (error) {
         console.error("Inquiry form error:", error);
-        const phone = (window.dealerConfig && window.dealerConfig.phone) || '+43 664 3882323';
-        const errorMsg = error.message || `Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${phone}.`;
+        const phone =
+          (window.dealerConfig && window.dealerConfig.phone) ||
+          "+43 664 3882323";
+        const errorMsg =
+          error.message ||
+          `Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter ${phone}.`;
         alert(errorMsg);
         announceToScreenReader("forms", errorMsg);
       } finally {
@@ -6018,12 +6327,12 @@ const VehicleSearchService = {
   allVehicles: [],
   searchCache: new Map(),
   observers: [],
-  
+
   // Initialize shared vehicle list
   init() {
     this.updateVehiclesList();
     this.setupVehicleObserver();
-    
+
     // Retry after vehicles should be loaded (they load asynchronously)
     setTimeout(() => {
       this.updateVehiclesList();
@@ -6034,7 +6343,7 @@ const VehicleSearchService = {
       this.updateVehiclesList();
     }, 2000);
   },
-  
+
   // Update vehicles list from cached data or DOM
   updateVehiclesList() {
     // First, try to use the cached vehicle data if available
@@ -6098,13 +6407,13 @@ const VehicleSearchService = {
     });
     this.notifyObservers();
   },
-  
+
   // Setup observer for vehicle list changes
   setupVehicleObserver() {
     const observer = new MutationObserver((mutations) => {
       // Skip if we're currently applying a filter (prevent infinite loops)
       if (window.isApplyingCarSectionFilter) return;
-      
+
       this.updateVehiclesList();
     });
 
@@ -6117,7 +6426,7 @@ const VehicleSearchService = {
       });
     }
   },
-  
+
   // Register observer callback
   onUpdate(callback) {
     this.observers.push(callback);
@@ -6125,14 +6434,14 @@ const VehicleSearchService = {
       callback(this.allVehicles);
     }
   },
-  
+
   // Notify all observers
   notifyObservers() {
-    this.observers.forEach(callback => callback(this.allVehicles));
+    this.observers.forEach((callback) => callback(this.allVehicles));
     // Clear cache when vehicles update
     this.searchCache.clear();
   },
-  
+
   // Perform search with caching
   search(query, limit = null) {
     if (!query.trim() || query.length < 2) {
@@ -6141,7 +6450,7 @@ const VehicleSearchService = {
 
     const searchTerm = query.toLowerCase().trim();
     const cacheKey = limit ? `${searchTerm}:${limit}` : searchTerm;
-    
+
     // Check cache
     if (this.searchCache.has(cacheKey)) {
       return this.searchCache.get(cacheKey);
@@ -6175,23 +6484,23 @@ const VehicleSearchService = {
     this.searchCache.set(cacheKey, result);
 
     return result;
-  }
+  },
 };
 
 function initVehicleSearch() {
   // Initialize shared search service
   VehicleSearchService.init();
-  
+
   // Initialize header search (quick search with dropdown)
   initHeaderSearch();
-  
+
   // Initialize car section search (filter-integrated search)
   initFahrzeugeSearch();
 }
 
 function initHeaderSearch() {
   const headerSearchIcon = document.getElementById("header-search-icon");
-  
+
   if (!headerSearchIcon) return;
 
   // Scroll to vehicle-filters section when icon is clicked
@@ -6199,21 +6508,24 @@ function initHeaderSearch() {
     e.preventDefault();
     const vehicleFilters = document.querySelector(".vehicle-filters");
     const header = document.querySelector(".header");
-    
+
     if (vehicleFilters) {
       // Get header height to account for fixed navbar
       const headerHeight = header ? header.offsetHeight : 80;
       const vehicleFiltersRect = vehicleFilters.getBoundingClientRect();
-      const scrollPosition = window.scrollY + vehicleFiltersRect.top - headerHeight - 20; // 20px extra padding
-      
+      const scrollPosition =
+        window.scrollY + vehicleFiltersRect.top - headerHeight - 20; // 20px extra padding
+
       // Scroll with offset to account for fixed header
       window.scrollTo({
         top: scrollPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
-      
+
       // Focus the search input after scrolling
-      const carSectionSearch = document.getElementById("vehicle-search-fahrzeuge");
+      const carSectionSearch = document.getElementById(
+        "vehicle-search-fahrzeuge"
+      );
       if (carSectionSearch) {
         setTimeout(() => {
           carSectionSearch.focus();
@@ -6227,7 +6539,9 @@ function initSearchModal() {
   const searchModal = document.getElementById("search-modal");
   const headerSearchToggle = document.getElementById("header-search-toggle");
   const searchModalClose = document.getElementById("search-modal-close");
-  const searchModalOverlay = searchModal?.querySelector(".search-modal-overlay");
+  const searchModalOverlay = searchModal?.querySelector(
+    ".search-modal-overlay"
+  );
   const searchInputModal = document.getElementById("vehicle-search-modal");
   const searchResultsModal = document.getElementById("search-results-modal");
   const searchIconModal = document.getElementById("search-icon-modal");
@@ -6278,20 +6592,25 @@ function initSearchModal() {
 
   // Initialize search functionality in modal
   if (searchInputModal && searchResultsModal) {
-    setupSearchFunctionality(searchInputModal, searchResultsModal, searchIconModal, closeModal);
+    setupSearchFunctionality(
+      searchInputModal,
+      searchResultsModal,
+      searchIconModal,
+      closeModal
+    );
   }
 }
 
 function openSearchModal() {
   const searchModal = document.getElementById("search-modal");
   const searchInputModal = document.getElementById("vehicle-search-modal");
-  
+
   if (!searchModal) return;
-  
+
   searchModal.setAttribute("aria-hidden", "false");
   searchModal.classList.add("active");
   document.body.style.overflow = "hidden";
-  
+
   // Use a11y.open() which handles focus management properly
   const a11y = setupModalA11y(searchModal, {
     titleSelector: "#search-modal-title",
@@ -6314,13 +6633,18 @@ function initFahrzeugeSearch() {
 // Shared function to close all search dropdowns
 function closeAllSearchDropdowns(excludeInputId = null) {
   const headerSearchResults = document.getElementById("search-results");
-  const carSectionSearchResults = document.getElementById("search-results-fahrzeuge");
-  
+  const carSectionSearchResults = document.getElementById(
+    "search-results-fahrzeuge"
+  );
+
   if (excludeInputId !== "vehicle-search" && headerSearchResults) {
     headerSearchResults.classList.remove("active");
   }
-  
-  if (excludeInputId !== "vehicle-search-fahrzeuge" && carSectionSearchResults) {
+
+  if (
+    excludeInputId !== "vehicle-search-fahrzeuge" &&
+    carSectionSearchResults
+  ) {
     carSectionSearchResults.classList.remove("active");
   }
 }
@@ -6335,7 +6659,7 @@ function setupHeaderSearch(searchInput, searchResults, searchIcon) {
   VehicleSearchService.onUpdate(() => {
     // Vehicles updated, search will use new data automatically
   });
-  
+
   // Close other search when this one is focused
   searchInput.addEventListener("focus", () => {
     closeAllSearchDropdowns("vehicle-search");
@@ -6356,7 +6680,10 @@ function setupHeaderSearch(searchInput, searchResults, searchIcon) {
         </div>
       `;
       searchResults.classList.add("active");
-      announceToScreenReader("search", "Keine Fahrzeuge gefunden. Bitte versuchen Sie es mit anderen Suchbegriffen.");
+      announceToScreenReader(
+        "search",
+        "Keine Fahrzeuge gefunden. Bitte versuchen Sie es mit anderen Suchbegriffen."
+      );
       return;
     }
 
@@ -6410,7 +6737,10 @@ function setupHeaderSearch(searchInput, searchResults, searchIcon) {
     });
 
     searchResults.classList.add("active");
-    announceToScreenReader("search", `${vehicles.length} Fahrzeug${vehicles.length !== 1 ? 'e' : ''} gefunden.`);
+    announceToScreenReader(
+      "search",
+      `${vehicles.length} Fahrzeug${vehicles.length !== 1 ? "e" : ""} gefunden.`
+    );
   }
 
   // Search input handler
@@ -6433,12 +6763,15 @@ function setupHeaderSearch(searchInput, searchResults, searchIcon) {
   // Close search results when clicking outside or on other search
   document.addEventListener("click", (e) => {
     const searchContainer = searchInput.closest(".search-container");
-    const otherSearchInput = document.getElementById("vehicle-search-fahrzeuge");
+    const otherSearchInput = document.getElementById(
+      "vehicle-search-fahrzeuge"
+    );
     const otherSearchContainer = otherSearchInput?.closest(".search-container");
-    
+
     // Check if clicking on the other search
-    const isClickingOtherSearch = otherSearchContainer && otherSearchContainer.contains(e.target);
-    
+    const isClickingOtherSearch =
+      otherSearchContainer && otherSearchContainer.contains(e.target);
+
     if (
       !searchInput.contains(e.target) &&
       !searchResults.contains(e.target) &&
@@ -6447,10 +6780,14 @@ function setupHeaderSearch(searchInput, searchResults, searchIcon) {
     ) {
       searchResults.classList.remove("active");
       // On mobile and tablet portrait, also close the search input
-      if (window.innerWidth <= 1024 && searchContainer && searchInput.id === "vehicle-search") {
+      if (
+        window.innerWidth <= 1024 &&
+        searchContainer &&
+        searchInput.id === "vehicle-search"
+      ) {
         searchContainer.classList.remove("active");
       }
-      
+
       // If clicking on the other search, close this one explicitly
       if (isClickingOtherSearch) {
         searchResults.classList.remove("active");
@@ -6492,7 +6829,7 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
       applyCarSectionFilter(carSectionSearchTerm);
     }
   });
-  
+
   // Close other search when this one is focused
   searchInput.addEventListener("focus", () => {
     closeAllSearchDropdowns("vehicle-search-fahrzeuge");
@@ -6501,17 +6838,17 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
   function applyCarSectionFilter(query) {
     // Prevent infinite loops
     if (isApplyingFilter) return;
-    
+
     isApplyingFilter = true;
     window.isApplyingCarSectionFilter = true; // Global flag for MutationObserver
     carSectionSearchTerm = query;
-    
+
     try {
       if (!query.trim() || query.length < 2) {
         // Clear search filter
         carSectionSearchTerm = "";
         searchResults.classList.remove("active");
-        
+
         // Re-render with current filters (no search)
         const filtered = getFilteredAndSortedVehicles();
         renderVehiclesPage(filtered, 1);
@@ -6520,7 +6857,7 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
 
       // Get matching vehicles from shared service (all matches, no limit)
       const matchingVehicles = VehicleSearchService.search(query);
-      
+
       // Re-render with search integrated into filtering pipeline
       const filtered = getFilteredAndSortedVehicles();
       renderVehiclesPage(filtered, 1);
@@ -6547,7 +6884,7 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
 
   function displayQuickResults(vehicles) {
     searchResults.innerHTML = "";
-    
+
     vehicles.forEach((vehicle) => {
       const item = document.createElement("div");
       item.className = "search-result-item";
@@ -6590,7 +6927,9 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
     if (vehicles.length > 0) {
       // Position the dropdown relative to the search input (for fixed positioning)
       const searchInputRect = searchInput.getBoundingClientRect();
-      searchResults.style.top = `${searchInputRect.bottom + window.scrollY + 8}px`;
+      searchResults.style.top = `${
+        searchInputRect.bottom + window.scrollY + 8
+      }px`;
       searchResults.style.left = `${searchInputRect.left + window.scrollX}px`;
       searchResults.style.width = `${Math.min(searchInputRect.width, 500)}px`;
       searchResults.classList.add("active");
@@ -6601,7 +6940,9 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
   function updateDropdownPosition() {
     if (searchResults.classList.contains("active")) {
       const searchInputRect = searchInput.getBoundingClientRect();
-      searchResults.style.top = `${searchInputRect.bottom + window.scrollY + 8}px`;
+      searchResults.style.top = `${
+        searchInputRect.bottom + window.scrollY + 8
+      }px`;
       searchResults.style.left = `${searchInputRect.left + window.scrollX}px`;
       searchResults.style.width = `${Math.min(searchInputRect.width, 500)}px`;
     }
@@ -6645,10 +6986,11 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
     const searchContainer = searchInput.closest(".search-container");
     const otherSearchInput = document.getElementById("vehicle-search");
     const otherSearchContainer = otherSearchInput?.closest(".search-container");
-    
+
     // Check if clicking on the other search
-    const isClickingOtherSearch = otherSearchContainer && otherSearchContainer.contains(e.target);
-    
+    const isClickingOtherSearch =
+      otherSearchContainer && otherSearchContainer.contains(e.target);
+
     if (
       !searchInput.contains(e.target) &&
       !searchResults.contains(e.target) &&
@@ -6656,7 +6998,7 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
       (!searchContainer || !searchContainer.contains(e.target))
     ) {
       searchResults.classList.remove("active");
-      
+
       // If clicking on the other search, close this one explicitly
       if (isClickingOtherSearch) {
         searchResults.classList.remove("active");
@@ -6666,7 +7008,12 @@ function setupCarSectionSearch(searchInput, searchResults, searchIcon) {
 }
 
 // Legacy function for backward compatibility (now uses shared service)
-function setupSearchFunctionality(searchInput, searchResults, searchIcon, onResultClick) {
+function setupSearchFunctionality(
+  searchInput,
+  searchResults,
+  searchIcon,
+  onResultClick
+) {
   // Route to appropriate search based on input ID
   if (searchInput.id === "vehicle-search") {
     setupHeaderSearch(searchInput, searchResults, searchIcon);
@@ -6890,17 +7237,17 @@ function initCookieBanner() {
       timestamp: Date.now(),
     };
     localStorage.setItem("cookieConsent", JSON.stringify(consent));
-    
+
     // Integrate with Google Consent Mode v2
-    if (typeof window.updateConsentMode === 'function') {
+    if (typeof window.updateConsentMode === "function") {
       window.updateConsentMode(necessary, functional, analytics);
     }
-    
+
     // Load Google tag if analytics consent is granted
-    if (analytics && typeof window.loadGoogleTag === 'function') {
+    if (analytics && typeof window.loadGoogleTag === "function") {
       window.loadGoogleTag();
     }
-    
+
     hideCookieBanner();
   }
 
@@ -7217,7 +7564,9 @@ function initNewsletter(formIdPrefix = "") {
         const body = encodeURIComponent(
           `Bitte tragen Sie diese E-Mail in den Newsletter ein:\n\nE-Mail: ${email}`
         );
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
+        const email =
+          (window.dealerConfig && window.dealerConfig.email) ||
+          "office@cbhandel.at";
         const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
 
@@ -7519,7 +7868,9 @@ function initAppointmentBooking() {
             data.vehicle || "Nicht angegeben"
           }\n\nNachricht:\n${data.message || "Keine zusätzliche Nachricht"}`
         );
-        const email = (window.dealerConfig && window.dealerConfig.email) || 'office@cbhandel.at';
+        const email =
+          (window.dealerConfig && window.dealerConfig.email) ||
+          "office@cbhandel.at";
         const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
 
@@ -7658,22 +8009,25 @@ function initStickyCTA() {
 function handleRedirectParameter() {
   const urlParams = new URLSearchParams(window.location.search);
   const redirect = urlParams.get("redirect");
-  
+
   if (!redirect) return;
-  
+
   // Map redirect values to section IDs
   const redirectMap = {
-    fahrzeuge: "#fahrzeuge"
+    fahrzeuge: "#fahrzeuge",
   };
-  
+
   const targetHash = redirectMap[redirect];
   if (!targetHash) return;
-  
+
   // Remove the redirect parameter from URL to clean it up
   urlParams.delete("redirect");
-  const newUrl = window.location.pathname + (urlParams.toString() ? "?" + urlParams.toString() : "") + targetHash;
+  const newUrl =
+    window.location.pathname +
+    (urlParams.toString() ? "?" + urlParams.toString() : "") +
+    targetHash;
   window.history.replaceState({}, "", newUrl);
-  
+
   // Wait for the page to be fully loaded, then scroll to the section
   setTimeout(() => {
     const targetSection = document.querySelector(targetHash);
@@ -7681,7 +8035,7 @@ function handleRedirectParameter() {
       const header = document.getElementById("main-header");
       const headerHeight = header?.offsetHeight || 0;
       const targetPosition = targetSection.offsetTop - headerHeight;
-      
+
       window.scrollTo({
         top: targetPosition,
         behavior: isReducedMotion() ? "auto" : "smooth",
@@ -7985,7 +8339,9 @@ window.addEventListener("unhandledrejection", function (e) {
 // ========================================
 
 console.log(
-  `%c🚗 ${(window.dealerConfig && window.dealerConfig.name) || 'CB Handels GmbH'}`,
+  `%c🚗 ${
+    (window.dealerConfig && window.dealerConfig.name) || "CB Handels GmbH"
+  }`,
   "font-size: 20px; font-weight: bold; color: #004b8d;"
 );
 console.log(
