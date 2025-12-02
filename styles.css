@@ -6560,7 +6560,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   margin-top: 2rem;
 }
 
-.disclaimer h5 {
+.disclaimer h3 {
   font-size: 1rem;
   margin-bottom: 0.75rem;
 }
@@ -6606,7 +6606,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   border-top: 1px solid var(--border-color);
 }
 
-.privacy-policy h5 {
+.privacy-policy h3 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   color: var(--text-primary);
