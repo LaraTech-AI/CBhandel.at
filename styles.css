@@ -2703,7 +2703,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   display: none;
 }
 
-.filter-tabs .vehicle-search-section {
+.filter-tabs-wrapper > .vehicle-search-section {
   flex: 0 0 auto;
   min-width: 250px;
   max-width: 350px;
@@ -2713,18 +2713,18 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 }
 
 @media (max-width: 768px) {
-  .filter-tabs .vehicle-search-section {
+  .filter-tabs-wrapper > .vehicle-search-section {
     min-width: 100%;
     max-width: 100%;
     width: 100%;
   }
 
-  .filter-tabs .vehicle-search-section .search-container {
+  .filter-tabs-wrapper > .vehicle-search-section .search-container {
     width: 100%;
     position: relative;
   }
 
-  .filter-tabs .vehicle-search-section .search-input {
+  .filter-tabs-wrapper > .vehicle-search-section .search-input {
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -2742,13 +2742,13 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     box-sizing: border-box !important;
   }
 
-  .filter-tabs .vehicle-search-section .search-input:focus {
+  .filter-tabs-wrapper > .vehicle-search-section .search-input:focus {
     border-color: var(--brand-primary) !important;
     box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1) !important;
     outline: none !important;
   }
 
-  .filter-tabs .vehicle-search-section .search-icon-btn {
+  .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn {
     position: absolute !important;
     right: 0.75rem !important;
     top: 50% !important;
@@ -2765,15 +2765,15 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     z-index: 2 !important;
   }
 
-  .filter-tabs .vehicle-search-section .search-icon-btn:active,
-  .filter-tabs .vehicle-search-section .search-icon-btn:hover {
+  .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn:active,
+  .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn:hover {
     background: var(--brand-primary);
     color: white;
     border-color: var(--brand-primary);
     transform: scale(1.05);
   }
 
-  .filter-tabs .vehicle-search-section .search-icon-btn svg {
+  .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn svg {
     width: 20px;
     height: 20px;
   }
@@ -2793,7 +2793,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   }
 }
 
-.filter-tabs .vehicle-search-section .search-input {
+.filter-tabs-wrapper > .vehicle-search-section .search-input {
   padding: 0.75rem 2.5rem 0.75rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -2806,7 +2806,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   height: auto;
 }
 
-.filter-tabs .vehicle-search-section .search-container {
+.filter-tabs-wrapper > .vehicle-search-section .search-container {
   display: flex;
   align-items: center;
   height: 100%;
@@ -2972,7 +2972,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     width: 100%;
   }
 
-  .filter-tabs .vehicle-search-section {
+  .filter-tabs-wrapper > .vehicle-search-section {
     order: -1;
     width: 100%;
     max-width: 100%;
@@ -6567,7 +6567,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 .disclaimer p {
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -6578,7 +6578,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   border-top: 1px solid var(--border-color);
   text-align: center;
   font-size: 0.875rem;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .footer-credits {
@@ -11586,7 +11586,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   }
 
   /* Ensure vehicle search section input is always visible on mobile */
-  .filter-tabs .vehicle-search-section .search-input {
+  .filter-tabs-wrapper > .vehicle-search-section .search-input {
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -11936,7 +11936,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   }
 
   /* Ensure vehicle search section input is always visible on mobile */
-  .filter-tabs .vehicle-search-section .search-input {
+  .filter-tabs-wrapper > .vehicle-search-section .search-input {
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -11949,7 +11949,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     box-sizing: border-box !important;
   }
 
-  .filter-tabs .vehicle-search-section .search-icon-btn {
+  .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn {
     position: absolute !important;
     right: 0.75rem !important;
     top: 50% !important;
@@ -11967,7 +11967,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     }
 
     /* Ensure vehicle search section input is always visible on small mobile */
-    .filter-tabs .vehicle-search-section .search-input {
+    .filter-tabs-wrapper > .vehicle-search-section .search-input {
       width: 100% !important;
       min-width: 100% !important;
       max-width: 100% !important;
@@ -11980,7 +11980,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
       box-sizing: border-box !important;
     }
 
-    .filter-tabs .vehicle-search-section .search-icon-btn {
+    .filter-tabs-wrapper > .vehicle-search-section .search-icon-btn {
       position: absolute !important;
       right: 0.75rem !important;
       top: 50% !important;
