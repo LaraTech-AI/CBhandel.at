@@ -11295,6 +11295,11 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     display: none !important;
   }
 
+  /* Hide thumbnails on mobile - show just the main pictures */
+  .quick-view-thumbnails {
+    display: none !important;
+  }
+
   /* Ensure buttons are easily tappable */
   .quick-view-actions {
     grid-template-columns: 1fr;
