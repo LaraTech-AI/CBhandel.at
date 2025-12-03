@@ -4948,17 +4948,45 @@ function initQuickView() {
     .getElementById("image-zoom-btn")
     ?.addEventListener("click", openImageFullscreen);
 
-  // Mobile: Touch/Swipe gestures
+  // Mobile/Tablet: Touch/Swipe gestures and tap-to-zoom
   let touchStartX = 0;
   let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
+  let touchStartTime = 0;
   const minSwipeDistance = 50; // Minimum distance for a swipe
+  const maxTapDistance = 10; // Maximum distance for a tap
+  const maxTapDuration = 300; // Maximum duration for a tap (ms)
+
+  // Check if device is tablet (769px - 1024px)
+  function isTablet() {
+    return window.innerWidth >= 769 && window.innerWidth <= 1024;
+  }
 
   const mainImageContainer = document.querySelector(".quick-view-main-image");
+  const mainImage = mainImageContainer?.querySelector("img");
+  
   if (mainImageContainer) {
+    // Click handler for tablets - open fullscreen on image click
+    mainImageContainer.addEventListener("click", (e) => {
+      // Only trigger on tablets, and only if clicking the image itself (not buttons)
+      if (isTablet() && (e.target === mainImage || e.target === mainImageContainer)) {
+        const zoomBtn = e.target.closest(".image-zoom-btn");
+        const navBtn = e.target.closest(".image-nav-btn");
+        if (!zoomBtn && !navBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          openImageFullscreen();
+        }
+      }
+    });
+
     mainImageContainer.addEventListener(
       "touchstart",
       (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        touchStartTime = Date.now();
       },
       { passive: true }
     );
@@ -4967,17 +4995,36 @@ function initQuickView() {
       "touchend",
       (e) => {
         touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        touchEndY = e.changedTouches[0].screenY;
+        const touchDuration = Date.now() - touchStartTime;
+        handleTouch(touchDuration);
       },
       { passive: true }
     );
   }
 
-  function handleSwipe() {
-    const swipeDistance = touchEndX - touchStartX;
+  function handleTouch(touchDuration) {
+    const swipeDistanceX = touchEndX - touchStartX;
+    const swipeDistanceY = touchEndY - touchStartY;
+    const totalDistance = Math.sqrt(
+      swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY
+    );
 
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0) {
+    // On tablets: if it's a tap (small movement, short duration), open fullscreen
+    if (isTablet()) {
+      if (
+        totalDistance < maxTapDistance &&
+        touchDuration < maxTapDuration
+      ) {
+        // It's a tap - open fullscreen
+        openImageFullscreen();
+        return;
+      }
+    }
+
+    // Otherwise, handle as swipe for navigation
+    if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > Math.abs(swipeDistanceY)) {
+      if (swipeDistanceX > 0) {
         // Swiped right - show previous image
         showPrevImage();
       } else {

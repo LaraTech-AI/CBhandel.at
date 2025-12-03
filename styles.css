@@ -11051,6 +11051,15 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     touch-action: pan-x pinch-zoom;
     user-select: none;
     -webkit-user-select: none;
+    cursor: pointer; /* Indicate image is clickable */
+  }
+
+  /* Fix image cutoff on tablets - use contain to show full image */
+  .quick-view-main-image img {
+    object-fit: contain !important;
+    object-position: center;
+    max-height: 50vh;
+    height: auto;
   }
 
   /* Hide navigation arrows on tablets - use swipe gestures instead */
