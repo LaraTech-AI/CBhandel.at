@@ -4755,6 +4755,16 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 }
 
 @media (min-width: 1025px) {
+  /* Hide menu search button on desktop - keep header search visible */
+  .nav-menu-search-item {
+    display: none !important;
+  }
+
+  /* Ensure header search is visible on desktop */
+  .header-search {
+    display: flex !important;
+  }
+
   .testimonials-track {
     max-width: 1100px;
     margin: 0 auto;
@@ -10333,6 +10343,16 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 /* Tablet-specific sizing (768px - 968px) */
 @media (min-width: 769px) and (max-width: 968px) {
+  /* Hide menu search button on tablet - keep header search visible */
+  .nav-menu-search-item {
+    display: none !important;
+  }
+
+  /* Ensure header search is visible on tablet */
+  .header-search {
+    display: flex !important;
+  }
+
   .image-zoom-btn {
     top: 0.75rem;
     left: 0.75rem;
@@ -11992,18 +12012,19 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     height: 38px;
   }
 
-  /* Mobile Search - Hide from header, show in menu */
+  /* Mobile Search - Hide from header, show in burger menu */
   /* Only apply to header search, not vehicle search section */
   .header-search {
     display: none !important;
   }
-  
-  /* Show search button in mobile menu */
+
+  /* Show search button in mobile burger menu only */
   .nav-menu-search-item {
     list-style: none;
     margin: 0.5rem 0;
+    display: block;
   }
-  
+
   .nav-menu-search-btn {
     width: 100%;
     display: flex !important;
@@ -12019,7 +12040,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     transition: all var(--transition-base);
     cursor: pointer;
   }
-  
+
   .nav-menu-search-btn:hover {
     background: var(--brand-primary);
     color: white;
@@ -12027,13 +12048,13 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(var(--brand-primary-rgb), 0.3);
   }
-  
+
   .nav-menu-search-btn svg {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
   }
-  
+
   .nav-menu-search-text {
     font-weight: 500;
   }
