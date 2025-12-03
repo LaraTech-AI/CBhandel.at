@@ -11966,8 +11966,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     flex-shrink: 1;
     min-width: 0;
     max-width: calc(
-      100% - 150px
-    ); /* Reserve space for burger menu, search, and theme toggle */
+      100% - 120px
+    ); /* Reserve space for burger menu, search (moved next to burger), and theme toggle */
   }
 
   .logo-link {
@@ -11992,15 +11992,24 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     height: 38px;
   }
 
-  /* Mobile Search - Show as icon button */
+  /* Mobile Search - Show as icon button next to burger menu */
   /* Only apply to header search, not vehicle search section */
   .header-search {
-    order: 2;
+    order: 1;
     margin-right: 0;
     margin-left: 0;
     flex-shrink: 0;
     position: relative;
     z-index: 1002;
+  }
+
+  /* Position burger menu and search icon together */
+  .mobile-menu-toggle {
+    order: 0;
+  }
+
+  .header-actions {
+    order: 2;
   }
 
   .header-search-icon-btn {
@@ -12364,8 +12373,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     flex-shrink: 1;
     min-width: 0;
     max-width: calc(
-      100% - 130px
-    ); /* Reserve space for burger menu, search, and theme toggle */
+      100% - 100px
+    ); /* Reserve space for burger menu, search (moved next to burger), and theme toggle */
   }
 
   .logo-link {
