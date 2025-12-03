@@ -3175,7 +3175,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     top: 1rem;
     z-index: 5 !important; /* Above image, below close button (z-index: 999 on mobile) */
   }
-  
+
   /* Override absolute positioning for badges inside quick-view-badges container on mobile */
   .quick-view-modal .quick-view-badges .card-badge {
     position: static !important;
@@ -13104,6 +13104,15 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .comparison-modal,
   .financing-modal {
     padding: 1rem;
+  }
+
+  .financing-header h2 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  .financing-header {
+    padding: 1.25rem 1.5rem;
   }
 
   /* Quick view modal is handled separately above at 968px breakpoint */
