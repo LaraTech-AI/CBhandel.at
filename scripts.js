@@ -4976,29 +4976,43 @@ function initQuickView() {
   
   if (mainImageContainer) {
     // Click handler for tablets and mobile - open fullscreen on image click
+    // Use capture phase with higher priority to intercept before backdrop handler
     mainImageContainer.addEventListener("click", (e) => {
-      // Only trigger on tablets/mobile, and only if clicking the image itself (not buttons)
-      if (isTabletOrMobile()) {
-        // Check if click is on a button or its child
-        const zoomBtn = e.target.closest(".image-zoom-btn");
-        const navBtn = e.target.closest(".image-nav-btn");
-        const counter = e.target.closest(".image-counter");
-        
-        // If clicking on buttons or counter, don't handle
-        if (zoomBtn || navBtn || counter) {
-          return;
-        }
-        
-        // If clicking on the image or image container, open fullscreen
-        if (e.target === mainImage || e.target === mainImageContainer || mainImageContainer.contains(e.target)) {
-          e.preventDefault();
-          e.stopPropagation();
-          e.stopImmediatePropagation(); // Prevent backdrop click handler
-          openImageFullscreen();
-          return false;
-        }
+      // Only trigger on tablets/mobile
+      if (!isTabletOrMobile()) {
+        return;
       }
-    }, true); // Use capture phase to handle before backdrop
+      
+      // Check if click is on a button or its child - let those handle normally
+      const zoomBtn = e.target.closest(".image-zoom-btn");
+      const navBtn = e.target.closest(".image-nav-btn");
+      const counter = e.target.closest(".image-counter");
+      
+      if (zoomBtn || navBtn || counter) {
+        return; // Let button handlers work normally
+      }
+      
+      // Check if clicking on the image itself or directly on the container
+      const clickedOnImage = e.target === mainImage || e.target === mainImageContainer;
+      
+      // Also check if clicking on a child element within the image container
+      // but exclude buttons, counters, and other interactive elements
+      const clickedInImageArea = mainImageContainer.contains(e.target) &&
+                                 !zoomBtn && !navBtn && !counter &&
+                                 e.target.tagName !== 'BUTTON';
+      
+      if (clickedOnImage || clickedInImageArea) {
+        // CRITICAL: Prevent backdrop/modal click handlers from firing
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        // Open fullscreen - this will close the modal first, then open lightbox
+        openImageFullscreen();
+        
+        return false;
+      }
+    }, true); // Capture phase - handle before backdrop
 
     mainImageContainer.addEventListener(
       "touchstart",
