@@ -4958,19 +4958,27 @@ function initQuickView() {
   const maxTapDistance = 10; // Maximum distance for a tap
   const maxTapDuration = 300; // Maximum duration for a tap (ms)
 
-  // Check if device is tablet (769px - 1024px)
+  // Check if device is tablet (769px - 1024px) or mobile (max-width 968px)
   function isTablet() {
     return window.innerWidth >= 769 && window.innerWidth <= 1024;
+  }
+
+  function isMobile() {
+    return window.innerWidth <= 968;
+  }
+
+  function isTabletOrMobile() {
+    return isTablet() || isMobile();
   }
 
   const mainImageContainer = document.querySelector(".quick-view-main-image");
   const mainImage = mainImageContainer?.querySelector("img");
   
   if (mainImageContainer) {
-    // Click handler for tablets - open fullscreen on image click
+    // Click handler for tablets and mobile - open fullscreen on image click
     mainImageContainer.addEventListener("click", (e) => {
-      // Only trigger on tablets, and only if clicking the image itself (not buttons)
-      if (isTablet() && (e.target === mainImage || e.target === mainImageContainer)) {
+      // Only trigger on tablets/mobile, and only if clicking the image itself (not buttons)
+      if (isTabletOrMobile() && (e.target === mainImage || e.target === mainImageContainer)) {
         const zoomBtn = e.target.closest(".image-zoom-btn");
         const navBtn = e.target.closest(".image-nav-btn");
         if (!zoomBtn && !navBtn) {
@@ -5010,8 +5018,8 @@ function initQuickView() {
       swipeDistanceX * swipeDistanceX + swipeDistanceY * swipeDistanceY
     );
 
-    // On tablets: if it's a tap (small movement, short duration), open fullscreen
-    if (isTablet()) {
+    // On tablets and mobile: if it's a tap (small movement, short duration), open fullscreen
+    if (isTabletOrMobile()) {
       if (
         totalDistance < maxTapDistance &&
         touchDuration < maxTapDuration
