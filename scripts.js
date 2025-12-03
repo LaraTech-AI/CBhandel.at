@@ -6586,15 +6586,29 @@ function initVehicleSearch() {
 }
 
 function initHeaderSearch() {
+  // Get both search buttons (header and menu)
   const headerSearchIcon = document.getElementById("header-search-icon");
+  const menuSearchIcon = document.getElementById("header-search-icon-menu");
+  const searchButtons = [headerSearchIcon, menuSearchIcon].filter(Boolean);
 
-  if (!headerSearchIcon) return;
+  if (searchButtons.length === 0) return;
 
-  // Scroll to vehicle-filters section when icon is clicked
-  headerSearchIcon.addEventListener("click", (e) => {
+  // Function to handle search click
+  const handleSearchClick = (e) => {
     e.preventDefault();
     const vehicleFilters = document.querySelector(".vehicle-filters");
     const header = document.querySelector(".header");
+    const mobileMenu = document.getElementById("nav-menu");
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+
+    // Close mobile menu if open
+    if (mobileMenu && mobileMenu.classList.contains("active")) {
+      mobileMenu.classList.remove("active");
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove("active");
+      }
+      document.body.style.overflow = "";
+    }
 
     if (vehicleFilters) {
       // Get header height to account for fixed navbar
@@ -6610,15 +6624,20 @@ function initHeaderSearch() {
       });
 
       // Focus the search input after scrolling
-      const carSectionSearch = document.getElementById(
-        "vehicle-search-fahrzeuge"
-      );
-      if (carSectionSearch) {
-        setTimeout(() => {
+      setTimeout(() => {
+        const carSectionSearch = document.getElementById(
+          "vehicle-search-fahrzeuge"
+        );
+        if (carSectionSearch) {
           carSectionSearch.focus();
-        }, 500);
-      }
+        }
+      }, 500);
     }
+  };
+
+  // Add event listeners to all search buttons
+  searchButtons.forEach((button) => {
+    button.addEventListener("click", handleSearchClick);
   });
 }
 

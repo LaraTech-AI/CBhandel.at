@@ -11966,8 +11966,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     flex-shrink: 1;
     min-width: 0;
     max-width: calc(
-      100% - 120px
-    ); /* Reserve space for burger menu, search (moved next to burger), and theme toggle */
+      100% - 100px
+    ); /* Reserve space for burger menu and theme toggle */
   }
 
   .logo-link {
@@ -11992,24 +11992,50 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     height: 38px;
   }
 
-  /* Mobile Search - Show as icon button next to burger menu */
+  /* Mobile Search - Hide from header, show in menu */
   /* Only apply to header search, not vehicle search section */
   .header-search {
-    order: 1;
-    margin-right: 0;
-    margin-left: 0;
+    display: none !important;
+  }
+  
+  /* Show search button in mobile menu */
+  .nav-menu-search-item {
+    list-style: none;
+    margin: 0.5rem 0;
+  }
+  
+  .nav-menu-search-btn {
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+  }
+  
+  .nav-menu-search-btn:hover {
+    background: var(--brand-primary);
+    color: white;
+    border-color: var(--brand-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--brand-primary-rgb), 0.3);
+  }
+  
+  .nav-menu-search-btn svg {
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
-    position: relative;
-    z-index: 1002;
   }
-
-  /* Position burger menu and search icon together */
-  .mobile-menu-toggle {
-    order: 0;
-  }
-
-  .header-actions {
-    order: 2;
+  
+  .nav-menu-search-text {
+    font-weight: 500;
   }
 
   .header-search-icon-btn {
@@ -12373,8 +12399,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     flex-shrink: 1;
     min-width: 0;
     max-width: calc(
-      100% - 100px
-    ); /* Reserve space for burger menu, search (moved next to burger), and theme toggle */
+      100% - 130px
+    ); /* Reserve space for burger menu, search, and theme toggle */
   }
 
   .logo-link {
