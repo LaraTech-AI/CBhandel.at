@@ -11892,8 +11892,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     flex-direction: column;
-    padding: 4rem 1.25rem 1rem;
-    gap: 0.25rem;
+    padding: 3.5rem 1rem 0.75rem;
+    gap: 0.125rem;
     transition: right var(--transition-smooth);
     box-shadow: -5px 0 20px var(--shadow-color);
     overflow-y: auto;
@@ -11912,7 +11912,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   .nav-link {
     font-size: 0.9375rem;
-    padding: 0.375rem 0;
+    padding: 0.25rem 0;
     color: var(--text-primary) !important;
     text-shadow: none !important;
   }
@@ -11921,7 +11921,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .nav-divider {
     height: 1px;
     background: var(--border-color);
-    margin: 0.5rem 0;
+    margin: 0.375rem 0;
     list-style: none;
   }
 
@@ -11929,8 +11929,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .nav-social-section {
     display: block;
     list-style: none;
-    margin-top: 0.25rem;
-    padding-top: 0.5rem;
+    margin-top: 0.125rem;
+    padding-top: 0.375rem;
   }
 
   .nav-social-title {
@@ -11940,7 +11940,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.375rem;
   }
 
   .nav-social-links {
@@ -12021,32 +12021,37 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   /* Show search button in mobile burger menu only */
   .nav-menu-search-item {
     list-style: none;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     display: block;
     padding: 0;
+    width: 100%;
   }
 
   .nav-menu-search-btn {
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    gap: 0.625rem;
-    padding: 0.875rem 1.25rem;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
     background: linear-gradient(
       135deg,
       var(--brand-primary) 0%,
       rgba(var(--brand-primary-rgb), 0.9) 100%
     );
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: white !important;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 600;
     transition: all var(--transition-smooth);
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(var(--brand-primary-rgb), 0.25);
     text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
   }
 
   .nav-menu-search-btn:hover,
