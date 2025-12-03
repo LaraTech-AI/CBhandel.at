@@ -436,7 +436,7 @@ body.reduced-motion .reveal-on-scroll {
     grid-template-columns: 1fr;
     gap: 0.375rem;
   }
-  
+
   .description-content .description-features li {
     padding-left: 1.25rem;
     font-size: 0.875rem;
@@ -11243,6 +11243,10 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     gap: 0.75rem;
     width: 100%;
     min-width: 0; /* Allow grid item to shrink */
+    grid-column: 1 / -1; /* Span full width on mobile */
+    margin-top: 0 !important; /* Ensure no negative margin */
+    position: relative; /* Ensure proper stacking context */
+    z-index: 2; /* Above image section */
   }
 
   .quick-view-image-section {
@@ -11295,15 +11299,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     display: none !important;
   }
 
-  /* Hide thumbnails on mobile - show just the main pictures */
-  .quick-view-thumbnails {
-    display: none !important;
-  }
-
   /* Ensure buttons are easily tappable */
   .quick-view-actions {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+    margin-top: 1rem !important; /* Add spacing above buttons to prevent overlap */
+    margin-bottom: 0.75rem !important;
+    position: relative;
+    z-index: 3; /* Above other content */
   }
 
   .quick-view-actions .btn-primary {

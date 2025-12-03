@@ -4978,16 +4978,27 @@ function initQuickView() {
     // Click handler for tablets and mobile - open fullscreen on image click
     mainImageContainer.addEventListener("click", (e) => {
       // Only trigger on tablets/mobile, and only if clicking the image itself (not buttons)
-      if (isTabletOrMobile() && (e.target === mainImage || e.target === mainImageContainer)) {
+      if (isTabletOrMobile()) {
+        // Check if click is on a button or its child
         const zoomBtn = e.target.closest(".image-zoom-btn");
         const navBtn = e.target.closest(".image-nav-btn");
-        if (!zoomBtn && !navBtn) {
+        const counter = e.target.closest(".image-counter");
+        
+        // If clicking on buttons or counter, don't handle
+        if (zoomBtn || navBtn || counter) {
+          return;
+        }
+        
+        // If clicking on the image or image container, open fullscreen
+        if (e.target === mainImage || e.target === mainImageContainer || mainImageContainer.contains(e.target)) {
           e.preventDefault();
           e.stopPropagation();
+          e.stopImmediatePropagation(); // Prevent backdrop click handler
           openImageFullscreen();
+          return false;
         }
       }
-    });
+    }, true); // Use capture phase to handle before backdrop
 
     mainImageContainer.addEventListener(
       "touchstart",
