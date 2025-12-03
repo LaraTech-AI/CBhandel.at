@@ -9925,8 +9925,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
 @media (max-width: 768px) {
   .lightbox-nav {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     background: rgba(255, 255, 255, 0.3) !important;
     border: 2px solid rgba(255, 255, 255, 0.5) !important;
   }
@@ -9935,8 +9935,12 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     color: white !important;
     stroke: white !important;
     fill: none !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     display: block !important;
     opacity: 1 !important;
     stroke-width: 3 !important;
@@ -9964,8 +9968,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
 
   .lightbox-close,
   .lightbox-zoom {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     top: 1rem;
     background: rgba(255, 255, 255, 0.3) !important;
     border: 2px solid rgba(255, 255, 255, 0.5) !important;
@@ -9984,8 +9988,12 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     color: white !important;
     stroke: white !important;
     fill: none !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     display: block !important;
     opacity: 1 !important;
     stroke-width: 3 !important;
