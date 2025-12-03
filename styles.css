@@ -11009,19 +11009,33 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   /* Ensure modal works properly on tablets */
   .quick-view-modal {
     padding: 1rem;
+    height: 100vh;
+    align-items: stretch;
+    justify-content: stretch;
   }
 
   .quick-view-content {
     max-width: 95%;
     max-height: 95vh;
+    height: 95vh;
     border-radius: 16px;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
   }
 
   .quick-view-body {
     gap: 1.5rem;
     padding: 2rem;
-    max-height: calc(95vh - 4rem);
-    overflow-y: auto;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: grid !important;
+    align-content: start !important;
+    box-sizing: border-box !important;
   }
 
   .quick-view-thumbnails {
@@ -11051,10 +11065,18 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
   .quick-view-main-image {
     max-height: 50vh;
     min-height: 300px;
+    flex-shrink: 0;
   }
 
   .quick-view-image-section {
     max-height: 55vh;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .quick-view-details {
+    min-width: 0;
+    width: 100%;
   }
 
   .quick-view-actions {
