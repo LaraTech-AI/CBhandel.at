@@ -1,5 +1,64 @@
 # 📝 Change Log - Car Dealer Website Template
 
+## Local Development Environment Setup (December 2025)
+
+### 🚀 Local Development Improvements
+
+#### Overview
+
+Added complete local development environment with separate API server for testing vehicle endpoints without requiring Vercel dev server. Frontend automatically detects localhost and switches between local API server and production endpoints.
+
+#### New Features
+
+**1. Local API Test Server**
+- ✅ **Express-based API Server**: Created `test-api-local.js` for local vehicle API testing on port 3001
+- ✅ **CORS Support**: Full CORS headers configured for local development
+- ✅ **Vehicle Data Fetching**: Uses same `vehicleService.js` as production for consistent data
+- ✅ **Health Check Endpoint**: `/health` endpoint for server status verification
+
+**2. Smart API Endpoint Detection**
+- ✅ **Environment-Aware**: Frontend automatically detects localhost and uses `http://localhost:3001/api/vehicles`
+- ✅ **Production Fallback**: Uses relative `/api/vehicles` endpoint in production
+- ✅ **No Configuration Needed**: Works automatically based on hostname
+
+**3. Development Workflow**
+- ✅ **Dual Server Setup**: Static files on port 3000, API on port 3001
+- ✅ **Git Ignored**: `test-api-local.js` excluded from version control (development only)
+- ✅ **Express Dependency**: Added express as dependency for local API server
+
+#### Files Modified
+
+- `scripts.js` - Added environment-aware API endpoint detection (localhost vs production)
+- `.gitignore` - Added `test-api-local.js` to exclude from git
+- `vercel.json` - Added `devCommand` configuration
+- `package.json` - Added express dependency
+- `LOCAL-TESTING-GUIDE.md` - Updated with new local development options
+- `README.md` - Added local development setup instructions
+
+#### Benefits
+
+- ✅ **Faster Development**: No need to wait for Vercel dev server startup
+- ✅ **Full API Testing**: Test vehicle endpoints locally without deployment
+- ✅ **Production Safety**: Production code uses relative paths, no hardcoded URLs
+- ✅ **Easy Setup**: Simple two-terminal workflow for complete local environment
+
+#### Technical Details
+
+The API endpoint detection logic:
+```javascript
+const apiUrl = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3001/api/vehicles'
+  : '/api/vehicles';
+```
+
+This ensures:
+- Local development uses the test API server
+- Production uses Vercel serverless functions
+- No manual configuration needed
+- No breaking changes to production
+
+---
+
 ## Mobile Navigation Search Button Integration (December 2025)
 
 ### 🔧 Mobile UX Enhancements

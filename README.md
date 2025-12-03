@@ -267,9 +267,30 @@ NEWSLETTER_SECRET=your-secret-key-here
 
 ## 🧪 Local Development
 
+### Option 1: Full Local Development (Recommended)
+
+For complete local development with API endpoints working:
+
 ```bash
-# Install dependencies (only for serverless function)
-npm install nodemailer
+# Terminal 1: Start local API server (port 3001)
+node test-api-local.js
+
+# Terminal 2: Start static file server (port 3000)
+npm run dev
+
+# Open browser
+# Visit: http://localhost:3000
+```
+
+The frontend automatically detects localhost and uses the local API server. In production, it uses the relative `/api/vehicles` endpoint.
+
+### Option 2: Vercel Dev Server (Production Simulation)
+
+For testing with Vercel serverless functions:
+
+```bash
+# Install dependencies
+npm install
 
 # Install Vercel CLI
 npm install -g vercel
@@ -280,6 +301,8 @@ vercel dev
 # Open browser
 # Visit: http://localhost:3000
 ```
+
+**Note:** The local API server (`test-api-local.js`) is for development only and is excluded from git. For production, use Vercel's serverless functions.
 
 ### Testing Forms Locally
 

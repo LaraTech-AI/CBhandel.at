@@ -2,23 +2,39 @@
 
 ## 🚀 Quick Start
 
-### Option 1: Test with Vercel Dev (Recommended for API Testing)
+### Option 1: Test with Local API Server + Static Server (Recommended for Local Development)
+
+```bash
+# Terminal 1: Start local API server (port 3001)
+node test-api-local.js
+
+# Terminal 2: Start static file server (port 3000)
+npm run dev
+```
+
+This setup provides:
+- Static files served on `http://localhost:3000` (HTML, CSS, JS, assets)
+- API endpoints on `http://localhost:3001/api/vehicles` (vehicle data)
+
+**Note:** The frontend automatically detects localhost and uses the local API server. In production, it uses the relative `/api/vehicles` endpoint.
+
+### Option 2: Test with Vercel Dev (Full Production Simulation)
 
 ```bash
 # Start Vercel dev server (tests API endpoints)
 npm run dev:vercel
 ```
 
-This will start the server on `http://localhost:3000` with full API support.
+This will start the server on `http://localhost:3000` with full API support (Vercel serverless functions).
 
-### Option 2: Test with Simple Serve (HTML/CSS/JS only)
+### Option 3: Test with Simple Serve (HTML/CSS/JS only)
 
 ```bash
 # Start simple server (no API endpoints)
 npm run dev
 ```
 
-**Note:** API endpoints won't work with `npx serve`. Use `vercel dev` for full testing.
+**Note:** API endpoints won't work with `npx serve` alone. Use Option 1 or Option 2 for full testing.
 
 ---
 

@@ -60,7 +60,11 @@ async function fetchAllVehicles() {
 
   try {
     console.log("Fetching vehicles from /api/vehicles...");
-    const response = await fetch("/api/vehicles");
+    // Use relative path for production, or localhost for local dev
+    const apiUrl = window.location.hostname === 'localhost' 
+      ? 'http://localhost:3001/api/vehicles'
+      : '/api/vehicles';
+    const response = await fetch(apiUrl);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

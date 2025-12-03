@@ -69,6 +69,7 @@ temp/
 
 # Local development
 .local/
+test-api-local.js
 
 # Optional: Comment out if you want to track these
 # Uncomment lines below if you want Git to ignore actual assets
