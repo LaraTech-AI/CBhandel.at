@@ -11052,6 +11052,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer; /* Indicate image is clickable */
+    z-index: 4; /* Above everything to ensure clicks work */
+    pointer-events: auto !important; /* Ensure image can receive clicks */
   }
 
   /* Fix image cutoff on tablets - use contain to show full image */
@@ -11071,11 +11073,16 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     max-height: 55vh;
     flex-shrink: 0;
     min-width: 0;
+    position: relative;
+    z-index: 3; /* Above details section to allow image clicks */
+    pointer-events: auto; /* Ensure image section can receive clicks */
   }
 
   .quick-view-details {
     min-width: 0;
     width: 100%;
+    position: relative;
+    z-index: 1; /* Below image section to allow image clicks */
   }
 
   .quick-view-actions {
@@ -11206,6 +11213,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     grid-template-rows: auto auto auto;
     gap: 0.375rem;
     margin-bottom: 0.75rem;
+    pointer-events: auto; /* Allow header content to be clickable */
   }
 
   .quick-view-title {
@@ -11246,7 +11254,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     grid-column: 1 / -1; /* Span full width on mobile */
     margin-top: 0 !important; /* Ensure no negative margin */
     position: relative; /* Ensure proper stacking context */
-    z-index: 2; /* Above image section */
+    z-index: 1; /* Below image section to allow image clicks */
   }
 
   .quick-view-image-section {
@@ -11279,6 +11287,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer; /* Indicate image is clickable */
+    z-index: 4; /* Above everything to ensure clicks work */
+    pointer-events: auto !important; /* Ensure image can receive clicks */
   }
 
   /* Fix image cutoff on mobile - use contain to show full image */
