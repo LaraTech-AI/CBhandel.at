@@ -11260,6 +11260,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):hover {
     width: 100%;
     min-width: 0; /* Allow grid item to shrink */
     grid-column: 1 / -1; /* Span full width on mobile */
+    margin-bottom: 0 !important; /* Ensure no negative margin */
+    position: relative; /* Ensure proper stacking context */
+    z-index: 1; /* Below buttons but above background */
   }
 
   .quick-view-main-image {
