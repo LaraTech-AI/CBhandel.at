@@ -4785,7 +4785,14 @@ function initQuickView() {
   });
 
   quickViewClose?.addEventListener("click", closeQuickView);
-  quickViewBackdrop?.addEventListener("click", closeQuickView);
+  quickViewBackdrop?.addEventListener("click", (e) => {
+    // Don't close if clicking on the image container (let image handler handle it)
+    const mainImageContainer = document.querySelector(".quick-view-main-image");
+    if (mainImageContainer && (mainImageContainer.contains(e.target) || e.target === mainImageContainer)) {
+      return; // Let the image click handler manage this
+    }
+    closeQuickView();
+  });
 
   // Image navigation functions
   function showPrevImage() {
